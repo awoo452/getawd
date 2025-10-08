@@ -1,0 +1,77 @@
+<h1>Blackjack</h1>
+
+<p><strong>Status:</strong> <%= result_message(session[:state]) %></p>
+
+<p>
+  <strong>Chips:</strong> <%= session[:chips] %><br>
+  <strong>Current Bet:</strong> <%= session[:bet] %>
+</p>
+
+<hr>
+
+<!-- Dealer -->
+<div style="display:flex; gap:2rem; flex-wrap:wrap;">
+  <div>
+    <h2>Dealer</h2>
+    <p>
+      <% dealer_cards = session[:dealer] || [] %>
+      <% if session[:state] == "player_turn" %>
+        <% if dealer_cards.any? %>
+          <span><%= dealer_cards.first %></span>
+        <% end %>
+        <% if dealer_cards.size > 1 %>
+          <span>🂠</span>
+        <% end %>
+      <% else %>
+        <% dealer_cards.each do |c| %>
+          <span><%= c %></span>
+        <% end %>
+      <% end %>
+    </p>
+    <p>
+      <% if session[:state] == "player_turn" %>
+        Total: <%= dealer_cards.first.present? ? hand_total([dealer_cards.first]) : 0 %>+
+      <% else %>
+        Total: <%= hand_total(dealer_cards) %>
+      <% end %>
+    </p>
+  </div>
+
+  <!-- Player -->
+  <div>
+    <h2>Player</h2>
+    <p>
+      <% (session[:player] || []).each do |c| %>
+        <span><%= c %></span>
+      <% end %>
+    </p>
+    <p>Total: <%= hand_total(session[:player] || []) %></p>
+  </div>
+</div>
+
+<hr>
+
+<!-- Betting and game controls -->
+<div style="display:flex; gap:0.5rem; flex-wrap:wrap; flex-direction:row; flex-wrap:wrap;">
+  <% if session[:state] == "ready" %>
+    <p><strong>Place your bet:</strong></p>
+    <%= button_to "+1", bet_blackjack_path(amount: 1), method: :post %>
+    <%= button_to "+5", bet_blackjack_path(amount: 5), method: :post %>
+    <%= button_to "+25", bet_blackjack_path(amount: 25), method: :post %>
+    <%= button_to "+100", bet_blackjack_path(amount: 100), method: :post %>
+    <%= button_to "Clear Bet", clear_bet_blackjack_path, method: :post %>
+    <% if session[:bet] > 0 %>
+      <%= button_to "Deal (#{session[:bet]})", deal_blackjack_path, method: :post %>
+    <% end %>
+  <% elsif session[:state] == "player_turn" %>
+    <%= button_to "Hit", hit_blackjack_path, method: :post %>
+    <%= button_to "Stand", stand_blackjack_path, method: :post %>
+    <%= button_to "Reset Game", reset_blackjack_path, method: :post %>
+  <% else %>
+    <%= button_to "Play Again", reset_blackjack_path, method: :post %>
+  <% end %>
+  <div>
+    <%= button_to "I'm Broke (Hard Reset)", hard_reset_blackjack_path, method: :post, data: { confirm: "Start over with 100 chips?" } %>
+  </div>
+
+</div>
