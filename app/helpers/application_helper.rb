@@ -13,6 +13,10 @@ module ApplicationHelper
     "https://getawd-prod.s3.us-west-1.amazonaws.com/blog/#{filename}"
     end
 
+    def branding_image_url(filename)
+      "https://getawd-prod.s3.us-west-1.amazonaws.com/branding/#{filename}"
+    end
+
     def landscaping_image_url(filename)
       "https://getawd-prod.s3.us-west-1.amazonaws.com/landscaping/#{filename}"
     end

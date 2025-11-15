@@ -10,7 +10,7 @@ $font-stack: 'Roboto', sans-serif;
 .navbar {
   background-color: gray;
   padding: 1rem;
-
+  border-bottom: 2px solid $primary-color;
   ul {
     list-style: none;
     display: flex;

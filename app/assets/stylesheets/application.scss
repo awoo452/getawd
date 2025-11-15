@@ -3,6 +3,7 @@
 @import "colors";
 @import 'contact';
 @import 'dashboard';
+@import 'featured_about';
 @import 'form';
 @import "goals";
 @import "ideas";
@@ -31,7 +32,7 @@ body {
   background-color: $background-color;
 }
 
-  .featured-about, .featured-blog-posts, .blog-posts, #blog-post, .games, #game, .featured-projects, .projects, .documents, #document, .featured-videos {
+  .featured-blog-posts, .blog-posts, #blog-post, .games, #game, .featured-projects, .projects, .documents, #document, .featured-videos {
     padding: 2rem;
     background-color: lighten($background-color, 10%);
     border-radius: 8px;

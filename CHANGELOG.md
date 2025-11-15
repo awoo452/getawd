@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.18.10] 2025-11-15
+
+### Added
+- Lightning background added to `featured-about` section using S3-hosted image
+- Created new `branding_image_url` helper for branding-related assets
+- Implemented rotating text animation sequence: “Designing → Creating → Building → Developing → Deploying”
+- Added translucent background for `featured-about` text container
+- Introduced dedicated SCSS partial for `featured-about` styling
+
+### Changed
+- Adjusted layout to:
+  - Center rotating text block over background image
+  - Prevent clipping of rotating words with fixed width
+  - Improve flexbox centering and overall text alignment
+  - Increase text size for rotating words for better visibility
+
+### Cleaned
+- Removed unused or redundant animation attempts from previous iterations
+
+
 ## [1.18.9] 2025-10-26
 
 ### Changed
