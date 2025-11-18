@@ -2,7 +2,9 @@
   <h2>Gaming Highlights</h2>
   <h3>Some of our favorite video game highlights, how-tos, and other happenings with the games we play.</h3>
   <ul>
+
     <% @games.each do |game| %>
+    <% next unless game.show_to_public? %>
       <li>
         <h2><%= game.game_name %></h2>
         <% if game.game_image.present? %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_08_024010) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_18_033928) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_08_024010) do
     t.string "youtube_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "game_title"
+    t.jsonb "progress_data", default: {}
+    t.boolean "show_to_public", default: false
   end
 
   create_table "goals", force: :cascade do |t|
@@ -58,6 +61,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_08_024010) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0, null: false
     t.bigint "idea_id"
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_goals_on_game_id"
     t.index ["idea_id", "title"], name: "index_goals_on_idea_id_and_title", unique: true
     t.index ["idea_id"], name: "index_goals_on_idea_id"
   end
@@ -157,6 +162,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_08_024010) do
     t.boolean "featured"
   end
 
+  add_foreign_key "goals", "games"
   add_foreign_key "goals", "ideas"
   add_foreign_key "reward_rules", "rewards"
   add_foreign_key "reward_tasks", "rewards"

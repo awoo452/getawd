@@ -1,12 +1,15 @@
 <section id="game">
   <ul>
+    <% if @game.show_to_public? %>
     <li>
-      <h2><%= @game.game_name %></h2>
       <% if @game.game_image.present? %>
         <div>
-          <%= image_tag(@game.game_image, alt: @game.game_name) %>
+          <%= image_tag(@game.game_image, alt: @game.game_title) %>
         </div>
       <% end %>
+
+      <h2><%= @game.game_title %></h2>
+
       <% if @game.game_notes.is_a?(Array) %>
         <% @game.game_notes.each do |note| %>
           <p><%= note %></p>
@@ -14,15 +17,48 @@
       <% else %>
         <p><%= @game.game_notes %></p>
       <% end %>
+
       <% if @game.youtube_id.present? %>
         <div>
-          <iframe 
-            src="https://www.youtube.com/embed/<%= @game.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>" 
-            frameborder="0" 
+          <iframe
+            src="https://www.youtube.com/embed/<%= @game.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>"
+            frameborder="0"
             allowfullscreen>
           </iframe>
         </div>
       <% end %>
     </li>
   </ul>
+
+  <% if @game.progress_data.present? %>
+    <section id="progress">
+
+      <% if @game.progress_data["quick_info"] %>
+        <h3>Quick Info</h3>
+        <% @game.progress_data["quick_info"].each do |n| %>
+          <p><%= n %></p>
+        <% end %>
+      <% end %>
+
+      <% if @game.progress_data["achievements"] %>
+        <h3>Achievements</h3>
+        <ul>
+          <% @game.progress_data["achievements"].each do |a| %>
+            <li><%= a %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <% if @game.progress_data["stats"].present? %>
+        <h3>Stats</h3>
+        <ul>
+          <% @game.progress_data["stats"].each do |key, value| %>
+            <li><strong><%= key.to_s.humanize %>:</strong> <%= value %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+    </section>
+  <% end %>
+  <% end %>
 </section>

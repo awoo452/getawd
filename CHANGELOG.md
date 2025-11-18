@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.19.0] – 2025-11-17
+
+### Added
+- `game_title` column added to `games` table, to reference actual title of game
+-  `game_name` field can now be utilized for the actual title of the series or stream, etc
+- `progress_data` (`jsonb`) column introduced to store achievements, stats, and quick info for each game, with ability to expand these columns.
+- View logic implemented to display:
+  - Achievements
+  - Quick info
+  - Stats from `progress_data` with humanized keys
+- `show_to_public` boolean field added with default `false`, with front end support to only display games with `true` value
+
+### Changed
+- Seeds updated:
+  - `game_name` now used for actual game titles
+  - `game_title` now used for series titles
+  - `progress_data` populated for all seeded games
+- Games index updated to only list games where `show_to_public?` is `true`
+
 ## [1.18.11] 2025-11-15
 
 ### Changed
