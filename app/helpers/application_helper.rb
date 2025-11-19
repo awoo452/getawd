@@ -23,7 +23,11 @@ module ApplicationHelper
 
     def project_image_url(filename)
     return "https://getawd-prod.s3.us-west-1.amazonaws.com/branding/logo.png" if filename == "logo.png"
-    "https://getawd-prod.s3.us-west-1.amazonaws.com/projects/#{filename}"
+      "https://getawd-prod.s3.us-west-1.amazonaws.com/projects/#{filename}"
+    end
+
+    def game_image_url(game, filename)
+      "https://getawd-prod.s3.us-west-1.amazonaws.com/games/#{game.id}/#{filename}"
     end
 
 

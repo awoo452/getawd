@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.19.1] – 2025-11-19
+
+### Added
+- `game_image_url` helper to resolve S3-hosted game images  
+  (stored at `games/{game_id}/game{x}.png`)
+- Game image display added to **Games index**
+- YouTube embed, image gallery, and full progress data sections added to **Games show**
+- Show page now includes three structured sections:
+  - Recent Videos
+  - Quick Info / Achievements / Stats
+  - Image Gallery
+
+### Updated
+- Games show page now correctly parses `progress_data` when stored as a JSONB string
+- Games index updated to render game cards only when `show_to_public` is true
+- Reorganized show page markup for consistent layout and cleaner structure
+
 ## [1.19.0] – 2025-11-17
 
 ### Added

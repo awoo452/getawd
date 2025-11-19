@@ -1,0 +1,12 @@
+$primary-color: #3a579d;
+$secondary-color: #3e3e3e;
+$background-color: #ecf0f1;
+$text-color: #465563;
+$hover-color: lighten($primary-color, 30%);
+$font-stack: 'Roboto', sans-serif;
+
+#game iframe {
+    min-width: 350px!important;
+    min-height: 190px!important;
+    border: none;
+}
