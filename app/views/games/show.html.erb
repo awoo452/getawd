@@ -2,11 +2,26 @@
   <h2><%= @game.game_name %></h2>
 
   <ul>
-
-    <% if @game.youtube_id.present? %>
+  
+    <% if @game.youtube_id.present? || @game.youtube_playlist_id.present? %>
       <li>
-        <h3>Recent Videos</h3>
-        <iframe src="https://www.youtube.com/embed/<%= @game.youtube_id %>"></iframe>
+
+        <% if @game.youtube_id.present? %>
+          <h3>Featured Video</h3>
+          <iframe
+            src="https://www.youtube.com/embed/<%= @game.youtube_id %>"
+            allowfullscreen
+          ></iframe>
+        <% end %>
+
+        <% if @game.youtube_playlist_id.present? %>
+          <h3>YouTube Playlist</h3>
+          <iframe
+            src="https://www.youtube.com/embed/videoseries?list=<%= @game.youtube_playlist_id %>"
+            allowfullscreen
+          ></iframe>
+        <% end %>
+
       </li>
     <% end %>
 

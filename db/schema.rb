@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_18_033928) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_24_040433) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_18_033928) do
     t.string "game_title"
     t.jsonb "progress_data", default: {}
     t.boolean "show_to_public", default: false
+    t.string "youtube_playlist_id"
   end
 
   create_table "goals", force: :cascade do |t|
