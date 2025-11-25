@@ -80,6 +80,7 @@ h1 {
 .rotating-words span:nth-child(3) { animation-delay: 4s; }
 .rotating-words span:nth-child(4) { animation-delay: 6s; }
 .rotating-words span:nth-child(5) { animation-delay: 8s; }
+.rotating-words span:nth-child(6) { animation-delay: 8s; }
 
 @keyframes rotateWords {
   0%   { opacity: 0; transform: translateY(10px); }
