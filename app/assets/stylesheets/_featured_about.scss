@@ -69,7 +69,7 @@ h1 {
   right: 0;
   text-align: center;
   opacity: 0;
-  animation: rotateWords 10s infinite;
+  animation: rotateWords 12s infinite;
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.1;
@@ -80,7 +80,7 @@ h1 {
 .rotating-words span:nth-child(3) { animation-delay: 4s; }
 .rotating-words span:nth-child(4) { animation-delay: 6s; }
 .rotating-words span:nth-child(5) { animation-delay: 8s; }
-.rotating-words span:nth-child(6) { animation-delay: 8s; }
+.rotating-words span:nth-child(6) { animation-delay: 10.01s; }
 
 @keyframes rotateWords {
   0%   { opacity: 0; transform: translateY(10px); }
