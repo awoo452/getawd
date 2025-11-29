@@ -1,80 +1,73 @@
-<section id="game">
+<section id="game-container">
   <h2><%= @game.game_name %></h2>
-
-  <ul>
-  
+  <div id="game">
     <% if @game.youtube_id.present? || @game.youtube_playlist_id.present? %>
-      <li>
-
+      <h3 style="margin:0;">Related Videos</h3>
+      <ul>
         <% if @game.youtube_id.present? %>
-          <h3>Featured Video</h3>
-          <iframe
-            src="https://www.youtube.com/embed/<%= @game.youtube_id %>"
-            allowfullscreen
-          ></iframe>
+          <li>
+            <h4>Featured</h4>
+            <iframe src="https://www.youtube.com/embed/<%= @game.youtube_id %>" allowfullscreen></iframe>
+          </li>
         <% end %>
 
         <% if @game.youtube_playlist_id.present? %>
-          <h3>YouTube Playlist</h3>
-          <iframe
-            src="https://www.youtube.com/embed/videoseries?list=<%= @game.youtube_playlist_id %>"
-            allowfullscreen
-          ></iframe>
+          <li>
+            <h4>Playlist</h4>
+            <iframe src="https://www.youtube.com/embed/videoseries?list=<%= @game.youtube_playlist_id %>" allowfullscreen></iframe>
+          </li>
         <% end %>
-
-      </li>
+      </ul>
     <% end %>
 
     <% if @game.progress_data.present? %>
-      <li>
-        <% data = @game.progress_data.is_a?(String) ? JSON.parse(@game.progress_data) : (@game.progress_data || {}) %>
+      <% data = @game.progress_data.is_a?(String) ? JSON.parse(@game.progress_data) : (@game.progress_data || {}) %>
 
-        <% quick_info   = data["quick_info"]   || [] %>
-        <% achievements = data["achievements"] || [] %>
-        <% stats        = data["stats"]        || {} %>
+      <% quick_info   = data["quick_info"]   || [] %>
+      <% achievements = data["achievements"] || [] %>
+      <% stats        = data["stats"]        || {} %>
 
-        <% if quick_info.any? %>
-          <h3>Quick Info</h3>
+      <h3>Game Progress & Achievements</h3>
+
+      <% if quick_info.any? %>
+        <h4>Quick Info</h4>
+        <ul>
           <% quick_info.each do |info| %>
-            <p><%= info %></p>
+            <li><%= info %></li>
           <% end %>
-        <% end %>
+        </ul>
+      <% end %>
 
-        <% if achievements.any? %>
-          <h3 style="margin-top: 1em;">Achievements</h3>
-          <ul class ="achievements">
-            <% achievements.each do |ach| %>
-              <li>
-                <% if ach.is_a?(Hash) %>
-                  <%= link_to ach["text"], ach["url"], target: "_blank" %>
-                <% else %>
-                  <%= ach %>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
+      <% if achievements.any? %>
+        <h4>Achievements</h4>
+        <ul id="achievements">
+          <% achievements.each do |ach| %>
+            <li id="achievement">
+              <% if ach.is_a?(Hash) %>
+                <%= link_to ach["text"], ach["url"], target: "_blank" %>
+              <% else %>
+                <%= ach %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
 
-        <% if stats.any? %>
-          <h3>Stats</h3>
-          <ul class ="stats">
-            <% stats.each do |key, value| %>
-              <li>
-                <strong><%= key.to_s.humanize %>:</strong> <%= value %>
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
-      </li>
+      <% if stats.any? %>
+        <h4>Stats</h4>
+        <ul>
+          <% stats.each do |key, value| %>
+            <li><strong><%= key.to_s.humanize %>:</strong> <%= value %></li>
+          <% end %>
+        </ul>
+      <% end %>
     <% end %>
 
     <% if @game.game_image.present? %>
-      <li>
-        <h3>Image Gallery</h3>
-        <%= image_tag(game_image_url(@game, @game.game_image), alt: @game.game_name) %>
-      </li>
+      <h3>Image Gallery</h3>
+      <ul>
+        <li><%= image_tag(game_image_url(@game, @game.game_image), alt: @game.game_name) %></li>
+      </ul>
     <% end %>
-
-  </ul>
-  
+  </div>
 </section>
