@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.19.7] - 2025-11-29
+
+### Added
+- document specific scss file created, referenced on application.scss
+
+### Changed
+- helper added to reference the appropriate s3 bucket / folder for documentation related images, other related changes to ensure use of s3 storage for this section of the site
+
 ## [1.19.6] - 2025-11-29
 
 ### Changed

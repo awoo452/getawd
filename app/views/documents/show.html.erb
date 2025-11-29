@@ -1,43 +1,44 @@
 <section class="document">
-
-<h1><%= @document.title %></h1>
-
+  <h1><%= @document.title %></h1>
 
   <% @document.subheadings.each_with_index do |subheading, index| %>
+    
     <h3><%= subheading %></h3>
     <p><%= @document.body[index] %></p>
 
+    <% img = @document.images[index] %>
 
-    <figure>
-      <%= image_tag(@document.images[index]['url'], alt: @document.images[index]['alt'], style: "max-width: 100%; height: auto;") %>
-      <figcaption><%= @document.images[index]['caption'] %></figcaption>
-    </figure>
-
-<% end %>
-
-<% if @document.youtube_id.present? %>
-
-  <h3>Videos</h3>
-  <% @document.youtube_id.each do |video_id| %>
-    <iframe 
-      width="560" 
-      height="315" 
-      src="https://www.youtube.com/embed/<%= video_id %>" 
-      title="YouTube video player" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  <% end %>
-<% end %>
-
-<% if @document.metadata.present? %>
-  <h3>Related Info</h3>
-  <ul>
-    <% @document.metadata.each do |key, value| %>
-      <li><strong><%= key.humanize %>:</strong> <%= value %></li>
+    <% if img.present? %>
+      <figure>
+        <%= image_tag(
+              document_image_url(@document, img['file']),
+              alt: img['alt'],
+              style: "max-width: 100%; height: auto;"
+            ) %>
+        <figcaption><%= img['caption'] %></figcaption>
+      </figure>
     <% end %>
-  </ul>
-<% end %>
+
+  <% end %>
+
+  <% if @document.youtube_id.present? %>
+    <h3>Videos</h3>
+    <% @document.youtube_id.each do |video_id| %>
+      <iframe 
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/<%= video_id %>">
+      </iframe>
+    <% end %>
+  <% end %>
+
+  <% if @document.metadata.present? %>
+    <h3>Related Info</h3>
+    <ul>
+      <% @document.metadata.each do |key, value| %>
+        <li><strong><%= key.humanize %>:</strong> <%= value %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
 </section>

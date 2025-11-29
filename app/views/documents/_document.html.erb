@@ -3,6 +3,8 @@
     <%= document.title %>
   </p>
 
-  <%= image_tag document.images[0]['url'], alt: "Preview image for #{document.title}", style: "max-width: 150px; height: auto;" %>
+  <% if document.images.present? %>
+    <%= image_tag document_image_url(document, document.images[0]['file']), style: "max-width:150px" %>
+  <% end %>
 
 </div>
