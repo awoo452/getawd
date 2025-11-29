@@ -41,17 +41,23 @@
         <% end %>
 
         <% if achievements.any? %>
-          <h3>Achievements</h3>
-          <ul>
+          <h3 style="margin-top: 1em;">Achievements</h3>
+          <ul class ="achievements">
             <% achievements.each do |ach| %>
-              <li><%= ach %></li>
+              <li>
+                <% if ach.is_a?(Hash) %>
+                  <%= link_to ach["text"], ach["url"], target: "_blank" %>
+                <% else %>
+                  <%= ach %>
+                <% end %>
+              </li>
             <% end %>
           </ul>
         <% end %>
 
         <% if stats.any? %>
           <h3>Stats</h3>
-          <ul>
+          <ul class ="stats">
             <% stats.each do |key, value| %>
               <li>
                 <strong><%= key.to_s.humanize %>:</strong> <%= value %>
@@ -70,4 +76,5 @@
     <% end %>
 
   </ul>
+  
 </section>
