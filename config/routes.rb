@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Static pages
   get 'about',     to: 'about#index'
   get 'contact',   to: 'contact#index'
+  post "contact", to: "contact#create"
   get 'dashboard', to: 'dashboard#index'
   get 'calendar',  to: 'calendar#show'
   get 'landscaping', to: 'landscaping#index'

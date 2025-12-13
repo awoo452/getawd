@@ -88,3 +88,55 @@ $font-stack: 'Roboto', sans-serif;
       flex-wrap: wrap;
     }
   }
+
+  .contact-box {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  label {
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+    color: $secondary-color;
+  }
+
+  input,
+  textarea {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: $font-stack;
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+}
+
+.btn-submit {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}

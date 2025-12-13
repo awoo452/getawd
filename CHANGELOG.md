@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.20.0] - 2025-12-12
+
+### Added
+- Implemented functional contact form with server-side email delivery using AWS SES
+- Added `ContactMailer` to handle inbound contact messages
+- Wired contact form submission into existing `ContactController`
+- Added mailer view `contact_email.text.erb`
+
+### Changed
+- Replaced static contact email display with a working contact form
+- Configured `production.rb` ActionMailer settings to use SES SMTP (`us-west-1`)
+- Updated `contact/index.html.erb` to support form submission flow
+- Updated `contact.scss` for layout and styling consistency
+- Verified and configured domain email authentication (SPF, DKIM, DMARC)
+
+### Fixed
+- Removed invalid or broken contact page markup
+- Cleaned up form structure and field handling
+- Corrected mailer syntax and ensured proper `reply-to` behavior
+
 ## [1.19.7] - 2025-11-29
 
 ### Added

@@ -1,17 +1,35 @@
 <section id="contact">
+  <h2>Contact Us</h2>
 
-<h2>Contact Information</h2>
-<ul>
-  <li><%= @contact_info['contact']['email'] %></li>
-</ul>
+  <div class="contact-box">
+    <%= form_with url: contact_path, method: :post, class: "contact-form" do %>
+      <div class="form-group">
+        <label>Your Name</label>
+        <%= text_field_tag :name, nil, required: true %>
+      </div>
 
-<h2>Follow Us</h2>
-<p>Stay connected with us on social media!</p>
-<ul class ="social_media">
-  <li><a href="<%= @contact_info['social_media']['instagram'] %>" target="_blank">Instagram</a></li>
-  <li><a href="<%= @contact_info['social_media']['linkedin'] %>" target="_blank">Linkedin</a></li>
-  <li><a href="<%= @contact_info['social_media']['youtube'] %>" target="_blank">YouTube</a></li>
-  <li><a href="<%= @contact_info['social_media']['github'] %>" target="_blank">Github</a></li>
-  <li><a href="<%= @contact_info['social_media']['twitch'] %>" target="_blank">Twitch</a></li>
-</ul>
+      <div class="form-group">
+        <label>Your Contact Email</label>
+        <%= email_field_tag :email, nil, required: true %>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <%= text_area_tag :message, nil, required: true %>
+      </div>
+
+      <%= submit_tag "Send", class: "btn-submit" %>
+    <% end %>
+  </div>
+
+  <h2>Follow Us</h2>
+  <p>Stay connected with us on social media!</p>
+
+  <ul class="social_media">
+    <li><a href="<%= @contact_info['social_media']['instagram'] %>" target="_blank">Instagram</a></li>
+    <li><a href="<%= @contact_info['social_media']['linkedin'] %>" target="_blank">LinkedIn</a></li>
+    <li><a href="<%= @contact_info['social_media']['youtube'] %>" target="_blank">YouTube</a></li>
+    <li><a href="<%= @contact_info['social_media']['github'] %>" target="_blank">GitHub</a></li>
+    <li><a href="<%= @contact_info['social_media']['twitch'] %>" target="_blank">Twitch</a></li>
+  </ul>
 </section>
