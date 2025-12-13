@@ -17,6 +17,10 @@
         <label>Description</label>
         <%= text_area_tag :message, nil, required: true %>
       </div>
+      
+      <div class="hp">
+        <%= text_field_tag :website %>
+      </div>
 
       <%= submit_tag "Send", class: "btn-submit" %>
     <% end %>

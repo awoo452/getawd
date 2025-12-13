@@ -4,9 +4,11 @@ class ContactController < ApplicationController
   end
 
   def create
+    return head :ok if params[:website].present?
+
     ContactMailer
       .contact_email(params[:name], params[:email], params[:message])
-      .deliver_now
+      .deliver_later
 
     redirect_to contact_path
   end
