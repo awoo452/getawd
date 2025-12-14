@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_24_040433) do
+ActiveRecord::Schema[7.1].define(version: 2025_12_14_194857) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_24_040433) do
     t.integer "status", default: 0, null: false
     t.bigint "idea_id"
     t.bigint "game_id"
+    t.jsonb "smart", default: {}, null: false
     t.index ["game_id"], name: "index_goals_on_game_id"
     t.index ["idea_id", "title"], name: "index_goals_on_idea_id_and_title", unique: true
     t.index ["idea_id"], name: "index_goals_on_idea_id"
@@ -137,6 +138,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_24_040433) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "goal_id"
+    t.jsonb "smart", default: {}, null: false
     t.index ["goal_id"], name: "index_tasks_on_goal_id"
   end
 

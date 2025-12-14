@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.0] - 2025-12-14
+
+### Added
+- Implemented SMART framework for tasks and goals using a single `jsonb` field
+- Added reusable `SmartFields` concern to expose SMART attributes as first class model accessors
+- Added shared SMART form partial for consistent input across tasks and goals
+- Added shared SMART display partial for conditional rendering on show pages
+
+### Changed
+- Simplified status display to rely on enum provided `status.humanize`
+- Removed redundant and error prone `human_status` model methods
+- Updated task and goal forms to support SMART inputs without schema duplication
+
+### Fixed
+- Resolved enum misuse causing `nil.humanize` errors in task and goal views
+- Hardened SMART display partial against nil records and empty data
+
 ## [1.20.1] - 2025-12-12
 
 ### Added

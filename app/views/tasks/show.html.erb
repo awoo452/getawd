@@ -1,9 +1,10 @@
 <div class="tasks-list">
-  <div class="task-card <%= @task.status %>">
+  <div class="task-card <%= @task.status.humanize %>">
     <h2><%= @task.task_name %></h2>
 
     <p><strong>Description:</strong> <%= @task.description %></p>
-    <p><strong>Status:</strong> <%= @task.human_status %></p>
+    <%= render "shared/smart_show", record: @task %>
+    <p><strong>Status:</strong> <%= @task.status.humanize %></p>
     <p><strong>Priority:</strong> <%= @task.priority %></p>
     <p><strong>Start Date:</strong> <%= @task.start_date %></p>
     <p><strong>Due Date:</strong> <%= @task.due_date %></p>

@@ -100,9 +100,24 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(
-      :task_name, :description, :status, :priority,
-      :start_date, :due_date, :completion_date, :assigned_to,
-      :estimated_time, :actual_time, :goal_id, :repeat_until
+      :task_name,
+      :description,
+      :status,
+      :priority,
+      :start_date,
+      :due_date,
+      :completion_date,
+      :assigned_to,
+      :estimated_time,
+      :actual_time,
+      :goal_id,
+      :repeat_until,
+      :specific,
+      :measurable,
+      :attainable,
+      :relevant,
+      :time_bound
     )
   end
+  
 end

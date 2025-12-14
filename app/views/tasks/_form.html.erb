@@ -19,6 +19,8 @@
     <%= form.label :description %>
     <%= form.text_area :description, class: 'form-input' %>
   </div>
+  
+  <%= render "shared/smart_fields", form: form %>
 
   <div class="form-field">
     <%= form.label :status %>

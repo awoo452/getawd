@@ -20,6 +20,8 @@
     <%= form.text_area :description, class: 'form-input' %>
   </div>
 
+  <%= render "shared/smart_fields", form: form %>
+
   <div class="form-field">
     <%= form.label :due_date %>
     <%= form.date_field :due_date, class: 'form-input' %>

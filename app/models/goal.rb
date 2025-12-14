@@ -1,16 +1,24 @@
 class Goal < ApplicationRecord
-  has_many :tasks, dependent: :destroy
+  # SMART (jsonb)
+  store_accessor :smart,
+    :specific,
+    :measurable,
+    :attainable,
+    :relevant,
+    :time_bound
+
   belongs_to :idea
-  validates :title, uniqueness: { scope: :idea_id, case_sensitive: false }
-  enum status: { not_started: 0, in_progress: 1, on_hold: 2, completed: 3 }
+  has_many :tasks, dependent: :destroy
 
-  def human_status
-    {
-      "not_started" => "Not Started",
-      "in_progress" => "In Progress",
-      "on_hold" => "On Hold",
-      "completed" => "Completed"
-    }[status]
-  end
+  enum status: {
+    not_started: 0,
+    in_progress: 1,
+    on_hold: 2,
+    completed: 3
+  }
 
+  validates :title, uniqueness: {
+    scope: :idea_id,
+    case_sensitive: false
+  }
 end

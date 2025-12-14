@@ -1,0 +1,23 @@
+<% return if record.blank? || record.smart.blank? %>
+
+<div class="smart-display">
+  <% if record.specific.present? %>
+    <p><strong>Specific:</strong> <%= record.specific %></p>
+  <% end %>
+
+  <% if record.measurable.present? %>
+    <p><strong>Measurable:</strong> <%= record.measurable %></p>
+  <% end %>
+
+  <% if record.attainable.present? %>
+    <p><strong>Attainable:</strong> <%= record.attainable %></p>
+  <% end %>
+
+  <% if record.relevant.present? %>
+    <p><strong>Relevant:</strong> <%= record.relevant %></p>
+  <% end %>
+
+  <% if record.time_bound.present? %>
+    <p><strong>Time Bound:</strong> <%= record.time_bound %></p>
+  <% end %>
+</div>
