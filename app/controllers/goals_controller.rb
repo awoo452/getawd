@@ -20,7 +20,12 @@ class GoalsController < ApplicationController
 
   scope = scope.where("title ILIKE ?", "%#{params[:search]}%") if params[:search].present?
 
-  @goals, @page, @total_pages = paginate(scope.order(due_date: :asc), per_page: 25)
+  @goals_by_status = {
+    in_progress: Goal.in_progress.order(due_date: :asc),
+    not_started: Goal.not_started.order(due_date: :asc),
+    on_hold: Goal.on_hold.order(due_date: :asc),
+    completed: Goal.completed.order(due_date: :asc)
+  }
   end
 
 

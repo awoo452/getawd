@@ -1,18 +1,15 @@
-<div style="width: 100%; text-align: center;">
-  <h1>Tasks</h1>
-</div>
+<h1 style="text-align:center;">Tasks</h1>
 
-<div class="tasks-list">
-  <% @tasks.each do |task| %>
-    <%= render "shared/task_card", task: task %>
-  <% end %>
-</div>
+<div class="kanban-board">
 
-<div class="pagination">
-  <% if @page > 1 %>
-    <%= link_to "Previous", tasks_path(page: @page - 1) %>
+  <% @tasks_by_status.each do |status, tasks| %>
+    <div class="kanban-column <%= status %>">
+      <h2><%= status.to_s.humanize %></h2>
+
+      <% tasks.each do |task| %>
+        <%= render "shared/task_card", task: task %>
+      <% end %>
+    </div>
   <% end %>
-  <% if @page < @total_pages %>
-    <%= link_to "Next", tasks_path(page: @page + 1) %>
-  <% end %>
+
 </div>

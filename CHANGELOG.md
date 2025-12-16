@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.1] - 2025-12-16
+
+### Changed
+- Reworked Goals index into a kanban style layout with vertical columns by status (Not Started, In Progress, On Hold, Completed)
+- Reworked Tasks index to match Goals with the same kanban style status columns
+- Removed pagination from Goals and Tasks index views in favor of status based grouping
+- Ensured consistent ordering within each status column by due date
+
 ## [1.21.0] - 2025-12-14
 
 ### Added

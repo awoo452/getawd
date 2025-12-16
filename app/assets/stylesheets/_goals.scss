@@ -88,3 +88,29 @@
     }
   }
 }
+
+.kanban-board {
+  display: flex;
+  gap: 1rem;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.kanban-column {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+}
+
+.kanban-column h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+/* Optional visual cues */
+.kanban-column.in_progress { background: #eef7ff; }
+.kanban-column.not_started { background: #f9f9f9; }
+.kanban-column.on_hold     { background: #fff6e5; }
+.kanban-column.completed  { background: #f1f1f1; }

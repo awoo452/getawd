@@ -1,18 +1,15 @@
-<div style="width: 100%; text-align: center;">
-  <h1>Goals</h1>
-</div>
+<h1 style="text-align:center;">Goals</h1>
 
-<div class="goals-list">
-  <% @goals.each do |goal| %>
-    <%= render "shared/goal_card", goal: goal %>
-  <% end %>
-</div>
+<div class="kanban-board">
 
-<div class="pagination">
-  <% if @page > 1 %>
-    <%= link_to "Previous", goals_path(page: @page - 1) %>
+  <% @goals_by_status.each do |status, goals| %>
+    <div class="kanban-column <%= status %>">
+      <h2><%= status.to_s.humanize %></h2>
+
+      <% goals.each do |goal| %>
+        <%= render "shared/goal_card", goal: goal %>
+      <% end %>
+    </div>
   <% end %>
-  <% if @page < @total_pages %>
-    <%= link_to "Next", goals_path(page: @page + 1) %>
-  <% end %>
+
 </div>

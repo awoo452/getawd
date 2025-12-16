@@ -25,7 +25,12 @@ class TasksController < ApplicationController
 
     scope = scope.where("task_name ILIKE ?", "%#{params[:search]}%") if params[:search].present?
 
-    @tasks, @page, @total_pages = paginate(scope, per_page: 25)
+    @tasks_by_status = {
+      in_progress: Task.in_progress.order(due_date: :asc),
+      not_started: Task.not_started.order(due_date: :asc),
+      on_hold: Task.on_hold.order(due_date: :asc),
+      completed: Task.completed.order(due_date: :asc)
+    }
   end
 
   def show
