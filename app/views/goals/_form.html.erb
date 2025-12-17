@@ -51,6 +51,12 @@
                     { include_blank: false, class: 'form-input' } %>
   </div>
 
+
+  <div class="form-field">
+    <%= form.label :hold_until, "Reopen Date (On Hold Goals Only)" %>
+    <%= form.datetime_local_field :hold_until, class: "form-input" %>
+  </div>
+  
   <div class="form-field">
     <%= form.label :completed_at %>
     <%= form.datetime_local_field :completed_at, class: 'form-input' %>

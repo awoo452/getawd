@@ -95,6 +95,7 @@ class GoalsController < ApplicationController
         :priority,
         :category,
         :status,
+        :hold_until,
         :completed_at,
         :idea_id,
         :specific,

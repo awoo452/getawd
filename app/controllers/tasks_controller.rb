@@ -108,6 +108,7 @@ class TasksController < ApplicationController
       :task_name,
       :description,
       :status,
+      :hold_until,
       :priority,
       :start_date,
       :due_date,

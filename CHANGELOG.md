@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.2] - 2025-12-17
+
+### Added
+- Added `hold_until` datetime field to Goals and Tasks to explicitly represent paused items
+- Introduced shared hold and resume behavior for Goals and Tasks via a reusable concern
+- Implemented automatic resumption of on-hold Goals and Tasks when `hold_until` has passed
+- Added support for scheduled daily execution to resume eligible records
+
+### Changed
+- Clarified separation between `due_date` and pause semantics by introducing `hold_until`
+- Updated Goal and Task forms to allow setting a resume date when status is on hold
+
+### Fixed
+- Prevented paused Goals and Tasks from remaining stuck in on-hold state past their resume date
+
+### Notes
+- This relies on a scheduler set in Heroku directly
+ - rails runner "Task.ready_to_resume.find_each(&:resume_if_ready!); Goal.ready_to_resume.find_each(&:resume_if_ready!)"
+
 ## [1.21.1] - 2025-12-16
 
 ### Changed

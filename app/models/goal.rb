@@ -1,4 +1,7 @@
 class Goal < ApplicationRecord
+
+  include Holdable
+
   # SMART (jsonb)
   store_accessor :smart,
     :specific,
