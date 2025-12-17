@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.3] - 2025-12-17
+
+### Added
+- Displayed `hold_until` on Goal and Task show pages when status is `on_hold`
+
+### Changed
+- Normalized `hold_until` to end of day in application time zone
+- Ensured resume logic compares against local time to avoid early reopen behavior
+
+### Fixed
+- Fixed off by one day resume issues caused by UTC vs app time zone mismatch
+
 ## [1.21.2] - 2025-12-17
 
 ### Added
