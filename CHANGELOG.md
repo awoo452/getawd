@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.5] - 2025-12-22
+
+### Added
+- Introduced recurring goals with automatic daily task generation
+- Added `RecurringTaskGenerator` service to materialize daily tasks
+- Added rake task `tasks:generate_recurring` for scheduled execution
+- Wired recurring task generation to Heroku Scheduler
+
+### Changed
+- Standardized timezone handling:
+  - UTC at the database level
+  - Pacific Time for presentation
+- Adjusted scheduler execution time to align with local midnight (PST/PDT)
+- Hardened recurring task creation to be idempotent and date-based only
+
+### Fixed
+- Prevented duplicate recurring tasks for the same goal and date
+- Ensured recurring tasks are never created in advance or retroactively
+
 ## [1.21.4] - 2025-12-22
 
 ### Added

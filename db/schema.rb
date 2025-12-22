@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_12_22_192448) do
+ActiveRecord::Schema[7.1].define(version: 2025_12_22_201943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_22_192448) do
     t.bigint "game_id"
     t.jsonb "smart", default: {}, null: false
     t.datetime "hold_until"
+    t.boolean "recurring", default: false
     t.index ["game_id"], name: "index_goals_on_game_id"
     t.index ["idea_id", "title"], name: "index_goals_on_idea_id_and_title", unique: true
     t.index ["idea_id"], name: "index_goals_on_idea_id"
