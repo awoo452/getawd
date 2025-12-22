@@ -21,12 +21,17 @@
   </div>
 
   <%= render "shared/smart_fields", form: form %>
-
+  
+  <div class="field">
+    <%= form.label :recurring, "Recurring (auto-create daily tasks)" %>
+    <%= form.check_box :recurring %>
+  </div>
+  
   <div class="form-field">
     <%= form.label :due_date %>
     <%= form.date_field :due_date, class: 'form-input' %>
   </div>
-
+  
   <div class="form-field">
     <%= form.label :priority %>
     <%= form.number_field :priority, class: 'form-input' %>

@@ -81,28 +81,23 @@ class GoalsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_goal
-      @goal = Goal.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def goal_params
-      params.require(:goal).permit(
-        :title,
-        :description,
-        :due_date,
-        :priority,
-        :category,
-        :status,
-        :hold_until,
-        :completed_at,
-        :idea_id,
-        :specific,
-        :measurable,
-        :attainable,
-        :relevant,
-        :time_bound
-      )
-    end
+  def set_goal
+    @goal = Goal.find(params[:id])
+  end
+
+  def goal_params
+    params.require(:goal).permit(
+      :title,
+      :description,
+      :due_date,
+      :priority,
+      :status,
+      :idea_id,
+      :recurring,
+      :hold_until,
+      smart: {}
+    )
+  end
+
 end
