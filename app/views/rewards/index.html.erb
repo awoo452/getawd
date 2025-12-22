@@ -10,6 +10,12 @@
       <p><%= reward.description %></p>
       <p><strong>Goal:</strong> <%= reward.goal.title %></p>
       <p><strong>Status:</strong> <%= reward.eligible? ? "✅ Available" : "❌ Locked" %></p>
+      <% if reward.reward_payload.present? && reward.reward_payload["game_title"].present? %>
+        <p>
+          <strong>Assigned Game:</strong>
+          <%= link_to reward.reward_payload["game_title"], reward_path(reward) %>
+        </p>
+      <% end %>
       <p><strong>Last used:</strong> <%= reward.last_redeemed_at || "Never" %></p>
 
       <% if reward.eligible? %>
@@ -41,5 +47,6 @@
         </ul>
       </details>
     </div>
+    
   <% end %>
 </div>

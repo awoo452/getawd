@@ -39,17 +39,21 @@ class RewardsController < ApplicationController
     redirect_to rewards_path
   end
 
+  def show
+    @reward = Reward.find(params[:id])
+  end
+
   def redeem
     reward = Reward.find(params[:id])
 
     if reward.eligible?
-        reward.redeem!
-        flash[:notice] = "#{reward.name} redeemed!"
+      reward.redeem!
+      flash[:notice] = "#{reward.name} redeemed!"
+      redirect_to reward_path(reward)
     else
-        flash[:alert] = "#{reward.name} is not currently available."
+      flash[:alert] = "#{reward.name} is not currently available."
+      redirect_to rewards_path
     end
-
-    redirect_to rewards_path
   end
 
   private

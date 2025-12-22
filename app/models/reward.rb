@@ -17,7 +17,8 @@ class Reward < ApplicationRecord
   end
 
   def cooldown_met?
-    last_redeemed_at.nil? || last_redeemed_at <= Time.zone.today - cooldown_days
+    return true if cooldown_days.nil? || cooldown_days.zero?
+    last_redeemed_at.nil? || last_redeemed_at.to_date <= Time.zone.today - cooldown_days
   end
 
   def evaluate!
@@ -25,6 +26,17 @@ class Reward < ApplicationRecord
   end
 
   def redeem!
-    update!(last_redeemed_at: Time.zone.today)
+    game = Game.where(show_to_public: true).order("RANDOM()").first
+    raise "No public games available" unless game
+
+    update!(
+      last_redeemed_at: Time.zone.now,
+      reward_payload: {
+        game_id: game.id,
+        game_title: game.game_title,
+        redeemed_at: Time.zone.now
+      }
+    )
   end
+
 end
