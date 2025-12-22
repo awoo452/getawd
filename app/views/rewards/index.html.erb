@@ -1,52 +1,33 @@
 <div class="rewards">
-  
-  <div style="text-align: center; margin-bottom: 1em;">
-    <%= link_to "➕ Create New", new_reward_path, class: "new-button" %>
+  <div class="level-1-header">
+    <h3>Level 1 Rewards</h3>
+    <%= link_to "See documentation for more information",
+          documents_path(search: "Level 1"),
+          class: "level-1-doc-link" %>
   </div>
+  <% state = level_1_reward_state %>
 
-  <% @rewards.each do |reward| %>
-    <div class="reward-card">
-      <h2><%= reward.name %></h2>
-      <p><%= reward.description %></p>
-      <p><strong>Goal:</strong> <%= reward.goal.title %></p>
-      <p><strong>Status:</strong> <%= reward.eligible? ? "✅ Available" : "❌ Locked" %></p>
-      <% if reward.reward_payload.present? && reward.reward_payload["game_title"].present? %>
-        <p>
-          <strong>Assigned Game:</strong>
-          <%= link_to reward.reward_payload["game_title"], reward_path(reward) %>
-        </p>
+  <div class="level-1-reward <%= state[:unlocked] ? 'unlocked' : 'locked' %>">
+    <div class="reward-gallery">
+      <% @public_games.each do |game| %>
+        <img
+          src="<%= game_cover_url(game) %>"
+          alt="<%= game.game_title %>"
+        />
       <% end %>
-      <p><strong>Last used:</strong> <%= reward.last_redeemed_at || "Never" %></p>
-
-      <% if reward.eligible? %>
-        <%= button_to "Use Reward", redeem_reward_path(reward), method: :post, class: "btn btn-success" %>
-      <% end %>
-
-      <%= button_to "Re-evaluate", evaluate_reward_path(reward), method: :post, class: "btn btn-secondary", form: { data: { turbo: false } } %>
-
-      <%= button_to "Delete", reward_path(reward), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-
-      <details>
-        <summary><strong>Required Tasks</strong></summary>
-        <ul>
-          <% reward.tasks.each do |task| %>
-            <li>
-              <%= link_to task.task_name, edit_task_path(task), target: "_blank" %>
-              <% if task.completed? %>✅<% else %>❌<% end %>
-            </li>
-          <% end %>
-        </ul>
-      </details>
-
-      <details>
-        <summary><strong>Reward Rules</strong></summary>
-        <ul>
-          <% reward.reward_rules.each do |rule| %>
-            <li><code><%= rule.rule_type %></code>: <%= rule.params.to_json %></li>
-          <% end %>
-        </ul>
-      </details>
     </div>
-    
-  <% end %>
+
+    <div class="reward-overlay">
+      <% if state[:unlocked] %>
+        <strong>Reward Unlocked</strong>
+        <%= link_to "View Reward", reward_path(@level_1_reward), class: "btn btn-success" %>
+      <% else %>
+        <strong>
+          Complete <%= state[:remaining] %> more task<%= 's' if state[:remaining] != 1 %> to unlock 1 Hour of Gameplay!
+        </strong>
+      <% end %>
+    </div>
+  </div>
+  <h3>Level 2 Rewards</h3>
+  <h5>Coming Soon!</h5>
 </div>

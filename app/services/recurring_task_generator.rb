@@ -7,6 +7,8 @@ class RecurringTaskGenerator
         task_name: goal.title,
         description: goal.description,
         goal: goal,
+        priority: 1,
+        start_date: date,
         due_date: date,
         estimated_time: default_estimated_time(goal),
         actual_time: 0,

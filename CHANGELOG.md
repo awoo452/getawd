@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.7] - 2025-12-22
+
+### Added
+- Implemented Level 1 reward gate on Rewards index
+- Added visual Level 1 reward card with locked and unlocked states
+- Linked Level 1 reward gate to system documentation
+- Added Level 1 documentation defining purpose, rules, and expectations
+- Introduced automatic daily task generation for Level 1 recurring goals
+- Wired recurring task generation to scheduler execution
+
+### Changed
+- Simplified Rewards index to focus solely on Level 1 reward state
+- Moved detailed reward information and actions to Rewards show page
+- Standardized Level 1 goals as recurring, priority 1, non-manual tasks
+- Reset development database structure to validate Level 1 flow end to end
+
+### Fixed
+- Prevented reward redemption routing errors when no reward record exists
+- Corrected reward image rendering using existing S3 path conventions
+- Scoped reward-specific UI styling to avoid global side effects
+- Resolved layout issues with reward gallery and overlay stacking
+
 ## [1.21.6] - 2025-12-22
 
 ### Changed

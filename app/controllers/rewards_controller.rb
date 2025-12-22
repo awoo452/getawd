@@ -1,8 +1,10 @@
 class RewardsController < ApplicationController
   before_action :authenticate_user!
+  helper RewardsHelper
 
   def index
-    @rewards = Reward.includes(:goal, :tasks, :reward_rules)
+    @level_1_reward = Reward.first
+    @public_games = Game.where(show_to_public: true).limit(5)
   end
 
   def new
