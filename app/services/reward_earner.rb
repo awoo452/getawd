@@ -1,33 +1,28 @@
+# app/services/reward_earner.rb
 class RewardEarner
-  def self.run(date = Date.current)
-    if already_earned?(date)
-      raise "Duplicate reward attempt for #{date}"
-    end
-
+  def self.run(date = Time.zone.today)
     return unless eligible_for_level_1?(date)
+    return if already_earned?(date)
 
     Reward.create!(
-      name: "Level 1 Reward",
+      name: "Level 1 Earned",
+      kind: "earned",
       reward_payload: {
         level: 1,
-        duration_minutes: 60,
-        earned_for_date: date.to_s
+        earned_date: date.to_s,
+        duration_minutes: 60
       }
     )
   end
 
   def self.eligible_for_level_1?(date)
     tasks = Task.where(priority: 1, due_date: date)
-    return false if tasks.empty?
-
-    tasks.all?(&:completed?)
+    tasks.any? && tasks.all?(&:completed?)
   end
-  
+
   def self.already_earned?(date)
-    Reward.where(
-      "reward_payload ->> 'level' = '1'",
-      "reward_payload ->> 'earned_for_date' = ?",
-      date.to_s
-    ).exists?
+    Reward.where(kind: "earned")
+          .where("reward_payload ->> 'earned_date' = ?", date.to_s)
+          .exists?
   end
 end

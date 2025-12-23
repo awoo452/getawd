@@ -28,10 +28,8 @@ Rails.application.routes.draw do
   resources :projects,  only: [:index, :show]
   resources :videos,    only: [:index, :show]
   resources :rewards, only: [:index, :new, :create, :destroy, :show] do
-    member do
+    collection do
       post :redeem
-      post :evaluate
     end
   end
-
 end

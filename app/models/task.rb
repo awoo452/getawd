@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   include Holdable
 
-  after_update_commit :check_level_1_reward
+  after_commit :check_level_1_reward, on: :update
 
   store_accessor :smart,
     :specific,
@@ -31,8 +31,8 @@ class Task < ApplicationRecord
     return unless saved_change_to_status?
     return unless completed?
     return unless priority == 1
-    return unless due_date == Time.zone.today
 
     RewardEarner.run(Time.zone.today)
   end
+
 end

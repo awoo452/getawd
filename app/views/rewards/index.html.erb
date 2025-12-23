@@ -1,18 +1,13 @@
 <div class="rewards">
   <div class="level-1-header">
     <h3>Level 1 Rewards</h3>
-    <p>
-      Banked Level 1 Rewards:
-      <strong><%= @banked_level_1_count %></strong>
-    </p>
-    
+
     <%= link_to "See documentation for more information",
           documents_path(search: "Level 1"),
           class: "level-1-doc-link" %>
   </div>
-  <% state = level_1_reward_state %>
 
-  <div class="level-1-reward <%= state[:unlocked] ? 'unlocked' : 'locked' %>">
+  <div class="level-1-reward <%= @earned_reward.present? ? 'unlocked' : 'locked' %>">
     <div class="reward-gallery">
       <% @public_games.each do |game| %>
         <img
@@ -23,19 +18,38 @@
     </div>
 
     <div class="reward-overlay">
-      <% if @banked_level_1_count.positive? %>
-        <strong><%= @banked_level_1_count %> Reward(s) Available</strong>
+      <% if @earned_reward.present? %>
         <%= button_to "Redeem Reward",
-              redeem_reward_path(@level_1_reward),
+              redeem_rewards_path,
               method: :post,
               class: "btn btn-success" %>
       <% else %>
         <strong>
-          Complete <%= state[:remaining] %> more task<%= 's' if state[:remaining] != 1 %> to unlock 1 Hour of Gameplay!
+          Complete today’s Level 1 tasks to unlock
         </strong>
       <% end %>
     </div>
   </div>
+
+  <hr>
+
+  <h3>All Rewards</h3>
+
+  <div class="reward-list">
+    <% @rewards.each do |reward| %>
+      <div class="reward-row">
+        <%= link_to reward.name.presence || "Reward ##{reward.id}",
+              reward_path(reward) %>
+
+        <small>
+          (<%= reward.kind %>,
+          <%= reward.created_at.to_date %>)
+        </small>
+      </div>
+    <% end %>
+  </div>
+
+
   <h3>Level 2 Rewards</h3>
   <h5>Coming Soon!</h5>
 </div>

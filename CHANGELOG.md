@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.9] - 2025-12-22
+
+### Added
+- Added Rewards index listing all reward records with links to individual reward pages
+- Introduced basic Rewards show page to inspect reward metadata and payload contents
+- Exposed redeemed reward history as append only records for long term tracking
+
+### Changed
+- Rewards index now derives availability strictly from earned reward records
+- Reward redemption now consumes the earned reward record after use
+- Reward system clarified into two explicit record types:
+  - Earned rewards (temporary, date scoped)
+  - Redeemed rewards (permanent, historical)
+- Reward creation and redemption responsibilities fully separated between service and controller
+
+### Fixed
+- Fixed infinite reward redemption by enforcing earned reward consumption
+- Removed all reward creation side effects from page rendering and navigation
+- Corrected reward routing to use collection based redemption endpoint
+- Eliminated accidental reward record overwrites by enforcing append only behavior for redeemed rewards
+- Resolved multiple JSON vs column query mismatches in reward logic
+
+### Notes
+- Earned rewards are intentionally ephemeral and safe to delete after redemption
+- Redeemed rewards persist across days and form the authoritative reward history
+- Reward lifecycle is now deterministic, traceable, and debuggable end to end
+
 ## [1.21.8] - 2025-12-22
 
 ### Added

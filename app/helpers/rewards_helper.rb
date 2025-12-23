@@ -11,8 +11,7 @@ module RewardsHelper
     completed = tasks_today.completed.count
 
     earned_today = Reward.where(
-      "reward_payload ->> 'level' = '1'",
-      "reward_payload ->> 'earned_date' = ?",
+      "reward_payload ->> 'level' = '1' AND reward_payload ->> 'earned_date' = ?",
       today.to_s
     ).exists?
 

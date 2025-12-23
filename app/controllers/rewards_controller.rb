@@ -3,14 +3,15 @@ class RewardsController < ApplicationController
   helper RewardsHelper
 
   def index
+    today = Time.zone.today
 
-    @level_1_reward = Reward.first
+    @earned_reward = Reward.where(kind: "earned")
+      .where("reward_payload ->> 'earned_date' = ?", today.to_s)
+      .first
+
     @public_games = Game.where(show_to_public: true).limit(5)
-    @banked_level_1_count = Reward.where(
-      "reward_payload ->> 'level' = '1'",
-      last_redeemed_at: nil
-    ).count
-
+    @redeemed_count = Reward.where(kind: "redeemed").count
+    @rewards = Reward.order(created_at: :desc)
   end
 
   def new
@@ -52,16 +53,34 @@ class RewardsController < ApplicationController
   end
 
   def redeem
-    reward = Reward.find(params[:id])
+    today = Time.zone.today
 
-    if reward.eligible?
-      reward.redeem!
-      flash[:notice] = "#{reward.name} redeemed!"
-      redirect_to reward_path(reward)
-    else
-      flash[:alert] = "#{reward.name} is not currently available."
-      redirect_to rewards_path
+    earned_reward = Reward.where(kind: "earned")
+      .where("reward_payload ->> 'earned_date' = ?", today.to_s)
+      .first
+
+    unless earned_reward
+      redirect_to rewards_path, alert: "No reward earned today."
+      return
     end
+
+    game = Game.where(show_to_public: true)
+               .order(Arel.sql("RANDOM()"))
+               .first
+
+    Reward.create!(
+      name: "Level 1 Redeemed",
+      kind: "redeemed",
+      reward_payload: {
+        level: 1,
+        game_id: game.id,
+        game_title: game.game_title
+      }
+    )
+
+    earned_reward.destroy!
+
+    redirect_to rewards_path, notice: "Reward redeemed."
   end
 
   private

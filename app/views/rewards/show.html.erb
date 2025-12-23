@@ -1,18 +1,19 @@
-<h1><%= @reward.name %></h1>
+<h2><%= @reward.name %></h2>
 
-<p><%= @reward.description %></p>
+<p>
+  <strong>Type:</strong>
+  <%= @reward.kind %>
+</p>
 
-<% if @reward.reward_payload.present? && @reward.reward_payload["game_title"].present? %>
-  <h2>🎮 Your game</h2>
-  <p><strong><%= @reward.reward_payload["game_title"] %></strong></p>
+<p>
+  <strong>Created:</strong>
+  <%= @reward.created_at %>
+</p>
 
-  <p>
-    Redeemed at:
-    <%= l(Time.zone.parse(@reward.reward_payload["redeemed_at"]), format: :short) rescue "Unknown" %>
-  </p>
+<h3>Payload</h3>
 
-<% else %>
-  <p>No game has been assigned yet.</p>
-<% end %>
+<pre>
+<%= JSON.pretty_generate(@reward.reward_payload || {}) %>
+</pre>
 
 <%= link_to "Back to Rewards", rewards_path %>
