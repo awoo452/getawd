@@ -1,6 +1,11 @@
 <div class="rewards">
   <div class="level-1-header">
     <h3>Level 1 Rewards</h3>
+    <p>
+      Banked Level 1 Rewards:
+      <strong><%= @banked_level_1_count %></strong>
+    </p>
+    
     <%= link_to "See documentation for more information",
           documents_path(search: "Level 1"),
           class: "level-1-doc-link" %>
@@ -18,9 +23,12 @@
     </div>
 
     <div class="reward-overlay">
-      <% if state[:unlocked] %>
-        <strong>Reward Unlocked</strong>
-        <%= link_to "View Reward", reward_path(@level_1_reward), class: "btn btn-success" %>
+      <% if @banked_level_1_count.positive? %>
+        <strong><%= @banked_level_1_count %> Reward(s) Available</strong>
+        <%= button_to "Redeem Reward",
+              redeem_reward_path(@level_1_reward),
+              method: :post,
+              class: "btn btn-success" %>
       <% else %>
         <strong>
           Complete <%= state[:remaining] %> more task<%= 's' if state[:remaining] != 1 %> to unlock 1 Hour of Gameplay!

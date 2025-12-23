@@ -1,5 +1,5 @@
 class Reward < ApplicationRecord
-  belongs_to :goal
+  belongs_to :goal, optional: true
   has_many :reward_rules, dependent: :destroy
   has_many :reward_tasks, dependent: :destroy
   has_many :tasks, through: :reward_tasks
@@ -26,17 +26,18 @@ class Reward < ApplicationRecord
   end
 
   def redeem!
-    game = Game.where(show_to_public: true).order("RANDOM()").first
-    raise "No public games available" unless game
+  game = Game.where(show_to_public: true).order(Arel.sql("RANDOM()")).first
+  raise "No public games available" unless game
 
-    update!(
-      last_redeemed_at: Time.zone.now,
-      reward_payload: {
-        game_id: game.id,
-        game_title: game.game_title,
-        redeemed_at: Time.zone.now
-      }
+  update!(
+    last_redeemed_at: Time.zone.now,
+    reward_payload: reward_payload.merge(
+      game_id: game.id,
+      game_title: game.game_title,
+      redeemed_at: Time.zone.now
     )
-  end
+  )
+end
+
 
 end

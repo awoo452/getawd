@@ -3,8 +3,14 @@ class RewardsController < ApplicationController
   helper RewardsHelper
 
   def index
+
     @level_1_reward = Reward.first
     @public_games = Game.where(show_to_public: true).limit(5)
+    @banked_level_1_count = Reward.where(
+      "reward_payload ->> 'level' = '1'",
+      last_redeemed_at: nil
+    ).count
+
   end
 
   def new

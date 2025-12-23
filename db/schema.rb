@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_12_22_201943) do
+ActiveRecord::Schema[7.1].define(version: 2025_12_23_023058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,11 +62,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_22_201943) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0, null: false
     t.bigint "idea_id"
-    t.bigint "game_id"
     t.jsonb "smart", default: {}, null: false
     t.datetime "hold_until"
     t.boolean "recurring", default: false
-    t.index ["game_id"], name: "index_goals_on_game_id"
     t.index ["idea_id", "title"], name: "index_goals_on_idea_id_and_title", unique: true
     t.index ["idea_id"], name: "index_goals_on_idea_id"
   end
@@ -116,7 +114,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_22_201943) do
   create_table "rewards", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "goal_id", null: false
+    t.bigint "goal_id"
     t.integer "cooldown_days"
     t.integer "allowed_duration_days"
     t.date "last_redeemed_at"
@@ -169,7 +167,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_22_201943) do
     t.boolean "featured"
   end
 
-  add_foreign_key "goals", "games"
   add_foreign_key "goals", "ideas"
   add_foreign_key "reward_rules", "rewards"
   add_foreign_key "reward_tasks", "rewards"

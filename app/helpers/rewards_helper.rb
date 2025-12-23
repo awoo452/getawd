@@ -1,21 +1,26 @@
-# app/helpers/rewards_helper.rb
 module RewardsHelper
   def level_1_reward_state
-    level_1_goals = Goal.where(recurring: true, priority: 1)
+    today = Time.zone.today
 
     tasks_today = Task.where(
-      goal: level_1_goals,
-      due_date: Time.zone.today
+      priority: 1,
+      due_date: today
     )
 
-    completed = tasks_today.completed.count
     total     = tasks_today.count
+    completed = tasks_today.completed.count
+
+    earned_today = Reward.where(
+      "reward_payload ->> 'level' = '1'",
+      "reward_payload ->> 'earned_date' = ?",
+      today.to_s
+    ).exists?
 
     {
       total: total,
       completed: completed,
       remaining: [total - completed, 0].max,
-      unlocked: total.positive? && completed == total
+      unlocked: earned_today
     }
   end
 end

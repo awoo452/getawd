@@ -1,8 +1,8 @@
 class Task < ApplicationRecord
-
   include Holdable
 
-  # SMART (jsonb)
+  after_update_commit :check_level_1_reward
+
   store_accessor :smart,
     :specific,
     :measurable,
@@ -24,4 +24,15 @@ class Task < ApplicationRecord
   validates :due_date, presence: true
   validates :estimated_time, numericality: true
   validates :actual_time, numericality: true
+
+  private
+
+  def check_level_1_reward
+    return unless saved_change_to_status?
+    return unless completed?
+    return unless priority == 1
+    return unless due_date == Time.zone.today
+
+    RewardEarner.run(Time.zone.today)
+  end
 end

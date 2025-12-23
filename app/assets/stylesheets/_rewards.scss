@@ -37,18 +37,21 @@ $hover-color: lighten($primary-color, 30%);
     border-radius: 12px;
     overflow: hidden;
     background: #111;
+    height: 220px;
 
     .reward-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      display: flex;
+      width: 100%;
+      height: 100%;
     }
 
     .reward-gallery img {
-      width: 100%;
-      height: 200px;
+      flex: 1;
+      height: 100%;
       object-fit: cover;
-      display: block;
     }
+
+    
 
     &.locked .reward-gallery img {
       opacity: 0.5;

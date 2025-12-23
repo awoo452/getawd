@@ -4,6 +4,38 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.8] - 2025-12-22
+
+### Added
+- Implemented Level 1 daily reward system driven by completion of priority 1 tasks
+- Added `RewardEarner` service to safely create one reward per day when eligibility is met
+- Introduced banked rewards as individual records that persist across days
+- Added reward redemption behavior that:
+  - Consumes a single banked reward
+  - Assigns a random public game
+  - Preserves original earning metadata
+
+### Changed
+- Rewards index now displays a persistent Level 1 reward card with locked and unlocked states
+- Reward state is now derived from task completion plus earned reward records, not UI state
+- Reward payload handling updated to append redemption data without overwriting earning data
+- Level 1 reward flow clarified as:
+  - Automatic earn on task completion
+  - Manual consume via explicit user action
+
+### Fixed
+- Prevented duplicate reward creation by enforcing date scoped earning guards
+- Eliminated reward creation during navigation or page rendering
+- Corrected reward redemption logic to consume existing rewards only
+- Stabilized reward gallery rendering with flex layout and deterministic container height
+- Resolved missing reward visibility caused by empty public game datasets
+
+### Notes
+- Level 1 rewards are now fully deterministic and side effect free
+- Reward creation occurs in exactly one place and one lifecycle event
+- Reward records are append only in meaning and safe for future extension
+
+
 ## [1.21.7] - 2025-12-22
 
 ### Added

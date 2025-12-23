@@ -11,7 +11,6 @@
     <%= l(Time.zone.parse(@reward.reward_payload["redeemed_at"]), format: :short) rescue "Unknown" %>
   </p>
 
-  <p>This reward is valid for today only.</p>
 <% else %>
   <p>No game has been assigned yet.</p>
 <% end %>
