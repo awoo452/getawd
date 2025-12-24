@@ -1,13 +1,13 @@
 class RecurringTaskGenerator
   def self.run_for(date = Time.zone.today)
-    Goal.where(recurring: true, priority: 1).find_each do |goal|
+    Goal.where(recurring: true).find_each do |goal|
       next if Task.exists?(goal: goal, due_date: date)
 
       Task.create!(
         task_name: goal.title,
         description: goal.description,
         goal: goal,
-        priority: 1,
+        priority: goal.priority,
         start_date: date,
         due_date: date,
         estimated_time: default_estimated_time(goal),
@@ -18,11 +18,24 @@ class RecurringTaskGenerator
   end
 
   def self.default_estimated_time(goal)
-    case goal.title
-    when /med/i then 5
-    when /dog/i then 5
-    when /meal/i then 30
-    else 15
+    title = goal.title.downcase
+
+    case title
+    when /med/
+      5
+    when /feed dog/
+      5
+    when /walk dog/
+      30
+    when /chore/
+      30
+    when /push[- ]?ups/
+      5
+    when /meal/
+      30
+    else
+      15
     end
   end
+
 end

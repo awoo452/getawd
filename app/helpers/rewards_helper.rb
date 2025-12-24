@@ -1,11 +1,20 @@
 module RewardsHelper
+  def level_1_completed_for?(date = Time.zone.today)
+    tasks = Task.where(priority: 1, due_date: date)
+    tasks.exists? && tasks.all?(&:completed?)
+  end
+
+  def level_2_completed_for?(date = Time.zone.today)
+    return false unless level_1_completed_for?(date)
+
+    tasks = Task.where(priority: 2, due_date: date)
+    tasks.exists? && tasks.all?(&:completed?)
+  end
+
   def level_1_reward_state
     today = Time.zone.today
 
-    tasks_today = Task.where(
-      priority: 1,
-      due_date: today
-    )
+    tasks_today = Task.where(priority: 1, due_date: today)
 
     total     = tasks_today.count
     completed = tasks_today.completed.count

@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.12] - 2025-12-24
+
+### Changed
+- recurring task generator now creates daily tasks for all recurring goals regardless of level (assuming recurring = true)
+- task priority is now derived directly from goal priority
+- default estimated time logic refined to match specific Level 2 task types (walk dog, chores, push-ups)
+
 ## [1.21.11] - 2025-12-23
 
 ### Changed
