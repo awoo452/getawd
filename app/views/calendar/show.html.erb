@@ -1,31 +1,40 @@
 <section id="task-calendar-daily">
 <h1><%= GOAL_ICONS["task"] %> | Daily Tasks</h1>
   <%= calendar(number_of_days: 1) do |date| %>
-    <ul class="task-calendar-today">
-        <!-- Fetch tasks for this specific date, adjusted for timezone -->
-        <% tasks_for_date = @tasks.select { |task| task.due_date.in_time_zone.to_date == date } %>
+    <% tasks_for_date = @tasks.select { |task| task.due_date.in_time_zone.to_date == date } %>
 
-      <% tasks_for_date.sort_by { |t| [t.priority.nil? ? -1 : t.priority] }.each do |task| %>
-          <li class="task">
-            <%= link_to (GOAL_ICONS[task.goal.category] || "📝"), task_path(task), title: task.task_name %> | 
-            <span><%= task.task_name %></span> |
-            <span class="estimated-time" style="font-family: 'Orbitron';">
-              <% if task.completed? %> 
-                <%= GOAL_ICONS["task"] %> 
-              <% else %>
-                <span class="status-dot"
-                style="--progress-angle: <%= if task.actual_time.to_f.zero? || task.estimated_time.to_f.zero?
-                  '0'
-                else
-                  ((task.actual_time.to_f / task.estimated_time.to_f) * 360).round
-                end %>deg;">
+    <div class="daily-task-levels">
+      <% (1..10).each do |level| %>
+        <% level_tasks = tasks_for_date.select { |t| t.priority == level } %>
+        <% next if level_tasks.empty? %>
+
+        <div class="task-level">
+          <h3>
+            <%= link_to "Level #{level}", doc_path("level-#{level}-rewards") %>
+          </h3>
+
+          <ul>
+            <% level_tasks.each do |task| %>
+              <li class="task">
+                <%= link_to (GOAL_ICONS[task.goal.category] || "📝"), task_path(task) %>
+                <span><%= task.task_name %></span>
+                <span class="estimated-time" style="font-family: 'Orbitron';">
+                  <% if task.completed? %>
+                    <%= GOAL_ICONS["task"] %>
+                  <% else %>
+                    <span class="status-dot"
+                      style="--progress-angle: <%= task.actual_time.to_f.zero? || task.estimated_time.to_f.zero? ? 0 : ((task.actual_time.to_f / task.estimated_time.to_f) * 360).round %>deg;">
+                    </span>
+                    <%= task.estimated_time - task.actual_time %>m
+                  <% end %>
                 </span>
-                <%= task.estimated_time - task.actual_time %>m
-              <% end %>
-            </span>
-          </li>
-        <% end %>
-    </ul>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
   <% end %>
   <%= link_to 'New task', new_task_path %>
 </section>

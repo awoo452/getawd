@@ -1,6 +1,6 @@
 class RecurringTaskGenerator
   def self.run_for(date = Date.today)
-    Goal.where(recurring: true).find_each do |goal|
+    Goal.where(recurring: true, priority: 1).find_each do |goal|
       next if Task.exists?(goal: goal, due_date: date)
 
       Task.create!(
@@ -22,7 +22,6 @@ class RecurringTaskGenerator
     when /med/i then 5
     when /dog/i then 5
     when /meal/i then 30
-    when /chore/i then 30
     else 15
     end
   end

@@ -7,6 +7,11 @@ class DocumentsController < ApplicationController
     @documents = Document.all
   end
 
+  def show_by_slug
+    @document = Document.find_by!(slug: params[:slug])
+    render :show
+  end
+
   # GET /documents/1 or /documents/1.json
   def show
   end

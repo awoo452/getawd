@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.10] - 2025-12-23
+
+### Changed
+- recurring_task_generator now only selects goals with priority = 1 and recurring = true
+- removed chore specific logic from recurring generation; chores are not level 1 tasks
+- added slug column to documents for stable, human readable URLs
+- introduced slug based documentation routing via /docs/:slug
+- DocumentsController now supports slug lookup with show_by_slug and reuses the standard show view
+- linked Level 1 daily task column directly to Level 1 rewards documentation
+
 ## [1.21.9] - 2025-12-22
 
 ### Added

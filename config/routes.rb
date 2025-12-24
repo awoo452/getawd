@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
   end
   resources :documents
+  get '/docs/:slug', to: 'documents#show_by_slug', as: :doc
   resources :about,     only: [:index]
   resources :contacts,  only: [:index]
   resources :blog_posts, only: [:index, :show]

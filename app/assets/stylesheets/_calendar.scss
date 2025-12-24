@@ -59,3 +59,33 @@ $font-stack: 'Roboto', sans-serif;
     margin: 0;
   }
 }
+
+.daily-task-levels {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+}
+
+.task-level {
+  min-width: 220px;
+  background: #f7f9fb;
+  border-radius: 6px;
+  padding: 8px;
+
+  h3 {
+    margin: 0 0 6px 0;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+  }
+}
