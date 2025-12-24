@@ -1,10 +1,8 @@
 <div class="rewards">
   <div class="level-1-header">
-    <h3>Level 1 Rewards</h3>
-
-    <%= link_to "See documentation for more information",
-          documents_path(search: "Level 1"),
-          class: "level-1-doc-link" %>
+    <h3>
+      <%= link_to "Level 1", doc_path("level-1-rewards") %>
+    </h3>
   </div>
 
   <div class="level-1-reward <%= @earned_reward.present? ? 'unlocked' : 'locked' %>">
@@ -23,14 +21,27 @@
               redeem_rewards_path,
               method: :post,
               class: "btn btn-success" %>
+
+      <% elsif @reward_consumed_today %>
+        <strong>
+          All Level 1 rewards claimed. Check back tomorrow.
+        </strong>
+
       <% else %>
         <strong>
-          Complete today’s Level 1 tasks to unlock
+          Complete today’s Level 1 tasks to unlock this reward
         </strong>
       <% end %>
     </div>
+
   </div>
 
+  <hr>
+
+  <div style="text-align: center;">
+    <h3>Level 2 Rewards</h3>
+    <h5>Coming Soon!</h5>
+  </div>
   <hr>
 
   <h3>All Rewards</h3>
@@ -49,7 +60,4 @@
     <% end %>
   </div>
 
-
-  <h3>Level 2 Rewards</h3>
-  <h5>Coming Soon!</h5>
 </div>

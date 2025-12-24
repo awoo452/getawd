@@ -1,5 +1,5 @@
 class RecurringTaskGenerator
-  def self.run_for(date = Date.today)
+  def self.run_for(date = Time.zone.today)
     Goal.where(recurring: true, priority: 1).find_each do |goal|
       next if Task.exists?(goal: goal, due_date: date)
 

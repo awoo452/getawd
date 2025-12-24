@@ -9,6 +9,17 @@ class RewardsController < ApplicationController
       .where("reward_payload ->> 'earned_date' = ?", today.to_s)
       .first
 
+    @reward_consumed_today = Reward.where(kind: "redeemed")
+      .where("reward_payload ->> 'earned_date' = ?", today.to_s)
+      .exists?
+
+    level_1_tasks_today = Task.where(priority: 1)
+      .where(due_date: today)
+
+    @level_1_completed_today =
+      level_1_tasks_today.exists? &&
+      level_1_tasks_today.all?(&:completed?)
+
     @public_games = Game.where(show_to_public: true).limit(5)
     @redeemed_count = Reward.where(kind: "redeemed").count
     @rewards = Reward.order(created_at: :desc)
@@ -65,20 +76,17 @@ class RewardsController < ApplicationController
     end
 
     game = Game.where(show_to_public: true)
-               .order(Arel.sql("RANDOM()"))
-               .first
+              .order(Arel.sql("RANDOM()"))
+              .first
 
-    Reward.create!(
-      name: "Level 1 Redeemed",
+    earned_reward.update!(
       kind: "redeemed",
-      reward_payload: {
-        level: 1,
+      reward_payload: earned_reward.reward_payload.merge(
+        redeemed_at: Time.zone.now,
         game_id: game.id,
         game_title: game.game_title
-      }
+      )
     )
-
-    earned_reward.destroy!
 
     redirect_to rewards_path, notice: "Reward redeemed."
   end

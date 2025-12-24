@@ -2,7 +2,10 @@
 class RewardEarner
   def self.run(date = Time.zone.today)
     return unless eligible_for_level_1?(date)
-    return if already_earned?(date)
+
+    return if Reward.where(kind: %w[earned redeemed])
+      .where("reward_payload ->> 'earned_date' = ?", date.to_s)
+      .exists?
 
     Reward.create!(
       name: "Level 1 Earned",
@@ -20,9 +23,4 @@ class RewardEarner
     tasks.any? && tasks.all?(&:completed?)
   end
 
-  def self.already_earned?(date)
-    Reward.where(kind: "earned")
-          .where("reward_payload ->> 'earned_date' = ?", date.to_s)
-          .exists?
-  end
 end
