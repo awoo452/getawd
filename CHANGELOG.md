@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.13] - 2025-12-24
+
+### Changed
+- `recurring_task_generator` updated to include 30 minutes associated with 'career' related goals that convert to tasks, or 60 minutes otherwise if no match to anything that already exists
+
 ## [1.21.12] - 2025-12-24
 
 ### Changed

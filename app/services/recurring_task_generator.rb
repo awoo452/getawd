@@ -33,8 +33,10 @@ class RecurringTaskGenerator
       5
     when /meal/
       30
+    when /career/
+      30
     else
-      15
+      60
     end
   end
 
