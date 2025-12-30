@@ -92,11 +92,17 @@ class GoalsController < ApplicationController
       :description,
       :due_date,
       :priority,
-      :status,
+      :category,
       :idea_id,
+      :status,
       :recurring,
       :hold_until,
-      smart: {}
+      :completed_at,
+      :specific,
+      :measurable,
+      :attainable,
+      :relevant,
+      :time_bound
     )
   end
 

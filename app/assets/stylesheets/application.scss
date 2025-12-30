@@ -26,13 +26,30 @@ $hover-color: lighten($primary-color, 30%);
 $font-stack: 'Roboto', sans-serif;
 
 // General styles
-body {
-  font-family: $font-stack;
-  color: $text-color;
-  margin: 0;
-  padding: 0;
-  background-color: $background-color;
-}
+  body {
+    font-family: $font-stack;
+    color: $text-color;
+    margin: 0;
+    padding: 0;
+    background-color: $background-color;
+  }
+
+  .flash {
+    padding: 0.75rem 1rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .flash-notice {
+    background: #e6f4ea;
+    color: #0f5132;
+  }
+
+  .flash-alert {
+    background: #fdecea;
+    color: #842029;
+  }
+
 
   .featured-blog-posts, .blog-posts, #blog-post, .games, .featured-projects, .projects, .documents, #document, .featured-videos {
     padding: 2rem;

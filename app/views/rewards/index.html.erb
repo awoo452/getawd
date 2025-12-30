@@ -1,16 +1,11 @@
 <%# app/views/rewards/index.html.erb %>
 
-<% placeholder_svg = "data:image/svg+xml;utf8,#{ERB::Util.url_encode(%Q(
-  <svg xmlns='http://www.w3.org/2000/svg' width='400' height='220'>
-    <rect width='100%' height='100%' fill='%23111'/>
-    <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23fff' font-size='28' font-family='Arial'>PLACEHOLDER</text>
-  </svg>
-))}" %>
+<% gaming_levels = [1, 2] %>
 
 <div class="rewards">
 
-  <% [1,2,3].each do |level| %>
-    <% earned = @earned_by_level[level] %>
+  <% [1, 2, 3].each do |level| %>
+    <% earned   = @earned_by_level[level] %>
     <% consumed = @redeemed_levels.include?(level) %>
 
     <div class="level-1-header">
@@ -20,35 +15,62 @@
     </div>
 
     <div class="level-1-reward <%= earned.present? ? "unlocked" : "locked" %>">
+
       <div class="reward-gallery">
-        <% if level == 1 %>
-          <% @public_games.each do |game| %>
-            <img src="<%= game_cover_url(game) %>" alt="<%= game.game_title %>" />
-          <% end %>
-        <% else %>
-          <% 5.times do %>
-            <img src="<%= placeholder_svg %>" alt="Level <%= level %> reward placeholder" />
+        <% if gaming_levels.include?(level) %>
+          <% if earned&.reward_payload&.dig("game_id").present? %>
+            <% game = Game.find_by(id: earned.reward_payload["game_id"]) %>
+            <% if game %>
+              <img src="<%= game_cover_url(game) %>" alt="<%= game.game_title %>" />
+            <% end %>
+          <% else %>
+            <% @public_games.each do |game| %>
+              <img src="<%= game_cover_url(game) %>" alt="<%= game.game_title %>" />
+            <% end %>
           <% end %>
         <% end %>
+
       </div>
 
       <div class="reward-overlay">
-        <% if earned.present? %>
+
+        <% if earned.present? && level == 2 %>
+
+          <%= form_with url: redeem_rewards_path(level: 2), method: :post do %>
+            <%= select_tag :game_id,
+                  options_from_collection_for_select(
+                    Game.where(show_to_public: true),
+                    :id,
+                    :game_title
+                  ),
+                  include_blank: "Choose a game" %>
+
+            <br><br>
+
+            <%= submit_tag "Redeem Level 2 Reward", class: "btn btn-success" %>
+          <% end %>
+
+        <% elsif earned.present? %>
+
           <%= button_to "Redeem Reward",
                 redeem_rewards_path(level: level),
                 method: :post,
                 class: "btn btn-success" %>
 
         <% elsif consumed %>
+
           <strong>
             All Level <%= level %> rewards claimed. Check back tomorrow.
           </strong>
 
         <% else %>
+
           <strong>
             Complete today’s Level <%= level %> tasks to unlock this reward
           </strong>
+
         <% end %>
+
       </div>
     </div>
 
@@ -56,6 +78,7 @@
   <% end %>
 
   <h3>All Rewards</h3>
+
   <div class="reward-list">
     <% @rewards.each do |reward| %>
       <div class="reward-row">

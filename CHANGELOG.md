@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.15] - 2025-12-30
+
+### Changed
+- Rewards index view updated to support per-level reward rendering (Levels 1–3) in a single loop
+- Level 2 reward redemption updated to require explicit game selection via dropdown
+- Reward redemption flow now blocks Level 2 redemption when no game is selected
+- Reward payload assignment refined so:
+  - Level 1 auto-assigns a random public game
+  - Level 2 assigns a user-selected public game
+  - Level 3 assigns no gaming metadata
+- RewardsController redeem action updated to validate level-specific requirements before mutation
+
+### Fixed
+- Fixed rewards index crashes caused by nil `reward_payload` access
+- Fixed missing Redeem button state after task completion
+- Fixed silent Level 2 reward redemption when `game_id` was missing
+- Fixed flash messaging not appearing due to missing layout handling
+- Fixed reward index view assumptions after task table truncation/reset
+
+### Removed
+- Removed placeholder SVG usage from reward cards
+- Removed global gaming assumptions from reward rendering logic
+
+### Notes
+- Task table was truncated and ID sequence reset to reestablish a clean reward state
+- Current reward UI is intentionally minimal and scoped for future expansion without refactor
+
 ## [1.21.14] - 2025-12-30
 
 ### Changed

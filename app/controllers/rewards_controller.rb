@@ -47,7 +47,6 @@ class RewardsController < ApplicationController
       redeemed_at: Time.zone.now
     )
 
-    # Only Level 1 is a gaming reward
     if level == 1
       game = Game.where(show_to_public: true)
                 .order(Arel.sql("RANDOM()"))
@@ -56,6 +55,24 @@ class RewardsController < ApplicationController
       payload.merge!(
         game_id: game&.id,
         game_title: game&.game_title
+      )
+
+    elsif level == 2
+      if params[:game_id].blank?
+        redirect_to rewards_path, alert: "Select a game before redeeming this reward."
+        return
+      end
+
+      game = Game.find_by(id: params[:game_id], show_to_public: true)
+
+      unless game
+        redirect_to rewards_path, alert: "Invalid game selection."
+        return
+      end
+
+      payload.merge!(
+        game_id: game.id,
+        game_title: game.game_title
       )
     end
 
