@@ -1,8 +1,6 @@
 class Task < ApplicationRecord
   include Holdable
 
-  after_commit :check_level_1_reward, on: :update
-
   store_accessor :smart,
     :specific,
     :measurable,
@@ -24,15 +22,4 @@ class Task < ApplicationRecord
   validates :due_date, presence: true
   validates :estimated_time, numericality: true
   validates :actual_time, numericality: true
-
-  private
-
-  def check_level_1_reward
-    return unless saved_change_to_status?
-    return unless completed?
-    return unless priority == 1
-
-    RewardEarner.run(Time.zone.today)
-  end
-
 end

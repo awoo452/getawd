@@ -4,6 +4,38 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.14] - 2025-12-30
+
+### Changed
+- Replaced `RewardEarner` with `DailyRewardEarner` as the single reward creation mechanism
+- Task completion now triggers `DailyRewardEarner.run(due_date)` via `Task` model callback
+- Daily rewards are now evaluated per level (1, 2, 3) instead of a single global reward
+- RewardsController updated to:
+  - Load earned rewards grouped by level for the current day
+  - Track redeemed levels independently
+  - Redeem rewards by explicit level parameter
+- Reward redemption logic updated so:
+  - Only Level 1 injects gaming related payload data
+  - Level 2 and Level 3 rewards are generic and non-gaming
+- Rewards index view updated to support multiple daily rewards (one per level)
+- Existing Heroku scheduled rake task updated to run both recurring task generation and daily reward evaluation
+
+### Removed
+- Removed all remaining references to `RewardEarner`
+- Removed assumptions of a single daily reward
+- Removed gaming specific behavior from non-Level 1 rewards
+- Removed reward creation side effects from controllers and views
+
+### Fixed
+- Fixed reward payload contamination across reward levels
+- Fixed reward index view assumptions that caused undefined variables
+- Fixed reward show page crash when reward record was missing
+- Fixed reward redemption incorrectly applying game data to all reward levels
+
+### Notes
+- Daily rewards are now level scoped and date scoped
+- Reward creation occurs in exactly one place via `DailyRewardEarner`
+
 ## [1.21.13] - 2025-12-24
 
 ### Changed

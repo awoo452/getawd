@@ -1,61 +1,66 @@
+<%# app/views/rewards/index.html.erb %>
+
+<% placeholder_svg = "data:image/svg+xml;utf8,#{ERB::Util.url_encode(%Q(
+  <svg xmlns='http://www.w3.org/2000/svg' width='400' height='220'>
+    <rect width='100%' height='100%' fill='%23111'/>
+    <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23fff' font-size='28' font-family='Arial'>PLACEHOLDER</text>
+  </svg>
+))}" %>
+
 <div class="rewards">
-  <div class="level-1-header">
-    <h3>
-      <%= link_to "Level 1", doc_path("level-1-rewards") %>
-    </h3>
-  </div>
 
-  <div class="level-1-reward <%= @earned_reward.present? ? 'unlocked' : 'locked' %>">
-    <div class="reward-gallery">
-      <% @public_games.each do |game| %>
-        <img
-          src="<%= game_cover_url(game) %>"
-          alt="<%= game.game_title %>"
-        />
-      <% end %>
+  <% [1,2,3].each do |level| %>
+    <% earned = @earned_by_level[level] %>
+    <% consumed = @redeemed_levels.include?(level) %>
+
+    <div class="level-1-header">
+      <h3>
+        <%= link_to "Level #{level}", doc_path("level-#{level}-rewards") %>
+      </h3>
     </div>
 
-    <div class="reward-overlay">
-      <% if @earned_reward.present? %>
-        <%= button_to "Redeem Reward",
-              redeem_rewards_path,
-              method: :post,
-              class: "btn btn-success" %>
+    <div class="level-1-reward <%= earned.present? ? "unlocked" : "locked" %>">
+      <div class="reward-gallery">
+        <% if level == 1 %>
+          <% @public_games.each do |game| %>
+            <img src="<%= game_cover_url(game) %>" alt="<%= game.game_title %>" />
+          <% end %>
+        <% else %>
+          <% 5.times do %>
+            <img src="<%= placeholder_svg %>" alt="Level <%= level %> reward placeholder" />
+          <% end %>
+        <% end %>
+      </div>
 
-      <% elsif @reward_consumed_today %>
-        <strong>
-          All Level 1 rewards claimed. Check back tomorrow.
-        </strong>
+      <div class="reward-overlay">
+        <% if earned.present? %>
+          <%= button_to "Redeem Reward",
+                redeem_rewards_path(level: level),
+                method: :post,
+                class: "btn btn-success" %>
 
-      <% else %>
-        <strong>
-          Complete today’s Level 1 tasks to unlock this reward
-        </strong>
-      <% end %>
+        <% elsif consumed %>
+          <strong>
+            All Level <%= level %> rewards claimed. Check back tomorrow.
+          </strong>
+
+        <% else %>
+          <strong>
+            Complete today’s Level <%= level %> tasks to unlock this reward
+          </strong>
+        <% end %>
+      </div>
     </div>
 
-  </div>
-
-  <hr>
-
-  <div style="text-align: center;">
-    <h3>Level 2 Rewards</h3>
-    <h5>Coming Soon!</h5>
-  </div>
-  <hr>
+    <hr>
+  <% end %>
 
   <h3>All Rewards</h3>
-
   <div class="reward-list">
     <% @rewards.each do |reward| %>
       <div class="reward-row">
-        <%= link_to reward.name.presence || "Reward ##{reward.id}",
-              reward_path(reward) %>
-
-        <small>
-          (<%= reward.kind %>,
-          <%= reward.created_at.to_date %>)
-        </small>
+        <%= link_to reward.name.presence || "Reward ##{reward.id}", reward_path(reward) %>
+        <small>(<%= reward.kind %>, <%= reward.created_at.to_date %>)</small>
       </div>
     <% end %>
   </div>
