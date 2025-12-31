@@ -16,7 +16,7 @@
           <ul>
             <% level_tasks.each do |task| %>
               <li class="task">
-                <%= link_to (GOAL_ICONS[task.goal.category] || "📝"), task_path(task) %>
+                <%= link_to (GOAL_ICONS[task.goal.category] || "📝"), edit_task_path(task) %>
                 <span><%= task.task_name %></span>
                 <span class="estimated-time" style="font-family: 'Orbitron';">
                   <% if task.completed? %>

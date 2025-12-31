@@ -29,11 +29,17 @@ class RecurringTaskGenerator
       30
     when /chore/
       30
-    when /push[- ]?ups/
+    when /strength/
       5
     when /meal/
       30
     when /career/
+      30
+    when /hydration/
+      15
+    when /shower/
+      15
+    when /household/
       30
     else
       60
