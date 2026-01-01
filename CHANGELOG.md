@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.17] - 2026-01-01
+
+### Changed
+- Introduced third reward lifecycle state: `completed`
+- Rewards now progress through `earned → redeemed → completed` instead of being destroyed
+- Redeemed rewards can be manually marked as completed while remaining in the database
+- Rewards index updated to support distinct handling of:
+  - Earned rewards (actionable)
+  - Redeemed rewards (in use)
+  - Completed rewards (historical)
+
+### Changed
+- RewardsController updated to:
+  - Support updating reward `kind` via show page
+  - Allow marking rewards as `completed` without deleting records
+- Reward show page updated to allow inline editing of reward description and lifecycle state
+
+### Notes
+- Completed rewards no longer appear as actionable items
+- Historical reward data is preserved for auditing and reflection
+- “Recently used rewards” groundwork laid without enforcing hard controller filtering yet
+
 ## [1.21.16] - 2025-12-31
 
 ### Changed

@@ -28,9 +28,10 @@ Rails.application.routes.draw do
   resources :idea_stats, only: [:index]
   resources :projects,  only: [:index, :show]
   resources :videos,    only: [:index, :show]
-  resources :rewards, only: [:index, :new, :create, :destroy, :show] do
+  resources :rewards, only: [:index, :show, :update, :new, :create, :destroy] do
     collection do
       post :redeem
     end
   end
+  
 end

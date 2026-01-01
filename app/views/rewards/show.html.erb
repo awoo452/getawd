@@ -3,7 +3,7 @@
 <h2><%= @reward.name %></h2>
 
 <p>
-  <strong>Type:</strong>
+  <strong>Status:</strong>
   <%= @reward.kind %>
 </p>
 
@@ -11,6 +11,20 @@
   <strong>Created:</strong>
   <%= @reward.created_at %>
 </p>
+
+<h3>Description</h3>
+
+<%= form_with model: @reward, method: :patch do |f| %>
+  <%= f.text_area :description, rows: 4 %>
+  <br><br>
+
+  <% if @reward.kind == "redeemed" %>
+    <%= f.hidden_field :kind, value: "completed" %>
+    <%= f.submit "Mark Reward as Completed", class: "btn btn-success" %>
+  <% else %>
+    <%= f.submit "Save Notes", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
 
 <h3>Payload</h3>
 

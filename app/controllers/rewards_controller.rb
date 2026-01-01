@@ -6,18 +6,21 @@ class RewardsController < ApplicationController
   def index
     today = Time.zone.today
 
+    
     earned = Reward.where(kind: "earned")
       .where("reward_payload ->> 'earned_date' = ?", today.to_s)
-
     redeemed = Reward.where(kind: "redeemed")
-      .where("reward_payload ->> 'earned_date' = ?", today.to_s)
+    completed = Reward.where(kind: "completed")
+      .where("updated_at >= ?", 7.days.ago)
 
     @earned_by_level = earned.index_by { |r| r.reward_payload["level"].to_i }
     @redeemed_levels = redeemed.pluck(Arel.sql("(reward_payload->>'level')::int")).to_set
 
-    @public_games = Game.where(show_to_public: true).limit(5)
-    @redeemed_count = Reward.where(kind: "redeemed").count
+    @public_games = Game.where(show_to_public: true)
+
+    @recent_rewards = (redeemed + completed).uniq
     @rewards = Reward.order(created_at: :desc)
+
   end
 
   def show
@@ -82,6 +85,22 @@ class RewardsController < ApplicationController
     )
 
     redirect_to rewards_path, notice: "Level #{level} reward redeemed."
+  end
+
+  def update
+    @reward = Reward.find(params[:id])
+
+    if @reward.update(reward_params)
+      redirect_to @reward, notice: "Reward updated."
+    else
+      render :show, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def reward_params
+    params.require(:reward).permit(:description, :kind)
   end
 
 end

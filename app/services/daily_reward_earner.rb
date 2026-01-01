@@ -1,7 +1,10 @@
 class DailyRewardEarner
+  
   LEVELS = [1, 2, 3].freeze
 
   def self.run(date = Time.zone.today)
+    return unless date == Time.zone.today
+
     LEVELS.each do |level|
       next unless level_completed?(level, date)
       next if already_earned?(level, date)
@@ -18,8 +21,17 @@ class DailyRewardEarner
   end
 
   def self.level_completed?(level, date)
+    end_of_day = date.end_of_day
+
     tasks = Task.where(priority: level, due_date: date)
-    tasks.exists? && tasks.all?(&:completed?)
+
+    return false unless tasks.exists?
+
+    tasks.all? do |task|
+      task.completed? &&
+        task.completed? &&
+        task.completion_date == date
+    end
   end
 
   def self.already_earned?(level, date)
