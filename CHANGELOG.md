@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.21] - 2026-01-01
+
+### Added
+- Added `completed_reward_url` and `completed_reward_notes` fields to rewards to capture raw gameplay evidence on completion.
+- Enforced completion validation requiring a raw footage path when a reward is marked as completed.
+- Displayed raw footage path and session notes on the reward show page in copy friendly format.
+
+### Changed
+- Reward completion now gated on tangible output rather than time spent.
+- Reward edit flow updated so redeemed rewards transition to completed only with evidence.
+
+### Fixed
+- Fixed reward show template syntax error caused by unclosed form block.
+- Corrected reward form structure so completion fields submit and persist correctly.
+
 ## [1.21.20] - 2026-01-01
 
 ### Changed

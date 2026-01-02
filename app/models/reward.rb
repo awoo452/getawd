@@ -36,9 +36,16 @@ class Reward < ApplicationRecord
       game_id: game.id,
       game_title: game.game_title,
       redeemed_at: Time.zone.now
+      )
     )
-  )
-end
+  end
 
+  validate :completed_reward_requires_url, if: -> { kind == "completed" }
+
+  def completed_reward_requires_url
+    if completed_reward_url.blank?
+      errors.add(:completed_reward_url, "required to complete reward")
+    end
+  end
 
 end
