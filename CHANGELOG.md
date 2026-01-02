@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.20] - 2026-01-01
+
+### Changed
+- Removed global `.completed` CSS to stop cross-component styling bleed
+- Replaced Sass `@extend` usage with explicit, component-scoped completed styles
+- Cleaned up goal styling so completion state is owned by goals only
+
 ## [1.21.19] - 2026-01-01
 
 ### Changed

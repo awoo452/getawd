@@ -29,7 +29,6 @@
 
 .goal-card.completed,
 .task-card.completed {
-  @extend .completed;
   text-decoration: line-through;
   color: #888;
   margin-bottom: .5em;
