@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.18] - 2026-01-01
+
+### Changed
+- `_calendar.scss` updated to improve daily task container layout using flex wrapping and constrained widths
+- Daily task levels now size consistently across screen widths without affecting task density
+- Visual separation added between daily and monthly calendar views via `<hr>` in `calendar/show.html.erb`
+
+### Notes
+- No functional changes to task logic or reward evaluation
+- Calendar updates are strictly presentational and intentionally low impact
+
 ## [1.21.17] - 2026-01-01
 
 ### Changed
