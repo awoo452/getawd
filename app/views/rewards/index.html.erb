@@ -8,13 +8,13 @@
     <% earned   = @earned_by_level[level] %>
     <% consumed = @redeemed_levels.include?(level) %>
 
-    <div class="level-1-header">
+    <div class="level-header">
       <h3>
         <%= link_to "Level #{level}", doc_path("level-#{level}-rewards") %>
       </h3>
     </div>
 
-    <div class="level-1-reward <%= earned.present? ? "unlocked" : "locked" %>">
+    <div class="level-reward <%= earned.present? ? "unlocked" : "locked" %>">
 
       <div class="reward-gallery">
         <% if gaming_levels.include?(level) %>
@@ -78,11 +78,36 @@
   <% end %>
 
   <h3>All Rewards</h3>
-  <div class="reward-list">
-    <% @rewards.each do |reward| %>
+  <% earned_rewards    = @rewards.select { |r| r.kind == "earned" } %>
+  <% redeemed_rewards  = @rewards.select { |r| r.kind == "redeemed" } %>
+  <% completed_rewards = @rewards.select { |r| r.kind == "completed" } %>
+
+  <h3>Earned Rewards</h3>
+  <div class="reward-list earned">
+    <% earned_rewards.each do |reward| %>
       <div class="reward-row">
         <%= link_to reward.name.presence || "Reward ##{reward.id}", reward_path(reward) %>
-        <small>(<%= reward.kind %>, <%= reward.created_at.to_date %>)</small>
+        <small>(earned <%= reward.created_at.to_date %>)</small>
+      </div>
+    <% end %>
+  </div>
+
+  <h3>Redeemed Rewards</h3>
+  <div class="reward-list redeemed">
+    <% redeemed_rewards.each do |reward| %>
+      <div class="reward-row">
+        <%= link_to reward.name.presence || "Reward ##{reward.id}", reward_path(reward) %>
+        <small>(redeemed <%= reward.updated_at.to_date %>)</small>
+      </div>
+    <% end %>
+  </div>
+
+  <h3>Completed Rewards</h3>
+  <div class="reward-list completed">
+    <% completed_rewards.each do |reward| %>
+      <div class="reward-row">
+        <%= link_to reward.name.presence || "Reward ##{reward.id}", reward_path(reward) %>
+        <small>(completed <%= reward.updated_at.to_date %>)</small>
       </div>
     <% end %>
   </div>

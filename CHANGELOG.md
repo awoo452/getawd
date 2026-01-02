@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.19] - 2026-01-01
+
+### Changed
+- Rewards index UI updated to visually group rewards by status (earned, redeemed, completed) with simple color coding
+- Renamed `level-1-reward` and related CSS classes to `level-reward` to reflect multi-level usage
+- Improved reward list clarity without altering reward logic or persistence
+
 ## [1.21.18] - 2026-01-01
 
 ### Changed
