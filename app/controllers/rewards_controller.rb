@@ -100,7 +100,12 @@ class RewardsController < ApplicationController
   private
 
   def reward_params
-    params.require(:reward).permit(:description, :kind)
+    params.require(:reward).permit(
+      :description,
+      :kind,
+      :completed_reward_url,
+      :completed_reward_notes
+    )
   end
 
 end

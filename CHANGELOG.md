@@ -4,6 +4,46 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.21] - 2026-01-01
+
+### Added
+- Added `completed_reward_url` and `completed_reward_notes` fields to rewards to capture raw gameplay evidence on completion.
+- Enforced completion validation requiring a raw footage path when a reward is marked as completed.
+- Displayed raw footage path and session notes on the reward show page in copy friendly format.
+
+### Changed
+- Reward completion now gated on tangible output rather than time spent.
+- Reward edit flow updated so redeemed rewards transition to completed only with evidence.
+
+### Fixed
+- Fixed reward show template syntax error caused by unclosed form block.
+- Corrected reward form structure so completion fields submit and persist correctly.
+
+## [1.21.20] - 2026-01-01
+
+### Changed
+- Removed global `.completed` CSS to stop cross-component styling bleed
+- Replaced Sass `@extend` usage with explicit, component-scoped completed styles
+- Cleaned up goal styling so completion state is owned by goals only
+
+## [1.21.19] - 2026-01-01
+
+### Changed
+- Rewards index UI updated to visually group rewards by status (earned, redeemed, completed) with simple color coding
+- Renamed `level-1-reward` and related CSS classes to `level-reward` to reflect multi-level usage
+- Improved reward list clarity without altering reward logic or persistence
+
+## [1.21.18] - 2026-01-01
+
+### Changed
+- `_calendar.scss` updated to improve daily task container layout using flex wrapping and constrained widths
+- Daily task levels now size consistently across screen widths without affecting task density
+- Visual separation added between daily and monthly calendar views via `<hr>` in `calendar/show.html.erb`
+
+### Notes
+- No functional changes to task logic or reward evaluation
+- Calendar updates are strictly presentational and intentionally low impact
+
 ## [1.21.17] - 2026-01-01
 
 ### Changed

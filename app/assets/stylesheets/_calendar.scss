@@ -13,11 +13,9 @@ $font-stack: 'Roboto', sans-serif;
     ::-webkit-scrollbar {
       display: none;
     }
-    
+
     li {
-      margin-left: 15%;
       list-style-type: none;
-      padding-left: 5px;
       a {
         text-decoration: none;
       }
@@ -45,10 +43,22 @@ $font-stack: 'Roboto', sans-serif;
   }
 }
 
+.simple-calendar .day:hover {
+  background: #f8fafc;
+}
+
 #task-calendar-daily, 
 #task-calendar-monthly {
   margin-left: 8%;
   width: 84%;
+  h1 {
+    text-align: center;
+    margin-top: .5em;
+  }
+  .calendar-heading {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 #task-calendar-monthly {
@@ -58,34 +68,44 @@ $font-stack: 'Roboto', sans-serif;
     overflow-y: auto;
     margin: 0;
   }
+  li {
+    margin-left: 15%;
+  }
 }
 
 .daily-task-levels {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
   gap: 16px;
-  overflow-x: auto;
+}
+
+.calendar-divider {
+  border: 1px solid $primary-color;
+  opacity: 50%;
 }
 
 .task-level {
-  min-width: 220px;
+  flex: 0 1 280px;
+  max-width: 320px;
+
   background: #f7f9fb;
-  border-radius: 6px;
-  padding: 8px;
+  border-radius: 8px;
+  padding: 12px;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  border-bottom: 3px solid $primary-color;
 
   h3 {
-    margin: 0 0 6px 0;
+    margin: 0 0 10px 0;
     font-size: 0.9rem;
     text-align: center;
+    color: $primary-color;
   }
 
   ul {
     margin: 0;
     padding: 0;
-  }
-
-  li {
-    list-style: none;
-    margin-bottom: 6px;
-    font-size: 0.85rem;
   }
 }
