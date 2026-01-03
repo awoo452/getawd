@@ -10,6 +10,11 @@ class RewardsController < ApplicationController
     earned = Reward.where(kind: "earned")
       .where("reward_payload ->> 'earned_date' = ?", today.to_s)
     redeemed = Reward.where(kind: "redeemed")
+      .where("reward_payload ->> 'earned_date' = ?", today.to_s)
+
+    @redeemed_levels = redeemed
+      .pluck(Arel.sql("(reward_payload->>'level')::int"))
+      .to_set
     completed = Reward.where(kind: "completed")
       .where("updated_at >= ?", 7.days.ago)
 

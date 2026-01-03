@@ -29,8 +29,7 @@ class DailyRewardEarner
 
     tasks.all? do |task|
       task.completed? &&
-        task.completed? &&
-        task.completion_date == date
+      task.completion_date == date
     end
   end
 

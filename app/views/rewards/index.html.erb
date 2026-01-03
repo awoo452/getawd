@@ -87,7 +87,6 @@
     <% earned_rewards.each do |reward| %>
       <div class="reward-row">
         <%= link_to reward.name.presence || "Reward ##{reward.id}", reward_path(reward) %>
-        <small>(earned <%= reward.created_at.to_date %>)</small>
       </div>
     <% end %>
   </div>
@@ -97,7 +96,6 @@
     <% redeemed_rewards.each do |reward| %>
       <div class="reward-row">
         <%= link_to reward.name.presence || "Reward ##{reward.id}", reward_path(reward) %>
-        <small>(redeemed <%= reward.updated_at.to_date %>)</small>
       </div>
     <% end %>
   </div>
@@ -107,7 +105,6 @@
     <% completed_rewards.each do |reward| %>
       <div class="reward-row">
         <%= link_to reward.name.presence || "Reward ##{reward.id}", reward_path(reward) %>
-        <small>(completed <%= reward.updated_at.to_date %>)</small>
       </div>
     <% end %>
   </div>

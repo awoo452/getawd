@@ -4,7 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.21.22] - 2026-01-01
+## [1.21.23] - 2026-01-03
+
+### Changed
+- `daily_reward_earner` removed duplicate `task.completed?` checks
+- Reward redemption state is now scoped to the current day to prevent previously redeemed rewards from blocking new ones
+- Rewards can be earned even when older earned or redeemed rewards exist in the database
+- Reward redemption is now limited to the same day the reward is earned
+
+### Updated
+- `rewards/index.html.erb` removed date noise from the all-rewards listing
+
+## [1.21.22] - 2026-01-02
 
 ### Changed & Added
 - `seeds.rb` related files updated to work with db as it currently exists for all tables
