@@ -1,8 +1,38 @@
-<%# app/views/rewards/index.html.erb %>
-
-<% gaming_levels = [1, 2] %>
-
 <div class="rewards">
+
+  <%# =========================================================
+     TODAY'S TASK REWARDS (DAILY, NON-LEVEL-SCOPED)
+     ========================================================= %>
+
+  <% if @task_rewards_today.any? %>
+    <div class="task-rewards">
+      <h3>Today’s Task Rewards</h3>
+
+      <div class="reward-list">
+        <% @task_rewards_today.each do |reward| %>
+          <div class="reward-row">
+            <span>
+              <%= reward.reward_payload["item"] %>
+              (Level <%= reward.reward_payload["level"] %>)
+            </span>
+
+            <%= button_to "Redeem",
+                  redeem_task_reward_path(reward),
+                  method: :post,
+                  class: "btn btn-success btn-sm" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <hr>
+
+  <%# =========================================================
+     LEVEL REWARDS (LEVEL-SCOPED, ONE PER LEVEL)
+     ========================================================= %>
+  
+  <h3>Today’s Level Rewards</h3>
 
   <% [1, 2, 3].each do |level| %>
     <% earned   = @earned_by_level[level] %>
@@ -16,22 +46,21 @@
 
     <div class="level-reward <%= earned.present? ? "unlocked" : "locked" %>">
 
+      <%# -------------------------
+         Reward gallery (only if a game was assigned)
+         ------------------------- %>
       <div class="reward-gallery">
-        <% if gaming_levels.include?(level) %>
-          <% if earned&.reward_payload&.dig("game_id").present? %>
-            <% game = Game.find_by(id: earned.reward_payload["game_id"]) %>
-            <% if game %>
-              <img src="<%= game_cover_url(game) %>" alt="<%= game.game_title %>" />
-            <% end %>
-          <% else %>
-            <% @public_games.each do |game| %>
-              <img src="<%= game_cover_url(game) %>" alt="<%= game.game_title %>" />
-            <% end %>
+        <% if earned&.reward_payload&.dig("game_id").present? %>
+          <% game = Game.find_by(id: earned.reward_payload["game_id"]) %>
+          <% if game %>
+            <img src="<%= game_cover_url(game) %>" alt="<%= game.game_title %>" />
           <% end %>
         <% end %>
-
       </div>
 
+      <%# -------------------------
+         Reward overlay / actions
+         ------------------------- %>
       <div class="reward-overlay">
 
         <% if earned.present? && level == 2 %>
@@ -77,7 +106,12 @@
     <hr>
   <% end %>
 
+  <%# =========================================================
+     REWARD HISTORY
+     ========================================================= %>
+
   <h3>All Rewards</h3>
+
   <% earned_rewards    = @rewards.select { |r| r.kind == "earned" } %>
   <% redeemed_rewards  = @rewards.select { |r| r.kind == "redeemed" } %>
   <% completed_rewards = @rewards.select { |r| r.kind == "completed" } %>

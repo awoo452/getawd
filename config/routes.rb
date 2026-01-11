@@ -33,5 +33,6 @@ Rails.application.routes.draw do
       post :redeem
     end
   end
-  
+  post "rewards/:id/redeem_task", to: "rewards#redeem_task", as: :redeem_task_reward
+
 end

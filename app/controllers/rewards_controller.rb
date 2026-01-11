@@ -9,16 +9,33 @@ class RewardsController < ApplicationController
     
     earned = Reward.where(kind: "earned")
       .where("reward_payload ->> 'earned_date' = ?", today.to_s)
-    redeemed = Reward.where(kind: "redeemed")
-      .where("reward_payload ->> 'earned_date' = ?", today.to_s)
-
+    redeemed = Reward.where(
+      kind: "redeemed",
+      scope: "level"
+    ).where(
+      "reward_payload ->> 'earned_date' = ?", today.to_s
+    )
+    
     @redeemed_levels = redeemed
       .pluck(Arel.sql("(reward_payload->>'level')::int"))
       .to_set
     completed = Reward.where(kind: "completed")
       .where("updated_at >= ?", 7.days.ago)
 
+    earned = Reward.where(
+      kind: "earned",
+      scope: "level"
+    ).where(
+      "reward_payload ->> 'earned_date' = ?", today.to_s
+    )
+
     @earned_by_level = earned.index_by { |r| r.reward_payload["level"].to_i }
+    @earned_by_level ||= {}
+
+    @task_rewards_today = Reward
+    .where(scope: "task", kind: "earned")
+    .where("reward_payload ->> 'earned_date' = ?", today.to_s)
+
     @redeemed_levels = redeemed.pluck(Arel.sql("(reward_payload->>'level')::int")).to_set
 
     @public_games = Game.where(show_to_public: true)
@@ -34,6 +51,24 @@ class RewardsController < ApplicationController
     unless @reward
       redirect_to rewards_path, alert: "Reward not found."
     end
+  end
+
+  def redeem_task
+    reward = Reward.find(params[:id])
+
+    unless reward.scope == "task" && reward.kind == "earned"
+      redirect_to rewards_path, alert: "Invalid task reward."
+      return
+    end
+
+    reward.update!(
+      kind: "redeemed",
+      reward_payload: reward.reward_payload.merge(
+        redeemed_at: Time.zone.now
+      )
+    )
+
+    redirect_to rewards_path, notice: "Task reward redeemed."
   end
 
   def redeem

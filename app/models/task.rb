@@ -1,3 +1,4 @@
+# app/models/task.rb
 class Task < ApplicationRecord
   include Holdable
 
@@ -6,7 +7,8 @@ class Task < ApplicationRecord
     :measurable,
     :attainable,
     :relevant,
-    :time_bound
+    :time_bound,
+    :reward_item
 
   belongs_to :goal, optional: true
   has_many :reward_tasks, dependent: :destroy
@@ -23,13 +25,42 @@ class Task < ApplicationRecord
   validates :estimated_time, numericality: true
   validates :actual_time, numericality: true
 
-  after_update :check_daily_rewards, if: :saved_change_to_status?
+  after_update :handle_completion, if: :saved_change_to_status?
 
   private
 
-  def check_daily_rewards
+  def handle_completion
     return unless completed?
-    DailyRewardEarner.run(due_date)
+
+    earn_task_reward
+    DailyRewardEarner.run(earned_on_date)
   end
 
+  def earned_on_date
+    completion_date || due_date || Date.current
+  end
+
+  def earn_task_reward
+    return if reward_item.blank?
+
+    already = Reward
+      .joins(:reward_tasks)
+      .where(scope: "task", reward_tasks: { task_id: id })
+      .where("reward_payload ->> 'earned_date' = ?", earned_on_date.to_s)
+      .exists?
+
+    return if already
+
+    reward = Reward.create!(
+      scope: "task",
+      kind: "earned",
+      reward_payload: {
+        level: priority,
+        item: reward_item,
+        earned_date: earned_on_date.to_s
+      }
+    )
+
+    RewardTask.create!(reward: reward, task: self)
+  end
 end

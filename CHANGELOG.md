@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.24] - 2026-01-11
+
+### Added
+- Task-scoped rewards using existing `rewards` and `reward_tasks` tables
+- `scope` field on rewards to distinguish `task` vs `level` rewards
+- Automatic task reward earning on task completion
+- UI support for redeeming task rewards independently of level rewards
+- Dedicated task reward redemption endpoint (`redeem_task`)
+- Display section for today’s task rewards on the rewards index page
+
+### Changed
+- Reward logic updated so only `scope: "level"` rewards consume a level
+- Rewards index logic now filters earned and redeemed rewards by scope
+- Task completion flow consolidated into a single deterministic callback
+- Reward earning date normalized to use completion date when present
+- `ideas_goals_tasks.rb` updated to not set completion date for tasks that are not completed
+- `user.rb` seed logic updated to require manual approval for the test user instead of auto-approving with a hardcoded password
+- Refactored `rewards/index.html.erb` to correctly separate task-scoped and level-scoped rewards
+
+### Removed
+- Legacy assumption that one redeemed reward consumes an entire level
+- Implicit coupling between task rewards and level reward redemption
+- Redundant `tasks.rb` seed file (logic now consolidated in `ideas_goals_tasks.rb`)
+
 ## [1.21.23] - 2026-01-03
 
 ### Changed

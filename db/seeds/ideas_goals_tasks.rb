@@ -26,7 +26,7 @@ Task.create!(
   priority: 1,
   start_date: Date.current,
   due_date: Date.current,
-  completion_date: Date.current,
+  completion_date: nil,
   assigned_to: "",
   estimated_time: 5,
   actual_time: 0,
@@ -125,6 +125,46 @@ Task.create!(
     attainable: "",
     measurable: "",
     time_bound: ""
+  },
+  created_at: Time.current,
+  updated_at: Time.current
+)
+
+Idea.create!(
+  id: 4,
+  title: "Hydration - Level 1",
+  created_at: Time.current,
+  updated_at: Time.current
+)
+
+Goal.create!(
+  id: 4,
+  title: "Daily Hydration",
+  description: "Drink enough water today",
+  priority: 1,
+  status: 0,
+  idea_id: 4,
+  smart: {},
+  recurring: true,
+  created_at: Time.current,
+  updated_at: Time.current
+)
+
+Task.create!(
+  id: 4,
+  task_name: "Hydration",
+  description: "Drink water throughout the day",
+  status: 0,
+  priority: 1,
+  start_date: Date.current,
+  due_date: Date.current,
+  completion_date: nil,
+  assigned_to: "",
+  estimated_time: 1,
+  actual_time: 0,
+  goal_id: 4,
+  smart: {
+    reward_item: "Sparkling Water"
   },
   created_at: Time.current,
   updated_at: Time.current
