@@ -1,10 +1,11 @@
+<% gaming_levels = [1, 2] %>
+
 <div class="rewards">
 
   <%# =========================================================
      TODAY'S TASK REWARDS (DAILY, NON-LEVEL-SCOPED)
      ========================================================= %>
 
-  <% if @task_rewards_today.any? %>
     <div class="task-rewards">
       <h3>Today’s Task Rewards</h3>
 
@@ -24,9 +25,8 @@
         <% end %>
       </div>
     </div>
-  <% end %>
 
-  <hr>
+    <hr>
 
   <%# =========================================================
      LEVEL REWARDS (LEVEL-SCOPED, ONE PER LEVEL)
@@ -46,14 +46,13 @@
 
     <div class="level-reward <%= earned.present? ? "unlocked" : "locked" %>">
 
-      <%# -------------------------
-         Reward gallery (only if a game was assigned)
-         ------------------------- %>
       <div class="reward-gallery">
-        <% if earned&.reward_payload&.dig("game_id").present? %>
-          <% game = Game.find_by(id: earned.reward_payload["game_id"]) %>
-          <% if game %>
-            <img src="<%= game_cover_url(game) %>" alt="<%= game.game_title %>" />
+        <% if gaming_levels.include?(level) %>
+          <% @public_games.each do |game| %>
+            <img
+              src="<%= game_cover_url(game) %>"
+              alt="<%= game.game_title %>"
+            />
           <% end %>
         <% end %>
       </div>

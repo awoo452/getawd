@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.25] - 2026-01-11
+
+### Added
+- Added `eligible_reward` column to `goals` to define concrete, goal-owned task rewards
+- Task rewards are now created explicitly when a task is completed on time
+- Introduced `scope = "task"` rewards fully separate from level rewards
+- Task rewards store explicit payload data:
+  - `task_id`
+  - `goal_id`
+  - `level`
+  - `item`
+  - `earned_date`
+- Dedicated task reward redemption endpoint (`redeem_task`)
+- UI section for displaying and redeeming today’s task rewards
+
+### Changed
+- Reward creation logic removed entirely from SMART metadata
+- Task completion flow now deterministically creates task rewards when eligible
+- Rewards system now enforces a hard separation:
+  - Task rewards are immediate and consumable
+  - Level rewards are daily, gated, and non-stackable
+- Rewards index logic now correctly filters by `scope`
+- Confirmed all existing reward documentation remains valid after changes
+
 ## [1.21.24] - 2026-01-11
 
 ### Added

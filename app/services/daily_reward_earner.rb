@@ -23,7 +23,7 @@ class DailyRewardEarner
   def self.level_completed?(level, date)
     end_of_day = date.end_of_day
 
-    tasks = Task.where(priority: level, due_date: date)
+    tasks = Task.where(priority: level, completion_date: date)
 
     return false unless tasks.exists?
 

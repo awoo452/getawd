@@ -14,6 +14,7 @@ Goal.create!(
   idea_id: 1,
   smart: {},
   recurring: true,
+  eligible_reward: 'Buy DDR5 Ram',
   created_at: Time.current,
   updated_at: Time.current
 )
@@ -38,6 +39,7 @@ Task.create!(
     measurable: "",
     time_bound: ""
   },
+  eligible_reward: 'Buy DDR5 Ram',
   created_at: Time.current,
   updated_at: Time.current
 )
@@ -58,6 +60,7 @@ Goal.create!(
   idea_id: 2,
   smart: {},
   recurring: true,
+  eligible_reward: 'Buy GPU',
   created_at: Time.current,
   updated_at: Time.current
 )
@@ -82,6 +85,7 @@ Task.create!(
     measurable: "",
     time_bound: ""
   },
+  eligible_reward: 'Buy GPU',
   created_at: Time.current,
   updated_at: Time.current
 )
@@ -102,6 +106,7 @@ Goal.create!(
   idea_id: 3,
   smart: {},
   recurring: true,
+  eligible_reward: 'Buy Processor',
   created_at: Time.current,
   updated_at: Time.current
 )
@@ -126,6 +131,7 @@ Task.create!(
     measurable: "",
     time_bound: ""
   },
+  eligible_reward: 'Buy Processor',
   created_at: Time.current,
   updated_at: Time.current
 )
@@ -146,6 +152,7 @@ Goal.create!(
   idea_id: 4,
   smart: {},
   recurring: true,
+  eligible_reward: 'Sparkling Water',
   created_at: Time.current,
   updated_at: Time.current
 )
@@ -163,9 +170,8 @@ Task.create!(
   estimated_time: 1,
   actual_time: 0,
   goal_id: 4,
-  smart: {
-    reward_item: "Sparkling Water"
-  },
+  smart: {},
+  eligible_reward: 'Sparkling Water',
   created_at: Time.current,
   updated_at: Time.current
 )

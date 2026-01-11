@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_01_11_174834) do
+ActiveRecord::Schema[7.1].define(version: 2026_01_11_193912) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_11_174834) do
     t.jsonb "smart", default: {}, null: false
     t.datetime "hold_until"
     t.boolean "recurring", default: false
+    t.string "eligible_reward"
     t.index ["idea_id", "title"], name: "index_goals_on_idea_id_and_title", unique: true
     t.index ["idea_id"], name: "index_goals_on_idea_id"
   end
@@ -149,6 +150,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_11_174834) do
     t.bigint "goal_id"
     t.jsonb "smart", default: {}, null: false
     t.datetime "hold_until"
+    t.string "eligible_reward"
     t.index ["goal_id"], name: "index_tasks_on_goal_id"
   end
 
