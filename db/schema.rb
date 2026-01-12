@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_01_11_193912) do
+ActiveRecord::Schema[7.1].define(version: 2026_01_12_070329) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -129,7 +129,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_11_193912) do
     t.string "completed_reward_url"
     t.text "completed_reward_notes"
     t.string "scope", default: "level", null: false
-    t.index "((reward_payload ->> 'earned_date'::text)), ((reward_payload ->> 'level'::text))", name: "index_rewards_unique_day_level", unique: true, where: "((kind)::text = ANY ((ARRAY['earned'::character varying, 'redeemed'::character varying])::text[]))"
+    t.index "((reward_payload ->> 'earned_date'::text)), ((reward_payload ->> 'level'::text))", name: "index_rewards_unique_day_level", unique: true, where: "(((scope)::text = 'level'::text) AND ((kind)::text = 'earned'::text))"
     t.index ["goal_id"], name: "index_rewards_on_goal_id"
     t.index ["scope"], name: "index_rewards_on_scope"
   end

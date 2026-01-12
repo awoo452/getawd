@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.26] - 2026-01-11
+
+### Fixed
+- Fixed level reward redemption incorrectly redeeming task-scoped rewards
+- Enforced `scope = "level"` filtering in level reward redemption logic
+- Prevented task rewards from being selected by level redemption queries
+- Corrected guard clause ordering in `RewardsController#redeem` to avoid invalid reward selection
+- Resolved missing control flow causing inconsistent redemption behavior
+
+### Changed
+- Level reward redemption now exclusively operates on:
+  - `kind = "earned"`
+  - `scope = "level"`
+  - matching `earned_date` and `level`
+- Removed redundant scope checks now enforced directly by query constraints
+- Clarified redemption responsibility boundaries:
+  - Task rewards are redeemable only via `redeem_task`
+  - Level rewards are redeemable only via `redeem`
+
+### Confirmed
+- Task rewards and level rewards are fully isolated in both creation and redemption paths
+- Multiple level rewards per day are supported and function independently
+- Existing database uniqueness constraints remain valid and intentional
+
+
 ## [1.21.25] - 2026-01-11
 
 ### Added

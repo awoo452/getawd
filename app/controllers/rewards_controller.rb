@@ -76,10 +76,14 @@ class RewardsController < ApplicationController
     level = params[:level].to_i
     level = 1 if level.zero?
 
-    earned_reward = Reward.where(kind: "earned")
-      .where("reward_payload ->> 'earned_date' = ?", today.to_s)
-      .where("reward_payload ->> 'level' = ?", level.to_s)
-      .first
+    earned_reward = Reward.where(
+      kind: "earned",
+      scope: "level"
+    ).where(
+      "reward_payload ->> 'earned_date' = ?", today.to_s
+    ).where(
+      "reward_payload ->> 'level' = ?", level.to_s
+    ).first
 
     unless earned_reward
       redirect_to rewards_path, alert: "No reward earned for Level #{level} today."

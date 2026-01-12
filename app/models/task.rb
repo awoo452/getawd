@@ -7,8 +7,7 @@ class Task < ApplicationRecord
     :measurable,
     :attainable,
     :relevant,
-    :time_bound,
-    :reward_item
+    :time_bound
 
   belongs_to :goal, optional: true
   has_many :reward_tasks, dependent: :destroy
@@ -25,7 +24,19 @@ class Task < ApplicationRecord
   validates :estimated_time, numericality: true
   validates :actual_time, numericality: true
 
+  # app/models/task.rb
   after_update :handle_completion, if: :saved_change_to_status?
+
+  def handle_completion
+    return unless completed?
+
+    earn_task_reward
+    DailyRewardEarner.run_for_level(priority, earned_on_date)
+  end
+
+  def earned_on_date
+    completion_date || due_date || Date.current
+  end
 
   private
 
@@ -33,7 +44,7 @@ class Task < ApplicationRecord
     return unless completed?
 
     earn_task_reward
-    DailyRewardEarner.run(earned_on_date)
+    DailyRewardEarner.run_for_level(priority, earned_on_date)
   end
 
   def earned_on_date
@@ -41,7 +52,7 @@ class Task < ApplicationRecord
   end
 
   def earn_task_reward
-    return if reward_item.blank?
+    return if eligible_reward.blank?
 
     already = Reward
       .joins(:reward_tasks)
@@ -55,12 +66,15 @@ class Task < ApplicationRecord
       scope: "task",
       kind: "earned",
       reward_payload: {
+        task_id: id,
+        goal_id: goal_id,
         level: priority,
-        item: reward_item,
+        item: eligible_reward,
         earned_date: earned_on_date.to_s
       }
     )
 
     RewardTask.create!(reward: reward, task: self)
   end
+
 end

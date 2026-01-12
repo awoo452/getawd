@@ -91,30 +91,17 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: 'Task was successfully deleted.'
   end
 
+  # app/controllers/tasks_controller.rb
   def complete_on_time
     @task = Task.find(params[:id])
-    @task.update(
+    @task.update!(
       status: :completed,
       completion_date: Time.zone.today,
       actual_time: @task.estimated_time
     )
-    if @task.eligible_reward.present?
-      Reward.create!(
-        name: @task.eligible_reward,
-        kind: "earned",
-        scope: "task",
-        reward_payload: {
-          task_id: @task.id,
-          goal_id: @task.goal_id,
-          level: @task.priority,
-          item: @task.eligible_reward,
-          earned_date: Date.current.to_s
-        }
-      )
-    end
     redirect_to @task, notice: "Task completed on time."
   end
-
+  
   private
 
   def task_params

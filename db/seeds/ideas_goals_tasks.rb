@@ -1,177 +1,123 @@
-Idea.create!(
-  id: 1,
-  title: "Web Development Idea - Level 1",
-  created_at: Time.current,
-  updated_at: Time.current
+# db/seeds/ideas_goals_tasks.rb
+
+today = Date.current
+
+# -------------------------
+# Level 1
+# -------------------------
+idea1 = Idea.create!(
+  title: "Web Development Idea - Level 1"
 )
 
-Goal.create!(
-  id: 1,
+goal1 = Goal.create!(
   title: "Web Development Goal - Level 1",
   description: "Web Development Goal - Level 1",
   priority: 1,
   status: 0,
-  idea_id: 1,
-  smart: {},
+  idea: idea1,
   recurring: true,
-  eligible_reward: 'Buy DDR5 Ram',
-  created_at: Time.current,
-  updated_at: Time.current
+  eligible_reward: "Buy DDR5 Ram"
 )
 
 Task.create!(
-  id: 1,
   task_name: "Web Development Task - Level 1",
   description: "Web Development Task - Level 1",
   status: 0,
   priority: 1,
-  start_date: Date.current,
-  due_date: Date.current,
-  completion_date: nil,
-  assigned_to: "",
+  start_date: today,
+  due_date: today,
   estimated_time: 5,
   actual_time: 0,
-  goal_id: 1,
-  smart: {
-    relevant: "",
-    specific: "",
-    attainable: "",
-    measurable: "",
-    time_bound: ""
-  },
-  eligible_reward: 'Buy DDR5 Ram',
-  created_at: Time.current,
-  updated_at: Time.current
+  goal: goal1,
+  eligible_reward: "Buy DDR5 Ram"
 )
 
-Idea.create!(
-  id: 2,
-  title: "Web Development Idea - Level 2",
-  created_at: Time.current,
-  updated_at: Time.current
+# -------------------------
+# Level 2
+# -------------------------
+idea2 = Idea.create!(
+  title: "Web Development Idea - Level 2"
 )
 
-Goal.create!(
-  id: 2,
+goal2 = Goal.create!(
   title: "Web Development Goal - Level 2",
   description: "Web Development Goal - Level 2",
   priority: 2,
   status: 0,
-  idea_id: 2,
-  smart: {},
+  idea: idea2,
   recurring: true,
-  eligible_reward: 'Buy GPU',
-  created_at: Time.current,
-  updated_at: Time.current
+  eligible_reward: "Buy GPU"
 )
 
 Task.create!(
-  id: 2,
   task_name: "Web Development Task - Level 2",
   description: "Web Development Task - Level 2",
   status: 0,
   priority: 2,
-  start_date: Date.current,
-  due_date: Date.current,
-  completion_date: nil,
-  assigned_to: "",
+  start_date: today,
+  due_date: today,
   estimated_time: 5,
   actual_time: 0,
-  goal_id: 2,
-  smart: {
-    relevant: "",
-    specific: "",
-    attainable: "",
-    measurable: "",
-    time_bound: ""
-  },
-  eligible_reward: 'Buy GPU',
-  created_at: Time.current,
-  updated_at: Time.current
+  goal: goal2,
+  eligible_reward: "Buy GPU"
 )
 
-Idea.create!(
-  id: 3,
-  title: "Web Development Idea - Level 3",
-  created_at: Time.current,
-  updated_at: Time.current
+# -------------------------
+# Level 3
+# -------------------------
+idea3 = Idea.create!(
+  title: "Web Development Idea - Level 3"
 )
 
-Goal.create!(
-  id: 3,
+goal3 = Goal.create!(
   title: "Web Development Goal - Level 3",
   description: "Web Development Goal - Level 3",
   priority: 3,
   status: 0,
-  idea_id: 3,
-  smart: {},
+  idea: idea3,
   recurring: true,
-  eligible_reward: 'Buy Processor',
-  created_at: Time.current,
-  updated_at: Time.current
+  eligible_reward: "Buy Processor"
 )
 
 Task.create!(
-  id: 3,
   task_name: "Web Development Task - Level 3",
   description: "Web Development Task - Level 3",
   status: 0,
   priority: 3,
-  start_date: Date.current,
-  due_date: Date.current,
-  completion_date: nil,
-  assigned_to: "",
+  start_date: today,
+  due_date: today,
   estimated_time: 5,
   actual_time: 0,
-  goal_id: 3,
-  smart: {
-    relevant: "",
-    specific: "",
-    attainable: "",
-    measurable: "",
-    time_bound: ""
-  },
-  eligible_reward: 'Buy Processor',
-  created_at: Time.current,
-  updated_at: Time.current
+  goal: goal3,
+  eligible_reward: "Buy Processor"
 )
 
-Idea.create!(
-  id: 4,
-  title: "Hydration - Level 1",
-  created_at: Time.current,
-  updated_at: Time.current
+# -------------------------
+# Hydration (Level 1)
+# -------------------------
+idea4 = Idea.create!(
+  title: "Hydration - Level 1"
 )
 
-Goal.create!(
-  id: 4,
+goal4 = Goal.create!(
   title: "Daily Hydration",
   description: "Drink enough water today",
   priority: 1,
   status: 0,
-  idea_id: 4,
-  smart: {},
+  idea: idea4,
   recurring: true,
-  eligible_reward: 'Sparkling Water',
-  created_at: Time.current,
-  updated_at: Time.current
+  eligible_reward: "Sparkling Water"
 )
 
 Task.create!(
-  id: 4,
   task_name: "Hydration",
   description: "Drink water throughout the day",
   status: 0,
   priority: 1,
-  start_date: Date.current,
-  due_date: Date.current,
-  completion_date: nil,
-  assigned_to: "",
+  start_date: today,
+  due_date: today,
   estimated_time: 1,
   actual_time: 0,
-  goal_id: 4,
-  smart: {},
-  eligible_reward: 'Sparkling Water',
-  created_at: Time.current,
-  updated_at: Time.current
+  goal: goal4,
+  eligible_reward: "Sparkling Water"
 )

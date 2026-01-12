@@ -1,43 +1,30 @@
+# app/services/daily_reward_earner.rb
 class DailyRewardEarner
-  
   LEVELS = [1, 2, 3].freeze
 
-  def self.run(date = Time.zone.today)
+  def self.run_for_level(level, date = Time.zone.today)
     return unless date == Time.zone.today
 
-    LEVELS.each do |level|
-      next unless level_completed?(level, date)
-      next if already_earned?(level, date)
+    return unless level_completed?(level, date)
 
-      Reward.create!(
-        name: "Level #{level} Earned",
-        kind: "earned",
-        reward_payload: {
-          level: level,
-          earned_date: date.to_s
-        }
-      )
-    end
+    Reward.create!(
+      name: "Level #{level} Earned",
+      kind: "earned",
+      scope: "level",
+      reward_payload: {
+        level: level,
+        earned_date: date.to_s
+      }
+    )
+  rescue ActiveRecord::RecordNotUnique
+    # already earned, ignore
   end
 
   def self.level_completed?(level, date)
-    end_of_day = date.end_of_day
-
-    tasks = Task.where(priority: level, completion_date: date)
+    tasks = Task.where(priority: level, due_date: date).where.not(status: Task.statuses[:on_hold])
 
     return false unless tasks.exists?
 
-    tasks.all? do |task|
-      task.completed? &&
-      task.completion_date == date
-    end
-  end
-
-  def self.already_earned?(level, date)
-    Reward.where(
-      "reward_payload ->> 'level' = ? AND reward_payload ->> 'earned_date' = ?",
-      level.to_s,
-      date.to_s
-    ).exists?
+    tasks.all? { |t| t.completed? && t.completion_date == date }
   end
 end
