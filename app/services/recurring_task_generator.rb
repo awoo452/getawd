@@ -12,7 +12,8 @@ class RecurringTaskGenerator
         due_date: date,
         estimated_time: default_estimated_time(goal),
         actual_time: 0,
-        status: :not_started
+        status: :not_started,
+        eligible_reward: goal.eligible_reward
       )
     end
   end
@@ -28,7 +29,7 @@ class RecurringTaskGenerator
     when /walk dog/
       30
     when /chore/
-      30
+      15
     when /strength/
       5
     when /meal/
@@ -36,13 +37,13 @@ class RecurringTaskGenerator
     when /career/
       30
     when /hydration/
-      15
+      10
     when /shower/
       15
     when /household/
       30
     else
-      60
+      30
     end
   end
 
