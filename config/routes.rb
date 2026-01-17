@@ -32,7 +32,12 @@ Rails.application.routes.draw do
     collection do
       post :redeem
     end
+
+    member do
+      post :redeem_any
+    end
   end
+
   post "rewards/:id/redeem_task", to: "rewards#redeem_task", as: :redeem_task_reward
 
 end

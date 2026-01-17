@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.29] - 2026-01-17
+
+### Fixed
+- Fixed level reward redemption failing for previously earned rewards when redeemed from the rewards index
+- Resolved "No reward earned for today" error when redeeming historical level rewards
+
+### Changed
+- All-rewards level redemption now passes `reward_id` instead of relying on `earned_date`
+- Unified redemption flow so:
+  - Level 1 rewards redeem by record ID
+  - Level 2 rewards redeem by record ID + selected game
+- Daily reward redemption logic remains date-based and unchanged
+
+### Confirmed
+- Old earned level rewards can be redeemed correctly from the index
+- Game selection is enforced for level 2 rewards in both daily and historical flows
+- Task reward redemption remains isolated and unaffected
+
 ## [1.21.28] - 2026-01-16
 
 ### Fixed

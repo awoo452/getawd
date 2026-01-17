@@ -4,46 +4,38 @@ class RewardsController < ApplicationController
   helper RewardsHelper
 
   def index
-    today = Time.zone.today
+    today = Time.zone.today.to_s
 
-    
-    earned = Reward.where(kind: "earned")
-      .where("reward_payload ->> 'earned_date' = ?", today.to_s)
     redeemed = Reward.where(
       kind: "redeemed",
       scope: "level"
-    ).where(
-      "reward_payload ->> 'earned_date' = ?", today.to_s
-    )
-    
+    ).where("reward_payload ->> 'earned_date' = ?", today)
+
     @redeemed_levels = redeemed
       .pluck(Arel.sql("(reward_payload->>'level')::int"))
       .to_set
-    completed = Reward.where(kind: "completed")
-      .where("updated_at >= ?", 7.days.ago)
 
-    earned = Reward.where(
+    earned_levels = Reward.where(
       kind: "earned",
       scope: "level"
-    ).where(
-      "reward_payload ->> 'earned_date' = ?", today.to_s
-    )
+    ).where("reward_payload ->> 'earned_date' = ?", today)
 
-    @earned_by_level = earned.index_by { |r| r.reward_payload["level"].to_i }
-    @earned_by_level ||= {}
+    @earned_by_level = earned_levels.index_by { |r| r.reward_payload["level"].to_i }
 
-    @task_rewards_today = Reward
-    .where(scope: "task", kind: "earned")
-    .where("reward_payload ->> 'earned_date' = ?", today.to_s)
+    completed = Reward.where(kind: "completed")
+                      .where("updated_at >= ?", 7.days.ago)
 
-    @redeemed_levels = redeemed.pluck(Arel.sql("(reward_payload->>'level')::int")).to_set
+    @task_rewards_today = Reward.where(
+      scope: "task",
+      kind: "earned"
+    ).where("reward_payload ->> 'earned_date' = ?", today)
 
     @public_games = Game.where(show_to_public: true)
 
     @recent_rewards = (redeemed + completed).uniq
     @rewards = Reward.order(created_at: :desc)
-
   end
+
 
   def show
     @reward = Reward.find_by(id: params[:id])
@@ -76,14 +68,20 @@ class RewardsController < ApplicationController
     level = params[:level].to_i
     level = 1 if level.zero?
 
-    earned_reward = Reward.where(
-      kind: "earned",
-      scope: "level"
-    ).where(
-      "reward_payload ->> 'earned_date' = ?", today.to_s
-    ).where(
-      "reward_payload ->> 'level' = ?", level.to_s
-    ).first
+    earned_reward =
+      if params[:reward_id].present?
+        Reward.find(params[:reward_id])
+      else
+        Reward.where(
+          kind: "earned",
+          scope: "level"
+        ).where(
+          "reward_payload ->> 'earned_date' = ?", today.to_s
+        ).where(
+          "reward_payload ->> 'level' = ?", level.to_s
+        ).first
+      end
+
 
     unless earned_reward
       redirect_to rewards_path, alert: "No reward earned for Level #{level} today."
@@ -129,6 +127,42 @@ class RewardsController < ApplicationController
     )
 
     redirect_to rewards_path, notice: "Level #{level} reward redeemed."
+  end
+
+  def redeem_any
+    reward = Reward.find(params[:id])
+
+    if reward.kind != "earned"
+      redirect_to rewards_path, alert: "Already redeemed."
+      return
+    end
+
+    payload = reward.reward_payload.merge(
+      redeemed_at: Time.zone.now
+    )
+
+    if reward.scope == "level"
+      if reward.reward_payload["level"].to_i == 1
+        game = Game.where(show_to_public: true).order(Arel.sql("RANDOM()")).first
+        payload.merge!(game_id: game&.id, game_title: game&.game_title)
+
+      elsif reward.reward_payload["level"].to_i == 2
+        if params[:game_id].blank?
+          redirect_to rewards_path, alert: "Select a game."
+          return
+        end
+
+        game = Game.find_by(id: params[:game_id], show_to_public: true)
+        payload.merge!(game_id: game.id, game_title: game.game_title)
+      end
+    end
+
+    reward.update!(
+      kind: "redeemed",
+      reward_payload: payload
+    )
+
+    redirect_to rewards_path, notice: "Reward redeemed."
   end
 
   def update
