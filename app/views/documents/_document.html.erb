@@ -4,7 +4,10 @@
   </p>
 
   <% if document.images.present? %>
-    <%= image_tag document_image_url(document, document.images[0]['file']), style: "max-width:150px" %>
+    <% img = document.images.first %>
+
+    <%= image_tag document_image_url(document, img),
+          style: "max-width:150px" %>
   <% end %>
 
 </div>

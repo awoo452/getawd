@@ -1,27 +1,29 @@
 <div class="blog-post">
 
-    <% if @blog_post.image.present? %>
-        <div class="img">
-            <%= image_tag(blog_image_url(@blog_post.image)) if @blog_post.image.present? %>
-        </div>
-    <% end %>
-
-    <div class="title">
-        <h3><%= @blog_post.title %></h3>
+  <% if @blog_post.image.present? %>
+    <div class="img">
+        <%= image_tag s3_url("blog/#{@blog_post.image}") %>
     </div>
+  <% end %>
 
-    <% if @blog_post.description.present? %>
-        <div class="description">
-            <p><%= @blog_post.description %></p>
-        </div>
-    <% end %>
+  <div class="title">
+    <h3><%= @blog_post.title %></h3>
+  </div>
 
-    <div class="body">
-        <%= simple_format(@blog_post.body) %>
+  <% if @blog_post.description.present? %>
+    <div class="description">
+      <p><%= @blog_post.description %></p>
     </div>
-    <p><em>Posted: <%= @blog_post.created_at.strftime("%B %d, %Y") %></em></p> <!-- Added line -->
-    <div class="navigation">
+  <% end %>
+
+  <div class="body">
+    <%= simple_format(@blog_post.body) %>
+  </div>
+
+  <p><em>Posted: <%= @blog_post.created_at.strftime("%B %d, %Y") %></em></p>
+
+  <div class="navigation">
     <%= link_to 'Back to Blog Posts', blog_posts_path %>
-    </div>
-    
+  </div>
+
 </div>

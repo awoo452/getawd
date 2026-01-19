@@ -4,6 +4,11 @@ module S3Helper
         s3_url(key)
     end
 
+    def s3_image_url(folder, *parts)
+        key = ([folder] + parts).join("/")
+        s3_url(key)
+    end
+
     def s3_url(key)
         return nil if key.blank?
         S3Service.new.presigned_url(key)
