@@ -9,7 +9,7 @@
         <h2><%= game.game_name %></h2>
         <% if game.game_image.present? %>
           <div>
-            <%= image_tag(game_image_url(game, game.game_image), alt: game.game_name) %>
+            <%= image_tag(game_image_url(game), alt: game.game_name) %>
           </div>
         <% end %>
         <div><%= link_to 'See More', game_path(game) %></div>

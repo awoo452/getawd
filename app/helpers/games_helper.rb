@@ -1,5 +1,5 @@
 module GamesHelper
-  def game_cover_url(game)
-    "https://getawd-prod.s3.amazonaws.com/games/#{game.id}/game1.png"
+  def game_image_url(game)
+    s3_url(game.game_image)
   end
 end

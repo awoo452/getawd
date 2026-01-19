@@ -66,7 +66,7 @@
     <% if @game.game_image.present? %>
       <h3>Image Gallery</h3>
       <ul>
-        <li><%= image_tag(game_image_url(@game, @game.game_image), alt: @game.game_name) %></li>
+        <li><%= <%= image_tag(game_image_url(@game), alt: @game.game_name) %>, alt: @game.game_name) %></li>
       </ul>
     <% end %>
   </div>

@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21.30] 2026/01/18
+
+### Changed
+- Added app-specific IAM credentials for S3 access
+- Standardized S3 object structure for games to `games/{game_id}/{filename}`
+- Updated image handling to store only filenames in the database
+- Implemented dynamic S3 key generation based on model ID
+- Added presigned URL generation for private game images at render time
+- Replaced hardcoded S3 URLs with helper-based resolution
+- Centralized S3 access logic in `S3Service`
+- Introduced `S3Helper` for consistent frontend image loading
+- Prepared infrastructure for mixed public and private S3 objects
+- Improved separation between application storage and other projects
+
+
 ## [1.21.29] - 2026-01-17
 
 ### Fixed

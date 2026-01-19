@@ -50,7 +50,7 @@
         <% if gaming_levels.include?(level) %>
           <% @public_games.each do |game| %>
             <img
-              src="<%= game_cover_url(game) %>"
+              src="<%= game_image_url(game) %>"
               alt="<%= game.game_title %>"
             />
           <% end %>

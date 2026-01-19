@@ -1,0 +1,11 @@
+module S3Helper
+    def game_image_url(game)
+        key = "games/#{game.id}/#{game.game_image}"
+        s3_url(key)
+    end
+
+    def s3_url(key)
+        return nil if key.blank?
+        S3Service.new.presigned_url(key)
+  end
+end
