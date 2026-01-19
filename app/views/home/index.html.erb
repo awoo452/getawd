@@ -1,5 +1,5 @@
 <section class="featured-about">
-  <%= image_tag branding_image_url("lightning.png"), class: "featured-about-bg" %>
+  <%= image_tag s3_url("branding/lightning.png"), class: "featured-about-bg" %>
 
   <div class="featured-about-text">
     <div class="rotating-words">
@@ -38,7 +38,7 @@
       <li>
         <h3><%= blog_post.title %></h3>
         <p><%= blog_post.description %></p>
-        <%= image_tag(blog_image_url(blog_post.image)) %>
+        <%= image_tag s3_url("blog/#{blog_post.image}") %>
         <div>
         <%= link_to 'Read More', blog_post_path(blog_post) %>
         </div>
