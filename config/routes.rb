@@ -40,4 +40,16 @@ Rails.application.routes.draw do
 
   post "rewards/:id/redeem_task", to: "rewards#redeem_task", as: :redeem_task_reward
 
+  ## If you're still reading you deserve to know about this
+  get  "/blackjack",        to: "blackjack#show",  as: :blackjack
+
+  post "/blackjack/bet",   to: "blackjack#bet",       as: :bet_blackjack
+  post "/blackjack/clear", to: "blackjack#clear_bet", as: :clear_bet_blackjack
+  post "/blackjack/deal",  to: "blackjack#deal",      as: :deal_blackjack
+  post "/blackjack/hit",   to: "blackjack#hit",       as: :hit_blackjack
+  post "/blackjack/stand", to: "blackjack#stand",     as: :stand_blackjack
+  post "/blackjack/reset", to: "blackjack#reset",     as: :reset_blackjack
+  post "/blackjack/hard",  to: "blackjack#hard_reset",as: :hard_reset_blackjack
+
+
 end
