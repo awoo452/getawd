@@ -11,6 +11,6 @@ module S3Helper
 
     def s3_url(key)
         return nil if key.blank?
-        S3Service.new.presigned_url(key)
+        s3_media_path(key: key)
   end
 end

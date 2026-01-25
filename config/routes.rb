@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   get 'calendar',  to: 'calendar#show'
   get 'landscaping', to: 'landscaping#index'
+  get 'media/*key', to: 's3_proxy#show', as: :s3_media, format: false
 
   # Resources
   resources :goals
