@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.22.3] 2026/01/25
+
+### Changed
+- Prepared database.yml for primary/cable/queue/cache connections and bumped Rails to 8.1.x
+- Updated Gemfile and Gemfile.lock for Rails 8.1.2
+- Restored app-specific Rails config after app:update (timezone, dev cache toggles, prod mailer/SSL/logging)
+- Updated enum declarations to Rails 8-compatible syntax
+- Removed Ruby version pin from Gemfile
+- Pinned Ruby to 4.0.1
+
 ## [1.22.2] 2026/01/25
 
 ### Changed
@@ -13,7 +23,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Enforced unique slugs on documents
 - Hardened reward redemption validation for level rewards and invalid game selections
 - Aligned reward helper calculations with level-only earned rewards and on-hold task exclusions
-- 
 
 ## [1.22.1] 2026/01/24
 

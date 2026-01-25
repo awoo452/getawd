@@ -74,6 +74,16 @@ development:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
+test:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  database: getawd_test
+
+production:
+  primary: &primary
+    url: <%= ENV["DATABASE_URL"] %>
+  cable:
+    <<: *primary
+  queue:
+    <<: *primary
+  cache:
+    <<: *primary

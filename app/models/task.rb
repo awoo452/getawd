@@ -13,7 +13,7 @@ class Task < ApplicationRecord
   has_many :reward_tasks, dependent: :destroy
   has_many :rewards, through: :reward_tasks
 
-  enum status: {
+  enum :status, {
     not_started: 0,
     in_progress: 1,
     on_hold: 2,

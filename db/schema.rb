@@ -10,171 +10,171 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_01_25_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_25_103641) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "blog_posts", force: :cascade do |t|
-    t.string "title"
     t.text "body"
-    t.text "description"
-    t.string "image"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text "description"
     t.boolean "featured"
+    t.string "image"
+    t.string "title"
+    t.datetime "updated_at", null: false
   end
 
   create_table "documents", force: :cascade do |t|
-    t.string "title"
-    t.json "subheadings"
     t.json "body"
-    t.json "images"
-    t.json "youtube_id"
-    t.json "metadata"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.json "images"
+    t.json "metadata"
     t.string "slug"
+    t.json "subheadings"
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.json "youtube_id"
     t.index ["slug"], name: "index_documents_on_slug", unique: true
   end
 
   create_table "games", force: :cascade do |t|
-    t.string "game_name"
-    t.date "start_date"
     t.date "completion_date"
-    t.json "game_notes", default: []
-    t.string "game_type"
-    t.string "game_image"
-    t.string "youtube_id"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "game_image"
+    t.string "game_name"
+    t.json "game_notes", default: []
     t.string "game_title"
+    t.string "game_type"
     t.jsonb "progress_data", default: {}
     t.boolean "show_to_public", default: false
+    t.date "start_date"
+    t.datetime "updated_at", null: false
+    t.string "youtube_id"
     t.string "youtube_playlist_id"
   end
 
   create_table "goals", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.date "due_date"
-    t.integer "priority"
     t.string "category"
     t.datetime "completed_at"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "status", default: 0, null: false
-    t.bigint "idea_id"
-    t.jsonb "smart", default: {}, null: false
-    t.datetime "hold_until"
-    t.boolean "recurring", default: false
+    t.text "description"
+    t.date "due_date"
     t.string "eligible_reward"
+    t.datetime "hold_until"
+    t.bigint "idea_id"
+    t.integer "priority"
+    t.boolean "recurring", default: false
+    t.jsonb "smart", default: {}, null: false
+    t.integer "status", default: 0, null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
     t.index ["idea_id", "title"], name: "index_goals_on_idea_id_and_title", unique: true
     t.index ["idea_id"], name: "index_goals_on_idea_id"
   end
 
   create_table "ideas", force: :cascade do |t|
-    t.string "title"
     t.datetime "created_at", null: false
+    t.string "title"
     t.datetime "updated_at", null: false
   end
 
   create_table "landscaping_jobs", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text "description"
     t.string "image"
+    t.string "title"
+    t.datetime "updated_at", null: false
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.string "image"
-    t.string "url"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text "description"
     t.boolean "featured"
+    t.string "image"
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.string "url"
   end
 
   create_table "reward_rules", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.jsonb "params"
     t.bigint "reward_id", null: false
     t.string "rule_type"
-    t.jsonb "params"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reward_id"], name: "index_reward_rules_on_reward_id"
   end
 
   create_table "reward_tasks", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.bigint "reward_id", null: false
     t.bigint "task_id", null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reward_id"], name: "index_reward_tasks_on_reward_id"
     t.index ["task_id"], name: "index_reward_tasks_on_task_id"
   end
 
   create_table "rewards", force: :cascade do |t|
-    t.string "name"
+    t.integer "allowed_duration_days"
+    t.boolean "available"
+    t.text "completed_reward_notes"
+    t.string "completed_reward_url"
+    t.integer "cooldown_days"
+    t.datetime "created_at", null: false
     t.text "description"
     t.bigint "goal_id"
-    t.integer "cooldown_days"
-    t.integer "allowed_duration_days"
-    t.date "last_redeemed_at"
-    t.boolean "available"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.jsonb "reward_payload", default: {}
     t.string "kind"
-    t.string "completed_reward_url"
-    t.text "completed_reward_notes"
+    t.date "last_redeemed_at"
+    t.string "name"
+    t.jsonb "reward_payload", default: {}
     t.string "scope", default: "level", null: false
+    t.datetime "updated_at", null: false
     t.index "((reward_payload ->> 'earned_date'::text)), ((reward_payload ->> 'level'::text))", name: "index_rewards_unique_day_level", unique: true, where: "(((scope)::text = 'level'::text) AND ((kind)::text = 'earned'::text))"
     t.index ["goal_id"], name: "index_rewards_on_goal_id"
     t.index ["scope"], name: "index_rewards_on_scope"
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "task_name"
-    t.text "description"
-    t.integer "status"
-    t.integer "priority"
-    t.date "start_date"
-    t.date "due_date"
-    t.date "completion_date"
-    t.string "assigned_to"
-    t.integer "estimated_time"
     t.integer "actual_time"
+    t.string "assigned_to"
+    t.date "completion_date"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "goal_id"
-    t.jsonb "smart", default: {}, null: false
-    t.datetime "hold_until"
+    t.text "description"
+    t.date "due_date"
     t.string "eligible_reward"
+    t.integer "estimated_time"
+    t.bigint "goal_id"
+    t.datetime "hold_until"
+    t.integer "priority"
+    t.jsonb "smart", default: {}, null: false
+    t.date "start_date"
+    t.integer "status"
+    t.string "task_name"
+    t.datetime "updated_at", null: false
     t.index ["goal_id"], name: "index_tasks_on_goal_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.boolean "approved", default: false, null: false
+    t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
+    t.datetime "reset_password_sent_at"
+    t.string "reset_password_token"
     t.datetime "updated_at", null: false
-    t.boolean "approved", default: false, null: false
     t.index ["approved"], name: "index_users_on_approved"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "videos", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.string "youtube_id"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text "description"
     t.boolean "featured"
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.string "youtube_id"
   end
 
   add_foreign_key "goals", "ideas"

@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
-ruby "3.2.2"
+# Keep Ruby pinned for Heroku/runtime consistency
+ruby "4.0.1"
 
 # Added by a human
 gem 'bootstrap', '~> 5.0.0' # unreleased
@@ -9,7 +10,7 @@ gem "simple_calendar" # 1.9.7
 gem "aws-sdk-s3", require: false
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.4"
+gem "rails", "~> 8.1.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

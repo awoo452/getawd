@@ -25,6 +25,8 @@ class S3Service
       access_key_id: creds["access_key_id"],
       secret_access_key: creds["secret_access_key"]
     )
+    Rails.logger.info("S3 presign region=#{creds['region']} env=#{Rails.env}")
     signer.presigned_url(:get_object, bucket: creds["bucket"], key: key, expires_in: expires_in)
+
   end
 end
