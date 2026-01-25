@@ -11,9 +11,23 @@
         <% end %>
 
         <div>
-          <a href="<%= project.url %>">View Project</a>
+          <% if project.url.present? %>
+            <a href="<%= project.url %>">View Project</a>
+          <% end %>
         </div>
       </li>
     <% end %>
   </ul>
+
+  <% if @projects_total_pages.to_i > 1 %>
+    <nav class="pagination">
+      <% if @projects_page > 1 %>
+        <%= link_to "Prev", projects_path(page: @projects_page - 1) %>
+      <% end %>
+      <span>Page <%= @projects_page %> of <%= @projects_total_pages %></span>
+      <% if @projects_page < @projects_total_pages %>
+        <%= link_to "Next", projects_path(page: @projects_page + 1) %>
+      <% end %>
+    </nav>
+  <% end %>
 </section>

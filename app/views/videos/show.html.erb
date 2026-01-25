@@ -1,12 +1,7 @@
 <section id="videos">
-  <h2>Featured Videos</h2>
-  <ul>
-    <% @featured_videos.each do |video| %>
-      <li>
-        <iframe src='https://www.youtube.com/embed/<%= video.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
-        <h3><%= video.title %></h3>
-        <p><%= video.description %></p>
-      </li>
-    <% end %>
-  </ul>
+  <h2><%= @video.title %></h2>
+  <% if @video.youtube_id.present? %>
+    <iframe src='https://www.youtube.com/embed/<%= @video.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+  <% end %>
+  <p><%= @video.description %></p>
 </section>

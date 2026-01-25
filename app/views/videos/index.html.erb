@@ -9,4 +9,16 @@
       </li>
     <% end %>
   </ul>
+
+  <% if @videos_total_pages.to_i > 1 %>
+    <nav class="pagination">
+      <% if @videos_page > 1 %>
+        <%= link_to "Prev", videos_path(page: @videos_page - 1) %>
+      <% end %>
+      <span>Page <%= @videos_page %> of <%= @videos_total_pages %></span>
+      <% if @videos_page < @videos_total_pages %>
+        <%= link_to "Next", videos_path(page: @videos_page + 1) %>
+      <% end %>
+    </nav>
+  <% end %>
 </section>
