@@ -1,123 +1,80 @@
 # db/seeds/ideas_goals_tasks.rb
 
 today = Date.current
+yesterday = today - 1.day
 
-# -------------------------
-# Level 1
-# -------------------------
-idea1 = Idea.create!(
-  title: "Web Development Idea - Level 1"
-)
+statuses = %w[not_started in_progress on_hold completed]
+categories = %w[health career household learning fitness social]
 
-goal1 = Goal.create!(
-  title: "Web Development Goal - Level 1",
-  description: "Web Development Goal - Level 1",
-  priority: 1,
-  status: 0,
-  idea: idea1,
-  recurring: true,
-  eligible_reward: "Buy DDR5 Ram"
-)
+idea_titles = [
+  "Web Development",
+  "Health & Fitness",
+  "Career Growth",
+  "Household",
+  "Learning",
+  "Social"
+]
 
-Task.create!(
-  task_name: "Web Development Task - Level 1",
-  description: "Web Development Task - Level 1",
-  status: 0,
-  priority: 1,
-  start_date: today,
-  due_date: today,
-  estimated_time: 5,
-  actual_time: 0,
-  goal: goal1,
-  eligible_reward: "Buy DDR5 Ram"
-)
+ideas = idea_titles.map do |title|
+  Idea.create!(title: "#{title} Idea")
+end
 
-# -------------------------
-# Level 2
-# -------------------------
-idea2 = Idea.create!(
-  title: "Web Development Idea - Level 2"
-)
+goals_by_level = { 1 => [], 2 => [], 3 => [] }
 
-goal2 = Goal.create!(
-  title: "Web Development Goal - Level 2",
-  description: "Web Development Goal - Level 2",
-  priority: 2,
-  status: 0,
-  idea: idea2,
-  recurring: true,
-  eligible_reward: "Buy GPU"
-)
+ideas.each_with_index do |idea, idx|
+  (1..3).each do |level|
+    goal = Goal.create!(
+      title: "#{idea.title} Goal L#{level}-#{idx + 1}",
+      description: "Goal for #{idea.title} at level #{level}",
+      priority: level,
+      status: Goal.statuses[statuses.sample],
+      idea: idea,
+      recurring: [true, false].sample,
+      eligible_reward: "Reward L#{level} Item #{idx + 1}",
+      category: categories.sample
+    )
+    goals_by_level[level] << goal
+  end
+end
 
-Task.create!(
-  task_name: "Web Development Task - Level 2",
-  description: "Web Development Task - Level 2",
-  status: 0,
-  priority: 2,
-  start_date: today,
-  due_date: today,
-  estimated_time: 5,
-  actual_time: 0,
-  goal: goal2,
-  eligible_reward: "Buy GPU"
-)
+# Create 5 tasks per level for today and yesterday
+[today, yesterday].each do |date|
+  (1..3).each do |level|
+    5.times do |i|
+      goal = goals_by_level[level].sample
+      status = statuses.sample
 
-# -------------------------
-# Level 3
-# -------------------------
-idea3 = Idea.create!(
-  title: "Web Development Idea - Level 3"
-)
+      Task.create!(
+        task_name: "Level #{level} Task #{i + 1} (#{date})",
+        description: "Task for level #{level} on #{date}",
+        status: Task.statuses[status],
+        priority: level,
+        start_date: date,
+        due_date: date,
+        estimated_time: [5, 10, 15, 30].sample,
+        actual_time: [0, 5, 10, 15].sample,
+        goal: goal,
+        eligible_reward: "Level #{level} reward item"
+      )
+    end
+  end
+end
 
-goal3 = Goal.create!(
-  title: "Web Development Goal - Level 3",
-  description: "Web Development Goal - Level 3",
-  priority: 3,
-  status: 0,
-  idea: idea3,
-  recurring: true,
-  eligible_reward: "Buy Processor"
-)
+# Extra task volume for pagination testing
+50.times do |i|
+  goal = goals_by_level.values.flatten.sample
+  status = statuses.sample
+  date = today - rand(0..14).days
 
-Task.create!(
-  task_name: "Web Development Task - Level 3",
-  description: "Web Development Task - Level 3",
-  status: 0,
-  priority: 3,
-  start_date: today,
-  due_date: today,
-  estimated_time: 5,
-  actual_time: 0,
-  goal: goal3,
-  eligible_reward: "Buy Processor"
-)
-
-# -------------------------
-# Hydration (Level 1)
-# -------------------------
-idea4 = Idea.create!(
-  title: "Hydration - Level 1"
-)
-
-goal4 = Goal.create!(
-  title: "Daily Hydration",
-  description: "Drink enough water today",
-  priority: 1,
-  status: 0,
-  idea: idea4,
-  recurring: true,
-  eligible_reward: "Sparkling Water"
-)
-
-Task.create!(
-  task_name: "Hydration",
-  description: "Drink water throughout the day",
-  status: 0,
-  priority: 1,
-  start_date: today,
-  due_date: today,
-  estimated_time: 1,
-  actual_time: 0,
-  goal: goal4,
-  eligible_reward: "Sparkling Water"
-)
+  Task.create!(
+    task_name: "Extra Task #{i + 1}",
+    description: "Extra seeded task #{i + 1}",
+    status: Task.statuses[status],
+    priority: [1, 2, 3].sample,
+    start_date: date,
+    due_date: date,
+    estimated_time: [5, 10, 15, 30, 60].sample,
+    actual_time: [0, 5, 10, 15, 30].sample,
+    goal: goal
+  )
+end

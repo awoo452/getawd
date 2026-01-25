@@ -1,27 +1,23 @@
-Document.create!(
-  id: 1,
-  title: "How to Use the Documents Section",
-  slug: "level-1-rewards",
-  subheadings: [
-    "Purpose",
-    "Adding New Documents",
-    "Adding Images",
-    "Optional Video Embeds",
-    "Metadata"
-  ],
-  body: [
-    "Explains what the Documents section is for.",
-    "Each document uses aligned arrays for content.",
-    "Images live in S3 under documents/{id}/{index}.png.",
-    "YouTube IDs are embedded automatically.",
-    "Optional metadata appears at the bottom."
-  ],
-  images: [
-    { alt: "Documents layout", file: "0.png", caption: "General display image" },
-    { alt: "Document ID", file: "1.png", caption: "Index alignment example" }
-  ],
-  youtube_id: ["GjLzI13gYhw"],
-  metadata: { version: "1.0", category: "Documentation" },
-  created_at: Time.current,
-  updated_at: Time.current
-)
+20.times do |i|
+  Document.create!(
+    title: "Seeded Document #{i + 1}",
+    slug: "seeded-doc-#{i + 1}",
+    subheadings: [
+      "Purpose #{i + 1}",
+      "Section A",
+      "Section B"
+    ],
+    body: [
+      "Seeded content for document #{i + 1}.",
+      "More content for section A.",
+      "More content for section B."
+    ],
+    images: [
+      { alt: "Doc image #{i + 1}", file: "0.png", caption: "Seeded image" }
+    ],
+    youtube_id: [nil, "GjLzI13gYhw"].compact,
+    metadata: { version: "1.0", category: "Seeded" },
+    created_at: Time.current,
+    updated_at: Time.current
+  )
+end
