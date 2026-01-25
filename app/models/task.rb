@@ -24,19 +24,7 @@ class Task < ApplicationRecord
   validates :estimated_time, numericality: true
   validates :actual_time, numericality: true
 
-  # app/models/task.rb
   after_update :handle_completion, if: :saved_change_to_status?
-
-  def handle_completion
-    return unless completed?
-
-    earn_task_reward
-    DailyRewardEarner.run_for_level(priority, earned_on_date)
-  end
-
-  def earned_on_date
-    completion_date || due_date || Date.current
-  end
 
   private
 

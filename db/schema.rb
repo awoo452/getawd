@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_01_12_070329) do
+ActiveRecord::Schema[7.1].define(version: 2026_01_25_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_12_070329) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.index ["slug"], name: "index_documents_on_slug"
+    t.index ["slug"], name: "index_documents_on_slug", unique: true
   end
 
   create_table "games", force: :cascade do |t|

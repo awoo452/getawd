@@ -88,6 +88,16 @@ class RewardsController < ApplicationController
       return
     end
 
+    if earned_reward.kind != "earned" || earned_reward.scope != "level"
+      redirect_to rewards_path, alert: "Invalid reward selection."
+      return
+    end
+
+    if params[:reward_id].present?
+      reward_level = earned_reward.reward_payload["level"].to_i
+      level = reward_level if reward_level.positive?
+    end
+
     payload = earned_reward.reward_payload.merge(
       redeemed_at: Time.zone.now
     )
@@ -153,6 +163,11 @@ class RewardsController < ApplicationController
         end
 
         game = Game.find_by(id: params[:game_id], show_to_public: true)
+        unless game
+          redirect_to rewards_path, alert: "Invalid game selection."
+          return
+        end
+
         payload.merge!(game_id: game.id, game_title: game.game_title)
       end
     end

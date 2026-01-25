@@ -20,15 +20,14 @@ Rails.application.routes.draw do
   end
   resources :documents
   get '/docs/:slug', to: 'documents#show_by_slug', as: :doc
-  resources :about,     only: [:index]
-  resources :contacts,  only: [:index]
+  # remove plural resources; using singular controllers above
   resources :blog_posts, only: [:index, :show]
   resources :games,     only: [:index, :show]
   resources :ideas, only: [:show]
   resources :idea_stats, only: [:index]
   resources :projects,  only: [:index, :show]
   resources :videos,    only: [:index, :show]
-  resources :rewards, only: [:index, :show, :update, :new, :create, :destroy] do
+  resources :rewards, only: [:index, :show, :update] do
     collection do
       post :redeem
     end
