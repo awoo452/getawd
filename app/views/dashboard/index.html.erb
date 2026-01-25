@@ -1,3 +1,4 @@
+<% goal_icons = defined?(GOAL_ICONS) ? GOAL_ICONS : {} %>
 <h1 style="text-align: center;">Dashboard</h1>
 <section class="dashboard-wrapper">
   <div class="dashboard-panel">
@@ -103,7 +104,7 @@
   </div>
 
   <div class="dashboard-panel goals-container">
-    <h3><%= GOAL_ICONS["goal"] %> | Goals</h3>
+    <h3><%= goal_icons["goal"] %> | Goals</h3>
     <div class="idea-status-legend">
       <div class="legend-item"><div class="color-box not_started"></div> Not Started</div>
       <div class="legend-item"><div class="color-box in_progress"></div> In Progress</div>
@@ -124,7 +125,7 @@
   </div>
 
   <div class="dashboard-panel tasks-container">
-    <h3><%= GOAL_ICONS["task"] %> | Tasks</h3>
+    <h3><%= goal_icons["task"] %> | Tasks</h3>
 
     <% @in_progress_tasks.each do |task| %>
       <%= render "shared/task_card", task: task %>
@@ -142,7 +143,7 @@
   </div>
 
   <div class="dashboard-panel completed-tasks-container">
-    <h3><%= GOAL_ICONS["task"] %> | Completed Tasks</h3>
+    <h3><%= goal_icons["task"] %> | Completed Tasks</h3>
     <% @completed_tasks.each do |task| %>
       <%= render "shared/task_card", task: task %>
     <% end %>

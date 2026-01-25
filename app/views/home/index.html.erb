@@ -24,7 +24,9 @@
         <p><%= project.description %></p>
         <%= image_tag(project_image_url(project.image)) if project.image.present? %>
         <div>
-          <a href="<%= project.url %>">View Project</a>
+          <% if project.url.present? %>
+            <a href="<%= project.url %>">View Project</a>
+          <% end %>
         </div>
         </li>
     <% end %>
@@ -38,7 +40,9 @@
       <li>
         <h3><%= blog_post.title %></h3>
         <p><%= blog_post.description %></p>
-        <%= image_tag s3_url("blog/#{blog_post.image}") %>
+        <% if blog_post.image.present? %>
+          <%= image_tag s3_url("blog/#{blog_post.image}") %>
+        <% end %>
         <div>
         <%= link_to 'Read More', blog_post_path(blog_post) %>
         </div>
@@ -54,7 +58,9 @@
       <li>
         <h3><%= video.title %></h3>
         <p><%= video.description %></p>
-        <iframe src='https://www.youtube.com/embed/<%= video.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+        <% if video.youtube_id.present? %>
+          <iframe src='https://www.youtube.com/embed/<%= video.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+        <% end %>
       </li>
     <% end %>
   </ul>

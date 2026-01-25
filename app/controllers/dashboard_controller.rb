@@ -52,9 +52,11 @@ class DashboardController < ApplicationController
     @rewards_total_count = Reward.count
     @rewards_available_count = rewards_scope.select(&:eligible?).count
 
+    ideas_map = defined?(IDEAS) ? IDEAS : {}
+
     # Build ideas with stats included
     @ideas = Idea.includes(goals: :tasks).map do |idea|
-      emoji = IDEAS[idea.title] || "❓"
+      emoji = ideas_map[idea.title] || "❓"
 
       goals = idea.goals
       tasks = goals.flat_map(&:tasks)

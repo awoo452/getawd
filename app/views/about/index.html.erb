@@ -1,26 +1,27 @@
 <section class="about">
+  <% about = @about_info.fetch("about", {}) %>
   <h1>About AW Development</h1>
-  <h3><%= @about_info['about']['header'] %></h3>
+  <h3><%= about["header"] %></h3>
 
   <ul id="paragraphs_from_yml">
     <li>
       <%= image_tag about_image_url("3.png"), alt: "Logo", class: "navbar-logo" %>
-      <p><%= @about_info['about']['paragraph2'] %></p>
+      <p><%= about["paragraph2"] %></p>
     </li>
 
     <li>
       <%= image_tag about_image_url("4.png"), alt: "Logo", class: "navbar-logo" %>
-      <p><%= @about_info['about']['paragraph1'] %></p>
+      <p><%= about["paragraph1"] %></p>
     </li>
 
     <li>
       <%= image_tag about_image_url("1.png"), alt: "Logo", class: "navbar-logo" %>
-      <p><%= @about_info['about']['paragraph3'] %></p>
+      <p><%= about["paragraph3"] %></p>
     </li>
 
     <li>
       <%= image_tag about_image_url("2.png"), alt: "Logo", class: "navbar-logo" %>
-      <p><%= @about_info['about']['paragraph4'] %></p>
+      <p><%= about["paragraph4"] %></p>
     </li>
   </ul>
 </section>

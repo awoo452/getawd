@@ -1,6 +1,12 @@
 class ContactController < ApplicationController
   def index
-    @contact_info = YAML.load_file(Rails.root.join('config', 'contact_info.yml'))
+    path = Rails.root.join("config", "contact_info.yml")
+    @contact_info =
+      if File.exist?(path)
+        YAML.safe_load(File.read(path)) || {}
+      else
+        {}
+      end
   end
 
   def create

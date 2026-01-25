@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.22.11] 2026/01/25
+- Guarded dashboard constants to avoid crashes if icon/idea maps are missing
+- Hardened calendar rendering against missing GOAL_ICONS and nil task dates/times
+- Hardened contact/about YAML loading and guarded missing social/about data
+- Guarded home featured links, blog images, and video embeds when data is missing
+
 ## [1.22.10] 2026/01/25
 - Added pagination and ordering for projects index, and guarded empty project URLs
 - Added pagination for videos index and fixed videos show to use the requested video
