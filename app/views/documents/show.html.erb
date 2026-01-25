@@ -1,19 +1,22 @@
 <section class="document">
   <h1><%= @document.title %></h1>
 
-  <% @document.subheadings.each_with_index do |subheading, index| %>
+  <% subheadings = @document.subheadings || [] %>
+  <% body = @document.body || [] %>
+  <% images = @document.images || [] %>
+
+  <% subheadings.each_with_index do |subheading, index| %>
     
     <h3><%= subheading %></h3>
-    <p><%= @document.body[index] %></p>
+    <p><%= body[index].to_s %></p>
 
-    <% img = @document.images[index] %>
+    <% img = images[index] %>
 
-    <% if img.present? %>
+    <% if img.present? && img["file"].present? %>
       <figure>
         <%= image_tag(
               document_image_url(@document, img),
-              alt: img["alt"],
-              style: "max-width: 100%; height: auto;"
+              alt: img["alt"]
         ) %>
 
         <figcaption><%= img['caption'] %></figcaption>
@@ -22,9 +25,10 @@
 
   <% end %>
 
-  <% if @document.youtube_id.present? %>
+  <% youtube_ids = @document.youtube_id.is_a?(Array) ? @document.youtube_id : [] %>
+  <% if youtube_ids.any? %>
     <h3>Videos</h3>
-    <% @document.youtube_id.each do |video_id| %>
+    <% youtube_ids.each do |video_id| %>
       <iframe 
         width="560"
         height="315"
@@ -33,10 +37,11 @@
     <% end %>
   <% end %>
 
-  <% if @document.metadata.present? %>
+  <% metadata = @document.metadata.is_a?(Hash) ? @document.metadata : {} %>
+  <% if metadata.any? %>
     <h3>Related Info</h3>
     <ul>
-      <% @document.metadata.each do |key, value| %>
+      <% metadata.each do |key, value| %>
         <li><strong><%= key.humanize %>:</strong> <%= value %></li>
       <% end %>
     </ul>

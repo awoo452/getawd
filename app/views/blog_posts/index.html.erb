@@ -16,4 +16,16 @@
       </li>
     <% end %>
   </ul>
+
+  <% if @blog_posts_total_pages.to_i > 1 %>
+    <nav class="pagination">
+      <% if @blog_posts_page > 1 %>
+        <%= link_to "Prev", blog_posts_path(page: @blog_posts_page - 1) %>
+      <% end %>
+      <span>Page <%= @blog_posts_page %> of <%= @blog_posts_total_pages %></span>
+      <% if @blog_posts_page < @blog_posts_total_pages %>
+        <%= link_to "Next", blog_posts_path(page: @blog_posts_page + 1) %>
+      <% end %>
+    </nav>
+  <% end %>
 </section>

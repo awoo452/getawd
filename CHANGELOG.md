@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.22.9] 2026/01/25
+- Hardened document rendering against nil/mismatched JSON arrays
+- Required document title and slug
+- Guarded document index thumbnails against missing image data
+- Hardened document show against malformed images/youtube_id/metadata
+- Added pagination and ordering for blog posts index
+- Slug migration for blog_posts
+
 ## [1.22.8] 2026/01/25
 - Expanded seed data for tasks, games, documents, and rewards
 
