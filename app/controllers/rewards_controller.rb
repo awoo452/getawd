@@ -130,6 +130,12 @@ class RewardsController < ApplicationController
         game_id: game.id,
         game_title: game.game_title
       )
+    elsif level == 3
+      payload.merge!(
+        fund_amount: 1,
+        fund_currency: "USD",
+        fund_label: "Game fund"
+      )
     end
 
     earned_reward.update!(
@@ -170,6 +176,12 @@ class RewardsController < ApplicationController
         end
 
         payload.merge!(game_id: game.id, game_title: game.game_title)
+      elsif reward.reward_payload["level"].to_i == 3
+        payload.merge!(
+          fund_amount: 1,
+          fund_currency: "USD",
+          fund_label: "Game fund"
+        )
       end
     end
 

@@ -14,6 +14,13 @@
 
 <h3>Description</h3>
 
+<% if @reward.errors.any? %>
+  <div class="flash-alert">
+    <strong>Update failed:</strong>
+    <%= @reward.errors.full_messages.join(", ") %>
+  </div>
+<% end %>
+
 <%= form_with model: @reward, method: :patch do |f| %>
   <%= f.text_area :description, rows: 4 %>
   <br><br>

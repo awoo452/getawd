@@ -40,7 +40,7 @@ class Reward < ApplicationRecord
     )
   end
 
-  validate :completed_reward_requires_url, if: -> { kind == "completed" }
+  validate :completed_reward_requires_url, if: -> { kind == "completed" && scope == "level" }
 
   def completed_reward_requires_url
     if completed_reward_url.blank?
