@@ -4,7 +4,6 @@
   <ul>
 
     <% @games.each do |game| %>
-    <% if game.show_to_public? %>
       <li>
         <h2><%= game.game_name %></h2>
         <% if game.game_image.present? %>
@@ -15,6 +14,17 @@
         <div><%= link_to 'See More', game_path(game) %></div>
       </li>
     <% end %>
-    <% end %>
   </ul>
+
+  <% if @games_total_pages.to_i > 1 %>
+    <nav class="pagination">
+      <% if @games_page > 1 %>
+        <%= link_to "Prev", games_path(page: @games_page - 1) %>
+      <% end %>
+      <span>Page <%= @games_page %> of <%= @games_total_pages %></span>
+      <% if @games_page < @games_total_pages %>
+        <%= link_to "Next", games_path(page: @games_page + 1) %>
+      <% end %>
+    </nav>
+  <% end %>
 </section>

@@ -4,7 +4,8 @@ class DocumentsController < ApplicationController
 
   # GET /documents or /documents.json
   def index
-    @documents = Document.all
+    @documents, @documents_page, @documents_total_pages =
+      paginate(Document.order(created_at: :desc), per_page: 25)
   end
 
   def show_by_slug

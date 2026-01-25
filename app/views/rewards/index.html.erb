@@ -189,4 +189,16 @@
     <% end %>
   </div>
 
+  <% if @rewards_total_pages.to_i > 1 %>
+    <nav class="pagination">
+      <% if @rewards_page > 1 %>
+        <%= link_to "Prev", rewards_path(page: @rewards_page - 1) %>
+      <% end %>
+      <span>Page <%= @rewards_page %> of <%= @rewards_total_pages %></span>
+      <% if @rewards_page < @rewards_total_pages %>
+        <%= link_to "Next", rewards_path(page: @rewards_page + 1) %>
+      <% end %>
+    </nav>
+  <% end %>
+
 </div>

@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.22.4] 2026/01/25
+
+### Changed
+- Removed S3 presign debug logging and tightened production asset/ActiveStorage settings
+- Removed Rails 8.1 new framework defaults initializer after adopting defaults
+- Added pagination for documents, games, and rewards indexes
+- Enforced safe handling of path-relative redirects
+- Optimized reward completion helpers to avoid N+1 scans
+- Cached S3 presigned URLs per request
+- Added report-only Content Security Policy
+- Updated Devise routes to avoid upcoming keyword deprecation warnings
+
 ## [1.22.3] 2026/01/25
 
 ### Changed

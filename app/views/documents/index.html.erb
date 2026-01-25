@@ -8,4 +8,16 @@
     </li>
   <% end %>
 </ul>
+
+<% if @documents_total_pages.to_i > 1 %>
+  <nav class="pagination">
+    <% if @documents_page > 1 %>
+      <%= link_to "Prev", documents_path(page: @documents_page - 1) %>
+    <% end %>
+    <span>Page <%= @documents_page %> of <%= @documents_total_pages %></span>
+    <% if @documents_page < @documents_total_pages %>
+      <%= link_to "Next", documents_path(page: @documents_page + 1) %>
+    <% end %>
+  </nav>
+<% end %>
 </section>

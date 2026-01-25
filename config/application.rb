@@ -16,6 +16,9 @@ module AwDevelopment
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # Enforce safe redirects for path-relative URLs.
+    config.action_controller.action_on_path_relative_redirect = :raise
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

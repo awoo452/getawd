@@ -33,7 +33,8 @@ class RewardsController < ApplicationController
     @public_games = Game.where(show_to_public: true)
 
     @recent_rewards = (redeemed + completed).uniq
-    @rewards = Reward.order(created_at: :desc)
+    @rewards, @rewards_page, @rewards_total_pages =
+      paginate(Reward.order(created_at: :desc), per_page: 50)
   end
 
 

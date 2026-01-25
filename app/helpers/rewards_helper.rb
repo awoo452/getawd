@@ -1,14 +1,14 @@
 module RewardsHelper
   def level_1_completed_for?(date = Time.zone.today)
-    tasks = Task.where(priority: 1, due_date: date).where.not(status: Task.statuses[:on_hold])
-    tasks.exists? && tasks.all?(&:completed?)
+    scope = Task.where(priority: 1, due_date: date).where.not(status: Task.statuses[:on_hold])
+    scope.exists? && scope.where.not(status: Task.statuses[:completed]).none?
   end
 
   def level_2_completed_for?(date = Time.zone.today)
     return false unless level_1_completed_for?(date)
 
-    tasks = Task.where(priority: 2, due_date: date).where.not(status: Task.statuses[:on_hold])
-    tasks.exists? && tasks.all?(&:completed?)
+    scope = Task.where(priority: 2, due_date: date).where.not(status: Task.statuses[:on_hold])
+    scope.exists? && scope.where.not(status: Task.statuses[:completed]).none?
   end
 
   def level_1_reward_state
