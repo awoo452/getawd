@@ -93,8 +93,8 @@
 
     <h3>🎁 Rewards / Vices:</h3>
     <div class="summary-section">
-      <strong>Total:</strong> <%= Reward.count %><br>
-      <strong>Available:</strong> <%= Reward.select(&:eligible?).count %><br>
+      <strong>Total:</strong> <%= @rewards_total_count %><br>
+      <strong>Available:</strong> <%= @rewards_available_count %><br>
       <%= link_to 'View All Rewards', rewards_path, class: 'btn' %>
     </div>
 

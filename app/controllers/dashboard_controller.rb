@@ -13,10 +13,10 @@ class DashboardController < ApplicationController
     @on_hold_goals     = Goal.on_hold.order(:due_date)
     @completed_goals   = Goal.completed.order(:due_date)
 
-    @not_started_tasks = Task.not_started.order(:due_date)
-    @in_progress_tasks = Task.in_progress.order(:due_date)
-    @on_hold_tasks     = Task.on_hold.order(:due_date)
-    @completed_tasks   = Task.completed.order(:due_date)
+    @not_started_tasks = Task.not_started.includes(:goal).order(:due_date)
+    @in_progress_tasks = Task.in_progress.includes(:goal).order(:due_date)
+    @on_hold_tasks     = Task.on_hold.includes(:goal).order(:due_date)
+    @completed_tasks   = Task.completed.includes(:goal).order(:due_date)
 
     @goal_counts = {
       not_started: Goal.not_started.count,
@@ -47,6 +47,10 @@ class DashboardController < ApplicationController
     @total_estimated_minutes_today = remaining_tasks_today.sum(:estimated_time).to_i
     @total_actual_minutes_today    = remaining_tasks_today.sum(:actual_time).to_i
     @time_remaining_minutes_today  = @total_estimated_minutes_today - @total_actual_minutes_today
+
+    rewards_scope = Reward.includes(:reward_rules, :tasks)
+    @rewards_total_count = Reward.count
+    @rewards_available_count = rewards_scope.select(&:eligible?).count
 
     # Build ideas with stats included
     @ideas = Idea.includes(goals: :tasks).map do |idea|
