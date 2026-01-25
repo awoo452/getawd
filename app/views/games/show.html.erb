@@ -21,7 +21,13 @@
     <% end %>
 
     <% if @game.progress_data.present? %>
-      <% data = @game.progress_data.is_a?(String) ? JSON.parse(@game.progress_data) : (@game.progress_data || {}) %>
+      <% data =
+        begin
+          @game.progress_data.is_a?(String) ? JSON.parse(@game.progress_data) : (@game.progress_data || {})
+        rescue JSON::ParserError
+          {}
+        end
+      %>
 
       <% quick_info   = data["quick_info"]   || [] %>
       <% achievements = data["achievements"] || [] %>

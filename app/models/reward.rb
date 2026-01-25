@@ -26,20 +26,6 @@ class Reward < ApplicationRecord
     update(available: eligible?)
   end
 
-  def redeem!
-  game = Game.where(show_to_public: true).order(Arel.sql("RANDOM()")).first
-  raise "No public games available" unless game
-
-  update!(
-    last_redeemed_at: Time.zone.now,
-    reward_payload: reward_payload.merge(
-      game_id: game.id,
-      game_title: game.game_title,
-      redeemed_at: Time.zone.now
-      )
-    )
-  end
-
   validate :completed_reward_requires_url, if: -> { kind == "completed" && scope == "level" }
 
   def completed_reward_requires_url

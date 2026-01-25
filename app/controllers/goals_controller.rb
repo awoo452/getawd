@@ -4,28 +4,29 @@ class GoalsController < ApplicationController
 
   # GET /goals or /goals.json
   def index
-  scope = Goal.all
+    scope = Goal.all
 
-  if params[:status].present? && Goal.statuses.key?(params[:status])
-    scope = scope.where(status: Goal.statuses[params[:status]])
-  end
-
-  if params[:due].present?
-    begin
-      date = Time.zone.parse(params[:due]).to_date
-      scope = scope.where(due_date: date)
-    rescue ArgumentError
+    if params[:status].present? && Goal.statuses.key?(params[:status])
+      scope = scope.where(status: Goal.statuses[params[:status]])
     end
-  end
 
-  scope = scope.where("title ILIKE ?", "%#{params[:search]}%") if params[:search].present?
+    if params[:due].present?
+      begin
+        date = Time.zone.parse(params[:due]).to_date
+        scope = scope.where(due_date: date)
+      rescue ArgumentError
+      end
+    end
 
-  @goals_by_status = {
-    in_progress: Goal.in_progress.order(due_date: :asc),
-    not_started: Goal.not_started.order(due_date: :asc),
-    on_hold: Goal.on_hold.order(due_date: :asc),
-    completed: Goal.completed.order(due_date: :asc)
-  }
+    scope = scope.where("title ILIKE ?", "%#{params[:search]}%") if params[:search].present?
+    scope = scope.includes(:idea)
+
+    @goals_by_status = {
+      in_progress: scope.in_progress.order(due_date: :asc),
+      not_started: scope.not_started.order(due_date: :asc),
+      on_hold: scope.on_hold.order(due_date: :asc),
+      completed: scope.completed.order(due_date: :asc)
+    }
   end
 
 
