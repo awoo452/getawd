@@ -4,25 +4,40 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.22.14] 2026/01/26
+
+### Changed
+- Well would you look at that, ChatGPT can't even stick to formatting the changelog correctly and it took me 5+ commits to realize it.
+
 ## [1.22.13] 2026/01/26
+
+### Changed
 - Cached S3 presigned URLs with a TTL shorter than their actual expiration
 - Switched per-request/thread caching to Rails cache to avoid serving expired URLs
 
 ## [1.22.12] 2026/01/25
+
+### Added
 - Routed image requests through a stable /media proxy to avoid expired S3 presigned URLs
 - Added S3 proxy controller + route to mint fresh presigned URLs per request
 
 ## [1.22.11] 2026/01/25
+
+### Fixed
 - Guarded dashboard constants to avoid crashes if icon/idea maps are missing
 - Hardened calendar rendering against missing GOAL_ICONS and nil task dates/times
 - Hardened contact/about YAML loading and guarded missing social/about data
 - Guarded home featured links, blog images, and video embeds when data is missing
 
 ## [1.22.10] 2026/01/25
+
+### Added
 - Added pagination and ordering for projects index, and guarded empty project URLs
 - Added pagination for videos index and fixed videos show to use the requested video
 
 ## [1.22.9] 2026/01/25
+
+### Changed
 - Hardened document rendering against nil/mismatched JSON arrays
 - Required document title and slug
 - Guarded document index thumbnails against missing image data
@@ -31,19 +46,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Slug migration for blog_posts
 
 ## [1.22.8] 2026/01/25
+
+### Added
 - Expanded seed data for tasks, games, documents, and rewards
 
 ## [1.22.7] 2026/01/25
+
+### Fixed
 - Fixed task list filters, N+1 goals, and repeat-until validation
 - Applied goal filters to rendered lists and eager loaded ideas
 - Removed unused Reward#redeem! and hardened game progress_data parsing
 
 ## [1.22.6] 2026/01/25
+
+### Added
 - Made completion footage URL requirement apply only to level (gaming) rewards
 - Added level 3 auto-funding payload on redemption
 - Display reward update errors on the reward show page
 
 ## [1.22.5] 2026/01/25
+
+### Changed
 - Eager loaded goals on dashboard/calendar task lists to reduce N+1 queries
 - Guarded calendar view against tasks without goals
 - Reduced reward availability counting N+1 queries on dashboard
