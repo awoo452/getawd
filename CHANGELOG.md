@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.22.13] 2026/01/26
+- Cached S3 presigned URLs with a TTL shorter than their actual expiration
+- Switched per-request/thread caching to Rails cache to avoid serving expired URLs
+
 ## [1.22.12] 2026/01/25
 - Routed image requests through a stable /media proxy to avoid expired S3 presigned URLs
 - Added S3 proxy controller + route to mint fresh presigned URLs per request
