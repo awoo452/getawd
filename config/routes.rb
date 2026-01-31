@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :idea_stats, only: [:index]
   resources :projects,  only: [:index, :show]
   resources :videos,    only: [:index, :show]
+  resources :reports, only: [:index]
   resources :rewards, only: [:index, :show, :update] do
     collection do
       post :redeem

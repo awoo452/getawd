@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.22.15] 2026/01/31
+
+### Added
+- Added ReportsController with dedicated `/reports` index for historical accountability reporting
+- Added monthly task accountability reporting:
+  - Completed on-time vs completed late task counts
+  - Missed tasks (overdue, not completed, not on hold)
+  - Estimated minutes lost due to missed tasks
+  - Days since last task completion
+- Added 6-week weekly task completion trend aggregation
+- Added scoped `reports.scss` stylesheet for Reports page
+- Imported reports stylesheet into application styles
+- Isolated Reports layout and panels to prevent dashboard CSS bleed
+
 ## [1.22.14] 2026/01/26
 
 ### Changed
