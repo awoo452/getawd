@@ -9,6 +9,7 @@ class ReportsController < ApplicationController
     load_missed_tasks
     load_trend_data
     load_completion_chain
+    load_report_card
   end
 
   private
@@ -64,6 +65,32 @@ class ReportsController < ApplicationController
         chain_completed: missed_count.zero?
       }
     end.reverse
+  end
+
+  def load_report_card
+    start_date = 6.weeks.ago.beginning_of_week
+    end_date   = Time.zone.today.end_of_week
+
+    available = Task.where(due_date: start_date..end_date)
+    completed = Task.completed.where(completion_date: start_date..end_date)
+
+    @report_available_count = available.count
+    @report_completed_count = completed.count
+
+    @completion_rate =
+      if @report_available_count.zero?
+        0
+      else
+        (@report_completed_count.to_f / @report_available_count)
+      end
+
+    @letter_grade = case (@completion_rate * 100).round
+                    when 90..100 then "A"
+                    when 80..89  then "B"
+                    when 70..79  then "C"
+                    when 60..69  then "D"
+                    else "F"
+                    end
   end
 
 end
