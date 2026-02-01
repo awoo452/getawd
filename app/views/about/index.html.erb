@@ -1,27 +1,21 @@
 <section class="about">
-  <% about = @about_info.fetch("about", {}) %>
-  <h1>About AW Development</h1>
-  <h3><%= about["header"] %></h3>
+  <h1 class="page-title">About AW Development</h1>
 
-  <ul id="paragraphs_from_yml">
-    <li>
-      <%= image_tag about_image_url("3.png"), alt: "Logo", class: "navbar-logo" %>
-      <p><%= about["paragraph2"] %></p>
-    </li>
-
-    <li>
-      <%= image_tag about_image_url("4.png"), alt: "Logo", class: "navbar-logo" %>
-      <p><%= about["paragraph1"] %></p>
-    </li>
-
-    <li>
-      <%= image_tag about_image_url("1.png"), alt: "Logo", class: "navbar-logo" %>
-      <p><%= about["paragraph3"] %></p>
-    </li>
-
-    <li>
-      <%= image_tag about_image_url("2.png"), alt: "Logo", class: "navbar-logo" %>
-      <p><%= about["paragraph4"] %></p>
-    </li>
+  <ul id="paragraphs_from_db">
+    <% @about_sections.each_with_index do |section, index| %>
+      <li>
+        <% fallback_logo = safe_asset_path("logo-classic.png") %>
+        <% onerror = "this.onerror=null;" %>
+        <% onerror += "this.src='#{fallback_logo}'" if fallback_logo.present? %>
+        <div class="about-image">
+          <%= image_tag about_image_url("#{index + 1}.png"),
+            alt: "Logo",
+            class: "about-image-img",
+            onerror: onerror %>
+        </div>
+        <h3><%= section.header %></h3>
+        <p><%= section.body %></p>
+      </li>
+    <% end %>
   </ul>
 </section>

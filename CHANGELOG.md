@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.23.0] 2026/02/01
+
+### Changed
+- Migrated About section content from static YAML to database-backed `about_sections`
+- Rewrote About content to better reflect real-world experience, technical focus, and problem-solving approach
+- Improved structure and ordering of About sections using explicit positioning
+- Simplified view logic to render About content dynamically from the database
+- Standardized public-facing section styling to share consistent colors, spacing, and card treatments
+- Refreshed About/Contact/Video section styling to align with the shared theme tokens
+- Aligned public page headings and section wrappers to match SCSS selectors consistently
+
+### Fixed
+- Avoided asset pipeline errors when About image fallbacks are missing
+
+### Added
+- `about_sections` table with ordered, extensible content blocks
+- Seed data for About section to support consistent local and production setup
+- Shared SCSS theme tokens for site-wide colors, typography, spacing, and shadows
+
 ## [1.22.18] 2026/01/31
 
 ### Added

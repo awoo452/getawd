@@ -1,14 +1,5 @@
-// stylesheets/_navbar.scss
-
-$primary-color: #3a579d;
-$secondary-color: #3e3e3e;
-$background-color: #ecf0f1;
-$text-color: #465563;
-$hover-color: lighten($primary-color, 30%);
-$font-stack: 'Roboto', sans-serif;
-
 .navbar {
-  background-color: gray;
+  background-color: $navbar-bg;
   padding: 1rem;
   border-bottom: 2px solid $primary-color;
   ul {
@@ -23,14 +14,14 @@ $font-stack: 'Roboto', sans-serif;
       margin: 0.5rem;
 
       a {
-        color: $background-color;
+        color: $navbar-link;
         text-decoration: none;
         padding: 0.5rem 1rem;
         border-radius: 4px;
-        transition: background-color 0.3s;
+        transition: background-color $transition-base;
 
         &:not(:has(img)):hover {
-          background-color: #3a579d;
+          background-color: $primary-color;
         }
       }
 
@@ -57,5 +48,3 @@ $font-stack: 'Roboto', sans-serif;
     }
   }
 }
-
-

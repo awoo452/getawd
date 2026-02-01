@@ -1,12 +1,7 @@
-$primary-color: #3a579d;
-$background-color: #ecf0f1;
-$text-color: #465563;
-$hover-color: lighten($primary-color, 30%);
-
 .rewards {
   padding: 2rem;
-  background-color: lighten($background-color, 5%);
-  border-radius: 8px;
+  background-color: $surface-muted;
+  border-radius: $radius-md;
   margin-bottom: 2rem;
   text-align: center;
 
@@ -144,4 +139,3 @@ $hover-color: lighten($primary-color, 30%);
 
 
 }
-
