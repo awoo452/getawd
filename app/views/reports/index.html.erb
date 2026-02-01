@@ -1,39 +1,41 @@
 
 <div class="reports-wrapper">
-
+    <h1>Accountability Reporting</h1>
     <section class="reports-panel">
-    <h1>Accountability</h1>
-    <h3>This Month</h3>
+    
+        <h3>This Month</h3>
 
-    <div class="summary-section">
-        <strong>Completed On Time:</strong> <%= @completed_on_time_count %><br>
-        <strong>Completed Late:</strong> <%= @completed_late_count %>
-    </div>
-
-    <div class="summary-section">
-        <strong>Missed Tasks:</strong> <%= @missed_tasks_count %><br>
-        <strong>Estimated Time Missed:</strong> <%= @missed_minutes_lost %> min
-    </div>
-
-    <% if @days_since_last_completion %>
         <div class="summary-section">
-        <strong>Days Since Last Completion:</strong>
-        <%= @days_since_last_completion %>
+            <strong>Completed On Time:</strong> <%= @completed_on_time_count %><br>
+            <strong>Completed Late:</strong> <%= @completed_late_count %>
         </div>
-    <% end %>
+
+        <div class="summary-section">
+            <strong>Missed Tasks:</strong> <%= @missed_tasks_count %><br>
+            <strong>Estimated Time Missed:</strong> <%= @missed_minutes_lost %> min
+        </div>
+
+        <% if @days_since_last_completion %>
+            <div class="summary-section">
+            <strong>Days Since Last Completion:</strong>
+            <%= @days_since_last_completion %>
+            </div>
+        <% end %>
 
     </section>
 
-    <section class="dashboard-panel">
-    <h1>Completion Chain</h1>
-    <h3>Weekly Completions (Last 6 Weeks)</h3>
+    <section class="reports-panel">
+        <h3>Completion Chain</h3>
 
-    <% @weekly_completions.each do |week, count| %>
-        <div>
-        <strong><%= week.to_date.strftime("%b %d") %>:</strong>
-        <%= count %> completed
-        </div>
-    <% end %>
+        <% @completion_chain.each do |week| %>
+            <div class="summary-section">
+            <strong><%= week[:week_start].strftime("%b %d") %>:</strong>
+            <%= week[:completed] %> completed |
+            <%= week[:available] %> available |
+            <%= week[:missed] %> missed |
+            <%= week[:chain_completed] ? "✅" : "❌" %>
+            </div>
+        <% end %>
     </section>
     
 </div>

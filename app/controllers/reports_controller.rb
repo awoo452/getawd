@@ -8,6 +8,7 @@ class ReportsController < ApplicationController
     load_completion_stats
     load_missed_tasks
     load_trend_data
+    load_completion_chain
   end
 
   private
@@ -42,4 +43,27 @@ class ReportsController < ApplicationController
       .group("DATE_TRUNC('week', completion_date)")
       .count
   end
+
+  def load_completion_chain
+    @completion_chain = (0..5).map do |weeks_ago|
+      start_date = weeks_ago.weeks.ago.beginning_of_week
+      end_date   = weeks_ago.weeks.ago.end_of_week
+
+      available = Task.where(due_date: start_date..end_date)
+      completed = Task.completed.where(completion_date: start_date..end_date)
+
+      available_count = available.count
+      completed_count = completed.count
+      missed_count    = [available_count - completed_count, 0].max
+
+      {
+        week_start: start_date,
+        completed: completed_count,
+        available: available_count,
+        missed: missed_count,
+        chain_completed: missed_count.zero?
+      }
+    end.reverse
+  end
+
 end
