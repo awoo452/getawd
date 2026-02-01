@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_25_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_01_025601) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -37,6 +37,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_25_120000) do
     t.datetime "updated_at", null: false
     t.json "youtube_id"
     t.index ["slug"], name: "index_documents_on_slug", unique: true
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.text "body"
+    t.string "commit_ref"
+    t.boolean "completed", default: false, null: false
+    t.datetime "created_at", null: false
+    t.string "section"
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "games", force: :cascade do |t|

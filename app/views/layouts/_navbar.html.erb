@@ -21,6 +21,7 @@
         <li><%= link_to 'Reports', reports_path %></li>
         <li><%= link_to 'Rewards', rewards_path %></li>
         <li><%= link_to 'Tasks', tasks_path %></li>
+        <li><%= link_to "Feedback", new_feedback_path, class: "nav-link" %></li>
         <li><%= button_to 'Logout', destroy_user_session_path, method: :delete %></li>
       </ul>
     <% end %>

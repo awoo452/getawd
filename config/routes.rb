@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/docs/:slug', to: 'documents#show_by_slug', as: :doc
   # remove plural resources; using singular controllers above
   resources :blog_posts, only: [:index, :show]
+  resources :feedbacks, only: [:new, :create, :index], path: "feedback"
   resources :games,     only: [:index, :show]
   resources :ideas, only: [:show]
   resources :idea_stats, only: [:index]

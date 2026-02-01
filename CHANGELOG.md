@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.22.18] 2026/01/31
+
+### Added
+- Added Feedback model for tracking site feedback and TODOs
+- Added feedback fields:
+  - title
+  - body
+  - section (area of the site)
+  - completed flag
+  - commit reference for changelog correlation
+- Added FeedbacksController with index, new, create, edit, and update actions
+- Added feedback creation form for quickly logging feedback items
+- Added feedback index view with open vs completed separation
+- Added ability to mark feedback as completed and associate a commit reference
+- Added signed-in navigation link to feedback form
+- Added `/feedback` route alias for human-readable URLs while preserving Rails conventions
+
+### Architecture
+- Isolated feedback functionality from dashboard and reports
+- Designed feedback workflow to support batch processing and release-based cleanup
+
 ## [1.22.17] 2026/01/31
 
 ### Added

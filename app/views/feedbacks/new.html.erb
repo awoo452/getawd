@@ -1,0 +1,22 @@
+<h1>Add Feedback</h1>
+
+<%= form_with model: @feedback, local: true do |f| %>
+
+  <div class="form-field">
+    <%= f.label :title %>
+    <%= f.text_field :title, required: true %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :section, "Section / Area" %>
+    <%= f.text_field :section, placeholder: "dashboard, reports, calendar, etc" %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :body, "Details" %>
+    <%= f.text_area :body, rows: 5 %>
+  </div>
+
+  <%= f.submit "Save Feedback", class: "btn" %>
+
+<% end %>
