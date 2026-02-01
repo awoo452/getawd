@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [1.23.1] 2026/02/01
 
 ### Changed
-- Slight logo adjustment based on chat's recommendation.
+- Slight logo adjustment. New year new me or whatever.
 
 ## [1.23.0] 2026/02/01
 
