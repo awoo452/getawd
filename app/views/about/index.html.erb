@@ -4,14 +4,10 @@
   <ul id="paragraphs_from_db">
     <% @about_sections.each_with_index do |section, index| %>
       <li>
-        <% fallback_logo = safe_asset_path("logo-classic.png") %>
-        <% onerror = "this.onerror=null;" %>
-        <% onerror += "this.src='#{fallback_logo}'" if fallback_logo.present? %>
         <div class="about-image">
           <%= image_tag about_image_url("#{index + 1}.png"),
             alt: "Logo",
-            class: "about-image-img",
-            onerror: onerror %>
+            class: "about-image-img" %>
         </div>
         <h3><%= section.header %></h3>
         <p><%= section.body %></p>

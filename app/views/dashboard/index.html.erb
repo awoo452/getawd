@@ -1,5 +1,5 @@
 <% goal_icons = defined?(GOAL_ICONS) ? GOAL_ICONS : {} %>
-<h1 style="text-align: center;">Dashboard</h1>
+<h1 class="page-title page-title--centered">Dashboard</h1>
 <section class="dashboard-wrapper">
   <div class="dashboard-panel">
     <div>
@@ -99,8 +99,8 @@
       <%= link_to 'View All Rewards', rewards_path, class: 'btn' %>
     </div>
 
-    <h5 style="margin-bottom: 0;"><%= link_to "New Goal", new_goal_path %></h5>
-    <h5 style="margin-top: 0;"><%= link_to "New Task", new_task_path %></h5>
+    <h5 class="mb-0"><%= link_to "New Goal", new_goal_path %></h5>
+    <h5 class="mt-0"><%= link_to "New Task", new_task_path %></h5>
   </div>
 
   <div class="dashboard-panel goals-container">

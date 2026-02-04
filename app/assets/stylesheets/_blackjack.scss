@@ -1,0 +1,12 @@
+.blackjack-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.blackjack-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  flex-direction: row;
+}

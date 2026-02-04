@@ -73,6 +73,31 @@
   }
 }
 
+.progress-bar-wrapper {
+  width: 100%;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 0.6rem;
+  appearance: none;
+}
+
+.progress-bar::-webkit-progress-bar {
+  background-color: #e6e6e6;
+  border-radius: 999px;
+}
+
+.progress-bar::-webkit-progress-value {
+  background-color: #2d7ff9;
+  border-radius: 999px;
+}
+
+.progress-bar::-moz-progress-bar {
+  background-color: #2d7ff9;
+  border-radius: 999px;
+}
+
 .idea-box {
   display: flex;
   flex-direction: column;

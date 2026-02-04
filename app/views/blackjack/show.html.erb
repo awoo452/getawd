@@ -10,7 +10,7 @@
 <hr>
 
 <!-- Dealer -->
-<div style="display:flex; gap:2rem; flex-wrap:wrap;">
+<div class="blackjack-row">
   <div>
     <h2>Dealer</h2>
     <p>
@@ -52,7 +52,7 @@
 <hr>
 
 <!-- Betting and game controls -->
-<div style="display:flex; gap:0.5rem; flex-wrap:wrap; flex-direction:row; flex-wrap:wrap;">
+<div class="blackjack-controls">
   <% if session[:state] == "ready" %>
     <p><strong>Place your bet:</strong></p>
     <%= button_to "+1", bet_blackjack_path(amount: 1), method: :post %>

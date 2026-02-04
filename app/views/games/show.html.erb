@@ -2,7 +2,7 @@
   <h2><%= @game.game_name %></h2>
   <div id="game">
     <% if @game.youtube_id.present? || @game.youtube_playlist_id.present? %>
-      <h3 style="margin:0;">Related Videos</h3>
+      <h3 class="m-0">Related Videos</h3>
       <ul>
         <% if @game.youtube_id.present? %>
           <li>

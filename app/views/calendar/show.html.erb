@@ -19,13 +19,23 @@
               <li class="task">
                 <%= link_to (goal_icons[task.goal&.category] || "📝"), edit_task_path(task) %>
                 <span><%= task.task_name %></span>
-                <span class="estimated-time" style="font-family: 'Orbitron';">
+                <span class="estimated-time orbitron-text">
                   <% if task.completed? %>
                     <%= goal_icons["task"] %>
                   <% else %>
-                    <span class="status-dot"
-                      style="--progress-angle: <%= task.actual_time.to_f.zero? || task.estimated_time.to_f.zero? ? 0 : ((task.actual_time.to_f / task.estimated_time.to_f) * 360).round %>deg;">
-                    </span>
+                    <% percent = if task.actual_time.to_f.zero? || task.estimated_time.to_f.zero?
+                                   0
+                                 else
+                                   ((task.actual_time.to_f / task.estimated_time.to_f) * 100).round
+                                 end %>
+                    <% bucket = case percent
+                               when 0..9 then 0
+                               when 10..32 then 25
+                               when 33..66 then 50
+                               when 67..90 then 75
+                               else 100
+                               end %>
+                    <span class="status-dot progress-<%= bucket %>"></span>
                     <%= task.estimated_time.to_i - task.actual_time.to_i %>m
                   <% end %>
                 </span>
@@ -51,17 +61,23 @@
       <% tasks_for_date.sort_by { |t| [t.priority.nil? ? -1 : t.priority] }.each do |task| %>
         <li class="task">
           <%= link_to (goal_icons[task.goal&.category] || "📝"), task_path(task), title: task.task_name %> | 
-            <span class="estimated-time" style="font-family: 'Orbitron';">
-              <% if task.completed? %> 
-                <%= goal_icons["task"] %> 
+            <span class="estimated-time orbitron-text">
+              <% if task.completed? %>
+                <%= goal_icons["task"] %>
               <% else %>
-                <span class="status-dot"
-                style="--progress-angle: <%= if task.actual_time.to_f.zero? || task.estimated_time.to_f.zero?
-                  '0'
-                else
-                  ((task.actual_time.to_f / task.estimated_time.to_f) * 360).round
-                end %>deg;">
-                </span>
+                <% percent = if task.actual_time.to_f.zero? || task.estimated_time.to_f.zero?
+                               0
+                             else
+                               ((task.actual_time.to_f / task.estimated_time.to_f) * 100).round
+                             end %>
+                <% bucket = case percent
+                           when 0..9 then 0
+                           when 10..32 then 25
+                           when 33..66 then 50
+                           when 67..90 then 75
+                           else 100
+                           end %>
+                <span class="status-dot progress-<%= bucket %>"></span>
                 <%= task.estimated_time.to_i - task.actual_time.to_i %>m
               <% end %>
             </span>

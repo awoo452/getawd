@@ -33,6 +33,12 @@
         black var(--progress-angle) 360deg
       );
     }
+
+    .status-dot.progress-0 { --progress-angle: 0deg; }
+    .status-dot.progress-25 { --progress-angle: 90deg; }
+    .status-dot.progress-50 { --progress-angle: 180deg; }
+    .status-dot.progress-75 { --progress-angle: 270deg; }
+    .status-dot.progress-100 { --progress-angle: 360deg; }
   }
 }
 
@@ -52,6 +58,10 @@
     width: 100%;
     text-align: center;
   }
+}
+
+.orbitron-text {
+  font-family: 'Orbitron', sans-serif;
 }
 
 #task-calendar-monthly {

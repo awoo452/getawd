@@ -12,15 +12,15 @@
 
 <div class="goal-summary <%= goal.status %>">
   <h2><%= GOAL_ICONS["goal"] %> | <%= link_to goal.title, goal_path(goal) %></h2>
-  <p style="margin-bottom: 1em;"><%= goal.description %></p>
+  <p class="mb-1"><%= goal.description %></p>
 
-  <div class="progress-bar-wrapper" style="margin-bottom: 1em;">
-    <div class="progress-bar" style="width: <%= progress_percent %>%;"></div>
+  <div class="progress-bar-wrapper mb-1">
+    <progress class="progress-bar" value="<%= progress_percent %>" max="100"></progress>
   </div>
 
-  <p style="margin-bottom: 1em;"><%= progress_percent %>% complete (estimated time remaining)</p>
+  <p class="mb-1"><%= progress_percent %>% complete (estimated time remaining)</p>
 
-  <p style="margin-bottom: 1em;">
+  <p class="mb-1">
     <strong><%= completed_tasks %> of <%= total_tasks %></strong> tasks completed<br>
     <strong>Estimated total time:</strong> <%= estimated_total %> min<br>
     <strong>Actual time spent so far:</strong> <%= actual_done %> min
@@ -28,7 +28,7 @@
   </p>
 
   <% if time_burn_percent > 100 %>
-    <p style="color: red;"><strong>🔥 Over time budget:</strong> <%= time_burn_percent %>% of time used</p>
+    <p class="text-danger"><strong>🔥 Over time budget:</strong> <%= time_burn_percent %>% of time used</p>
   <% else %>
     <p><strong>Time used:</strong> <%= time_burn_percent %>% of estimated time</p>
   <% end %>

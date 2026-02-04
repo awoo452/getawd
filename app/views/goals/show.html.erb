@@ -18,9 +18,9 @@
 <ul class="actions-list">
   <li><%= link_to "#{GOAL_ICONS["edit"]}#{GOAL_ICONS["goal"]}", edit_goal_path(@goal) %>Edit this Goal</li>
   <li><%= link_to "#{GOAL_ICONS["back"]}#{GOAL_ICONS["goal"]}", goals_path %>Back to Goals</li>
-  <li style="width: 150px;"><hr></li>
+  <li class="action-divider"><hr></li>
   <li><%= link_to "#{GOAL_ICONS["task"]}", tasks_path %>Go to Tasks</li>
   <li><%= link_to "#{GOAL_ICONS["calendar"]}", calendar_path %>Go to Calendar</li>
-  <li style="width: 150px;"><hr></li>
+  <li class="action-divider"><hr></li>
   <li><%= button_to 'Delete Goal', @goal, method: :delete, data: { confirm: 'Are you sure?' } %></li>
 </ul>
