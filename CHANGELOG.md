@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.23.4] 2026/02/04
+
+### Changed
+- Extracted task creation/repeat logic into `Tasks::CreateTask`.
+- Extracted task update and complete-on-time flows into `Tasks::UpdateTask` and `Tasks::CompleteOnTime`.
+- Extracted task index filtering/sorting into `Tasks::IndexData`.
+- Extracted task deletion into `Tasks::DestroyTask` for consistent controller flow.
+
 ## [1.23.3] 2026/02/03
 
 ### Changed
