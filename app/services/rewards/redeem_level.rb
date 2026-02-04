@@ -8,14 +8,17 @@ module Rewards
     end
 
     def initialize(level:, reward_id:, game_id:, today:)
-      @level = level.to_i
+      @level = level.present? ? level.to_i : nil
       @reward_id = reward_id
       @game_id = game_id
       @today = today
     end
 
     def call
-      normalize_level!
+      if @reward_id.blank? && (@level.nil? || @level <= 0)
+        return Result.new(success?: false, alert: "Reward level is required.")
+      end
+
       earned_reward = find_earned_reward
 
       return Result.new(success?: false, alert: "No reward earned for Level #{@level} today.") unless earned_reward
@@ -34,10 +37,6 @@ module Rewards
     end
 
     private
-
-    def normalize_level!
-      @level = 1 if @level.zero?
-    end
 
     def find_earned_reward
       return Reward.find(@reward_id) if @reward_id.present?

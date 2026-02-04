@@ -64,7 +64,8 @@
 
         <% if earned.present? && level == 2 %>
 
-          <%= form_with url: redeem_rewards_path(level: 2), method: :post, local: true do %>
+          <%= form_with url: redeem_rewards_path, method: :post, local: true do %>
+            <%= hidden_field_tag :level, 2 %>
             <%= select_tag :game_id,
                   options_from_collection_for_select(
                     Game.where(show_to_public: true),
@@ -81,7 +82,8 @@
         <% elsif earned.present? %>
 
           <%= button_to "Redeem Reward",
-                redeem_rewards_path(level: level),
+                redeem_rewards_path,
+                params: { level: level },
                 method: :post,
                 class: "btn btn-success" %>
 
@@ -133,9 +135,10 @@
 
           <% elsif reward.scope == "level" && reward.reward_payload["level"].to_i == 2 && reward.kind == "earned" %>
 
-            <%= form_with url: redeem_rewards_path(level: 2), method: :post, local: true do %>
+            <%= form_with url: redeem_rewards_path, method: :post, local: true do %>
 
               <%= hidden_field_tag :reward_id, reward.id %>
+              <%= hidden_field_tag :level, 2 %>
 
               <%= select_tag :game_id,
                     options_from_collection_for_select(
@@ -151,8 +154,9 @@
 
           <% elsif reward.scope == "level" && reward.kind == "earned" %>
 
-            <%= form_with url: redeem_rewards_path(level: reward.reward_payload["level"]), method: :post, local: true do %>
+            <%= form_with url: redeem_rewards_path, method: :post, local: true do %>
               <%= hidden_field_tag :reward_id, reward.id %>
+              <%= hidden_field_tag :level, reward.reward_payload["level"] %>
 
               <% if reward.reward_payload["level"].to_i == 2 %>
                 <%= select_tag :game_id,
