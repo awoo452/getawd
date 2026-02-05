@@ -3,7 +3,11 @@
     <div class="job-card">
       <h2><%= job.title %></h2>
       <p><%= job.description %></p>
-      <%= image_tag(landscaping_image_url(job.image), class: "job-image") if job.image.present? %>
+      <% if job.image.present? %>
+        <div class="job-image-frame">
+          <%= image_tag(landscaping_image_url(job.image), class: "job-image") %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>

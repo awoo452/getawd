@@ -32,3 +32,17 @@ $transition-base: 0.3s ease;
 
 $navbar-bg: $secondary-color;
 $navbar-link: $background-color;
+
+$landscaping-accent: #2e5e3e;
+$landscaping-accent-soft: lighten($landscaping-accent, 45%);
+$landscaping-card-bg: #ffffff;
+$landscaping-hero-bg: #f4f7f2;
+$landscaping-link: $landscaping-accent;
+$landscaping-link-hover: darken($landscaping-accent, 8%);
+$landscaping-border: #dbe2d6;
+
+$blackjack-bg: #0f3b2e;
+$blackjack-surface: #145a3f;
+$blackjack-accent: #d9b24c;
+$blackjack-text: #f7f4ea;
+$blackjack-muted: rgba(247, 244, 234, 0.72);
