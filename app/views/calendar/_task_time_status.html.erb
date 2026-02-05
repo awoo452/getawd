@@ -1,0 +1,18 @@
+<% if task.completed? %>
+  <%= goal_icons["task"] %>
+<% else %>
+  <% percent = if task.actual_time.to_f.zero? || task.estimated_time.to_f.zero?
+                 0
+               else
+                 ((task.actual_time.to_f / task.estimated_time.to_f) * 100).round
+               end %>
+  <% bucket = case percent
+              when 0..9 then 0
+              when 10..32 then 25
+              when 33..66 then 50
+              when 67..90 then 75
+              else 100
+              end %>
+  <span class="status-dot progress-<%= bucket %>"></span>
+  <%= task.estimated_time.to_i - task.actual_time.to_i %>m
+<% end %>

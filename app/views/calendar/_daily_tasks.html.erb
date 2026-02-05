@@ -1,0 +1,31 @@
+<section id="task-calendar-daily">
+  <h1><%= goal_icons["task"] %> | Daily Tasks</h1>
+  <%= calendar(number_of_days: 1) do |date| %>
+    <% tasks_for_date = tasks.select { |task| task.due_date.present? && task.due_date.in_time_zone.to_date == date } %>
+
+    <div class="daily-task-levels">
+      <% (1..10).each do |level| %>
+        <% level_tasks = tasks_for_date.select { |t| t.priority == level } %>
+        <% next if level_tasks.empty? %>
+
+        <div class="task-level">
+          <h3>
+            <%= link_to "Level #{level}", doc_path("level-#{level}-rewards") %>
+          </h3>
+
+          <ul>
+            <% level_tasks.each do |task| %>
+              <li class="task">
+                <%= link_to (goal_icons[task.goal&.category] || "📝"), edit_task_path(task) %>
+                <span><%= task.task_name %></span>
+                <span class="estimated-time orbitron-text">
+                  <%= render "task_time_status", task: task, goal_icons: goal_icons %>
+                </span>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</section>
