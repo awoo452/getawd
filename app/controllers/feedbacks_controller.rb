@@ -3,8 +3,9 @@ class FeedbacksController < ApplicationController
   before_action :set_feedback, only: [:edit, :update]
 
   def index
-    @open_feedback     = Feedback.open.order(created_at: :desc)
-    @completed_feedback = Feedback.completed.order(updated_at: :desc)
+    data = Feedbacks::IndexData.call
+    @open_feedback = data.open_feedback
+    @completed_feedback = data.completed_feedback
   end
 
   def new
@@ -12,8 +13,9 @@ class FeedbacksController < ApplicationController
   end
 
   def create
-    @feedback = Feedback.new(feedback_params)
-    if @feedback.save
+    result = Feedbacks::CreateFeedback.call(params: feedback_params)
+    @feedback = result.feedback
+    if result.success?
       redirect_to feedbacks_path, notice: "Feedback added"
     else
       render :new
@@ -24,7 +26,9 @@ class FeedbacksController < ApplicationController
   end
 
   def update
-    if @feedback.update(feedback_params)
+    result = Feedbacks::UpdateFeedback.call(feedback_id: @feedback.id, params: feedback_params)
+    @feedback = result.feedback
+    if result.success?
       redirect_to feedbacks_path, notice: "Feedback updated"
     else
       render :edit

@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   def index
-    @projects, @projects_page, @projects_total_pages =
-      paginate(Project.order(created_at: :desc), per_page: 25)
+    data = Projects::IndexData.call(paginator: method(:paginate))
+    @projects = data.projects
+    @projects_page = data.projects_page
+    @projects_total_pages = data.projects_total_pages
   end
 end

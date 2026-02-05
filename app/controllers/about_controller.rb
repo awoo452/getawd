@@ -1,5 +1,6 @@
 class AboutController < ApplicationController
   def index
-    @about_sections = AboutSection.all
+    data = About::IndexData.call
+    @about_sections = data.about_sections
   end
 end
