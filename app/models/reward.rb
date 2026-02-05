@@ -6,24 +6,23 @@ class Reward < ApplicationRecord
   has_many :tasks, through: :reward_tasks
   
   def eligible?
-    all_rules_met? && all_tasks_done? && cooldown_met?
+    Rewards::Eligibility.eligible?(self)
   end
 
   def all_rules_met?
-    reward_rules.all?(&:satisfied?)
+    Rewards::Eligibility.new(self).all_rules_met?
   end
 
   def all_tasks_done?
-    tasks.all?(&:completed?)
+    Rewards::Eligibility.new(self).all_tasks_done?
   end
 
   def cooldown_met?
-    return true if cooldown_days.nil? || cooldown_days.zero?
-    last_redeemed_at.nil? || last_redeemed_at.to_date <= Time.zone.today - cooldown_days
+    Rewards::Eligibility.new(self).cooldown_met?
   end
 
   def evaluate!
-    update(available: eligible?)
+    update(available: Rewards::Eligibility.eligible?(self))
   end
 
   validate :completed_reward_requires_url, if: -> { kind == "completed" && scope == "level" }
