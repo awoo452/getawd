@@ -1,0 +1,22 @@
+<div class="blackjack-controls">
+  <% if session[:state] == "ready" %>
+    <p><strong>Place your bet:</strong></p>
+    <%= button_to "+1", bet_blackjack_path, params: { amount: 1 }, method: :post %>
+    <%= button_to "+5", bet_blackjack_path, params: { amount: 5 }, method: :post %>
+    <%= button_to "+25", bet_blackjack_path, params: { amount: 25 }, method: :post %>
+    <%= button_to "+100", bet_blackjack_path, params: { amount: 100 }, method: :post %>
+    <%= button_to "Clear Bet", clear_bet_blackjack_path, method: :post %>
+    <% if session[:bet] > 0 %>
+      <%= button_to "Deal (#{session[:bet]})", deal_blackjack_path, method: :post %>
+    <% end %>
+  <% elsif session[:state] == "player_turn" %>
+    <%= button_to "Hit", hit_blackjack_path, method: :post %>
+    <%= button_to "Stand", stand_blackjack_path, method: :post %>
+    <%= button_to "Reset Game", reset_blackjack_path, method: :post %>
+  <% else %>
+    <%= button_to "Play Again", reset_blackjack_path, method: :post %>
+  <% end %>
+  <div>
+    <%= button_to "I'm Broke (Hard Reset)", hard_reset_blackjack_path, method: :post, data: { confirm: "Start over with 100 chips?" } %>
+  </div>
+</div>

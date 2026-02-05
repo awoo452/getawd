@@ -1,0 +1,9 @@
+<div class="jobs-grid">
+  <% jobs.each do |job| %>
+    <div class="job-card">
+      <h2><%= job.title %></h2>
+      <p><%= job.description %></p>
+      <%= image_tag(landscaping_image_url(job.image), class: "job-image") if job.image.present? %>
+    </div>
+  <% end %>
+</div>

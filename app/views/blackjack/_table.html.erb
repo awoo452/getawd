@@ -1,0 +1,39 @@
+<div class="blackjack-row">
+  <div>
+    <h2>Dealer</h2>
+    <p>
+      <% dealer_cards = session[:dealer] || [] %>
+      <% if session[:state] == "player_turn" %>
+        <% if dealer_cards.any? %>
+          <span><%= dealer_cards.first %></span>
+        <% end %>
+        <% if dealer_cards.size > 1 %>
+          <span>🂠</span>
+        <% end %>
+      <% else %>
+        <% dealer_cards.each do |c| %>
+          <span><%= c %></span>
+        <% end %>
+      <% end %>
+    </p>
+    <p>
+      <% if session[:state] == "player_turn" %>
+        Total: <%= dealer_cards.first.present? ? hand_total([dealer_cards.first]) : 0 %>+
+      <% else %>
+        Total: <%= hand_total(dealer_cards) %>
+      <% end %>
+    </p>
+  </div>
+
+  <div>
+    <h2>Player</h2>
+    <p>
+      <% (session[:player] || []).each do |c| %>
+        <span><%= c %></span>
+      <% end %>
+    </p>
+    <p>Total: <%= hand_total(session[:player] || []) %></p>
+  </div>
+</div>
+
+<hr>
