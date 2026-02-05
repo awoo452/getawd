@@ -29,40 +29,7 @@ class Task < ApplicationRecord
   private
 
   def handle_completion
-    return unless completed?
-
-    earn_task_reward
-    DailyRewardEarner.run_for_level(priority, earned_on_date)
-  end
-
-  def earned_on_date
-    completion_date || due_date || Date.current
-  end
-
-  def earn_task_reward
-    return if eligible_reward.blank?
-
-    already = Reward
-      .joins(:reward_tasks)
-      .where(scope: "task", reward_tasks: { task_id: id })
-      .where("reward_payload ->> 'earned_date' = ?", earned_on_date.to_s)
-      .exists?
-
-    return if already
-
-    reward = Reward.create!(
-      scope: "task",
-      kind: "earned",
-      reward_payload: {
-        task_id: id,
-        goal_id: goal_id,
-        level: priority,
-        item: eligible_reward,
-        earned_date: earned_on_date.to_s
-      }
-    )
-
-    RewardTask.create!(reward: reward, task: self)
+    Tasks::HandleCompletion.call(task: self)
   end
 
 end
