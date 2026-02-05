@@ -1,44 +1,8 @@
 <div class="tasks-list">
   <div class="task-card <%= @task.status.humanize %>">
-    <h2><%= @task.task_name %></h2>
-
-    <p><strong>Description:</strong> <%= @task.description %></p>
-    <%= render "shared/smart_show", record: @task %>
-    <p><strong>Status:</strong> <%= @task.status.humanize %></p>
-    <% if @task.on_hold? && @task.hold_until.present? %>
-      <p><strong>Reopens:</strong> <%= l(@task.hold_until, format: :long) %></p>
-    <% end %>
-    <p><strong>Priority:</strong> <%= @task.priority %></p>
-    <p><strong>Start Date:</strong> <%= @task.start_date %></p>
-    <p><strong>Due Date:</strong> <%= @task.due_date %></p>
-    <p><strong>Completion Date:</strong> <%= @task.completion_date %></p>
-    <p><strong>Assigned To:</strong> <%= @task.assigned_to %></p>
-    <p><strong>Estimated Time (Minutes):</strong> <%= @task.estimated_time %></p>
-    <p><strong>Actual Time (Minutes):</strong> <%= @task.actual_time %></p>
-    <p>
-      <strong>Goal:</strong>
-      <% if @task.goal.present? %>
-        <%= link_to @task.goal.title, goal_path(@task.goal) %>
-      <% else %>
-        <em>Not assigned</em>
-      <% end %>
-    </p>
-
-    <% unless @task.completed? %>
-      <%= button_to "Complete On Time Today",
-          complete_on_time_task_path(@task),
-          method: :patch,
-          data: { confirm: "Mark this task completed today?" } %>
-    <% end %>
+    <%= render "details", task: @task %>
+    <%= render "actions", task: @task %>
   </div>
 </div>
 
-<ul class="actions-list">
-  <li><%= link_to "#{GOAL_ICONS["edit"]}#{GOAL_ICONS["task"]}", edit_task_path(@task) %>Edit this Task</li>
-  <li><%= link_to "#{GOAL_ICONS["back"]}#{GOAL_ICONS["task"]}", tasks_path %>Back to Tasks</li>
-  <li class="action-divider"><hr></li>
-  <li><%= link_to "#{GOAL_ICONS["goal"]}", goals_path %>Go to Goals</li>
-  <li><%= link_to "#{GOAL_ICONS["calendar"]}", calendar_path %>Go to Calendar</li>
-  <li class="action-divider"><hr></li>
-  <li><%= button_to 'Delete Task', @task, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-</ul>
+<%= render "nav", task: @task %>

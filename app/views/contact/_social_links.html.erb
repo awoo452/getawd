@@ -1,0 +1,21 @@
+<h2>Follow Us</h2>
+<p>Stay connected with us on social media!</p>
+
+<% social = contact_info.fetch("social_media", {}) %>
+<ul class="social_media">
+  <% if social["instagram"].present? %>
+    <li><a href="<%= social["instagram"] %>" target="_blank">Instagram</a></li>
+  <% end %>
+  <% if social["linkedin"].present? %>
+    <li><a href="<%= social["linkedin"] %>" target="_blank">LinkedIn</a></li>
+  <% end %>
+  <% if social["youtube"].present? %>
+    <li><a href="<%= social["youtube"] %>" target="_blank">YouTube</a></li>
+  <% end %>
+  <% if social["github"].present? %>
+    <li><a href="<%= social["github"] %>" target="_blank">GitHub</a></li>
+  <% end %>
+  <% if social["twitch"].present? %>
+    <li><a href="<%= social["twitch"] %>" target="_blank">Twitch</a></li>
+  <% end %>
+</ul>

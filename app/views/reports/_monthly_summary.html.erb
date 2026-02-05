@@ -1,0 +1,20 @@
+<section class="reports-panel">
+  <h3>This Month</h3>
+
+  <div class="summary-section">
+    <strong>Completed On Time:</strong> <%= completed_on_time_count %><br>
+    <strong>Completed Late:</strong> <%= completed_late_count %>
+  </div>
+
+  <div class="summary-section">
+    <strong>Missed Tasks:</strong> <%= missed_tasks_count %><br>
+    <strong>Estimated Time Missed:</strong> <%= missed_minutes_lost %> min
+  </div>
+
+  <% if days_since_last_completion %>
+    <div class="summary-section">
+      <strong>Days Since Last Completion:</strong>
+      <%= days_since_last_completion %>
+    </div>
+  <% end %>
+</section>

@@ -1,0 +1,23 @@
+<h2><%= task.task_name %></h2>
+
+<p><strong>Description:</strong> <%= task.description %></p>
+<%= render "shared/smart_show", record: task %>
+<p><strong>Status:</strong> <%= task.status.humanize %></p>
+<% if task.on_hold? && task.hold_until.present? %>
+  <p><strong>Reopens:</strong> <%= l(task.hold_until, format: :long) %></p>
+<% end %>
+<p><strong>Priority:</strong> <%= task.priority %></p>
+<p><strong>Start Date:</strong> <%= task.start_date %></p>
+<p><strong>Due Date:</strong> <%= task.due_date %></p>
+<p><strong>Completion Date:</strong> <%= task.completion_date %></p>
+<p><strong>Assigned To:</strong> <%= task.assigned_to %></p>
+<p><strong>Estimated Time (Minutes):</strong> <%= task.estimated_time %></p>
+<p><strong>Actual Time (Minutes):</strong> <%= task.actual_time %></p>
+<p>
+  <strong>Goal:</strong>
+  <% if task.goal.present? %>
+    <%= link_to task.goal.title, goal_path(task.goal) %>
+  <% else %>
+    <em>Not assigned</em>
+  <% end %>
+</p>

@@ -1,57 +1,15 @@
-
 <div class="reports-wrapper">
-    <h1>Accountability Reporting</h1>
-    <section class="reports-panel">
-    
-        <h3>This Month</h3>
-
-        <div class="summary-section">
-            <strong>Completed On Time:</strong> <%= @completed_on_time_count %><br>
-            <strong>Completed Late:</strong> <%= @completed_late_count %>
-        </div>
-
-        <div class="summary-section">
-            <strong>Missed Tasks:</strong> <%= @missed_tasks_count %><br>
-            <strong>Estimated Time Missed:</strong> <%= @missed_minutes_lost %> min
-        </div>
-
-        <% if @days_since_last_completion %>
-            <div class="summary-section">
-            <strong>Days Since Last Completion:</strong>
-            <%= @days_since_last_completion %>
-            </div>
-        <% end %>
-
-    </section>
-
-    <section class="reports-panel">
-        <h3>Completion Chain</h3>
-
-        <% @completion_chain.each do |week| %>
-            <div class="summary-section">
-            <strong><%= week[:week_start].strftime("%b %d") %>:</strong>
-            <%= week[:completed] %> completed |
-            <%= week[:available] %> available |
-            <%= week[:missed] %> missed |
-            <%= week[:chain_completed] ? "✅" : "❌" %>
-            </div>
-        <% end %>
-    </section>
-
-    <section class="reports-panel">
-        <h3>Report Card</h3>
-
-        <div class="summary-section">
-            <strong>Grade:</strong> <%= @letter_grade %>
-        </div>
-
-        <div class="summary-section">
-            <strong>Completed:</strong> <%= @report_completed_count %><br>
-            <strong>Available:</strong> <%= @report_available_count %><br>
-            <strong>Completion Rate:</strong>
-            <%= (@completion_rate * 100).round %>%
-        </div>
-        </section>
-
-    
+  <h1>Accountability Reporting</h1>
+  <%= render "monthly_summary",
+        completed_on_time_count: @completed_on_time_count,
+        completed_late_count: @completed_late_count,
+        missed_tasks_count: @missed_tasks_count,
+        missed_minutes_lost: @missed_minutes_lost,
+        days_since_last_completion: @days_since_last_completion %>
+  <%= render "completion_chain", completion_chain: @completion_chain %>
+  <%= render "report_card",
+        letter_grade: @letter_grade,
+        report_completed_count: @report_completed_count,
+        report_available_count: @report_available_count,
+        completion_rate: @completion_rate %>
 </div>

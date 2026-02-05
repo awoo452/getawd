@@ -1,0 +1,6 @@
+<% unless task.completed? %>
+  <%= button_to "Complete On Time Today",
+      complete_on_time_task_path(task),
+      method: :patch,
+      data: { confirm: "Mark this task completed today?" } %>
+<% end %>

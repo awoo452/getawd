@@ -1,0 +1,13 @@
+<section class="reports-panel">
+  <h3>Completion Chain</h3>
+
+  <% completion_chain.each do |week| %>
+    <div class="summary-section">
+      <strong><%= week[:week_start].strftime("%b %d") %>:</strong>
+      <%= week[:completed] %> completed |
+      <%= week[:available] %> available |
+      <%= week[:missed] %> missed |
+      <%= week[:chain_completed] ? "✅" : "❌" %>
+    </div>
+  <% end %>
+</section>

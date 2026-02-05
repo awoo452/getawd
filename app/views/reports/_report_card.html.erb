@@ -1,0 +1,14 @@
+<section class="reports-panel">
+  <h3>Report Card</h3>
+
+  <div class="summary-section">
+    <strong>Grade:</strong> <%= letter_grade %>
+  </div>
+
+  <div class="summary-section">
+    <strong>Completed:</strong> <%= report_completed_count %><br>
+    <strong>Available:</strong> <%= report_available_count %><br>
+    <strong>Completion Rate:</strong>
+    <%= (completion_rate * 100).round %>%
+  </div>
+</section>

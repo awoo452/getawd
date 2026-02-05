@@ -1,50 +1,6 @@
 <section id="contact">
   <h2 class="page-title">Contact Us</h2>
 
-  <div class="contact-box">
-    <%= form_with url: contact_path, method: :post, class: "contact-form" do %>
-      <div class="form-group">
-        <label>Your Name</label>
-        <%= text_field_tag :name, nil, required: true %>
-      </div>
-
-      <div class="form-group">
-        <label>Your Contact Email</label>
-        <%= email_field_tag :email, nil, required: true %>
-      </div>
-
-      <div class="form-group">
-        <label>Description</label>
-        <%= text_area_tag :message, nil, required: true %>
-      </div>
-      
-      <div class="hp">
-        <%= text_field_tag :website %>
-      </div>
-
-      <%= submit_tag "Send", class: "btn-submit" %>
-    <% end %>
-  </div>
-
-  <h2>Follow Us</h2>
-  <p>Stay connected with us on social media!</p>
-
-  <% social = @contact_info.fetch("social_media", {}) %>
-  <ul class="social_media">
-    <% if social["instagram"].present? %>
-      <li><a href="<%= social["instagram"] %>" target="_blank">Instagram</a></li>
-    <% end %>
-    <% if social["linkedin"].present? %>
-      <li><a href="<%= social["linkedin"] %>" target="_blank">LinkedIn</a></li>
-    <% end %>
-    <% if social["youtube"].present? %>
-      <li><a href="<%= social["youtube"] %>" target="_blank">YouTube</a></li>
-    <% end %>
-    <% if social["github"].present? %>
-      <li><a href="<%= social["github"] %>" target="_blank">GitHub</a></li>
-    <% end %>
-    <% if social["twitch"].present? %>
-      <li><a href="<%= social["twitch"] %>" target="_blank">Twitch</a></li>
-    <% end %>
-  </ul>
+  <%= render "contact_form" %>
+  <%= render "social_links", contact_info: @contact_info %>
 </section>
