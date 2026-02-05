@@ -4,8 +4,10 @@ class DocumentsController < ApplicationController
 
   # GET /documents or /documents.json
   def index
-    @documents, @documents_page, @documents_total_pages =
-      paginate(Document.order(created_at: :desc), per_page: 25)
+    data = Documents::IndexData.call(paginator: method(:paginate))
+    @documents = data.documents
+    @documents_page = data.documents_page
+    @documents_total_pages = data.documents_total_pages
   end
 
   def show_by_slug
@@ -20,7 +22,7 @@ class DocumentsController < ApplicationController
 
   # DELETE /documents/1 or /documents/1.json
   def destroy
-    @document.destroy!
+    Documents::DestroyDocument.call(document_id: @document.id)
 
     respond_to do |format|
       format.html { redirect_to documents_path, status: :see_other, notice: "Document was successfully destroyed." }
