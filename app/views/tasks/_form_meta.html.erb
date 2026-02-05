@@ -1,0 +1,23 @@
+<div class="form-field">
+  <%= form.label :assigned_to %>
+  <%= form.text_field :assigned_to, class: "form-input" %>
+</div>
+
+<div class="form-field">
+  <%= form.label :goal_id, "Related Goal" %>
+  <%= form.collection_select :goal_id,
+        Goal.all,
+        :id,
+        ->(g) { "#{GOAL_ICONS[g.category.to_s] || "📝"} #{g.title}" },
+        { class: "form-input" } %>
+</div>
+
+<div class="form-field">
+  <%= form.label :estimated_time, "Estimated Time (Minutes):" %>
+  <%= form.number_field :estimated_time, class: "form-input" %>
+</div>
+
+<div class="form-field">
+  <%= form.label :actual_time, "Actual Time (Minutes):" %>
+  <%= form.number_field :actual_time, class: "form-input" %>
+</div>

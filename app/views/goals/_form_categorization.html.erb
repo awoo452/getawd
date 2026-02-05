@@ -1,0 +1,12 @@
+<div class="form-field">
+  <%= form.label :category %>
+  <%= form.select :category,
+                  GOAL_ICONS.map { |category, icon| ["#{icon} #{category.humanize}", category] },
+                  {},
+                  { class: "form-input" } %>
+</div>
+
+<div class="form-field">
+  <%= form.label :idea_id, "Idea" %>
+  <%= form.collection_select :idea_id, Idea.all.order(:title), :id, :title, {}, { class: "form-input" } %>
+</div>

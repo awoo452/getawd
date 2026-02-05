@@ -1,0 +1,21 @@
+<div class="form-field">
+  <%= form.label :start_date %>
+  <%= form.date_field :start_date, class: "form-input datepicker" %>
+</div>
+
+<div class="form-field">
+  <%= form.label :due_date %>
+  <%= form.date_field :due_date, class: "form-input datepicker" %>
+</div>
+
+<% if task.new_record? %>
+  <div class="form-field">
+    <%= form.label :repeat_until, "Add this task every day until" %>
+    <%= form.date_field :repeat_until, class: "form-input datepicker" %>
+  </div>
+<% end %>
+
+<div class="form-field">
+  <%= form.label :completion_date %>
+  <%= form.date_field :completion_date, class: "form-input datepicker" %>
+</div>

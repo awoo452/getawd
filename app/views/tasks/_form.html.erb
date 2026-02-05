@@ -1,87 +1,12 @@
-<%= form_with(model: task, local: true, html: { class: 'task_form' }) do |form| %>
-  <% if @task.errors.any? %>
-    <div class="error-explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
-      <ul>
-        <% @task.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: task, local: true, html: { class: "task_form" }) do |form| %>
+  <%= render "shared/form_errors", form_object: task %>
 
-  <div class="form-field">
-    <%= form.label :task_name %>
-    <%= form.text_field :task_name, class: 'form-input' %>
-  </div>
-
-  <div class="form-field-large">
-    <%= form.label :description %>
-    <%= form.text_area :description, class: 'form-input' %>
-  </div>
-  
-  <%= render "shared/smart_fields", form: form %>
-
-  <div class="form-field">
-    <%= form.label :status %>
-    <%= form.select :status, 
-                    Task.statuses.keys.map { |status| [status.humanize, status] },
-                    { include_blank: false, class: 'form-input' } %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :hold_until, "Reopen Date (On Hold Tasks Only)" %>
-    <%= form.datetime_local_field :hold_until, class: "form-input" %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :priority %>
-    <%= form.number_field :priority, class: 'form-input' %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :start_date %>
-    <%= form.date_field :start_date, class: 'form-input datepicker' %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :due_date %>
-    <%= form.date_field :due_date, class: 'form-input datepicker' %>
-  </div>
-  
-  <% if @task.new_record? %>
-  <div class="form-field">
-    <%= form.label :repeat_until, "Add this task every day until" %>
-    <%= form.date_field :repeat_until, class: 'form-input datepicker' %>
-  </div>
-  <% end %>
-
-  <div class="form-field">
-    <%= form.label :completion_date %>
-    <%= form.date_field :completion_date, class: 'form-input datepicker' %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :assigned_to %>
-    <%= form.text_field :assigned_to, class: 'form-input' %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :goal_id, "Related Goal" %>
-    <%= form.collection_select :goal_id, Goal.all, :id, ->(g) { "#{GOAL_ICONS[g.category.to_s] || '📝'} #{g.title}" }, { class: 'form-input' } %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :estimated_time, "Estimated Time (Minutes):" %>
-    <%= form.number_field :estimated_time, class: 'form-input' %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :actual_time, "Actual Time (Minutes):" %>
-    <%= form.number_field :actual_time, class: 'form-input' %>
-  </div>
+  <%= render "tasks/form_details", form: form %>
+  <%= render "tasks/form_status", form: form, task: task %>
+  <%= render "tasks/form_schedule", form: form, task: task %>
+  <%= render "tasks/form_meta", form: form %>
 
   <div class="form-actions">
-    <%= form.submit 'Save Task', class: 'form-submit' %>
+    <%= form.submit "Save Task", class: "form-submit" %>
   </div>
 <% end %>

@@ -1,0 +1,11 @@
+<div class="form-field">
+  <%= form.label :title %>
+  <%= form.text_field :title, class: "form-input" %>
+</div>
+
+<div class="form-field-large">
+  <%= form.label :description %>
+  <%= form.text_area :description, class: "form-input" %>
+</div>
+
+<%= render "shared/smart_fields", form: form %>
