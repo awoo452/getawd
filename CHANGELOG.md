@@ -4,23 +4,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.23.13] 2026/02/05
+## [1.23.14] 2026/02/04
+
+### Changed
+- Split rewards index into focused partials and removed view-level queries.
+
+## [1.23.13] 2026/02/04
 
 ### Changed
 - Removed stray controller-style `index` method from `LandscapingJob`.
 - Extracted hold/resume timing logic into `Holdable::NormalizeHoldUntil` and `Holdable::ResumeIfReady`.
 
-## [1.23.12] 2026/02/05
+## [1.23.12] 2026/02/04
 
 ### Changed
 - Extracted reward eligibility checks into `Rewards::Eligibility`.
 
-## [1.23.11] 2026/02/05
+## [1.23.11] 2026/02/04
 
 ### Changed
 - Moved task completion reward logic into `Tasks::HandleCompletion`.
 
-## [1.23.10] 2026/02/05
+## [1.23.10] 2026/02/04
 
 ### Changed
 - Extracted calendar loading into `Calendar::ShowData`.
