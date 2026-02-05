@@ -1,14 +1,8 @@
 class S3ProxyController < ApplicationController
   def show
-    key = params[:key].to_s
-    if params[:format].present?
-      key = "#{key}.#{params[:format]}"
-    end
-    return head :not_found if key.blank?
+    data = S3Proxy::ShowData.call(key: params[:key], format: params[:format])
+    return head :not_found if data.redirect_url.blank?
 
-    url = S3Service.new.presigned_url(key)
-    return head :not_found if url.blank?
-
-    redirect_to url, allow_other_host: true
+    redirect_to data.redirect_url, allow_other_host: true
   end
 end

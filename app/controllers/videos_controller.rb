@@ -1,7 +1,9 @@
 class VideosController < ApplicationController
   def index
-    @videos, @videos_page, @videos_total_pages =
-      paginate(Video.order(created_at: :desc), per_page: 25)
+    data = Videos::IndexData.call(paginator: method(:paginate))
+    @videos = data.videos
+    @videos_page = data.videos_page
+    @videos_total_pages = data.videos_total_pages
   end
 
   def show

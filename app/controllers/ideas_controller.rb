@@ -2,7 +2,8 @@ class IdeasController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @idea = Idea.includes(goals: :tasks).find(params[:id])
-    @emoji = IDEAS[@idea.title] || "❓"
+    data = Ideas::ShowData.call(idea_id: params[:id])
+    @idea = data.idea
+    @emoji = data.emoji
   end
 end

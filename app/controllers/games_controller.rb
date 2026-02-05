@@ -2,8 +2,10 @@ class GamesController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    scope = Game.where(show_to_public: true).order(created_at: :desc)
-    @games, @games_page, @games_total_pages = paginate(scope, per_page: 25)
+    data = Games::IndexData.call(paginator: method(:paginate))
+    @games = data.games
+    @games_page = data.games_page
+    @games_total_pages = data.games_total_pages
   end
 
   def show

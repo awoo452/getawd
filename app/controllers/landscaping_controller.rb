@@ -1,5 +1,6 @@
 class LandscapingController < ApplicationController
   def index
-    @LandscapingJobs = LandscapingJob.all
+    data = Landscaping::IndexData.call
+    @LandscapingJobs = data.jobs
   end
 end

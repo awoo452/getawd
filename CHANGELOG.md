@@ -4,7 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.23.9] 2026/02/05
+## [1.23.10] 2026/02/05
+
+### Changed
+- Extracted calendar loading into `Calendar::ShowData`.
+- Extracted games pagination into `Games::IndexData`.
+- Extracted idea show loading into `Ideas::ShowData`.
+- Extracted landscaping index loading into `Landscaping::IndexData`.
+- Extracted S3 proxy resolution into `S3Proxy::ShowData`.
+- Extracted videos pagination into `Videos::IndexData`.
+
+## [1.23.9] 2026/02/04
 
 ### Changed
 - Extracted about page loading into `About::IndexData`.
@@ -15,7 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Extracted projects pagination into `Projects::IndexData`.
 - Extracted feedback listing/creation/update into `Feedbacks::IndexData`, `Feedbacks::CreateFeedback`, and `Feedbacks::UpdateFeedback`.
 
-## [1.23.8] 2026/02/05
+## [1.23.8] 2026/02/04
 
 ### Changed
 - Extracted document index pagination into `Documents::IndexData`.
