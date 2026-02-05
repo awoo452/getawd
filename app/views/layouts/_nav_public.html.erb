@@ -1,0 +1,12 @@
+<ul>
+  <li>
+    <%= link_to root_path do %>
+      <%= image_tag(s3_url("branding/logo.png"), alt: "Logo", class: "navbar-logo") %>
+    <% end %>
+  </li>
+  <li><%= link_to "About", about_path %></li>
+  <li><%= link_to "Blog", blog_posts_path %></li>
+  <li><%= link_to "Contact", contact_path %></li>
+  <li><%= link_to "Projects", projects_path %></li>
+  <li><%= link_to "Videos", videos_path %></li>
+</ul>

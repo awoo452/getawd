@@ -1,0 +1,19 @@
+<section class="dashboard-panel">
+  <h3><%= title %></h3>
+
+  <% feedback.each do |fb| %>
+    <div class="summary-section">
+      <strong><%= fb.title %></strong>
+      <% if variant == :open && fb.section.present? %>
+        (<%= fb.section %>)
+      <% end %>
+      <% if variant == :completed && fb.commit_ref.present? %>
+        — commit: <%= fb.commit_ref %>
+      <% end %>
+      <% if variant == :open %>
+        <br>
+        <%= fb.body %>
+      <% end %>
+    </div>
+  <% end %>
+</section>

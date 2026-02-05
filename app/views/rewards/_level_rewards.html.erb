@@ -11,49 +11,15 @@
   </div>
 
   <div class="level-reward <%= earned.present? ? "unlocked" : "locked" %>">
-    <div class="reward-gallery">
-      <% if gaming_levels.include?(level) %>
-        <% public_games.each do |game| %>
-          <img
-            src="<%= game_image_url(game) %>"
-            alt="<%= game.game_title %>"
-          />
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="reward-overlay">
-      <% if earned.present? && level == 2 %>
-        <%= form_with url: redeem_rewards_path, method: :post, local: true do %>
-          <%= hidden_field_tag :level, 2 %>
-          <%= select_tag :game_id,
-                options_from_collection_for_select(
-                  public_games,
-                  :id,
-                  :game_title
-                ),
-                include_blank: "Choose a game" %>
-
-          <br><br>
-
-          <%= submit_tag "Redeem Level 2 Reward", class: "btn btn-success" %>
-        <% end %>
-      <% elsif earned.present? %>
-        <%= button_to "Redeem Reward",
-              redeem_rewards_path,
-              params: { level: level },
-              method: :post,
-              class: "btn btn-success" %>
-      <% elsif consumed %>
-        <strong>
-          All Level <%= level %> rewards claimed. Check back tomorrow.
-        </strong>
-      <% else %>
-        <strong>
-          Complete today’s Level <%= level %> tasks to unlock this reward
-        </strong>
-      <% end %>
-    </div>
+    <%= render "reward_gallery",
+          gaming_levels: gaming_levels,
+          public_games: public_games,
+          level: level %>
+    <%= render "level_reward_actions",
+          earned: earned,
+          consumed: consumed,
+          level: level,
+          public_games: public_games %>
   </div>
 
   <hr>

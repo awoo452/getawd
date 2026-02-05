@@ -1,0 +1,8 @@
+<h3>Redeemed Rewards</h3>
+<div class="reward-list redeemed">
+  <% rewards.each do |reward| %>
+    <div class="reward-row">
+      <%= link_to reward.name.presence || "Reward ##{reward.id}", reward_path(reward) %>
+    </div>
+  <% end %>
+</div>

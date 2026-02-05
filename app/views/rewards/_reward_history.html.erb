@@ -4,66 +4,8 @@
 <% redeemed_rewards = rewards.select { |r| r.kind == "redeemed" } %>
 <% completed_rewards = rewards.select { |r| r.kind == "completed" } %>
 
-<h3>Earned Rewards</h3>
-<div class="reward-list earned">
-  <% earned_rewards.each do |reward| %>
-    <div class="reward-row">
-      <span>
-        <%= link_to reward.name.presence || "Reward ##{reward.id}", reward_path(reward) %>
-      </span>
-
-      <% if reward.scope == "task" %>
-        <%= button_to "Redeem",
-              redeem_task_reward_path(reward),
-              method: :post,
-              class: "btn btn-success btn-sm" %>
-      <% elsif reward.scope == "level" && reward.reward_payload["level"].to_i == 2 && reward.kind == "earned" %>
-        <%= form_with url: redeem_rewards_path, method: :post, local: true do %>
-          <%= hidden_field_tag :reward_id, reward.id %>
-          <%= hidden_field_tag :level, 2 %>
-
-          <%= select_tag :game_id,
-                options_from_collection_for_select(
-                  public_games,
-                  :id,
-                  :game_title
-                ),
-                include_blank: "Choose game" %>
-
-          <%= submit_tag "Redeem", class: "btn btn-success btn-sm" %>
-        <% end %>
-      <% elsif reward.scope == "level" && reward.kind == "earned" %>
-        <%= form_with url: redeem_rewards_path, method: :post, local: true do %>
-          <%= hidden_field_tag :reward_id, reward.id %>
-          <%= hidden_field_tag :level, reward.reward_payload["level"] %>
-
-          <% if reward.reward_payload["level"].to_i == 2 %>
-            <%= select_tag :game_id,
-                  options_from_collection_for_select(public_games, :id, :game_title),
-                  include_blank: "Choose game" %>
-          <% end %>
-
-          <%= submit_tag "Redeem", class: "btn btn-success btn-sm" %>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
-</div>
-
-<h3>Redeemed Rewards</h3>
-<div class="reward-list redeemed">
-  <% redeemed_rewards.each do |reward| %>
-    <div class="reward-row">
-      <%= link_to reward.name.presence || "Reward ##{reward.id}", reward_path(reward) %>
-    </div>
-  <% end %>
-</div>
-
-<h3>Completed Rewards</h3>
-<div class="reward-list completed">
-  <% completed_rewards.each do |reward| %>
-    <div class="reward-row">
-      <%= link_to reward.name.presence || "Reward ##{reward.id}", reward_path(reward) %>
-    </div>
-  <% end %>
-</div>
+<%= render "reward_history_earned",
+      rewards: earned_rewards,
+      public_games: public_games %>
+<%= render "reward_history_redeemed", rewards: redeemed_rewards %>
+<%= render "reward_history_completed", rewards: completed_rewards %>

@@ -1,0 +1,12 @@
+<ul>
+  <li><%= link_to "Calendar", calendar_path %></li>
+  <li><%= link_to "Dashboard", dashboard_path %></li>
+  <li><%= link_to "Documentation", documents_path %></li>
+  <li><%= link_to "Gaming", games_path %></li>
+  <li><%= link_to "Goals", goals_path %></li>
+  <li><%= link_to "Reports", reports_path %></li>
+  <li><%= link_to "Rewards", rewards_path %></li>
+  <li><%= link_to "Tasks", tasks_path %></li>
+  <li><%= link_to "Feedback", new_feedback_path, class: "nav-link" %></li>
+  <li><%= button_to "Logout", destroy_user_session_path, method: :delete %></li>
+</ul>

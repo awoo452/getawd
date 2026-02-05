@@ -1,0 +1,32 @@
+<div class="reward-overlay">
+  <% if earned.present? && level == 2 %>
+    <%= form_with url: redeem_rewards_path, method: :post, local: true do %>
+      <%= hidden_field_tag :level, 2 %>
+      <%= select_tag :game_id,
+            options_from_collection_for_select(
+              public_games,
+              :id,
+              :game_title
+            ),
+            include_blank: "Choose a game" %>
+
+      <br><br>
+
+      <%= submit_tag "Redeem Level 2 Reward", class: "btn btn-success" %>
+    <% end %>
+  <% elsif earned.present? %>
+    <%= button_to "Redeem Reward",
+          redeem_rewards_path,
+          params: { level: level },
+          method: :post,
+          class: "btn btn-success" %>
+  <% elsif consumed %>
+    <strong>
+      All Level <%= level %> rewards claimed. Check back tomorrow.
+    </strong>
+  <% else %>
+    <strong>
+      Complete today’s Level <%= level %> tasks to unlock this reward
+    </strong>
+  <% end %>
+</div>

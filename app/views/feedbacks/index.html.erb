@@ -1,31 +1,6 @@
 <h1>Feedback</h1>
 
-<section class="dashboard-panel">
-  <h3>Open</h3>
-
-  <% @open_feedback.each do |fb| %>
-    <div class="summary-section">
-      <strong><%= fb.title %></strong>
-      <% if fb.section.present? %>
-        (<%= fb.section %>)
-      <% end %><br>
-      <%= fb.body %><br>
-      
-    </div>
-  <% end %>
-</section>
-
-<section class="dashboard-panel">
-  <h3>Completed</h3>
-
-  <% @completed_feedback.each do |fb| %>
-    <div class="summary-section">
-      <strong><%= fb.title %></strong>
-      <% if fb.commit_ref.present? %>
-        — commit: <%= fb.commit_ref %>
-      <% end %>
-    </div>
-  <% end %>
-</section>
+<%= render "feedback_list", title: "Open", feedback: @open_feedback, variant: :open %>
+<%= render "feedback_list", title: "Completed", feedback: @completed_feedback, variant: :completed %>
 
 <%= link_to "➕ New Feedback", new_feedback_path, class: "btn" %>
