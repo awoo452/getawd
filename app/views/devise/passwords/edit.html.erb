@@ -1,0 +1,39 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <h1 class="auth-title">Choose a new password</h1>
+    <p class="auth-subtitle">Make it a good one</p>
+
+    <% if resource.errors.any? %>
+      <div class="auth-errors">
+        <strong><%= pluralize(resource.errors.count, "error") %> prevented update:</strong>
+        <ul>
+          <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_with model: resource, as: resource_name, url: password_path(resource_name), local: true, method: :put, class: "auth-form" do |f| %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="auth-field">
+        <%= f.label :password, "New password" %>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+
+      <div class="auth-field">
+        <%= f.label :password_confirmation, "Confirm new password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="auth-actions">
+        <%= f.submit "Update password" %>
+      </div>
+    <% end %>
+
+    <div class="auth-links">
+      <%= link_to "Back to sign in", new_session_path(resource_name) %>
+    </div>
+  </div>
+</div>

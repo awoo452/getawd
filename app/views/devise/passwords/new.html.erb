@@ -1,0 +1,32 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <h1 class="auth-title">Reset password</h1>
+    <p class="auth-subtitle">We will email you a reset link</p>
+
+    <% if resource.errors.any? %>
+      <div class="auth-errors">
+        <strong><%= pluralize(resource.errors.count, "error") %> prevented reset:</strong>
+        <ul>
+          <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_with model: resource, as: resource_name, url: password_path(resource_name), local: true, class: "auth-form" do |f| %>
+      <div class="auth-field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="auth-actions">
+        <%= f.submit "Send reset link" %>
+      </div>
+    <% end %>
+
+    <div class="auth-links">
+      <%= link_to "Back to sign in", new_session_path(resource_name) %>
+    </div>
+  </div>
+</div>
