@@ -1,7 +1,9 @@
 <div class="landscaping-jobs">
   <h1 class="mt-0">AW Lawn & Landscape</h1>
   <%= render "services" %>
-  <%= render "contact" %>
+  <p class="landscaping-contact-link">
+    <%= link_to "Contact us", contact_path %>
+  </p>
   <hr class="mb-2">
   <%= render "jobs", jobs: @LandscapingJobs %>
 </div>
