@@ -1,0 +1,17 @@
+<div class="dashboard-panel tasks-container">
+  <h3><%= goal_icons["task"] %> | Tasks</h3>
+
+  <% in_progress_tasks.each do |task| %>
+    <%= render "shared/task_card", task: task %>
+  <% end %>
+
+  <h5>Not Started</h5>
+  <% not_started_tasks.each do |task| %>
+    <%= render "shared/task_card", task: task %>
+  <% end %>
+
+  <h5>On Hold</h5>
+  <% on_hold_tasks.each do |task| %>
+    <%= render "shared/task_card", task: task %>
+  <% end %>
+</div>

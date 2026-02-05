@@ -1,151 +1,34 @@
 <% goal_icons = defined?(GOAL_ICONS) ? GOAL_ICONS : {} %>
 <h1 class="page-title page-title--centered">Dashboard</h1>
 <section class="dashboard-wrapper">
-  <div class="dashboard-panel">
-    <div>
-      <h3>💡 Ideas</h3>
-      <div class="status-legend">
-        <div class="legend-item"><div class="color-box green"></div> Related Task Completed Today</div>
-        <div class="legend-item"><div class="color-box yellow"></div> 1–2 Days Ago</div>
-        <div class="legend-item"><div class="color-box red"></div> 3–6 Days Ago</div>
-        <div class="legend-item"><div class="color-box black"></div> 7+ Days</div>
-        <div class="legend-item"><div class="color-box gray"></div> Inactive</div>
-      </div>
-    </div>
-    <div class="ideas-indicator">
-      <% @ideas.each do |entry| %>
-        <div class="idea-box <%= entry[:color] %>">
-          <%= link_to entry[:emoji],
-            idea_path(entry[:id]),
-            class: "idea-link",
-            title: "#{entry[:goals_count]} goal(s), #{entry[:tasks_count]} task(s)" %>
-
-          <div class="idea-label"><%= entry[:title] %></div>
-
-          <div class="idea-stats">
-            <div class="completed">✅ <%= entry[:completed_time] %>m</div>
-            <div class="upcoming">⏳ <%= entry[:upcoming_time] %>m</div>
-            <div class="partial">➖ <%= entry[:partial_time] %>m</div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="time-legend">
-      <div class="legend-item">
-        ✅ Completed — Total actual minutes logged on finished tasks
-      </div>
-      <div class="legend-item">
-        ⏳ Upcoming — Remaining minutes (estimated − actual) for tasks not yet completed
-      </div>
-      <div class="legend-item">
-        ➖ Partial — Minutes already logged on tasks currently in progress
-      </div>
-    </div>
-
-    <div class="dashboard-nav">
-      <%= link_to "➕ New Task", new_task_path, class: "new-task-btn" %>
-      <%= link_to "➕ New Goal", new_goal_path, class: "new-goal-btn" %>
-    </div>
-  </div>
-
-  <div class="dashboard-panel">
-    <h3>📊 Summary</h3>
-    <div class="summary-section">
-      <strong>Goals:</strong>
-      Not Started: <%= link_to @goal_counts[:not_started], goals_path(status: 'not_started') %>,
-      In Progress: <%= link_to @goal_counts[:in_progress], goals_path(status: 'in_progress') %>,
-      On Hold: <%= link_to @goal_counts[:on_hold], goals_path(status: 'on_hold') %>,
-      Completed: <%= link_to @goal_counts[:completed], goals_path(status: 'completed', show_completed: 1) %>
-    </div>
-
-    <div class="summary-section">
-      <strong>Tasks:</strong>
-      Not Started: <%= link_to @task_counts[:not_started], tasks_path(status: 'not_started') %>,
-      In Progress: <%= link_to @task_counts[:in_progress], tasks_path(status: 'in_progress') %>,
-      On Hold: <%= link_to @task_counts[:on_hold], tasks_path(status: 'on_hold') %>,
-      Completed: <%= link_to @task_counts[:completed], tasks_path(status: 'completed') %>
-    </div>
-
-    <h3>📊 Quick Report (Today)</h3>
-    <div class="summary-section">
-      <strong>Due Today (Not Started):</strong>
-      Tasks: <%= link_to @due_today_tasks_not_started, tasks_path(status: 'not_started', due: Time.zone.today) %>,
-      Goals: <%= link_to @due_today_goals_not_started, goals_path(status: 'not_started', due: Time.zone.today) %><br>
-
-      <strong>Due Today (In Progress):</strong>
-      Tasks: <%= link_to @due_today_tasks_in_progress, tasks_path(status: 'in_progress', due: Time.zone.today) %>,
-      Goals: <%= link_to @due_today_goals_in_progress, goals_path(status: 'in_progress', due: Time.zone.today) %><br>
-
-      <strong>Due Today (On Hold):</strong>
-      Tasks: <%= link_to @due_today_tasks_on_hold, tasks_path(status: 'on_hold', due: Time.zone.today) %>,
-      Goals: <%= link_to @due_today_goals_on_hold, goals_path(status: 'on_hold', due: Time.zone.today) %><br>
-
-      <strong>Due Today (Completed):</strong>
-      Tasks: <%= link_to @due_today_tasks_completed, tasks_path(status: 'completed', due: Time.zone.today) %>,
-      Goals: <%= link_to @due_today_goals_completed, goals_path(status: 'completed', due: Time.zone.today) %>
-    </div>
-    
-    <div class="summary-section">
-      <strong>Time Remaining:</strong>
-      <%= @time_remaining_minutes_today %> min
-      (Est: <%= @total_estimated_minutes_today %> | Logged: <%= @total_actual_minutes_today %>)
-    </div>
-
-    <h3>🎁 Rewards / Vices:</h3>
-    <div class="summary-section">
-      <strong>Total:</strong> <%= @rewards_total_count %><br>
-      <strong>Available:</strong> <%= @rewards_available_count %><br>
-      <%= link_to 'View All Rewards', rewards_path, class: 'btn' %>
-    </div>
-
-    <h5 class="mb-0"><%= link_to "New Goal", new_goal_path %></h5>
-    <h5 class="mt-0"><%= link_to "New Task", new_task_path %></h5>
-  </div>
-
-  <div class="dashboard-panel goals-container">
-    <h3><%= goal_icons["goal"] %> | Goals</h3>
-    <div class="idea-status-legend">
-      <div class="legend-item"><div class="color-box not_started"></div> Not Started</div>
-      <div class="legend-item"><div class="color-box in_progress"></div> In Progress</div>
-      <div class="legend-item"><div class="color-box on_hold"></div> On Hold</div>
-    </div>
-
-    <% @in_progress_goals.each do |goal| %>
-      <%= render "shared/goal_card", goal: goal %>
-    <% end %>
-
-    <% @not_started_goals.each do |goal| %>
-      <%= render "shared/goal_card", goal: goal %>
-    <% end %>
-
-    <% @completed_goals.each do |goal| %>
-      <%= render "shared/goal_card", goal: goal %>
-    <% end %>
-  </div>
-
-  <div class="dashboard-panel tasks-container">
-    <h3><%= goal_icons["task"] %> | Tasks</h3>
-
-    <% @in_progress_tasks.each do |task| %>
-      <%= render "shared/task_card", task: task %>
-    <% end %>
-
-    <h5>Not Started</h5>
-    <% @not_started_tasks.each do |task| %>
-      <%= render "shared/task_card", task: task %>
-    <% end %>
-
-    <h5>On Hold</h5>
-    <% @on_hold_tasks.each do |task| %>
-      <%= render "shared/task_card", task: task %>
-    <% end %>
-  </div>
-
-  <div class="dashboard-panel completed-tasks-container">
-    <h3><%= goal_icons["task"] %> | Completed Tasks</h3>
-    <% @completed_tasks.each do |task| %>
-      <%= render "shared/task_card", task: task %>
-    <% end %>
-  </div>
+  <%= render "ideas_panel", ideas: @ideas %>
+  <%= render "summary_panel",
+        goal_counts: @goal_counts,
+        task_counts: @task_counts,
+        due_today_tasks_not_started: @due_today_tasks_not_started,
+        due_today_goals_not_started: @due_today_goals_not_started,
+        due_today_tasks_in_progress: @due_today_tasks_in_progress,
+        due_today_goals_in_progress: @due_today_goals_in_progress,
+        due_today_tasks_on_hold: @due_today_tasks_on_hold,
+        due_today_goals_on_hold: @due_today_goals_on_hold,
+        due_today_tasks_completed: @due_today_tasks_completed,
+        due_today_goals_completed: @due_today_goals_completed,
+        time_remaining_minutes_today: @time_remaining_minutes_today,
+        total_estimated_minutes_today: @total_estimated_minutes_today,
+        total_actual_minutes_today: @total_actual_minutes_today,
+        rewards_total_count: @rewards_total_count,
+        rewards_available_count: @rewards_available_count %>
+  <%= render "goals_panel",
+        goal_icons: goal_icons,
+        in_progress_goals: @in_progress_goals,
+        not_started_goals: @not_started_goals,
+        completed_goals: @completed_goals %>
+  <%= render "tasks_panel",
+        goal_icons: goal_icons,
+        in_progress_tasks: @in_progress_tasks,
+        not_started_tasks: @not_started_tasks,
+        on_hold_tasks: @on_hold_tasks %>
+  <%= render "completed_tasks_panel",
+        goal_icons: goal_icons,
+        completed_tasks: @completed_tasks %>
 </section>

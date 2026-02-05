@@ -1,0 +1,20 @@
+<div class="dashboard-panel goals-container">
+  <h3><%= goal_icons["goal"] %> | Goals</h3>
+  <div class="idea-status-legend">
+    <div class="legend-item"><div class="color-box not_started"></div> Not Started</div>
+    <div class="legend-item"><div class="color-box in_progress"></div> In Progress</div>
+    <div class="legend-item"><div class="color-box on_hold"></div> On Hold</div>
+  </div>
+
+  <% in_progress_goals.each do |goal| %>
+    <%= render "shared/goal_card", goal: goal %>
+  <% end %>
+
+  <% not_started_goals.each do |goal| %>
+    <%= render "shared/goal_card", goal: goal %>
+  <% end %>
+
+  <% completed_goals.each do |goal| %>
+    <%= render "shared/goal_card", goal: goal %>
+  <% end %>
+</div>

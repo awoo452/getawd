@@ -1,0 +1,6 @@
+<div class="dashboard-panel completed-tasks-container">
+  <h3><%= goal_icons["task"] %> | Completed Tasks</h3>
+  <% completed_tasks.each do |task| %>
+    <%= render "shared/task_card", task: task %>
+  <% end %>
+</div>

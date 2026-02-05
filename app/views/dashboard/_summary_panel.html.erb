@@ -1,0 +1,53 @@
+<div class="dashboard-panel">
+  <h3>📊 Summary</h3>
+  <div class="summary-section">
+    <strong>Goals:</strong>
+    Not Started: <%= link_to goal_counts[:not_started], goals_path(status: "not_started") %>,
+    In Progress: <%= link_to goal_counts[:in_progress], goals_path(status: "in_progress") %>,
+    On Hold: <%= link_to goal_counts[:on_hold], goals_path(status: "on_hold") %>,
+    Completed: <%= link_to goal_counts[:completed], goals_path(status: "completed", show_completed: 1) %>
+  </div>
+
+  <div class="summary-section">
+    <strong>Tasks:</strong>
+    Not Started: <%= link_to task_counts[:not_started], tasks_path(status: "not_started") %>,
+    In Progress: <%= link_to task_counts[:in_progress], tasks_path(status: "in_progress") %>,
+    On Hold: <%= link_to task_counts[:on_hold], tasks_path(status: "on_hold") %>,
+    Completed: <%= link_to task_counts[:completed], tasks_path(status: "completed") %>
+  </div>
+
+  <h3>📊 Quick Report (Today)</h3>
+  <div class="summary-section">
+    <strong>Due Today (Not Started):</strong>
+    Tasks: <%= link_to due_today_tasks_not_started, tasks_path(status: "not_started", due: Time.zone.today) %>,
+    Goals: <%= link_to due_today_goals_not_started, goals_path(status: "not_started", due: Time.zone.today) %><br>
+
+    <strong>Due Today (In Progress):</strong>
+    Tasks: <%= link_to due_today_tasks_in_progress, tasks_path(status: "in_progress", due: Time.zone.today) %>,
+    Goals: <%= link_to due_today_goals_in_progress, goals_path(status: "in_progress", due: Time.zone.today) %><br>
+
+    <strong>Due Today (On Hold):</strong>
+    Tasks: <%= link_to due_today_tasks_on_hold, tasks_path(status: "on_hold", due: Time.zone.today) %>,
+    Goals: <%= link_to due_today_goals_on_hold, goals_path(status: "on_hold", due: Time.zone.today) %><br>
+
+    <strong>Due Today (Completed):</strong>
+    Tasks: <%= link_to due_today_tasks_completed, tasks_path(status: "completed", due: Time.zone.today) %>,
+    Goals: <%= link_to due_today_goals_completed, goals_path(status: "completed", due: Time.zone.today) %>
+  </div>
+
+  <div class="summary-section">
+    <strong>Time Remaining:</strong>
+    <%= time_remaining_minutes_today %> min
+    (Est: <%= total_estimated_minutes_today %> | Logged: <%= total_actual_minutes_today %>)
+  </div>
+
+  <h3>🎁 Rewards / Vices:</h3>
+  <div class="summary-section">
+    <strong>Total:</strong> <%= rewards_total_count %><br>
+    <strong>Available:</strong> <%= rewards_available_count %><br>
+    <%= link_to "View All Rewards", rewards_path, class: "btn" %>
+  </div>
+
+  <h5 class="mb-0"><%= link_to "New Goal", new_goal_path %></h5>
+  <h5 class="mt-0"><%= link_to "New Task", new_task_path %></h5>
+</div>
