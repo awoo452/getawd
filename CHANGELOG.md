@@ -7,11 +7,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [1.23.5] 2026/02/04
 
 ### Changed
-- Made reward redemption require an explicit level (or reward_id) to avoid silent fallback to Level 1.
+- Extracted goal index filtering/sorting into `Goals::IndexData`.
+- Extracted goal creation into `Goals::CreateGoal`.
+- Extracted goal updates into `Goals::UpdateGoal`.
+- Extracted goal deletion into `Goals::DestroyGoal`.
 
 ## [1.23.4] 2026/02/04
 
 ### Changed
+- Made reward redemption require an explicit level (or reward_id) to avoid silent fallback to Level 1.
 - Extracted task creation/repeat logic into `Tasks::CreateTask`.
 - Extracted task update and complete-on-time flows into `Tasks::UpdateTask` and `Tasks::CompleteOnTime`.
 - Extracted task index filtering/sorting into `Tasks::IndexData`.

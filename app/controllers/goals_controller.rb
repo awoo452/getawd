@@ -4,29 +4,8 @@ class GoalsController < ApplicationController
 
   # GET /goals or /goals.json
   def index
-    scope = Goal.all
-
-    if params[:status].present? && Goal.statuses.key?(params[:status])
-      scope = scope.where(status: Goal.statuses[params[:status]])
-    end
-
-    if params[:due].present?
-      begin
-        date = Time.zone.parse(params[:due]).to_date
-        scope = scope.where(due_date: date)
-      rescue ArgumentError
-      end
-    end
-
-    scope = scope.where("title ILIKE ?", "%#{params[:search]}%") if params[:search].present?
-    scope = scope.includes(:idea)
-
-    @goals_by_status = {
-      in_progress: scope.in_progress.order(due_date: :asc),
-      not_started: scope.not_started.order(due_date: :asc),
-      on_hold: scope.on_hold.order(due_date: :asc),
-      completed: scope.completed.order(due_date: :asc)
-    }
+    result = Goals::IndexData.call(params: params)
+    @goals_by_status = result.goals_by_status
   end
 
 
@@ -45,10 +24,11 @@ class GoalsController < ApplicationController
 
   # POST /goals or /goals.json
   def create
-    @goal = Goal.new(goal_params)
+    result = Goals::CreateGoal.call(params: goal_params)
+    @goal = result.goal
 
     respond_to do |format|
-      if @goal.save
+      if result.success?
         format.html { redirect_to @goal, notice: "Goal was successfully created." }
         format.json { render :show, status: :created, location: @goal }
       else
@@ -60,8 +40,10 @@ class GoalsController < ApplicationController
 
   # PATCH/PUT /goals/1 or /goals/1.json
   def update
+    result = Goals::UpdateGoal.call(goal_id: @goal.id, params: goal_params)
+    @goal = result.goal
     respond_to do |format|
-      if @goal.update(goal_params)
+      if result.success?
         format.html { redirect_to @goal, notice: "Goal was successfully updated." }
         format.json { render :show, status: :ok, location: @goal }
       else
@@ -73,7 +55,7 @@ class GoalsController < ApplicationController
 
   # DELETE /goals/1 or /goals/1.json
   def destroy
-    @goal.destroy!
+    Goals::DestroyGoal.call(goal_id: @goal.id)
 
     respond_to do |format|
       format.html { redirect_to goals_path, status: :see_other, notice: "Goal was successfully destroyed." }
