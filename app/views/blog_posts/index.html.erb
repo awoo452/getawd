@@ -1,31 +1,8 @@
 <section class="blog-posts">
   <h2 class="page-title">Blog Posts</h2>
-  <ul>
-    <% @blog_posts.each do |blog_post| %>
-      <li>
-        <h3><%= blog_post.title %></h3>
-        <p><%= blog_post.description %></p>
-
-        <% if blog_post.image.present? %>
-          <%= image_tag s3_url("blog/#{blog_post.image}") %>
-        <% end %>
-
-        <div>
-          <%= link_to 'Read More', blog_post_path(blog_post) %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-
-  <% if @blog_posts_total_pages.to_i > 1 %>
-    <nav class="pagination">
-      <% if @blog_posts_page > 1 %>
-        <%= link_to "Prev", blog_posts_path(page: @blog_posts_page - 1) %>
-      <% end %>
-      <span>Page <%= @blog_posts_page %> of <%= @blog_posts_total_pages %></span>
-      <% if @blog_posts_page < @blog_posts_total_pages %>
-        <%= link_to "Next", blog_posts_path(page: @blog_posts_page + 1) %>
-      <% end %>
-    </nav>
-  <% end %>
+  <%= render "blog_post_list", blog_posts: @blog_posts %>
+  <%= render "shared/pagination",
+        page: @blog_posts_page,
+        total_pages: @blog_posts_total_pages,
+        path_helper: :blog_posts_path %>
 </section>

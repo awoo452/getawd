@@ -1,32 +1,5 @@
 <div class="dashboard-panel">
-  <div class="idea-status-legend">
-    <div class="legend-item"><div class="color-box not_started"></div> Not Started</div>
-    <div class="legend-item"><div class="color-box in_progress"></div> In Progress</div>
-    <div class="legend-item"><div class="color-box on_hold"></div> On Hold</div>
-    <div class="legend-item"><div class="color-box completed"></div> Completed</div>
-  </div>
+  <%= render "legend" %>
   <h1><%= @emoji %> <%= @idea.title %></h1>
-
-  <% @idea.goals.each do |goal| %>
-    <div class="goal-summary <%= goal.status %>">
-      <h2>
-        🎯 <%= link_to goal.title, goal_path(goal) %>
-      </h2>
-      <p><%= goal.description %></p>
-      <p>Status: <%= goal.status %></p>
-      <p>Due: <%= goal.due_date %></p>
-
-      <details class="task-toggle">
-        <summary>Tasks</summary>
-        <% goal.tasks.each do |task| %>
-          <div class="task-card <%= task.status %>">
-            <h3>📝 <%= link_to task.task_name, task_path(task) %></h3>
-            <p><%= task.description %></p>
-            <p>Due: <%= task.due_date %></p>
-            <p>Status: <%= task.status %></p>
-          </div>
-        <% end %>
-      </details>
-    </div>
-  <% end %>
+  <%= render "goals", idea: @idea %>
 </div>
