@@ -1,79 +1,8 @@
 <section id="game-container">
   <h2><%= @game.game_name %></h2>
   <div id="game">
-    <% if @game.youtube_id.present? || @game.youtube_playlist_id.present? %>
-      <h3 class="m-0">Related Videos</h3>
-      <ul>
-        <% if @game.youtube_id.present? %>
-          <li>
-            <h4>Featured</h4>
-            <iframe src="https://www.youtube.com/embed/<%= @game.youtube_id %>" allowfullscreen></iframe>
-          </li>
-        <% end %>
-
-        <% if @game.youtube_playlist_id.present? %>
-          <li>
-            <h4>Playlist</h4>
-            <iframe src="https://www.youtube.com/embed/videoseries?list=<%= @game.youtube_playlist_id %>" allowfullscreen></iframe>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-
-    <% if @game.progress_data.present? %>
-      <% data =
-        begin
-          @game.progress_data.is_a?(String) ? JSON.parse(@game.progress_data) : (@game.progress_data || {})
-        rescue JSON::ParserError
-          {}
-        end
-      %>
-
-      <% quick_info   = data["quick_info"]   || [] %>
-      <% achievements = data["achievements"] || [] %>
-      <% stats        = data["stats"]        || {} %>
-
-      <h3>Game Progress & Achievements</h3>
-
-      <% if quick_info.any? %>
-        <h4>Quick Info</h4>
-        <ul>
-          <% quick_info.each do |info| %>
-            <li><%= info %></li>
-          <% end %>
-        </ul>
-      <% end %>
-
-      <% if achievements.any? %>
-        <h4>Achievements</h4>
-        <ul id="achievements">
-          <% achievements.each do |ach| %>
-            <li id="achievement">
-              <% if ach.is_a?(Hash) %>
-                <%= link_to ach["text"], ach["url"], target: "_blank" %>
-              <% else %>
-                <%= ach %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-
-      <% if stats.any? %>
-        <h4>Stats</h4>
-        <ul>
-          <% stats.each do |key, value| %>
-            <li><strong><%= key.to_s.humanize %>:</strong> <%= value %></li>
-          <% end %>
-        </ul>
-      <% end %>
-    <% end %>
-
-    <% if @game.game_image.present? %>
-      <h3>Image Gallery</h3>
-      <ul>
-        <li><%= image_tag(game_image_url(@game), alt: @game.game_name) %></li>
-      </ul>
-    <% end %>
+    <%= render "videos", game: @game %>
+    <%= render "progress", game: @game %>
+    <%= render "image_gallery", game: @game %>
   </div>
 </section>

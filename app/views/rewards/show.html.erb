@@ -1,66 +1,8 @@
 <% return unless @reward.present? %>
 
-<h2><%= @reward.name %></h2>
-
-<p>
-  <strong>Status:</strong>
-  <%= @reward.kind %>
-</p>
-
-<p>
-  <strong>Created:</strong>
-  <%= @reward.created_at %>
-</p>
-
-<h3>Description</h3>
-
-<% if @reward.errors.any? %>
-  <div class="flash-alert">
-    <strong>Update failed:</strong>
-    <%= @reward.errors.full_messages.join(", ") %>
-  </div>
-<% end %>
-
-<%= form_with model: @reward, method: :patch do |f| %>
-  <%= f.text_area :description, rows: 4 %>
-  <br><br>
-
-  <% if @reward.kind == "redeemed" %>
-    <div class="field">
-      <%= f.label :completed_reward_url, "Raw footage path" %><br>
-      <%= f.text_field :completed_reward_url %>
-    </div>
-
-    <div class="field">
-      <%= f.label :completed_reward_notes, "Session notes" %><br>
-      <%= f.text_area :completed_reward_notes, rows: 3 %>
-    </div>
-
-    <%= f.hidden_field :kind, value: "completed" %>
-    <%= f.submit "Mark Reward as Completed" %>
-  <% else %>
-    <%= f.submit "Save Notes" %>
-  <% end %>
-<% end %>
-
-<% if @reward.completed_reward_url.present? %>
-  <p>
-    <strong>Raw footage path:</strong><br>
-    <code class="select-all"><%= @reward.completed_reward_url %></code>
-  </p>
-
-  <% if @reward.completed_reward_notes.present? %>
-    <p>
-      <strong>Notes:</strong><br>
-      <%= simple_format(@reward.completed_reward_notes) %>
-    </p>
-  <% end %>
-<% end %>
-
-<h3>Payload</h3>
-
-<pre>
-<%= JSON.pretty_generate(@reward.reward_payload || {}) %>
-</pre>
+<%= render "reward_header", reward: @reward %>
+<%= render "reward_form", reward: @reward %>
+<%= render "reward_details", reward: @reward %>
+<%= render "reward_payload", reward: @reward %>
 
 <%= link_to "Back to Rewards", rewards_path %>

@@ -1,0 +1,17 @@
+<section class="featured-projects">
+  <h2>Featured Projects</h2>
+  <ul>
+    <% featured_projects.each do |project| %>
+      <li>
+        <h3><%= project.title %></h3>
+        <p><%= project.description %></p>
+        <%= image_tag(project_image_url(project.image)) if project.image.present? %>
+        <div>
+          <% if project.url.present? %>
+            <a href="<%= project.url %>">View Project</a>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</section>

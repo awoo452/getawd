@@ -1,0 +1,18 @@
+<% if game.youtube_id.present? || game.youtube_playlist_id.present? %>
+  <h3 class="m-0">Related Videos</h3>
+  <ul>
+    <% if game.youtube_id.present? %>
+      <li>
+        <h4>Featured</h4>
+        <iframe src="https://www.youtube.com/embed/<%= game.youtube_id %>" allowfullscreen></iframe>
+      </li>
+    <% end %>
+
+    <% if game.youtube_playlist_id.present? %>
+      <li>
+        <h4>Playlist</h4>
+        <iframe src="https://www.youtube.com/embed/videoseries?list=<%= game.youtube_playlist_id %>" allowfullscreen></iframe>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

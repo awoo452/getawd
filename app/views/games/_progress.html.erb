@@ -1,0 +1,48 @@
+<% if game.progress_data.present? %>
+  <% data =
+    begin
+      game.progress_data.is_a?(String) ? JSON.parse(game.progress_data) : (game.progress_data || {})
+    rescue JSON::ParserError
+      {}
+    end
+  %>
+
+  <% quick_info = data["quick_info"] || [] %>
+  <% achievements = data["achievements"] || [] %>
+  <% stats = data["stats"] || {} %>
+
+  <h3>Game Progress & Achievements</h3>
+
+  <% if quick_info.any? %>
+    <h4>Quick Info</h4>
+    <ul>
+      <% quick_info.each do |info| %>
+        <li><%= info %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% if achievements.any? %>
+    <h4>Achievements</h4>
+    <ul id="achievements">
+      <% achievements.each do |ach| %>
+        <li id="achievement">
+          <% if ach.is_a?(Hash) %>
+            <%= link_to ach["text"], ach["url"], target: "_blank" %>
+          <% else %>
+            <%= ach %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% if stats.any? %>
+    <h4>Stats</h4>
+    <ul>
+      <% stats.each do |key, value| %>
+        <li><strong><%= key.to_s.humanize %>:</strong> <%= value %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
