@@ -7,6 +7,13 @@ class DailyRewardEarner
 
     return unless level_completed?(level, date)
 
+    already = Reward.where(scope: "level")
+                    .where("reward_payload ->> 'earned_date' = ?", date.to_s)
+                    .where("reward_payload ->> 'level' = ?", level.to_s)
+                    .exists?
+
+    return if already
+
     Reward.create!(
       name: "Level #{level} Earned",
       kind: "earned",
@@ -16,8 +23,6 @@ class DailyRewardEarner
         earned_date: date.to_s
       }
     )
-  rescue ActiveRecord::RecordNotUnique
-    # already earned, ignore
   end
 
   def self.level_completed?(level, date)
