@@ -55,10 +55,10 @@
 <div class="blackjack-controls">
   <% if session[:state] == "ready" %>
     <p><strong>Place your bet:</strong></p>
-    <%= button_to "+1", bet_blackjack_path(amount: 1), method: :post %>
-    <%= button_to "+5", bet_blackjack_path(amount: 5), method: :post %>
-    <%= button_to "+25", bet_blackjack_path(amount: 25), method: :post %>
-    <%= button_to "+100", bet_blackjack_path(amount: 100), method: :post %>
+    <%= button_to "+1", bet_blackjack_path, params: { amount: 1 }, method: :post %>
+    <%= button_to "+5", bet_blackjack_path, params: { amount: 5 }, method: :post %>
+    <%= button_to "+25", bet_blackjack_path, params: { amount: 25 }, method: :post %>
+    <%= button_to "+100", bet_blackjack_path, params: { amount: 100 }, method: :post %>
     <%= button_to "Clear Bet", clear_bet_blackjack_path, method: :post %>
     <% if session[:bet] > 0 %>
       <%= button_to "Deal (#{session[:bet]})", deal_blackjack_path, method: :post %>
