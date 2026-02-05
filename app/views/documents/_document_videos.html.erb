@@ -1,0 +1,11 @@
+<% youtube_ids = document.youtube_id.is_a?(Array) ? document.youtube_id : [] %>
+<% if youtube_ids.any? %>
+  <h3>Videos</h3>
+  <% youtube_ids.each do |video_id| %>
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/<%= video_id %>">
+    </iframe>
+  <% end %>
+<% end %>

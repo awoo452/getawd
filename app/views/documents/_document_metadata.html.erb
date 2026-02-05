@@ -1,0 +1,9 @@
+<% metadata = document.metadata.is_a?(Hash) ? document.metadata : {} %>
+<% if metadata.any? %>
+  <h3>Related Info</h3>
+  <ul>
+    <% metadata.each do |key, value| %>
+      <li><strong><%= key.humanize %>:</strong> <%= value %></li>
+    <% end %>
+  </ul>
+<% end %>

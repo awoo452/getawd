@@ -1,30 +1,9 @@
 <section class="games">
   <h2>Gaming Highlights</h2>
   <h3>Some of our favorite video game highlights, how-tos, and other happenings with the games we play.</h3>
-  <ul>
-
-    <% @games.each do |game| %>
-      <li>
-        <h2><%= game.game_name %></h2>
-        <% if game.game_image.present? %>
-          <div>
-            <%= image_tag(game_image_url(game), alt: game.game_name) %>
-          </div>
-        <% end %>
-        <div><%= link_to 'See More', game_path(game) %></div>
-      </li>
-    <% end %>
-  </ul>
-
-  <% if @games_total_pages.to_i > 1 %>
-    <nav class="pagination">
-      <% if @games_page > 1 %>
-        <%= link_to "Prev", games_path(page: @games_page - 1) %>
-      <% end %>
-      <span>Page <%= @games_page %> of <%= @games_total_pages %></span>
-      <% if @games_page < @games_total_pages %>
-        <%= link_to "Next", games_path(page: @games_page + 1) %>
-      <% end %>
-    </nav>
-  <% end %>
+  <%= render "game_list", games: @games %>
+  <%= render "shared/pagination",
+        page: @games_page,
+        total_pages: @games_total_pages,
+        path_helper: :games_path %>
 </section>

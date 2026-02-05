@@ -1,0 +1,15 @@
+<% if blog_post.image.present? %>
+  <div class="img">
+    <%= image_tag s3_url("blog/#{blog_post.image}") %>
+  </div>
+<% end %>
+
+<div class="title">
+  <h1 class="page-title"><%= blog_post.title %></h1>
+</div>
+
+<% if blog_post.description.present? %>
+  <div class="description">
+    <p><%= blog_post.description %></p>
+  </div>
+<% end %>

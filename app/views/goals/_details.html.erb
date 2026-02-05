@@ -1,0 +1,12 @@
+<h2><%= GOAL_ICONS[goal.category] || "📝" %> | <%= goal.title %></h2>
+
+<p><strong>Description:</strong> <%= goal.description %></p>
+<%= render "shared/smart_show", record: goal %>
+<p><strong>Due date:</strong> <%= goal.due_date %></p>
+<p><strong>Priority:</strong> <%= goal.priority %></p>
+<p><strong>Category:</strong> <%= goal.category %></p>
+<p><strong>Status:</strong> <%= goal.status %></p>
+<% if goal.on_hold? && goal.hold_until.present? %>
+  <p><strong>Reopens:</strong> <%= l(goal.hold_until, format: :long) %></p>
+<% end %>
+<p><strong>Completed at:</strong> <%= goal.completed_at %></p>

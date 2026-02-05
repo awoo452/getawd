@@ -1,0 +1,20 @@
+<% subheadings = document.subheadings || [] %>
+<% body = document.body || [] %>
+<% images = document.images || [] %>
+
+<% subheadings.each_with_index do |subheading, index| %>
+  <h3><%= subheading %></h3>
+  <p><%= body[index].to_s %></p>
+
+  <% img = images[index] %>
+  <% if img.present? && img["file"].present? %>
+    <figure>
+      <%= image_tag(
+            document_image_url(document, img),
+            alt: img["alt"]
+      ) %>
+
+      <figcaption><%= img["caption"] %></figcaption>
+    </figure>
+  <% end %>
+<% end %>

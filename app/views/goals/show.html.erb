@@ -1,26 +1,7 @@
 <div class="goals-list">
   <div class="goal-card <%= @goal.status.humanize %>">
-    <h2><%= GOAL_ICONS[@goal.category] || "📝" %> | <%= @goal.title %></h2>
-
-    <p><strong>Description:</strong> <%= @goal.description %></p>
-    <%= render "shared/smart_show", record: @goal %>
-    <p><strong>Due date:</strong> <%= @goal.due_date %></p>
-    <p><strong>Priority:</strong> <%= @goal.priority %></p>
-    <p><strong>Category:</strong> <%= @goal.category %></p>
-    <p><strong>Status:</strong> <%= @goal.status %></p>
-    <% if @goal.on_hold? && @goal.hold_until.present? %>
-      <p><strong>Reopens:</strong> <%= l(@goal.hold_until, format: :long) %></p>
-    <% end %>
-    <p><strong>Completed at:</strong> <%= @goal.completed_at %></p>
+    <%= render "details", goal: @goal %>
   </div>
 </div>
 
-<ul class="actions-list">
-  <li><%= link_to "#{GOAL_ICONS["edit"]}#{GOAL_ICONS["goal"]}", edit_goal_path(@goal) %>Edit this Goal</li>
-  <li><%= link_to "#{GOAL_ICONS["back"]}#{GOAL_ICONS["goal"]}", goals_path %>Back to Goals</li>
-  <li class="action-divider"><hr></li>
-  <li><%= link_to "#{GOAL_ICONS["task"]}", tasks_path %>Go to Tasks</li>
-  <li><%= link_to "#{GOAL_ICONS["calendar"]}", calendar_path %>Go to Calendar</li>
-  <li class="action-divider"><hr></li>
-  <li><%= button_to 'Delete Goal', @goal, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-</ul>
+<%= render "nav", goal: @goal %>
