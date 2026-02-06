@@ -1,13 +1,18 @@
 <section class="documents">
   <h2>Documents</h2>
-  <ul>
-  <% @documents.each do |document| %>
-    <li>
-    <%= render document %>
-    <%= link_to "Show this document", document %>
-    </li>
+  <% @documents_by_category.sort_by { |category, _| category.to_s.downcase }.each do |category, documents| %>
+    <section class="documents-category">
+      <h3><%= category.to_s.titleize %></h3>
+      <ul>
+        <% documents.each do |document| %>
+          <li>
+            <%= render document %>
+            <%= link_to "Show this document", document %>
+          </li>
+        <% end %>
+      </ul>
+    </section>
   <% end %>
-</ul>
 
 <% if @documents_total_pages.to_i > 1 %>
   <nav class="pagination">
