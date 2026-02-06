@@ -1,13 +1,12 @@
 <div id="<%= dom_id document %>">
-  <p>
-    <%= document.title %>
-  </p>
+  <h3><%= document.title %></h3>
 
   <% if document.images.present? %>
     <% img = document.images.first %>
     <% if img.present? && img["file"].present? %>
-      <%= image_tag document_image_url(document, img),
-            style: "max-width:150px" %>
+      <div class="card-image-frame">
+        <%= image_tag document_image_url(document, img), class: "card-image" %>
+      </div>
     <% end %>
   <% end %>
 

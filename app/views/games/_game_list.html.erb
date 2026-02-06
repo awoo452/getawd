@@ -3,8 +3,8 @@
     <li>
       <h2><%= game.game_name %></h2>
       <% if game.game_image.present? %>
-        <div>
-          <%= image_tag(game_image_url(game), alt: game.game_name) %>
+        <div class="card-image-frame">
+          <%= image_tag(game_image_url(game), alt: game.game_name, class: "card-image") %>
         </div>
       <% end %>
       <div><%= link_to "See More", game_path(game) %></div>

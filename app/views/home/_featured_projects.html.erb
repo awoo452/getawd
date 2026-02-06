@@ -5,7 +5,11 @@
       <li>
         <h3><%= project.title %></h3>
         <p><%= project.description %></p>
-        <%= image_tag(project_image_url(project.image)) if project.image.present? %>
+        <% if project.image.present? %>
+          <div class="card-image-frame">
+            <%= image_tag(project_image_url(project.image), class: "card-image") %>
+          </div>
+        <% end %>
         <div>
           <% if project.url.present? %>
             <a href="<%= project.url %>">View Project</a>
