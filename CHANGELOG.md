@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.23.32] 2026/02/06
+
+### Changed
+- Removed pagination from docs section because ChatGPT can do the thing where they tell you they implement pagination but what actually happens is they paginate most of the shit and hope you won't notice the 2 or 3 missing articles that aren't called because you let a robot do a man's job.
+
 ## [1.23.31] 2026/02/06
 
 ### Changed

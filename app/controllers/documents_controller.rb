@@ -9,8 +9,6 @@ class DocumentsController < ApplicationController
     @documents_by_category = @documents.group_by do |document|
       document_category(document) || "uncategorized"
     end
-    @documents_page = data.documents_page
-    @documents_total_pages = data.documents_total_pages
   end
 
   def show_by_slug
