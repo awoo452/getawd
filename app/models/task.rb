@@ -21,6 +21,13 @@ class Task < ApplicationRecord
   }
 
   validates :due_date, presence: true
+  validates :priority,
+    numericality: {
+      only_integer: true,
+      allow_nil: true,
+      greater_than_or_equal_to: 1,
+      less_than_or_equal_to: 5
+    }
   validates :estimated_time, numericality: true
   validates :actual_time, numericality: true
 

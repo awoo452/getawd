@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.23.33] 2026/02/06
+
+### Changed
+- Standardized priority levels to 1–5 across the app.
+- Calendar daily view now shows Levels 1–5.
+- Rewards level panel now includes Levels 1–5.
+- Daily reward earning now runs for Levels 1–5 only.
+- Redeem flow rejects invalid reward levels.
+
+### Fixed
+- Prevented goals/tasks from accepting priority values outside 1–5.
+
 ## [1.23.32] 2026/02/06
 
 ### Changed

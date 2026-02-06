@@ -9,6 +9,6 @@
 </div>
 
 <div class="form-field">
-  <%= form.label :priority %>
-  <%= form.number_field :priority, class: "form-input" %>
+  <%= form.label :priority, "Priority (1-5)" %>
+  <%= form.number_field :priority, class: "form-input", min: 1, max: 5, step: 1 %>
 </div>

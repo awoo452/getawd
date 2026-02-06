@@ -1,8 +1,9 @@
 # app/services/daily_reward_earner.rb
 class DailyRewardEarner
-  LEVELS = [1, 2, 3].freeze
+  LEVELS = [1, 2, 3, 4, 5].freeze
 
   def self.run_for_level(level, date = Time.zone.today)
+    return unless LEVELS.include?(level)
     return unless date == Time.zone.today
 
     return unless level_completed?(level, date)

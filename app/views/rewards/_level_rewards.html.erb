@@ -1,6 +1,6 @@
 <h3>Today’s Level Rewards</h3>
 
-<% [1, 2, 3].each do |level| %>
+<% (1..5).each do |level| %>
   <% earned = earned_by_level[level] %>
   <% consumed = redeemed_levels.include?(level) %>
 

@@ -2,6 +2,7 @@
 module Rewards
   class RedeemLevel
     Result = Struct.new(:success?, :alert, :notice, keyword_init: true)
+    LEVELS = (1..5).freeze
 
     def self.call(level:, reward_id: nil, game_id: nil, today: Time.zone.today)
       new(level: level, reward_id: reward_id, game_id: game_id, today: today).call
@@ -18,11 +19,17 @@ module Rewards
       if @reward_id.blank? && (@level.nil? || @level <= 0)
         return Result.new(success?: false, alert: "Reward level is required.")
       end
+      if @reward_id.blank? && !LEVELS.cover?(@level)
+        return Result.new(success?: false, alert: "Invalid reward level.")
+      end
 
       earned_reward = find_earned_reward
 
       return Result.new(success?: false, alert: "No reward earned for Level #{@level} today.") unless earned_reward
       return Result.new(success?: false, alert: "Invalid reward selection.") unless valid_level_reward?(earned_reward)
+      unless LEVELS.cover?(earned_reward.reward_payload["level"].to_i)
+        return Result.new(success?: false, alert: "Invalid reward level.")
+      end
 
       apply_reward_level!(earned_reward) if @reward_id.present?
       payload_result = build_payload(earned_reward)
@@ -57,7 +64,7 @@ module Rewards
 
     def apply_reward_level!(reward)
       reward_level = reward.reward_payload["level"].to_i
-      @level = reward_level if reward_level.positive?
+      @level = reward_level if LEVELS.cover?(reward_level)
     end
 
     def build_payload(earned_reward)

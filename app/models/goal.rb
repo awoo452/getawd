@@ -20,6 +20,13 @@ class Goal < ApplicationRecord
     completed: 3
   }
 
+  validates :priority,
+    numericality: {
+      only_integer: true,
+      allow_nil: true,
+      greater_than_or_equal_to: 1,
+      less_than_or_equal_to: 5
+    }
   validates :title, uniqueness: {
     scope: :idea_id,
     case_sensitive: false
