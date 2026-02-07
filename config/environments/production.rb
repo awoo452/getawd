@@ -101,4 +101,8 @@ Rails.application.configure do
   allowed_hosts += ENV.fetch("APP_HOSTS", "").split(",").map(&:strip).reject(&:blank?)
   allowed_hosts = ["getawd.com", "www.getawd.com"] if allowed_hosts.empty?
   allowed_hosts.each { |host| config.hosts << host }
+
+  config.host_authorization = {
+    response_app: ->(_env) { [403, { "Content-Type" => "text/plain" }, ["You don't have authorization to view this page. If ur admin maybe look at ur APP_HOST(S) or smt"]] }
+  }
 end
