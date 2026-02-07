@@ -4,10 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
 ## [1.23.39] 2026/02/07
 
 ### Changed
 - Normalized query params for goals/tasks filters and sorting to keep inputs predictable.
+- Surface invalid filter params for goals/tasks instead of silently skipping them.
+- Guarded date normalization when parsing fails to avoid nil to_date errors.
 
 ## [1.23.38] 2026/02/07
 

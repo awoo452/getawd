@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   def index
     result = Tasks::IndexData.call(params: params)
     @tasks_by_status = result.tasks_by_status
+    flash.now[:alert] = "Invalid filters: #{result.errors.join(', ')}" if result.errors.any?
   end
 
   def show

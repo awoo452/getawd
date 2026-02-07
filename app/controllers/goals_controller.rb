@@ -6,6 +6,7 @@ class GoalsController < ApplicationController
   def index
     result = Goals::IndexData.call(params: params)
     @goals_by_status = result.goals_by_status
+    flash.now[:alert] = "Invalid filters: #{result.errors.join(', ')}" if result.errors.any?
   end
 
 

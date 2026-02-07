@@ -17,7 +17,10 @@ module Params
     def date(value)
       return nil if value.blank?
 
-      Time.zone.parse(value.to_s).to_date
+      parsed = Time.zone.parse(value.to_s)
+      return nil unless parsed
+
+      parsed.to_date
     rescue ArgumentError, TypeError
       nil
     end
