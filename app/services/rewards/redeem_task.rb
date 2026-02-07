@@ -8,11 +8,15 @@ module Rewards
     end
 
     def initialize(reward_id:)
-      @reward_id = reward_id
+      @raw_reward_id = reward_id
+      @reward_id = @raw_reward_id.present? ? Params::Normalize.integer(@raw_reward_id) : nil
     end
 
     def call
-      reward = Reward.find(@reward_id)
+      return Result.new(success?: false, alert: "Invalid reward selection.") if @raw_reward_id.present? && @reward_id.nil?
+
+      reward = Reward.find_by(id: @reward_id)
+      return Result.new(success?: false, alert: "Reward not found.") unless reward
 
       unless reward.scope == "task" && reward.kind == "earned"
         return Result.new(success?: false, alert: "Invalid task reward.")

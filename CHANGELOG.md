@@ -4,20 +4,32 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.23.42] 2026/02/07
+
+### Changed
+- Normalized reward redemption params and surfaced invalid reward/game selections.
+
+## [1.23.41] 2026/02/07
+
+### Fixed
+- Guarded date normalization when parsing fails to avoid nil to_date errors.
+
+## [1.23.40] 2026/02/07
+
+### Changed
+- Surface invalid filter params for goals/tasks instead of silently skipping them.
 
 ## [1.23.39] 2026/02/07
 
 ### Changed
 - Normalized query params for goals/tasks filters and sorting to keep inputs predictable.
-- Surface invalid filter params for goals/tasks instead of silently skipping them.
-- Guarded date normalization when parsing fails to avoid nil to_date errors.
 
 ## [1.23.38] 2026/02/07
 
 ### Changed
 - Defaulted all controllers to require authentication, with an explicit public allowlist.
 
-## [1.23.37] 2026/02/07
+## [1.23.37] 2026/02/06
 
 ### Changed
 - Aligned DB constraints with model expectations (non-null requirements, case-insensitive goal uniqueness).

@@ -8,12 +8,18 @@ module Rewards
     end
 
     def initialize(reward_id:, game_id:)
-      @reward_id = reward_id
-      @game_id = game_id
+      @raw_reward_id = reward_id
+      @raw_game_id = game_id
+      @reward_id = @raw_reward_id.present? ? Params::Normalize.integer(@raw_reward_id) : nil
+      @game_id = @raw_game_id.present? ? Params::Normalize.integer(@raw_game_id) : nil
     end
 
     def call
-      reward = Reward.find(@reward_id)
+      return Result.new(success?: false, alert: "Invalid reward selection.") if @raw_reward_id.present? && @reward_id.nil?
+      return Result.new(success?: false, alert: "Invalid game selection.") if @raw_game_id.present? && @game_id.nil?
+
+      reward = Reward.find_by(id: @reward_id)
+      return Result.new(success?: false, alert: "Reward not found.") unless reward
 
       return Result.new(success?: false, alert: "Already redeemed.") if reward.kind != "earned"
 
