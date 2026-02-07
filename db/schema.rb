@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_01_181129) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_07_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -40,9 +40,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_01_181129) do
     t.datetime "created_at", null: false
     t.json "images"
     t.json "metadata"
-    t.string "slug"
+    t.string "slug", null: false
     t.json "subheadings"
-    t.string "title"
+    t.string "title", null: false
     t.datetime "updated_at", null: false
     t.json "youtube_id"
     t.index ["slug"], name: "index_documents_on_slug", unique: true
@@ -82,14 +82,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_01_181129) do
     t.date "due_date"
     t.string "eligible_reward"
     t.datetime "hold_until"
-    t.bigint "idea_id"
+    t.bigint "idea_id", null: false
     t.integer "priority"
     t.boolean "recurring", default: false
     t.jsonb "smart", default: {}, null: false
     t.integer "status", default: 0, null: false
     t.string "title"
     t.datetime "updated_at", null: false
-    t.index ["idea_id", "title"], name: "index_goals_on_idea_id_and_title", unique: true
+    t.index "idea_id, lower((title)::text)", name: "index_goals_on_idea_id_and_lower_title", unique: true
     t.index ["idea_id"], name: "index_goals_on_idea_id"
   end
 
@@ -131,6 +131,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_01_181129) do
     t.bigint "reward_id", null: false
     t.bigint "task_id", null: false
     t.datetime "updated_at", null: false
+    t.index ["reward_id", "task_id"], name: "index_reward_tasks_on_reward_id_and_task_id", unique: true
     t.index ["reward_id"], name: "index_reward_tasks_on_reward_id"
     t.index ["task_id"], name: "index_reward_tasks_on_task_id"
   end
@@ -156,14 +157,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_01_181129) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.integer "actual_time"
+    t.integer "actual_time", null: false
     t.string "assigned_to"
     t.date "completion_date"
     t.datetime "created_at", null: false
     t.text "description"
-    t.date "due_date"
+    t.date "due_date", null: false
     t.string "eligible_reward"
-    t.integer "estimated_time"
+    t.integer "estimated_time", null: false
     t.bigint "goal_id"
     t.datetime "hold_until"
     t.integer "priority"

@@ -4,7 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.23.36] 2026/02/7
+## [1.23.38] 2026/02/07
+
+### Changed
+- Defaulted all controllers to require authentication, with an explicit public allowlist.
+
+## [1.23.37] 2026/02/07
+
+### Changed
+- Aligned DB constraints with model expectations (non-null requirements, case-insensitive goal uniqueness).
+- Backfilled missing task/document fields before enforcing constraints.
+- Enforced unique reward-task joins and added matching model validations.
+
+## [1.23.36] 2026/02/06
 
 ### Changed
 - setting ruby-version file because pinning it to 4.0.1 isn't enough or whatever
