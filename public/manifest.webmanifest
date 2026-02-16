@@ -1,0 +1,8 @@
+{
+  "name": "AWDevelopment",
+  "short_name": "AWDevelopment",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#3a579d",
+  "theme_color": "#3a579d"
+}
