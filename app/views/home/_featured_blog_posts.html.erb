@@ -7,7 +7,8 @@
         <p><%= blog_post.description %></p>
         <% if blog_post.image.present? %>
           <div class="card-image-frame">
-            <%= image_tag s3_url("blog/#{blog_post.image}"), class: "card-image" %>
+            <% proxy_url = image_proxy_url(blog_post_image_key(blog_post.image), width: 500, height: 500, fit: "inside", format: "webp") %>
+            <%= image_tag proxy_url, class: "card-image", loading: "lazy", decoding: "async" if proxy_url %>
           </div>
         <% end %>
         <div>

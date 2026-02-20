@@ -5,9 +5,12 @@
     <% @about_sections.each_with_index do |section, index| %>
       <li>
         <div class="about-image">
-          <%= image_tag about_image_url("#{index + 1}.png"),
+          <% proxy_url = image_proxy_url(about_image_key("#{index + 1}.png"), width: 900, height: 900, fit: "inside", format: "webp") %>
+          <%= image_tag proxy_url,
             alt: "Logo",
-            class: "about-image-img" %>
+            class: "about-image-img",
+            loading: "lazy",
+            decoding: "async" if proxy_url %>
         </div>
         <h3><%= section.header %></h3>
         <p><%= section.body %></p>

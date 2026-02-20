@@ -4,7 +4,8 @@
       <h2><%= game.game_name %></h2>
       <% if game.game_image.present? %>
         <div class="card-image-frame">
-          <%= image_tag(game_image_url(game), alt: game.game_name, class: "card-image") %>
+          <% proxy_url = image_proxy_url(game_image_key(game), width: 500, height: 500, fit: "inside", format: "webp") %>
+          <%= image_tag(proxy_url, alt: game.game_name, class: "card-image", loading: "lazy", decoding: "async") if proxy_url %>
         </div>
       <% end %>
       <div><%= link_to "See More", game_path(game) %></div>

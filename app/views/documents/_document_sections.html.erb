@@ -9,10 +9,8 @@
   <% img = images[index] %>
   <% if img.present? && img["file"].present? %>
     <figure>
-      <%= image_tag(
-            document_image_url(document, img),
-            alt: img["alt"]
-      ) %>
+      <% proxy_url = image_proxy_url(document_image_key(document, img), width: 1200, height: 900, fit: "inside", format: "webp") %>
+      <%= image_tag(proxy_url, alt: img["alt"], loading: "lazy", decoding: "async") if proxy_url %>
 
       <figcaption><%= img["caption"] %></figcaption>
     </figure>

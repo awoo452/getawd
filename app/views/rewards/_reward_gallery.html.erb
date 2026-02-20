@@ -1,10 +1,15 @@
 <div class="reward-gallery">
   <% if gaming_levels.include?(level) %>
     <% public_games.each do |game| %>
-      <img
-        src="<%= game_image_url(game) %>"
-        alt="<%= game.game_title %>"
-      />
+      <% proxy_url = image_proxy_url(game_image_key(game), width: 500, height: 500, fit: "inside", format: "webp") %>
+      <% if proxy_url %>
+        <img
+          src="<%= proxy_url %>"
+          alt="<%= game.game_title %>"
+          loading="lazy"
+          decoding="async"
+        />
+      <% end %>
     <% end %>
   <% end %>
 </div>

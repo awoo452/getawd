@@ -1,7 +1,8 @@
 <ul>
   <li>
     <%= link_to root_path do %>
-      <%= image_tag(s3_url("branding/logo.png"), alt: "Logo", class: "navbar-logo") %>
+      <% proxy_url = image_proxy_url("branding/logo.png", width: 300, height: 300, fit: "inside", format: "webp") %>
+      <%= image_tag(proxy_url, alt: "Logo", class: "navbar-logo", loading: "lazy", decoding: "async") if proxy_url %>
     <% end %>
   </li>
   <li><%= link_to "About", about_path %></li>

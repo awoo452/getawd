@@ -5,7 +5,8 @@
       <p><%= job.description %></p>
       <% if job.image.present? %>
         <div class="job-image-frame">
-          <%= image_tag(landscaping_image_url(job.image), class: "job-image") %>
+          <% proxy_url = image_proxy_url(landscaping_image_key(job.image), width: 500, height: 500, fit: "inside", format: "webp") %>
+          <%= image_tag(proxy_url, class: "job-image", loading: "lazy", decoding: "async") if proxy_url %>
         </div>
       <% end %>
     </div>

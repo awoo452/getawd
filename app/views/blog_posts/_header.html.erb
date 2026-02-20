@@ -1,6 +1,7 @@
 <% if blog_post.image.present? %>
   <div class="img">
-    <%= image_tag s3_url("blog/#{blog_post.image}") %>
+    <% proxy_url = image_proxy_url(blog_post_image_key(blog_post.image), width: 1400, height: 1000, fit: "inside", format: "webp") %>
+    <%= image_tag proxy_url, loading: "lazy", decoding: "async" if proxy_url %>
   </div>
 <% end %>
 

@@ -5,7 +5,8 @@
     <% img = document.images.first %>
     <% if img.present? && img["file"].present? %>
       <div class="card-image-frame">
-        <%= image_tag document_image_url(document, img), class: "card-image" %>
+        <% proxy_url = image_proxy_url(document_image_key(document, img), width: 500, height: 500, fit: "inside", format: "webp") %>
+        <%= image_tag proxy_url, class: "card-image", loading: "lazy", decoding: "async" if proxy_url %>
       </div>
     <% end %>
   <% end %>
