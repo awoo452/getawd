@@ -1,16 +1,21 @@
 <section class="documents">
   <h2>Documents</h2>
-  <% @documents_by_category.sort_by { |category, _| category.to_s.downcase }.each do |category, documents| %>
-    <section class="documents-category">
-      <h3><%= category.to_s.titleize %></h3>
-      <ul>
-        <% documents.each do |document| %>
-          <li>
-            <%= render document %>
-            <%= link_to "Show this document", document %>
-          </li>
-        <% end %>
-      </ul>
-    </section>
-  <% end %>
+  <div class="documents-index">
+    <% @documents_by_category.sort_by { |category, _| category.to_s.downcase }.each do |category, documents| %>
+      <details class="documents-category">
+        <summary>
+          <span class="documents-category-title"><%= category.to_s.titleize %></span>
+          <span class="documents-category-count"><%= documents.size %></span>
+        </summary>
+        <ul class="documents-list">
+          <% documents.each do |document| %>
+            <li>
+              <%= render document %>
+              <%= link_to "Show this document", document %>
+            </li>
+          <% end %>
+        </ul>
+      </details>
+    <% end %>
+  </div>
 </section>
