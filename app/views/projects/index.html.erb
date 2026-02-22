@@ -1,6 +1,17 @@
 <section class="projects">
   <h2 class="page-title">Projects</h2>
-  <%= render "project_list", projects: @projects %>
+  <% if @featured_projects.any? %>
+    <div class="projects-group">
+      <h3 class="projects-section-title">Featured</h3>
+      <%= render "project_list", projects: @featured_projects %>
+    </div>
+  <% end %>
+  <% if @other_projects.any? %>
+    <div class="projects-group">
+      <h3 class="projects-section-title">More Projects</h3>
+      <%= render "project_list", projects: @other_projects %>
+    </div>
+  <% end %>
   <%= render "shared/pagination",
         page: @projects_page,
         total_pages: @projects_total_pages,

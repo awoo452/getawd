@@ -3,9 +3,21 @@
   <ul>
     <% @videos.each do |video| %>
       <li>
-        <iframe src='https://www.youtube.com/embed/<%= video.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+        <% if video.youtube_id.present? %>
+          <div class="card-image-frame">
+            <% thumbnail_url = "https://img.youtube.com/vi/#{video.youtube_id}/hqdefault.jpg" %>
+            <%= image_tag thumbnail_url,
+              class: "card-image",
+              loading: "lazy",
+              decoding: "async",
+              alt: "#{video.title} thumbnail" %>
+          </div>
+        <% end %>
         <h3><%= video.title %></h3>
         <p><%= video.description %></p>
+        <div class="card-actions">
+          <%= link_to "View Details", video_path(video) %>
+        </div>
       </li>
     <% end %>
   </ul>

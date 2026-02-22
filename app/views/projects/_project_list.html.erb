@@ -12,9 +12,7 @@
       <% end %>
 
       <div>
-        <% if project.url.present? %>
-          <a href="<%= project.url %>">View Project</a>
-        <% end %>
+        <%= link_to "View Details", project_path(project) %>
       </div>
     </li>
   <% end %>

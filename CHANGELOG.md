@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.23.46] 2026/02/21
+
+### Changed
+- Projects index now links to internal project detail pages, with external links moved to show.
+- Split projects index into featured and more sections.
+- Videos index now links to detail pages with thumbnails instead of embedded players.
+- Video show page now includes a dedicated embed layout and navigation back to the index.
+
 ## [1.23.45] 2026/02/20
 
 ### Changed

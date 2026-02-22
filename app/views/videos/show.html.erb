@@ -1,7 +1,17 @@
-<section class="videos">
+<section class="videos video-detail">
   <h2 class="page-title"><%= @video.title %></h2>
   <% if @video.youtube_id.present? %>
-    <iframe src='https://www.youtube.com/embed/<%= @video.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+    <div class="video-embed">
+      <iframe
+        src='https://www.youtube.com/embed/<%= @video.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>'
+        frameborder='0'
+        allowfullscreen
+        title="<%= @video.title %>">
+      </iframe>
+    </div>
   <% end %>
-  <p><%= @video.description %></p>
+  <p class="video-description"><%= @video.description %></p>
+  <div class="video-actions">
+    <%= link_to "Back to Videos", videos_path %>
+  </div>
 </section>
