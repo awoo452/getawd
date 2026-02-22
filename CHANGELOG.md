@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.23.49] 2026/02/22
+
+### Added
+- Meta description for the home page to improve search previews.
+
+## [1.23.48] 2026/02/22
+
+### Added
+- Terms of Use and Privacy Policy pages.
+- LICENSE file.
+
+### Changed
+- Footer now links to Terms and Privacy.
+
 ## [1.23.47] 2026/02/22
 
 ### Changed
