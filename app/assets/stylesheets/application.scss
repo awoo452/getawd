@@ -17,6 +17,7 @@
 @import 'navbar';
 @import 'reports';
 @import 'rewards';
+@import 'services';
 @import "tasks";
 @import 'videos';
 
@@ -174,7 +175,6 @@
 
   .blog-posts,
   .projects,
-  .services,
   .videos,
   .games,
   .documents {
@@ -286,57 +286,6 @@
     color: $secondary-color;
   }
 
-
-  .services {
-    text-align: center;
-
-    .page-title {
-      text-align: center;
-    }
-
-    .page-intro {
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-
-    ul {
-      text-align: center;
-    }
-
-    ul li {
-      text-align: center;
-    }
-
-    .card-actions {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
-
-    .card-actions a {
-      background-color: $primary-color;
-      color: white;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      border-radius: $radius-sm;
-      transition: background-color $transition-base;
-    }
-
-    .card-actions a:hover {
-      background-color: $hover-color;
-    }
-  }
-
-  .services .service-category {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: lighten($text-color, 10%);
-    margin: 0 0 0.5rem;
-  }
 
 
   .project-detail .project-description {
