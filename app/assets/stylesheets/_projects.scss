@@ -1,0 +1,84 @@
+.project-detail {
+  max-width: $container-lg;
+  margin: 0 auto $spacing-xl;
+  padding: $spacing-lg $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  text-align: center;
+}
+
+.project-detail .page-title {
+  margin-bottom: 0;
+}
+
+.project-media {
+  position: relative;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $surface-color;
+  box-shadow: $shadow-md;
+}
+
+.project-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.45) 100%);
+  pointer-events: none;
+}
+
+.project-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  max-height: 60vh;
+}
+
+.project-description {
+  margin: 0;
+  max-width: $container-sm;
+  color: $text-color;
+  line-height: 1.7;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  justify-content: center;
+}
+
+.project-actions a {
+  @include action-primary($padding: $spacing-xs $spacing-md);
+}
+
+.project-actions--overlay {
+  position: absolute;
+  left: $spacing-md;
+  right: $spacing-md;
+  bottom: $spacing-md;
+  z-index: 2;
+}
+
+.project-actions--overlay a {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.project-actions--below {
+  margin-top: $spacing-md;
+}
+
+@media (max-width: $bp-md) {
+  .project-detail {
+    padding: $spacing-md;
+  }
+
+  .project-image {
+    max-height: 50vh;
+  }
+}

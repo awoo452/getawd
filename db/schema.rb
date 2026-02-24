@@ -29,9 +29,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_24_202500) do
     t.text "description"
     t.boolean "featured"
     t.string "image"
+    t.bigint "project_id"
     t.string "slug"
     t.string "title"
     t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_blog_posts_on_project_id"
     t.index ["slug"], name: "index_blog_posts_on_slug", unique: true
   end
 
@@ -210,15 +212,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_24_202500) do
     t.datetime "created_at", null: false
     t.text "description"
     t.boolean "featured"
+    t.bigint "project_id"
     t.string "title"
     t.datetime "updated_at", null: false
     t.string "youtube_id"
+    t.index ["project_id"], name: "index_videos_on_project_id"
   end
 
+  add_foreign_key "blog_posts", "projects"
   add_foreign_key "goals", "ideas"
   add_foreign_key "reward_rules", "rewards"
   add_foreign_key "reward_tasks", "rewards"
   add_foreign_key "reward_tasks", "tasks"
   add_foreign_key "rewards", "goals"
   add_foreign_key "tasks", "goals"
+  add_foreign_key "videos", "projects"
 end

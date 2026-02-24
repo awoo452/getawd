@@ -1,19 +1,61 @@
 <section class="project-detail">
   <h2 class="page-title"><%= @project.title %></h2>
 
+  <% actions = capture do %>
+    <% if @project.url.present? %>
+      <%= link_to "Visit Project", project_link_url(@project.url) %>
+    <% end %>
+    <%= link_to "Back to Projects", projects_path %>
+  <% end %>
+
   <% if @project.image.present? %>
-    <div class="card-image-frame">
+    <div class="project-media">
       <% proxy_url = image_proxy_url(project_image_key(@project.image), width: 800, height: 800, fit: "inside", format: "webp") %>
-      <%= image_tag proxy_url, class: "card-image", loading: "lazy", decoding: "async" if proxy_url %>
+      <%= image_tag proxy_url, class: "project-image", loading: "lazy", decoding: "async" if proxy_url %>
+      <div class="project-actions project-actions--overlay">
+        <%= actions %>
+      </div>
+    </div>
+  <% else %>
+    <div class="project-actions project-actions--below">
+      <%= actions %>
     </div>
   <% end %>
 
   <p class="project-description"><%= @project.description %></p>
 
-  <div class="project-actions">
-    <% if @project.url.present? %>
-      <%= link_to "Visit Project", project_link_url(@project.url) %>
-    <% end %>
-    <%= link_to "Back to Projects", projects_path %>
-  </div>
+  <% if @project.videos.any? %>
+    <section class="videos project-videos">
+      <h3 class="page-title">Project Videos</h3>
+      <ul>
+        <% @project.videos.each do |video| %>
+          <li>
+            <% if video.youtube_id.present? %>
+              <div class="card-image-frame">
+                <% thumbnail_url = "https://img.youtube.com/vi/#{video.youtube_id}/hqdefault.jpg" %>
+                <%= image_tag thumbnail_url,
+                  class: "card-image",
+                  loading: "lazy",
+                  decoding: "async",
+                  alt: "#{video.title} thumbnail" %>
+              </div>
+            <% end %>
+            <h3><%= video.title %></h3>
+            <p><%= video.description %></p>
+            <div class="card-actions">
+              <%= link_to "View Details", video_path(video) %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+
+  <% if @project.blog_posts.any? %>
+    <section class="blog-posts project-blog-posts">
+      <h3 class="page-title">Project Posts</h3>
+      <%= render "blog_posts/blog_post_list", blog_posts: @project.blog_posts %>
+    </section>
+  <% end %>
+
 </section>

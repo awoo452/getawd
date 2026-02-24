@@ -52,7 +52,6 @@ h3 {
 .featured-projects,
 .projects,
 .services,
-.project-detail,
 .documents,
 .featured-videos {
   padding: $section-padding;
@@ -182,14 +181,6 @@ h3 {
   }
 }
 
-.project-detail .card-image-frame {
-  @include image-frame($max-width: $container-xs, $margin: 0 auto $spacing-lg);
-}
-
-.project-detail .card-image {
-  @include image-fit;
-}
-
 h1.page-title,
 h2.page-title,
 h3.page-title {
@@ -217,22 +208,6 @@ h3.page-title {
   margin-bottom: $spacing-ml;
   text-align: center;
   color: $secondary-color;
-}
-
-.project-detail .project-description {
-  margin: $spacing-lg 0;
-  text-align: left;
-}
-
-.project-detail .project-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $spacing-sm;
-  justify-content: center;
-}
-
-.project-detail .project-actions a {
-  @include action-primary();
 }
 
 
