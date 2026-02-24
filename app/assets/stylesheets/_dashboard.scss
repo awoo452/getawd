@@ -13,7 +13,7 @@
       display: flex;
       align-items: center;
       gap: $spacing-xs;
-      font-size: $font-sm-plus;
+      font-size: $font-base;
 
       .color-box {
         width: $legend-box-size;
@@ -34,7 +34,7 @@
       display: flex;
       align-items: center;
       gap: $spacing-xs;
-      font-size: $font-sm-plus;
+      font-size: $font-base;
     }
   }
 }
@@ -62,7 +62,7 @@
     background-color: $dashboard-action-bg;
     color: $text-on-primary;
     border-radius: $radius-md;
-    font-size: $font-md;
+    font-size: $font-base;
     font-weight: 500;
     text-decoration: none;
     transition: background-color $transition-fast;
@@ -79,7 +79,7 @@
 
 .progress-bar {
   width: 100%;
-  height: $spacing-7xs;
+  height: $spacing-xs;
   appearance: none;
 }
 
@@ -111,7 +111,7 @@
 
   .idea-stats {
     margin-top: $spacing-2xs;
-    font-size: $font-sm;
+    font-size: $font-xs;
     display: flex;
     flex-direction: column;
     gap: $spacing-2xs;

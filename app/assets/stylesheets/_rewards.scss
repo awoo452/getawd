@@ -15,7 +15,7 @@
     }
 
     .level-1-doc-link {
-      font-size: $font-sm-plus;
+      font-size: $font-base;
       color: $primary-color;
       text-decoration: none;
 
@@ -76,7 +76,7 @@
 
     .btn {
       display: inline-block;
-      padding: $spacing-7xs $spacing-ml;
+      padding: $spacing-xs $spacing-ml;
       border-radius: $radius-slim;
       font-weight: 600;
       text-decoration: none;
@@ -99,7 +99,7 @@
   }
 
   .reward-row {
-    padding: $spacing-4xs $spacing-xs;
+    padding: $spacing-xs $spacing-xs;
     border-radius: $radius-xs;
     margin-bottom: $spacing-2xs;
   }

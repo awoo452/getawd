@@ -38,7 +38,7 @@
   margin-bottom: $spacing-md;
 
   ul {
-    margin: $spacing-xs 0 0 $spacing-14xs;
+    margin: $spacing-xs 0 0 $spacing-ml;
   }
 }
 
@@ -48,14 +48,14 @@
   label {
     display: block;
     font-weight: 600;
-    margin-bottom: $spacing-3xs;
+    margin-bottom: $spacing-2xs;
   }
 
   input[type="email"],
   input[type="password"],
   input[type="text"] {
     width: 100%;
-    padding: $spacing-6xs $spacing-8xs;
+    padding: $spacing-xs $spacing-sm;
     border: 1px solid $border-color;
     border-radius: $radius-sm;
     box-sizing: border-box;
@@ -80,7 +80,7 @@
     background: $primary-color;
     color: $text-on-primary;
     border: none;
-    padding: $spacing-7xs $spacing-14xs;
+    padding: $spacing-xs $spacing-ml;
     border-radius: $radius-sm;
     cursor: pointer;
     transition: background-color $transition-base, box-shadow $transition-base;
@@ -100,7 +100,7 @@
   a {
     color: $primary-color;
     text-decoration: none;
-    margin: 0 $spacing-4xs;
+    margin: 0 $spacing-xs;
 
     &:hover {
       color: $hover-color;

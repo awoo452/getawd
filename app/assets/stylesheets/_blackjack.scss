@@ -49,7 +49,7 @@
   }
 
   p {
-    margin: $spacing-3xs 0;
+    margin: $spacing-2xs 0;
   }
 
   span {
@@ -57,14 +57,14 @@
     align-items: center;
     justify-content: center;
     min-width: $blackjack-chip-min-width;
-    padding: $spacing-3xs $spacing-xs;
-    margin-right: $spacing-3xs;
+    padding: $spacing-2xs $spacing-xs;
+    margin-right: $spacing-2xs;
     background: $blackjack-chip-bg;
     color: $blackjack-chip-text;
     border-radius: $radius-sm;
     border: 1px solid $blackjack-chip-border;
     box-shadow: $blackjack-chip-shadow;
-    font-size: $font-base-plus;
+    font-size: $font-base;
   }
 }
 
@@ -84,7 +84,7 @@
     color: $blackjack-button-text;
     border: 1px solid $blackjack-button-border;
     border-radius: $radius-sm;
-    padding: $spacing-5xs $spacing-sm;
+    padding: $spacing-xs $spacing-sm;
     cursor: pointer;
     transition: transform $transition-base, box-shadow $transition-base, border-color $transition-base;
   }

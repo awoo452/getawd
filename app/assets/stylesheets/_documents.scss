@@ -43,7 +43,7 @@
 }
 
 .documents-category-title {
-  font-size: $font-lg;
+  font-size: $font-xl;
 }
 
 .documents-category-count {
@@ -51,8 +51,8 @@
   color: $text-color;
   border: 1px solid $border-color;
   border-radius: $radius-pill;
-  padding: $spacing-1xs $spacing-7xs;
-  font-size: $font-sm;
+  padding: $spacing-2xs $spacing-xs;
+  font-size: $font-xs;
   font-weight: 600;
 }
 
