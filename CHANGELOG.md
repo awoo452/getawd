@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.24.12] 2026/02/24
+
+### Changed
+- ChatGPT is actually incapable of following anything other than shitty directions.
+
 ## [1.24.11] 2026/02/24
 
 ### Changed
