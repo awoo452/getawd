@@ -1,7 +1,7 @@
 @import "theme";
 .about {
   width: 92%;
-  max-width: 1100px;
+  max-width: $container-lg;
   margin: 0 auto $spacing-xl;
   padding: $section-padding;
   background: $surface-muted;
@@ -36,7 +36,7 @@
   text-align: center;
 }
 
-@media (min-width: 700px) {
+@media (min-width: $bp-sm) {
   #paragraphs_from_db {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -50,7 +50,7 @@
   }
 }
 
-@media (min-width: 980px) {
+@media (min-width: $bp-lg) {
   #paragraphs_from_db {
     grid-template-columns: repeat(6, 1fr);
   }
@@ -101,7 +101,7 @@
   line-height: 1.55;
 }
 
-@media (max-width: 720px) {
+@media (max-width: $bp-mobile) {
   .about {
     padding: $spacing-lg;
   }

@@ -6,7 +6,7 @@
   text-align: center;
 
   .level-header {
-    max-width: 960px;
+    max-width: $container-md;
     margin: 0 auto $spacing-sm;
     text-align: center;
 
@@ -28,12 +28,12 @@
   .level-reward {
     position: relative;
     width: 100%;
-    max-width: 960px;
+    max-width: $container-md;
     margin: 0 auto $spacing-xl;
     border-radius: $radius-lg;
     overflow: hidden;
     background: $reward-card-bg;
-    height: 220px;
+    height: $reward-card-height;
 
     .reward-gallery {
       display: flex;
@@ -118,7 +118,7 @@
   }
 
   .task-rewards {
-    max-width: 960px;
+    max-width: $container-md;
     margin: 0 auto $spacing-xl;
     text-align: center;
   }

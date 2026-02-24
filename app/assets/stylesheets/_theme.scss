@@ -98,6 +98,41 @@ $font-xl: 1.25rem;
 $font-2xl: 1.5rem;
 $font-display-sm: 2rem;
 
+$container-xl: 1150px;
+$container-lg: 1100px;
+$container-md: 960px;
+$container-sm: 900px;
+$container-xs: 700px;
+$container-card: 500px;
+$container-auth: 420px;
+
+$bp-sm: 700px;
+$bp-mobile: 720px;
+$bp-md: 768px;
+$bp-lg: 980px;
+
+$card-min-width: 350px;
+$job-card-min-width: 320px;
+$job-card-max-width: 400px;
+$card-image-max: 500px;
+
+$video-embed-max: 900px;
+$reward-card-height: 220px;
+$featured-hero-height: 350px;
+$featured-text-width: 400px;
+
+$textarea-min-height: 120px;
+$textarea-lg-height: 200px;
+
+$game-embed-width: 325px;
+$game-embed-height: 183px;
+$achievement-card-width: 125px;
+
+$calendar-shell-margin: 8%;
+$calendar-shell-width: 84%;
+$calendar-item-indent: 15%;
+$calendar-task-max-height: 85px;
+
 $action-divider-width: 150px;
 $legend-box-size: 15px;
 $navbar-logo-height: 150px;
@@ -130,3 +165,74 @@ $blackjack-button-text: #1a1a1a;
 $blackjack-chip-border: rgba(0, 0, 0, 0.15);
 $blackjack-button-border: rgba(0, 0, 0, 0.25);
 $blackjack-button-border-hover: rgba(0, 0, 0, 0.35);
+
+// Shared mixins/placeholders
+%panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+  max-width: $container-xl;
+  margin: $spacing-md auto;
+  padding: $spacing-md;
+  background-color: $panel-bg;
+  border: 1px solid $panel-border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+}
+
+@mixin action-primary(
+  $padding: $spacing-xs $spacing-md,
+  $radius: $radius-sm,
+  $hover-bg: $hover-color,
+  $transition: background-color $transition-base,
+  $include-hover: true
+) {
+  display: inline-block;
+  background-color: $primary-color;
+  color: $text-on-primary;
+  padding: $padding;
+  text-decoration: none;
+  border-radius: $radius;
+  transition: $transition;
+
+  @if $include-hover {
+    &:hover {
+      background-color: $hover-bg;
+    }
+  }
+}
+
+@mixin image-frame(
+  $max-width: $card-image-max,
+  $border: $border-color,
+  $bg: $surface-color,
+  $radius: $radius-sm,
+  $margin: 0 auto $spacing-md,
+  $aspect: 1 / 1
+) {
+  width: 100%;
+  max-width: $max-width;
+  aspect-ratio: $aspect;
+  margin: $margin;
+  overflow: hidden;
+  border-radius: $radius;
+  border: 1px solid $border;
+  background: $bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin image-fit {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  margin: 0;
+  border-radius: 0;
+}

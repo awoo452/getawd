@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.24.11] 2026/02/24
+
+### Changed
+- Added layout tokens and shared mixins/placeholders in _theme.scss for containers, breakpoints, images, and primary actions.
+- Replaced hard-coded sizes with tokens and deduped panel, action button, and image-frame styles across the SCSS files.
+- Converted calendar layout sizing to use theme tokens.
+
 ## [1.24.10] 2026/02/24
 
 ### Changed

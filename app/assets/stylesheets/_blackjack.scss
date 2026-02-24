@@ -1,7 +1,7 @@
 .blackjack-container {
   padding: $spacing-xl;
   margin: $spacing-xl auto;
-  max-width: 900px;
+  max-width: $container-sm;
   background: radial-gradient(circle at top, lighten($blackjack-bg, 6%), $blackjack-bg);
   border: 2px solid rgba($blackjack-accent, 0.35);
   border-radius: $radius-lg;

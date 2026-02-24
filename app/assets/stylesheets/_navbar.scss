@@ -35,7 +35,7 @@
 }
 
 // Responsive Styles
-@media (max-width: 768px) {
+@media (max-width: $bp-md) {
   .navbar {
     ul {
       flex-direction: column; // Stack items vertically

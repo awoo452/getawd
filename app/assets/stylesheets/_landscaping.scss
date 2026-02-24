@@ -81,8 +81,8 @@
     border: 1px solid $landscaping-border;
     border-radius: $radius-lg;
     padding: $spacing-lg;
-    flex: 1 1 320px;
-    max-width: 400px;
+    flex: 1 1 $job-card-min-width;
+    max-width: $job-card-max-width;
     box-shadow: $shadow-sm;
     transition: transform $transition-fast, box-shadow $transition-fast;
 
@@ -113,27 +113,16 @@
     }
 
     .job-image-frame {
-      margin: $spacing-md auto 0;
-      width: 100%;
-      max-width: 500px;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      border-radius: $radius-sm;
-      border: 1px solid $landscaping-border;
-      background: $landscaping-card-bg;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include image-frame(
+        $max-width: $card-image-max,
+        $border: $landscaping-border,
+        $bg: $landscaping-card-bg,
+        $margin: $spacing-md auto 0
+      );
     }
 
     .job-image {
-      display: block;
-      width: auto;
-      height: auto;
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      object-position: center;
+      @include image-fit;
     }
   }
 }

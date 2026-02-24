@@ -56,17 +56,7 @@
   
     // Styles for social media links
     a {
-      display: inline-block;
-      background-color: $primary-color;
-      color: $text-on-primary;
-      padding: $spacing-xs $spacing-md;
-      text-decoration: none;
-      border-radius: $radius-sm;
-      transition: background-color $transition-base;
-  
-      &:hover {
-        background-color: $hover-color;
-      }
+      @include action-primary();
     }
     
     .social_media {
@@ -84,7 +74,7 @@
   padding: $section-padding;
   border-radius: $radius-md;
   width: 100%;
-  max-width: 500px;
+  max-width: $container-card;
   border: 1px solid $border-color;
   box-shadow: $shadow-sm;
 }
@@ -109,22 +99,15 @@
   }
 
   textarea {
-    min-height: 120px;
+    min-height: $textarea-min-height;
     resize: vertical;
   }
 }
 
 .btn-submit {
-  background-color: $primary-color;
-  color: $text-on-primary;
+  @include action-primary($padding: $spacing-sm $spacing-lg);
   border: none;
-  padding: $spacing-sm $spacing-lg;
-  border-radius: $radius-sm;
   cursor: pointer;
-
-  &:hover {
-    background-color: $hover-color;
-  }
 }
 
 .hp {

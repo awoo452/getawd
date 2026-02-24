@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 350px;
+  height: $featured-hero-height;
   overflow: hidden;
   border-radius: $radius-md;
   border-top-left-radius: 0;
@@ -25,9 +25,8 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  background: $primary-color;
-  color: $text-on-primary;
-  opacity: 0.85;
+  background: #fff;
+  color: #000;
   padding: $spacing-md $spacing-lg;
   border-bottom-left-radius: $radius-md;
   border-bottom-right-radius: $radius-md;
@@ -40,7 +39,7 @@
 }
 
 .featured-about-text {
-  width: 400px;
+  width: $featured-text-width;
   max-width: 50%;
   display: flex;
   flex-direction: column;

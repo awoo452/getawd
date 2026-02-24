@@ -11,7 +11,7 @@
         border-radius: $radius-md;
         border: 1px solid $border-color;
         box-shadow: $shadow-md;
-        max-width: 500px;
+        max-width: $container-card;
         margin: 0 auto $spacing-xl auto;
         h3 {
             color: $primary-color; 
@@ -26,12 +26,12 @@
             gap: $spacing-md;
         }
         iframe {
-            width: 325px!important;
-            height: 183px!important;
+            width: $game-embed-width !important;
+            height: $game-embed-height !important;
             border: none;
         }
         img {
-            width: 325px;
+            width: $game-embed-width;
             height: auto;
         }
         #achievements {
@@ -48,7 +48,7 @@
                 background-color: $primary-color;
                 padding: $spacing-xs;
                 border-radius: $radius-sm;
-                width: 125px;
+                width: $achievement-card-width;
             }
         }
     }

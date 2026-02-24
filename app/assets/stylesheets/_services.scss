@@ -38,17 +38,9 @@
   }
 
   .card-actions a {
-    background-color: $primary-color;
-    color: $text-on-primary;
-    padding: $spacing-xs $spacing-md;
-    text-decoration: none;
-    border-radius: $radius-sm;
-    transition: background-color $transition-base;
+    @include action-primary();
   }
 
-  .card-actions a:hover {
-    background-color: $hover-color;
-  }
 }
 
 .services .service-category,

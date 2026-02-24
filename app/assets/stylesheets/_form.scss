@@ -1,6 +1,6 @@
 /* Basic form layout */
 .task_form, .goal_form {
-  max-width: 500px;
+  max-width: $container-card;
   margin: $spacing-xl auto;
   padding: $spacing-lg;
   background-color: $form-bg; // light yellow
@@ -29,7 +29,7 @@
 }
 
 .form-field-large textarea {
-  height: 200px;
+  height: $textarea-lg-height;
 }
 
 .form-field label {
@@ -52,11 +52,8 @@
 }
 
 .form-submit {
-  background: $primary-color;
-  color: $text-on-primary;
+  @include action-primary($padding: $spacing-xs $spacing-ml, $include-hover: false);
   border: none;
-  padding: $spacing-xs $spacing-ml;
-  border-radius: $radius-sm;
   cursor: pointer;
   font-size: $font-base;
 }

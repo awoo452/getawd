@@ -48,8 +48,8 @@
 
 #task-calendar-daily, 
 #task-calendar-monthly {
-  margin-left: 8%;
-  width: 84%;
+  margin-left: $calendar-shell-margin;
+  width: $calendar-shell-width;
   h1 {
     text-align: center;
     margin-top: $spacing-xs;
@@ -67,12 +67,12 @@
 #task-calendar-monthly {
   ul {
     padding: $spacing-2xs;
-    max-height: 85px;
+    max-height: $calendar-task-max-height;
     overflow-y: auto;
     margin: 0;
   }
   li {
-    margin-left: 15%;
+    margin-left: $calendar-item-indent;
   }
 }
 

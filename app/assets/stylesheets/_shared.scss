@@ -86,7 +86,7 @@ h3 {
       border: 1px solid $border-color;
       border-radius: $radius-md;
       padding: $card-padding;
-      flex: 1 1 350px;
+      flex: 1 1 $card-min-width;
       box-shadow: $shadow-sm;
       text-align: center;
 
@@ -101,16 +101,7 @@ h3 {
       }
 
       a {
-        background-color: $primary-color;
-        color: $text-on-primary;
-        padding: $spacing-xs $spacing-md;
-        text-decoration: none;
-        border-radius: $radius-sm;
-        transition: background-color $transition-base;
-
-        &:hover {
-          background-color: $hover-color;
-        }
+        @include action-primary();
       }
 
       &:hover {
@@ -183,56 +174,20 @@ h3 {
 .documents,
 .featured-videos {
   ul li .card-image-frame {
-    width: 100%;
-    max-width: 500px;
-    aspect-ratio: 1 / 1;
-    margin: 0 auto $spacing-md;
-    overflow: hidden;
-    border-radius: $radius-sm;
-    border: 1px solid $border-color;
-    background: $surface-color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include image-frame();
   }
 
   ul li .card-image {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    object-position: center;
-    display: block;
-    margin: 0;
-    border-radius: 0;
+    @include image-fit;
   }
 }
 
 .project-detail .card-image-frame {
-  width: 100%;
-  max-width: 700px;
-  aspect-ratio: 1 / 1;
-  margin: 0 auto $spacing-lg;
-  overflow: hidden;
-  border-radius: $radius-sm;
-  border: 1px solid $border-color;
-  background: $surface-color;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include image-frame($max-width: $container-xs, $margin: 0 auto $spacing-lg);
 }
 
 .project-detail .card-image {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  margin: 0;
-  border-radius: 0;
+  @include image-fit;
 }
 
 h1.page-title,
@@ -246,7 +201,7 @@ h3.page-title {
 .page-intro {
   margin: 0 0 $spacing-lg;
   color: $text-color;
-  max-width: 700px;
+  max-width: $container-xs;
 }
 
 .projects-group {
@@ -277,17 +232,9 @@ h3.page-title {
 }
 
 .project-detail .project-actions a {
-  background-color: $primary-color;
-  color: $text-on-primary;
-  padding: $spacing-xs $spacing-md;
-  text-decoration: none;
-  border-radius: $radius-sm;
-  transition: background-color $transition-base;
+  @include action-primary();
 }
 
-.project-detail .project-actions a:hover {
-  background-color: $hover-color;
-}
 
 .blog-post {
   max-width: 50%;

@@ -40,18 +40,7 @@
 }
 
 .dashboard-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 90%;
-  max-width: 1150px;
-  margin: $spacing-md auto;
-  padding: $spacing-md;
-  background-color: $panel-bg;
-  border: 1px solid $panel-border;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-sm;
+  @extend %panel;
 
   .new-task-btn,
   .new-goal-btn {
