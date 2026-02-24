@@ -5,15 +5,15 @@
 .m-0 { margin: 0; }
 .mt-0 { margin-top: 0; }
 .mb-0 { margin-bottom: 0; }
-.mb-1 { margin-bottom: 1em; }
-.mb-2 { margin-bottom: 2em; }
+.mb-1 { margin-bottom: $spacing-md; }
+.mb-2 { margin-bottom: $spacing-xl; }
 
 .action-divider {
-  width: 150px;
+  width: $action-divider-width;
 }
 
 .text-danger {
-  color: #c0392b;
+  color: $danger-color;
 }
 
 .select-all {

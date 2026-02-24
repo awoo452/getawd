@@ -9,7 +9,7 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   box-shadow: $shadow-md;
-  margin-bottom: 2rem;  
+  margin-bottom: $spacing-xl;  
 }
 
 .featured-about-bg {
@@ -26,9 +26,9 @@
   z-index: 1;
   text-align: center;
   background: $primary-color;
-  color: white;
+  color: $text-on-primary;
   opacity: 0.85;
-  padding: 1rem 1.5rem;
+  padding: $spacing-md $spacing-lg;
   border-bottom-left-radius: $radius-md;
   border-bottom-right-radius: $radius-md;
   box-shadow: $shadow-sm;
@@ -50,7 +50,7 @@
 .rotating-words {
   width: 100%;
   position: relative;
-  height: 3rem;
+  height: $rotating-words-height;
   overflow: hidden;
 }
 
@@ -63,7 +63,7 @@
   text-align: center;
   opacity: 0;
   animation: rotateWords 12s infinite;
-  font-size: 2.5rem;
+  font-size: $heading-xl;
   font-weight: 700;
   line-height: 1.1;
 }

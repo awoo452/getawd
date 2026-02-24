@@ -6,19 +6,19 @@
   .status-legend {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
 
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
+      gap: $spacing-xs;
+      font-size: $font-sm-plus;
 
       .color-box {
-        width: 15px;
-        height: 15px;
-        border-radius: 3px;
+        width: $legend-box-size;
+        height: $legend-box-size;
+        border-radius: $radius-xs;
       }
     }
   }
@@ -27,14 +27,14 @@
     display: flex;
     flex-direction: column; // stacked vertically
     align-items: flex-start; // left align text
-    margin-top: 0.5rem;
-    gap: 0.25rem;
+    margin-top: $spacing-xs;
+    gap: $spacing-2xs;
 
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
+      gap: $spacing-xs;
+      font-size: $font-sm-plus;
     }
   }
 }
@@ -46,29 +46,29 @@
   text-align: center;
   width: 90%;
   max-width: 1150px;
-  margin: 1rem auto;
-  padding: 1rem;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin: $spacing-md auto;
+  padding: $spacing-md;
+  background-color: $panel-bg;
+  border: 1px solid $panel-border;
+  border-radius: $radius-xl;
+  box-shadow: $panel-shadow;
 
   .new-task-btn,
   .new-goal-btn {
     display: inline-block;
-    margin: 0.5rem;
+    margin: $spacing-xs;
     margin-bottom: 0;
-    padding: 0.5rem 1rem;
-    background-color: #0056b3;
-    color: #fff;
-    border-radius: 0.5rem;
-    font-size: 0.95rem;
+    padding: $spacing-xs $spacing-md;
+    background-color: $dashboard-action-bg;
+    color: $text-on-primary;
+    border-radius: $radius-md;
+    font-size: $font-md;
     font-weight: 500;
     text-decoration: none;
-    transition: background-color 0.2s ease;
+    transition: background-color $transition-fast;
 
     &:hover {
-      background-color: #006de1;
+      background-color: $dashboard-action-hover;
     }
   }
 }
@@ -79,52 +79,52 @@
 
 .progress-bar {
   width: 100%;
-  height: 0.6rem;
+  height: $spacing-7xs;
   appearance: none;
 }
 
 .progress-bar::-webkit-progress-bar {
-  background-color: #e6e6e6;
-  border-radius: 999px;
+  background-color: $progress-track;
+  border-radius: $radius-pill;
 }
 
 .progress-bar::-webkit-progress-value {
-  background-color: #2d7ff9;
-  border-radius: 999px;
+  background-color: $progress-fill;
+  border-radius: $radius-pill;
 }
 
 .progress-bar::-moz-progress-bar {
-  background-color: #2d7ff9;
-  border-radius: 999px;
+  background-color: $progress-fill;
+  border-radius: $radius-pill;
 }
 
 .idea-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem;
+  padding: $spacing-xs;
 
   .idea-label {
-    margin-top: 0.25rem;
+    margin-top: $spacing-2xs;
     font-weight: 600;
   }
 
   .idea-stats {
-    margin-top: 0.25rem;
-    font-size: 0.8rem;
+    margin-top: $spacing-2xs;
+    font-size: $font-sm;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: $spacing-2xs;
     align-items: center;
 
     .completed {
-      color: #007a33;
+      color: $success-color;
     }
     .upcoming {
-      color: #b35c00;
+      color: $warning-color;
     }
     .partial {
-      color: #666;
+      color: $text-muted-strong;
     }
   }
 }

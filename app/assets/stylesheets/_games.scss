@@ -1,21 +1,21 @@
 #game-container {
     h2 {
-      font-size: 2rem;
+      font-size: $heading-lg;
       color: $primary-color;
       text-align: center;
     }
     #game {
         text-align: center;
-        padding: 2rem;
+        padding: $spacing-xl;
         background-color: $surface-muted-strong;
         border-radius: $radius-md;
         border: 1px solid $border-color;
         box-shadow: $shadow-md;
         max-width: 500px;
-        margin: 0 auto 2rem auto;
+        margin: 0 auto $spacing-xl auto;
         h3 {
             color: $primary-color; 
-            margin-top: 1.5rem;
+            margin-top: $spacing-lg;
         }
         ul {
             list-style-type: none;
@@ -23,7 +23,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: $spacing-md;
         }
         iframe {
             width: 325px!important;
@@ -41,13 +41,13 @@
             flex-wrap: wrap;
             a {
                 text-decoration: none;
-                color: white;
+                color: $text-on-primary;
             }
             #achievement {
-                border: 1px solid black;
+                border: 1px solid $border-color-strong;
                 background-color: $primary-color;
-                padding: .5em;
-                border-radius: 3px;
+                padding: $spacing-xs;
+                border-radius: $radius-xs;
                 width: 125px;
             }
         }

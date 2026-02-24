@@ -1,6 +1,6 @@
 .navbar {
   background-color: $navbar-bg;
-  padding: 1rem;
+  padding: $spacing-md;
   border-bottom: 2px solid $primary-color;
   ul {
     list-style: none;
@@ -11,13 +11,13 @@
     padding: 0;
 
     li {
-      margin: 0.5rem;
+      margin: $spacing-xs;
 
       a {
         color: $navbar-link;
         text-decoration: none;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
+        padding: $spacing-xs $spacing-md;
+        border-radius: $radius-xxs;
         transition: background-color $transition-base;
 
         &:not(:has(img)):hover {
@@ -27,7 +27,7 @@
 
       // Logo special style
       .navbar-logo {
-        height: 150px; // Set a height for the logo
+        height: $navbar-logo-height; // Set a height for the logo
         width: auto; // Keep the aspect ratio
       }
     }

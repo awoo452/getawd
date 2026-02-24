@@ -1,6 +1,6 @@
 // Shared color palette
-.green  { background-color: #d4edda; }
-.yellow { background-color: #fff3cd; }
-.red    { background-color: #f8d7da; }
-.black  { background-color: #343a40; color: white; }
-.gray   { background-color: #e2e3e5; }
+.green  { background-color: $legend-green; }
+.yellow { background-color: $legend-yellow; }
+.red    { background-color: $legend-red; }
+.black  { background-color: $legend-black; color: $text-on-primary; }
+.gray   { background-color: $legend-gray; }

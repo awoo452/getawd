@@ -239,7 +239,7 @@ h1.page-title,
 h2.page-title,
 h3.page-title {
   font-size: $heading-xl;
-  margin-bottom: 1.25rem;
+  margin-bottom: $spacing-ml;
   color: $primary-color;
 }
 
@@ -259,7 +259,7 @@ h3.page-title {
 
 .projects-section-title {
   font-size: $heading-md;
-  margin-bottom: 1.25rem;
+  margin-bottom: $spacing-ml;
   text-align: center;
   color: $secondary-color;
 }

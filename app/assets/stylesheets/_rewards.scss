@@ -1,21 +1,21 @@
 .rewards {
-  padding: 2rem;
+  padding: $spacing-xl;
   background-color: $surface-muted;
   border-radius: $radius-md;
-  margin-bottom: 2rem;
+  margin-bottom: $spacing-xl;
   text-align: center;
 
   .level-header {
     max-width: 960px;
-    margin: 0 auto 0.75rem;
+    margin: 0 auto $spacing-sm;
     text-align: center;
 
     h3 {
-      margin-bottom: 0.25rem;
+      margin-bottom: $spacing-2xs;
     }
 
     .level-1-doc-link {
-      font-size: 0.9rem;
+      font-size: $font-sm-plus;
       color: $primary-color;
       text-decoration: none;
 
@@ -29,10 +29,10 @@
     position: relative;
     width: 100%;
     max-width: 960px;
-    margin: 0 auto 2rem;
-    border-radius: 12px;
+    margin: 0 auto $spacing-xl;
+    border-radius: $radius-xl;
     overflow: hidden;
-    background: #111;
+    background: $reward-card-bg;
     height: 220px;
 
     .reward-gallery {
@@ -57,27 +57,27 @@
     .reward-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: $reward-overlay-bg;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: #fff;
-      font-size: 1.4rem;
+      color: $text-on-primary;
+      font-size: $font-2xl;
       font-weight: 600;
-      gap: 1rem;
-      padding: 1rem;
+      gap: $spacing-md;
+      padding: $spacing-md;
     }
 
     &.unlocked .reward-overlay {
-      background: rgba(0, 0, 0, 0.4);
+      background: $reward-overlay-bg-soft;
     }
 
     .btn {
       display: inline-block;
-      padding: 0.6rem 1.25rem;
-      border-radius: 6px;
+      padding: $spacing-7xs $spacing-ml;
+      border-radius: $radius-slim;
       font-weight: 600;
       text-decoration: none;
       border: none;
@@ -85,7 +85,7 @@
 
       &.btn-success {
         background-color: $primary-color;
-        color: white;
+        color: $text-on-primary;
 
         &:hover {
           background-color: $hover-color;
@@ -94,37 +94,37 @@
     }
   }
   .reward-list {
-    margin-bottom: 1.5em;
+    margin-bottom: $spacing-lg;
     
   }
 
   .reward-row {
-    padding: 6px 8px;
-    border-radius: 4px;
-    margin-bottom: 4px;
+    padding: $spacing-4xs $spacing-xs;
+    border-radius: $radius-xs;
+    margin-bottom: $spacing-2xs;
   }
 
   .reward-list.earned .reward-row {
-    background: rgba(150, 0, 125, 0.08);
+    background: $reward-earned-bg;
   }
 
   .reward-list.redeemed .reward-row {
-    background: rgba(255, 165, 0, 0.1);
+    background: $reward-redeemed-bg;
   }
 
   .reward-list.completed .reward-row {
-    background: rgba(120, 120, 120, 0.1);
+    background: $reward-completed-bg;
     opacity: 0.75;
   }
 
   .task-rewards {
     max-width: 960px;
-    margin: 0 auto 2rem;
+    margin: 0 auto $spacing-xl;
     text-align: center;
   }
 
   .task-rewards h3 {
-    margin-bottom: 0.5rem;
+    margin-bottom: $spacing-xs;
   }
 
   .task-rewards .reward-row {
@@ -133,7 +133,7 @@
     justify-content: center;
     align-items: center;
     button {
-      margin-top: .5em;
+      margin-top: $spacing-xs;
     }
   }
 

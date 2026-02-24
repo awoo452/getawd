@@ -1,9 +1,9 @@
 /* Shared layout for goal and task cards */
 .goal-card,
 .task-card {
-  margin: 0.5rem 0;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid #ccc;
+  margin: $spacing-xs 0;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid $border-color-soft;
   width: 100%;
   text-align: center;
 }
@@ -12,26 +12,26 @@
 .goal-card.not_started,
 .task-card.not_started {
   @extend .not_started;
-  margin-bottom: .5em;
+  margin-bottom: $spacing-xs;
 }
 
 .goal-card.in_progress,
 .task-card.in_progress {
   @extend .in_progress;
-  margin-bottom: .5em;
+  margin-bottom: $spacing-xs;
 }
 
 .goal-card.on_hold,
 .task-card.on_hold {
   @extend .on_hold;
-  margin-bottom: .5em;
+  margin-bottom: $spacing-xs;
 }
 
 .goal-card.completed,
 .task-card.completed {
   text-decoration: line-through;
-  color: #888;
-  margin-bottom: .5em;
+  color: $text-muted;
+  margin-bottom: $spacing-xs;
 }
 
 /* Container alignment for index pages */
@@ -45,14 +45,14 @@
 
 /* Task extras */
 .task-toggle {
-  margin-top: 0.5rem;
+  margin-top: $spacing-xs;
   width: 100%;
   text-align: left;
 
   summary {
     font-weight: bold;
     cursor: pointer;
-    margin-bottom: 0.5rem;
+    margin-bottom: $spacing-xs;
   }
 }
 
@@ -61,16 +61,16 @@
   flex-direction: column;
   align-items: center;
   padding: 0;
-  margin-top: 1.5rem;
+  margin-top: $spacing-lg;
   list-style: none;
-  gap: 0.5rem;
+  gap: $spacing-xs;
 
   li {
-    font-size: 0.95rem;
+    font-size: $font-md;
 
     a, button {
       text-decoration: none;
-      color: #0077cc;
+      color: $link-color;
       border: none;
       background: none;
       cursor: pointer;
@@ -81,35 +81,35 @@
     }
 
     &.divider {
-      width: 150px;
-      border-top: 1px solid #ccc;
-      margin: 0.5rem 0;
+      width: $action-divider-width;
+      border-top: 1px solid $border-color-soft;
+      margin: $spacing-xs 0;
     }
   }
 }
 
 .kanban-board {
   display: flex;
-  gap: 1rem;
+  gap: $spacing-md;
   width: 95%;
   margin: 0 auto;
 }
 
 .kanban-column {
   flex: 1;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
+  padding: $spacing-xs;
+  border: 1px solid $border-color-light;
 }
 
 .kanban-column h2 {
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: $spacing-xs;
   text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: $font-sm-plus;
 }
 
 /* Optional visual cues */
-.kanban-column.in_progress { background: #eef7ff; }
-.kanban-column.not_started { background: #f9f9f9; }
-.kanban-column.on_hold     { background: #fff6e5; }
-.kanban-column.completed  { background: #f1f1f1; }
+.kanban-column.in_progress { background: $kanban-in-progress-bg; }
+.kanban-column.not_started { background: $kanban-not-started-bg; }
+.kanban-column.on_hold     { background: $kanban-on-hold-bg; }
+.kanban-column.completed  { background: $kanban-completed-bg; }

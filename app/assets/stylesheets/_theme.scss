@@ -12,6 +12,9 @@ $surface-muted: lighten($background-color, 5%);
 $surface-muted-strong: lighten($background-color, 10%);
 
 $border-color: #d7dde5;
+$border-color-soft: #ccc;
+$border-color-light: #ddd;
+$border-color-strong: #000000;
 
 $flash-notice-bg: #e6f4ea;
 $flash-notice-text: #0f5132;
@@ -19,13 +22,67 @@ $flash-alert-bg: #fdecea;
 $flash-alert-text: #842029;
 $footer-bg: #f1f1f1;
 
+$panel-bg: #f0f0f0;
+$panel-border: $border-color-soft;
+$panel-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+$text-muted: #888;
+$text-muted-strong: #666;
+$link-color: #0077cc;
+$danger-color: #c0392b;
+$success-color: #007a33;
+$warning-color: #b35c00;
+
+$progress-track: #e6e6e6;
+$progress-fill: #2d7ff9;
+$calendar-task-bg: #f7f9fb;
+$dashboard-action-bg: #0056b3;
+$dashboard-action-hover: #006de1;
+
+$kanban-in-progress-bg: #eef7ff;
+$kanban-not-started-bg: #f9f9f9;
+$kanban-on-hold-bg: #fff6e5;
+$kanban-completed-bg: #f1f1f1;
+
+$form-bg: #fffde7;
+$form-border: #fff176;
+$error-bg: #ffe6e6;
+$error-border: #cc0000;
+$error-text: #cc0000;
+$error-text-strong: #7a0b0b;
+
+$reward-card-bg: #111;
+$reward-overlay-bg: rgba(0, 0, 0, 0.6);
+$reward-overlay-bg-soft: rgba(0, 0, 0, 0.4);
+$reward-earned-bg: rgba(150, 0, 125, 0.08);
+$reward-redeemed-bg: rgba(255, 165, 0, 0.1);
+$reward-completed-bg: rgba(120, 120, 120, 0.1);
+
+$status-dot-complete: #008000;
+$status-dot-empty: #000000;
+
+$legend-green: #d4edda;
+$legend-yellow: #fff3cd;
+$legend-red: #f8d7da;
+$legend-black: #343a40;
+$legend-gray: #e2e3e5;
+
 $shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
 $shadow-md: 0 5px 14px rgba(0, 0, 0, 0.12);
 $shadow-lg: 0 10px 22px rgba(0, 0, 0, 0.16);
+$shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.2);
+$shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.2);
+$shadow-float: 0 4px 10px rgba(0, 0, 0, 0.15);
 
+$radius-xs: 3px;
+$radius-xxs: 4px;
+$radius-slim: 6px;
 $radius-sm: 5px;
 $radius-md: 8px;
 $radius-lg: 10px;
+$radius-xl: 12px;
+$radius-xxl: 20px;
+$radius-pill: 999px;
 
 $heading-xl: 2.5rem;
 $heading-lg: 2rem;
@@ -35,13 +92,48 @@ $section-padding: 2rem;
 $card-padding: 1.5rem;
 $card-padding-compact: 1.25rem;
 
+$spacing-1xs: 0.15rem;
+$spacing-2xs: 0.25rem;
+$spacing-3xs: 0.35rem;
+$spacing-4xs: 0.4rem;
+$spacing-5xs: 0.45rem;
+$spacing-6xs: 0.55rem;
+$spacing-7xs: 0.6rem;
+$spacing-8xs: 0.65rem;
+$spacing-9xs: 0.7rem;
+$spacing-10xs: 0.8rem;
+$spacing-11xs: 0.85rem;
+$spacing-12xs: 0.9rem;
+$spacing-13xs: 0.95rem;
 $spacing-xs: 0.5rem;
 $spacing-sm: 0.75rem;
 $spacing-md: 1rem;
+$spacing-14xs: 1.1rem;
+$spacing-ml: 1.25rem;
 $spacing-lg: 1.5rem;
 $spacing-xl: 2rem;
 
+$font-xs: 0.75rem;
+$font-sm: 0.85rem;
+$font-sm-plus: 0.9rem;
+$font-md: 0.95rem;
+$font-base: 1rem;
+$font-base-plus: 1.05rem;
+$font-lg: 1.1rem;
+$font-xl: 1.25rem;
+$font-2xl: 1.4rem;
+$font-display-sm: 2rem;
+$font-display-md: 2.25rem;
+
+$action-divider-width: 150px;
+$legend-box-size: 15px;
+$navbar-logo-height: 150px;
+$blackjack-chip-min-width: 2.4rem;
+$rotating-words-height: 3rem;
+
 $transition-base: 0.3s ease;
+$transition-fast: 0.2s ease;
+$transition-quick: 0.15s ease-in-out;
 
 $navbar-bg: $secondary-color;
 $navbar-link: $background-color;
@@ -59,3 +151,12 @@ $blackjack-surface: #145a3f;
 $blackjack-accent: #d9b24c;
 $blackjack-text: #f7f4ea;
 $blackjack-muted: rgba(247, 244, 234, 0.72);
+$blackjack-chip-bg: #f7f4ea;
+$blackjack-chip-text: #111;
+$blackjack-button-text: #1a1a1a;
+$blackjack-chip-border: rgba(0, 0, 0, 0.15);
+$blackjack-chip-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+$blackjack-button-border: rgba(0, 0, 0, 0.25);
+$blackjack-button-border-hover: rgba(0, 0, 0, 0.35);
+$blackjack-button-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+$blackjack-inset-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);

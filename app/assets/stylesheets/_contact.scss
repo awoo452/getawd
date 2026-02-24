@@ -5,17 +5,17 @@
     border-radius: $radius-md;
     border: 1px solid $border-color;
     box-shadow: $shadow-md;
-    margin-bottom: 2rem;
+    margin-bottom: $spacing-xl;
   
     h2 {
       font-size: $heading-lg;
-      margin: 1.5rem 0 1rem; // Spacing above and below the subheading
+      margin: $spacing-lg 0 $spacing-md; // Spacing above and below the subheading
       color: $secondary-color;
     }
 
     h2.page-title {
       margin-top: 0;
-      margin-bottom: 1rem;
+      margin-bottom: $spacing-md;
       font-size: $heading-xl;
       color: $primary-color;
     }
@@ -27,13 +27,13 @@
       margin: 0;
       display: flex;
       justify-content: center;
-      gap: 1em;
+      gap: $spacing-md;
       li {
         background: $surface-color;
         border: 1px solid $border-color;
         border-radius: $radius-sm;
-        padding: 1rem;
-        margin-bottom: 1rem;
+        padding: $spacing-md;
+        margin-bottom: $spacing-md;
         transition: transform $transition-base, box-shadow $transition-base;
         strong {
           color: $primary-color; // Emphasize the strong elements
@@ -48,8 +48,8 @@
     }
   
     p {
-      font-size: 1.1rem;
-      margin: 1.5rem 0;
+      font-size: $font-lg;
+      margin: $spacing-lg 0;
       text-align: center; // Center the paragraph
       color: $text-color;
     }
@@ -58,8 +58,8 @@
     a {
       display: inline-block;
       background-color: $primary-color;
-      color: white;
-      padding: 0.5rem 1rem;
+      color: $text-on-primary;
+      padding: $spacing-xs $spacing-md;
       text-decoration: none;
       border-radius: $radius-sm;
       transition: background-color $transition-base;
@@ -92,17 +92,17 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: $spacing-md;
 
   label {
-    margin-bottom: 0.3rem;
+    margin-bottom: $spacing-3xs;
     font-weight: bold;
     color: $secondary-color;
   }
 
   input,
   textarea {
-    padding: 0.5rem;
+    padding: $spacing-xs;
     border-radius: $radius-sm;
     border: 1px solid $border-color;
     font-family: $font-stack;
@@ -116,9 +116,9 @@
 
 .btn-submit {
   background-color: $primary-color;
-  color: white;
+  color: $text-on-primary;
   border: none;
-  padding: 0.7rem 1.5rem;
+  padding: $spacing-9xs $spacing-lg;
   border-radius: $radius-sm;
   cursor: pointer;
 

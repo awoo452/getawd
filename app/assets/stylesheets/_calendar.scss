@@ -27,10 +27,10 @@
       width: 1.1em;
       height: 1.1em;
       border-radius: 50%;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      box-shadow: $shadow-xs;
       background: conic-gradient(
-        green 0deg var(--progress-angle),
-        black var(--progress-angle) 360deg
+        $status-dot-complete 0deg var(--progress-angle),
+        $status-dot-empty var(--progress-angle) 360deg
       );
     }
 
@@ -52,7 +52,7 @@
   width: 84%;
   h1 {
     text-align: center;
-    margin-top: .5em;
+    margin-top: $spacing-xs;
   }
   .calendar-heading {
     width: 100%;
@@ -66,7 +66,7 @@
 
 #task-calendar-monthly {
   ul {
-    padding: 5px;
+    padding: $spacing-3xs;
     max-height: 85px;
     overflow-y: auto;
     margin: 0;
@@ -81,7 +81,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 16px;
+  gap: $spacing-md;
 }
 
 .calendar-divider {
@@ -93,16 +93,16 @@
   flex: 0 1 280px;
   max-width: 320px;
 
-  background: #f7f9fb;
+  background: $calendar-task-bg;
   border-radius: $radius-md;
-  padding: 12px;
+  padding: $spacing-sm;
 
   box-shadow: $shadow-sm;
   border-bottom: 3px solid $primary-color;
 
   h3 {
-    margin: 0 0 10px 0;
-    font-size: 0.9rem;
+    margin: 0 0 $spacing-8xs 0;
+    font-size: $font-sm-plus;
     text-align: center;
     color: $primary-color;
   }

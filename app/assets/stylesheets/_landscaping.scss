@@ -1,22 +1,22 @@
 .services-list {
   list-style: none;
   padding: 0;
-  margin: 2rem auto;
+  margin: $spacing-xl auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: $spacing-xs;
   justify-content: center;
 
   li {
     background: $landscaping-accent-soft;
     color: $landscaping-accent;
-    font-size: 0.95rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
+    font-size: $font-md;
+    padding: $spacing-4xs $spacing-10xs;
+    border-radius: $radius-xxl;
     border: 1px solid $landscaping-border;
     white-space: nowrap;
     display: inline-block;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color $transition-fast, transform $transition-fast;
 
     &:hover {
       background-color: lighten($landscaping-accent, 40%);
@@ -28,13 +28,13 @@
 .landscaping-contact {
   list-style: none;
   padding: 0;
-  margin: 2rem auto 0;
+  margin: $spacing-xl auto 0;
   text-align: center;
   font-family: $font-stack;
 
   li {
-    margin: 0.5rem 0;
-    font-size: 1rem;
+    margin: $spacing-xs 0;
+    font-size: $font-base;
     color: $text-color;
 
     strong {
@@ -45,7 +45,7 @@
       color: $landscaping-link;
       text-decoration: none;
       border-bottom: 1px solid transparent;
-      transition: border-color 0.2s ease, color 0.2s ease;
+      transition: border-color $transition-fast, color $transition-fast;
 
       &:hover {
         color: $landscaping-link-hover;
@@ -56,23 +56,23 @@
 }
 
 .landscaping-jobs {
-  padding: 2rem;
+  padding: $spacing-xl;
   background-color: $landscaping-hero-bg;
-  border-radius: 8px;
+  border-radius: $radius-md;
   box-shadow: $shadow-sm;
   font-family: $font-stack;
 
   h1 {
-    font-size: 2.5rem;
+    font-size: $heading-xl;
     color: $landscaping-accent;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: $spacing-xl;
   }
 
   .jobs-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: $spacing-xl;
     justify-content: center;
   }
 
@@ -80,21 +80,21 @@
     background: $landscaping-card-bg;
     border: 1px solid $landscaping-border;
     border-radius: $radius-lg;
-    padding: 1.5rem;
+    padding: $spacing-lg;
     flex: 1 1 320px;
     max-width: 400px;
     box-shadow: $shadow-sm;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform $transition-fast, box-shadow $transition-fast;
 
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      box-shadow: $shadow-hover;
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: $heading-md;
       color: $landscaping-accent;
-      margin-bottom: 0.5rem;
+      margin-bottom: $spacing-xs;
       text-align: center;
       display: -webkit-box;
       -webkit-line-clamp: 1;
@@ -103,7 +103,7 @@
     }
 
     p {
-      font-size: 1rem;
+      font-size: $font-base;
       color: $text-color;
       text-align: center;
       display: -webkit-box;
@@ -113,7 +113,7 @@
     }
 
     .job-image-frame {
-      margin: 1rem auto 0;
+      margin: $spacing-md auto 0;
       width: 100%;
       max-width: 500px;
       aspect-ratio: 1 / 1;
@@ -140,7 +140,7 @@
 
 .landscaping-contact-link {
   text-align: center;
-  margin: 1.5rem 0 0;
+  margin: $spacing-lg 0 0;
 
   a {
     color: $landscaping-link;
