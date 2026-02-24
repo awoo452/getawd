@@ -1,4 +1,5 @@
-.services {
+.services,
+.featured-services {
   text-align: center;
 
   .page-title {
@@ -50,7 +51,8 @@
   }
 }
 
-.services .service-category {
+.services .service-category,
+.featured-services .service-category {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;

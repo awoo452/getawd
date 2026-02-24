@@ -1,6 +1,7 @@
 <% content_for :meta_description, "We build apps that work because we care about making sure they work." %>
 
 <%= render "featured_about" %>
+<%= render "featured_services", featured_services: @featured_services %>
 <%= render "featured_projects", featured_projects: @featured_projects %>
 <%= render "featured_blog_posts", featured_blog_posts: @featured_blog_posts %>
 <%= render "featured_videos", featured_videos: @featured_videos %>

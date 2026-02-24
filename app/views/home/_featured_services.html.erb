@@ -1,0 +1,25 @@
+<section class="featured-services">
+  <h2>Featured Services</h2>
+  <ul>
+    <% featured_services.each do |service| %>
+      <li>
+        <h3><%= service.title %></h3>
+        <% if service.category.present? %>
+          <p class="service-category"><%= service.category %></p>
+        <% end %>
+        <p><%= service.description %></p>
+        <% if service.image.present? %>
+          <div class="card-image-frame">
+            <% proxy_url = image_proxy_url("services/#{service.image}", width: 500, height: 500, fit: "inside", format: "webp") %>
+            <%= image_tag proxy_url, class: "card-image", loading: "lazy", decoding: "async" if proxy_url %>
+          </div>
+        <% end %>
+        <div class="card-actions">
+          <% anchor = service.projects_anchor %>
+          <%= link_to "View Projects", anchor.present? ? projects_path(anchor: anchor) : projects_path %>
+          <%= link_to "Get Started", contact_path %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</section>

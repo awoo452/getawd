@@ -71,6 +71,7 @@
 
 
   .featured-blog-posts,
+  .featured-services,
   .blog-posts,
   .blog-post,
   .games,
@@ -153,6 +154,7 @@
   }
 
   .featured-blog-posts,
+  .featured-services,
   .featured-projects,
   .featured-videos {
     ul li {
@@ -198,6 +200,7 @@
 
   .featured-blog-posts,
   .blog-posts,
+  .featured-services,
   .featured-projects,
   .projects,
   .services,
@@ -285,9 +288,7 @@
     text-align: center;
     color: $secondary-color;
   }
-
-
-
+  
   .project-detail .project-description {
     margin: 1.5rem 0;
     text-align: left;
