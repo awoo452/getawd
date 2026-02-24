@@ -18,7 +18,7 @@
       .color-box {
         width: $legend-box-size;
         height: $legend-box-size;
-        border-radius: $radius-xs;
+        border-radius: $radius-sm;
       }
     }
   }
@@ -50,8 +50,8 @@
   padding: $spacing-md;
   background-color: $panel-bg;
   border: 1px solid $panel-border;
-  border-radius: $radius-xl;
-  box-shadow: $panel-shadow;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
 
   .new-task-btn,
   .new-goal-btn {

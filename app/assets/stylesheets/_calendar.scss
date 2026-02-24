@@ -27,7 +27,7 @@
       width: 1.1em;
       height: 1.1em;
       border-radius: 50%;
-      box-shadow: $shadow-xs;
+      box-shadow: $shadow-sm;
       background: conic-gradient(
         $status-dot-complete 0deg var(--progress-angle),
         $status-dot-empty var(--progress-angle) 360deg

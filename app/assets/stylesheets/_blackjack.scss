@@ -40,7 +40,7 @@
     border: 1px solid rgba($blackjack-accent, 0.25);
     border-radius: $radius-md;
     padding: $spacing-md $spacing-ml;
-    box-shadow: $blackjack-inset-shadow;
+    box-shadow: $shadow-inset;
   }
 
   h2 {
@@ -63,7 +63,7 @@
     color: $blackjack-chip-text;
     border-radius: $radius-sm;
     border: 1px solid $blackjack-chip-border;
-    box-shadow: $blackjack-chip-shadow;
+    box-shadow: $shadow-sm;
     font-size: $font-base;
   }
 }
@@ -93,6 +93,6 @@
   button:hover {
     transform: translateY(-1px);
     border-color: $blackjack-button-border-hover;
-    box-shadow: $blackjack-button-shadow;
+    box-shadow: $shadow-lg;
   }
 }

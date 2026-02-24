@@ -89,7 +89,7 @@
   input[type="submit"]:hover,
   button:hover {
     background: darken($primary-color, 8%);
-    box-shadow: $shadow-float;
+    box-shadow: $shadow-md;
   }
 }
 

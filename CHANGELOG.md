@@ -4,10 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.24.10] 2026/02/24
+
+### Changed
+- Simplified radius/shadow tokens and normalized usages across SCSS partials.
+
 ## [1.24.9] 2026/02/24
 
 ### Changed
-- Reducing unnecessary number of variables for padding and text sizing.
+- Reduced spacing and font tokens to a smaller scale.
 
 ## [1.24.8] 2026/02/24
 

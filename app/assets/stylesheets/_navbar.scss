@@ -17,7 +17,7 @@
         color: $navbar-link;
         text-decoration: none;
         padding: $spacing-xs $spacing-md;
-        border-radius: $radius-xxs;
+        border-radius: $radius-sm;
         transition: background-color $transition-base;
 
         &:not(:has(img)):hover {

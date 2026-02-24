@@ -12,7 +12,7 @@
     color: $landscaping-accent;
     font-size: $font-base;
     padding: $spacing-xs $spacing-sm;
-    border-radius: $radius-xxl;
+    border-radius: $radius-pill;
     border: 1px solid $landscaping-border;
     white-space: nowrap;
     display: inline-block;
@@ -88,7 +88,7 @@
 
     &:hover {
       transform: translateY(-3px);
-      box-shadow: $shadow-hover;
+      box-shadow: $shadow-md;
     }
 
     h2 {
