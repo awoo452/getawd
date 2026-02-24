@@ -1,0 +1,22 @@
+<ul>
+  <% services.each do |service| %>
+    <li>
+      <h3><%= service.title %></h3>
+      <% if service.category.present? %>
+        <p class="service-category"><%= service.category %></p>
+      <% end %>
+      <p><%= service.description %></p>
+      <div>
+        <div class="card-actions">
+          <% anchor = service.projects_anchor %>
+          <%= link_to "View Projects", anchor.present? ? projects_path(anchor: anchor) : projects_path %>
+          <% if service.url.present? %>
+            <%= link_to "Learn More", service.url, target: "_blank", rel: "noopener" %>
+          <% else %>
+            <%= link_to "Get Started", contact_path %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

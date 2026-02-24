@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :ideas, only: [:show]
   resources :idea_stats, only: [:index]
   resources :projects,  only: [:index, :show]
+  resources :services,  only: [:index]
   resources :videos,    only: [:index, :show]
   resources :reports, only: [:index]
   resources :rewards, only: [:index, :show, :update] do

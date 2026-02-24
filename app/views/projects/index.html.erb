@@ -1,15 +1,42 @@
-<section class="projects">
+<section class="projects" id="projects">
   <h2 class="page-title">Projects</h2>
-  <% if @featured_projects.any? %>
-    <div class="projects-group">
-      <h3 class="projects-section-title">Featured</h3>
-      <%= render "project_list", projects: @featured_projects %>
-    </div>
+  <% if @service.present? %>
+    <p class="page-intro">
+      Showing projects for <strong><%= @service.title %></strong>.
+      <%= link_to "View all projects", projects_path %>
+    </p>
   <% end %>
-  <% if @other_projects.any? %>
-    <div class="projects-group">
-      <h3 class="projects-section-title">More Projects</h3>
-      <%= render "project_list", projects: @other_projects %>
+  <% service_groups = @projects.group_by(&:service_type) %>
+  <% ordered_types = ["amplify_site", "custom_rails_app", nil, ""] %>
+  <% ordered_types.each do |service_type| %>
+    <% next if service_groups[service_type].blank? %>
+    <% label =
+        case service_type
+        when "amplify_site" then "AWS Amplify Sites"
+        when "custom_rails_app" then "Custom Rails Apps"
+        else "Other Projects"
+        end %>
+    <% anchor =
+        case service_type
+        when "amplify_site" then "aws_amplify"
+        when "custom_rails_app" then "custom_rails"
+        else "other_projects"
+        end %>
+    <div class="projects-group" id="<%= anchor %>">
+      <h3 class="projects-section-title"><%= label %></h3>
+      <% featured, other = service_groups[service_type].partition(&:featured?) %>
+      <% if featured.any? && other.any? %>
+        <div class="projects-subgroup">
+          <h4 class="projects-subtitle">Featured</h4>
+          <%= render "project_list", projects: featured %>
+        </div>
+        <div class="projects-subgroup">
+          <h4 class="projects-subtitle">More Projects</h4>
+          <%= render "project_list", projects: other %>
+        </div>
+      <% else %>
+        <%= render "project_list", projects: featured.any? ? featured : other %>
+      <% end %>
     </div>
   <% end %>
   <%= render "shared/pagination",

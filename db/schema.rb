@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_07_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_24_202500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -112,9 +112,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_07_120000) do
     t.text "description"
     t.boolean "featured"
     t.string "image"
+    t.string "service_type"
     t.string "title"
     t.datetime "updated_at", null: false
     t.string "url"
+    t.index ["service_type"], name: "index_projects_on_service_type"
   end
 
   create_table "reward_rules", force: :cascade do |t|
@@ -154,6 +156,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_07_120000) do
     t.index "((reward_payload ->> 'earned_date'::text)), ((reward_payload ->> 'level'::text))", name: "index_rewards_unique_day_level", unique: true, where: "(((scope)::text = 'level'::text) AND ((kind)::text = 'earned'::text))"
     t.index ["goal_id"], name: "index_rewards_on_goal_id"
     t.index ["scope"], name: "index_rewards_on_scope"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.text "description", null: false
+    t.boolean "featured", default: false, null: false
+    t.string "image"
+    t.integer "position", default: 0, null: false
+    t.string "service_type"
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.string "url"
+    t.index ["service_type"], name: "index_services_on_service_type"
   end
 
   create_table "tasks", force: :cascade do |t|

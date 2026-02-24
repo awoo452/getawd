@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
     home
     landscaping
     projects
+    services
     s3_proxy
     videos
   ].freeze

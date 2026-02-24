@@ -1,0 +1,11 @@
+<section class="services">
+  <h2 class="page-title">Services</h2>
+  <p class="page-intro">
+    Standard services we currently offer - from simple business sites to full Rails apps with integrations.
+  </p>
+  <%= render "service_list", services: @services %>
+  <%= render "shared/pagination",
+        page: @services_page,
+        total_pages: @services_total_pages,
+        path_helper: :services_path %>
+</section>
