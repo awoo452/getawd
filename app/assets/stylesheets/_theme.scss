@@ -3,6 +3,7 @@ $primary-color: #3a579d;
 $secondary-color: #3e3e3e;
 $background-color: #ecf0f1;
 $text-color: #465563;
+$text-on-primary: #ffffff;
 $hover-color: lighten($primary-color, 30%);
 $font-stack: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 
@@ -11,6 +12,12 @@ $surface-muted: lighten($background-color, 5%);
 $surface-muted-strong: lighten($background-color, 10%);
 
 $border-color: #d7dde5;
+
+$flash-notice-bg: #e6f4ea;
+$flash-notice-text: #0f5132;
+$flash-alert-bg: #fdecea;
+$flash-alert-text: #842029;
+$footer-bg: #f1f1f1;
 
 $shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
 $shadow-md: 0 5px 14px rgba(0, 0, 0, 0.12);
@@ -27,6 +34,12 @@ $heading-md: 1.5rem;
 $section-padding: 2rem;
 $card-padding: 1.5rem;
 $card-padding-compact: 1.25rem;
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
 
 $transition-base: 0.3s ease;
 
