@@ -2,18 +2,16 @@ module Projects
   class IndexData
     Result = Struct.new(:projects, :projects_page, :projects_total_pages, keyword_init: true)
 
-    def self.call(paginator:, service_type: nil)
-      new(paginator: paginator, service_type: service_type).call
+    def self.call(paginator:)
+      new(paginator: paginator).call
     end
 
-    def initialize(paginator:, service_type:)
+    def initialize(paginator:)
       @paginator = paginator
-      @service_type = service_type
     end
 
     def call
       scope = Project.order(created_at: :desc)
-      scope = scope.where(service_type: @service_type) if @service_type.present?
 
       projects, projects_page, projects_total_pages =
         @paginator.call(scope, per_page: 25)

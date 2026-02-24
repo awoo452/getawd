@@ -4,7 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.24.1] 2026/02/24
 
+### Changed
+- Me: Let's just do some really basic filtering on the projects page
+- ChatGPT: Hold my beer
+- Me: Ok can u fix it tho with this commit? Stay tuned to find out.
+- Projects index now groups by service types from the database, with an "Other Projects" fallback for nil or unmapped types.
+- Service project anchors now derive from the stored `service_type` without hardcoded mappings.
 
 ## [1.24.0] 2026/02/24
 

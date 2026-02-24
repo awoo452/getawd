@@ -1,11 +1,10 @@
 class ProjectsController < ApplicationController
   def index
-    data = Projects::IndexData.call(paginator: method(:paginate), service_type: params[:service_type])
+    data = Projects::IndexData.call(paginator: method(:paginate))
     @projects = data.projects
-    @featured_projects, @other_projects = @projects.partition(&:featured?)
     @projects_page = data.projects_page
     @projects_total_pages = data.projects_total_pages
-    @service = Service.find_by(service_type: params[:service_type]) if params[:service_type].present?
+    @services = Service.where.not(service_type: [nil, ""]).order(position: :asc, created_at: :desc)
   end
 
   def show
