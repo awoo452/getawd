@@ -13,7 +13,7 @@
         <% end %>
         <div>
           <% if project.url.present? %>
-            <a href="<%= project.url %>">View Project</a>
+            <a href="<%= project_link_url(project.url) %>">View Project</a>
           <% end %>
         </div>
       </li>

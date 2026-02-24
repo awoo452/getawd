@@ -12,7 +12,7 @@
 
   <div class="project-actions">
     <% if @project.url.present? %>
-      <%= link_to "Visit Project", @project.url %>
+      <%= link_to "Visit Project", project_link_url(@project.url) %>
     <% end %>
     <%= link_to "Back to Projects", projects_path %>
   </div>

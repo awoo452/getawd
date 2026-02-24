@@ -9,6 +9,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 - Featured services section on the landing page.
 
+## [1.24.5] 2026/02/24
+
+### Fixed
+- Normalized project URLs so missing schemes no longer resolve as relative `getawd.com` paths.
+
 ## [1.24.3] 2026/02/24
 
 ### Changed
