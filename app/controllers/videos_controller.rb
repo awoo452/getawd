@@ -1,4 +1,6 @@
 class VideosController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def index
     data = Videos::IndexData.call(paginator: method(:paginate))
     @videos = data.videos

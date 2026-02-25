@@ -1,6 +1,4 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     data = Reports::IndexData.call
 

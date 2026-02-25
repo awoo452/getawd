@@ -1,4 +1,6 @@
 class BlogPostsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def index
     data = BlogPosts::IndexData.call(paginator: method(:paginate))
     @blog_posts = data.blog_posts

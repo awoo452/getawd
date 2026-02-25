@@ -1,6 +1,5 @@
 # app/controllers/rewards_controller.rb
 class RewardsController < ApplicationController
-  before_action :authenticate_user!
   helper RewardsHelper
 
   def index

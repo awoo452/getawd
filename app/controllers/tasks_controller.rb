@@ -1,6 +1,4 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     result = Tasks::IndexData.call(params: params)
     @tasks_by_status = result.tasks_by_status

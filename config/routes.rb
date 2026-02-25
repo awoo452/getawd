@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   resources :feedbacks, only: [:new, :create, :index], path: "feedback"
   resources :games,     only: [:index, :show]
   resources :ideas, only: [:show]
-  resources :idea_stats, only: [:index]
   resources :projects,  only: [:index, :show]
   resources :services,  only: [:index]
   resources :videos,    only: [:index, :show]

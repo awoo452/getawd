@@ -1,4 +1,6 @@
 class ServicesController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def index
     data = Services::IndexData.call(paginator: method(:paginate))
     @services = data.services

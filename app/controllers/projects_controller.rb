@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def index
     data = Projects::IndexData.call(paginator: method(:paginate))
     @projects = data.projects

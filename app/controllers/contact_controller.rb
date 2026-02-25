@@ -1,4 +1,6 @@
 class ContactController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def index
     data = Contact::IndexData.call
     @contact_info = data.contact_info
