@@ -1,6 +1,5 @@
 class BlackjackController < ApplicationController
   skip_before_action :authenticate_user!
-  protect_from_forgery with: :exception
 
   def show
     blackjack_game.init_if_needed

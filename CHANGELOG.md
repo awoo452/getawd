@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.24.18] 2026/02/25
+
+### Changed
+- Extracted task lookup into a shared before_action for show/edit.
+
+### Removed
+- Dropped redundant CSRF protection override in the blackjack controller.
+
 ## [1.24.17] 2026/02/24
 
 ### Changed

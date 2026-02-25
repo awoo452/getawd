@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: %i[ show edit ]
+
   def index
     result = Tasks::IndexData.call(params: params)
     @tasks_by_status = result.tasks_by_status
@@ -6,7 +8,6 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
@@ -25,7 +26,6 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
@@ -51,6 +51,10 @@ class TasksController < ApplicationController
   end
   
   private
+
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
   def task_params
     params.require(:task).permit(
