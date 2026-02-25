@@ -34,15 +34,15 @@ Rails.application.routes.draw do
   resources :reports, only: [:index]
   resources :rewards, only: [:index, :show, :update] do
     collection do
-      post :redeem
+      post :redeem, to: "reward_redemptions#redeem"
     end
 
     member do
-      post :redeem_any
+      post :redeem_any, to: "reward_redemptions#redeem_any"
     end
   end
 
-  post "rewards/:id/redeem_task", to: "rewards#redeem_task", as: :redeem_task_reward
+  post "rewards/:id/redeem_task", to: "reward_redemptions#redeem_task", as: :redeem_task_reward
 
   ## If you're still reading you deserve to know about this
   get  "/blackjack",        to: "blackjack#show",  as: :blackjack

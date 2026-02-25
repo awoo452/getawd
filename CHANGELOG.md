@@ -4,7 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.24.15] 2026/02/25
+## [1.24.17] 2026/02/24
+
+### Changed
+- Moved reward redemption actions into a dedicated controller while keeping routes intact.
+
+## [1.24.16] 2026/02/24
+
+### Changed
+- Moved document category parsing into `Document#category`.
+
+### Removed
+- Dropped the unused `document_params` and controller-only category helper.
+
+## [1.24.15] 2026/02/24
 
 ### Removed
 - Dropped the unused `idea_stats` route that had no controller.

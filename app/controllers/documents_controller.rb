@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
     data = Documents::IndexData.call(paginator: method(:paginate))
     @documents = data.documents
     @documents_by_category = @documents.group_by do |document|
-      document_category(document) || "uncategorized"
+      document.category || "uncategorized"
     end
   end
 
@@ -34,20 +34,5 @@ class DocumentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
-    end
-
-    def document_category(document)
-      metadata = document.metadata
-      metadata = JSON.parse(metadata) if metadata.is_a?(String)
-      return metadata["category"].presence if metadata.is_a?(Hash)
-
-      nil
-    rescue JSON::ParserError
-      nil
-    end
-
-    # Only allow a list of trusted parameters through.
-    def document_params
-      params.require(:document).permit(:title, :subheadings, :body, :images, :youtube_id, :metadata)
     end
 end
