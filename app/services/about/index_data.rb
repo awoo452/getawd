@@ -7,7 +7,7 @@ module About
     end
 
     def call
-      Result.new(about_sections: AboutSection.all)
+      Result.new(about_sections: AboutSection.ordered)
     end
   end
 end

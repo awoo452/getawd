@@ -1,6 +1,7 @@
 <h1>Add Feedback</h1>
 
 <%= form_with model: @feedback, local: true do |f| %>
+  <%= render "shared/form_errors", form_object: @feedback %>
 
   <div class="form-field">
     <%= f.label :title %>

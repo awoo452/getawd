@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.24.21] 2026/02/25
+
+### Changed
+- Added error summary display to the feedback form and clarified the shared form error header.
+
+## [1.24.20] 2026/02/25
+
+### Changed
+- Replaced the `AboutSection` default scope with an explicit `ordered` scope.
+- Added basic validations for core content models (games, landscaping jobs, services, projects, videos, blog posts).
+
 ## [1.24.19] 2026/02/25
 
 ### Changed

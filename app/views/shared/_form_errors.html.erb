@@ -1,6 +1,6 @@
 <% if form_object.errors.any? %>
   <div class="error-explanation">
-    <h2><%= pluralize(form_object.errors.count, "error") %> prohibited this record from being saved:</h2>
+    <h2>Save failed. Fix the errors below:</h2>
     <ul>
       <% form_object.errors.full_messages.each do |message| %>
         <li><%= message %></li>
