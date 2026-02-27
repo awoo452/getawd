@@ -2,7 +2,14 @@
   <li>
     <%= link_to root_path do %>
       <% proxy_url = image_proxy_url("branding/logo.png", width: 300, height: 300, fit: "inside", format: "webp") %>
-      <%= image_tag(proxy_url, alt: "Logo", class: "navbar-logo", loading: "lazy", decoding: "async") if proxy_url %>
+      <% logo_key = "branding/logo.png" %>
+      <% fallback_logo = image_path("branding/logo.png") %>
+      <% logo_url = s3_object_exists?(logo_key) ? proxy_url : fallback_logo %>
+      <%= image_tag(logo_url,
+                    alt: "Logo",
+                    class: "navbar-logo",
+                    loading: "lazy",
+                    decoding: "async") %>
     <% end %>
   </li>
   <li><%= link_to "About", about_path %></li>

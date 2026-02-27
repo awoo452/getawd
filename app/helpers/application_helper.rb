@@ -8,6 +8,24 @@ module ApplicationHelper
     nil
   end
 
+  def s3_object_exists?(key)
+    return false if key.blank?
+
+    return true if !Rails.env.development? && !Rails.env.test?
+
+    begin
+      creds = Rails.application.config_for(:s3)
+      Aws::S3::Client.new(
+        region: creds["region"],
+        access_key_id: creds["access_key_id"],
+        secret_access_key: creds["secret_access_key"]
+      ).head_object(bucket: creds["bucket"], key: key)
+      true
+    rescue Aws::S3::Errors::NotFound, Aws::S3::Errors::Forbidden
+      false
+    end
+  end
+
   def image_proxy_url(key, width:, height: nil, fit: nil, format: nil)
     return if key.blank?
 

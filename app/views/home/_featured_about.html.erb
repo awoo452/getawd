@@ -1,18 +1,23 @@
 <section class="featured-about">
-  <% proxy_url = image_proxy_url("branding/lightning1_24_11.png", width: 1600, height: 900, fit: "cover", format: "webp") %>
-  <%= image_tag proxy_url, class: "featured-about-bg", loading: "lazy", decoding: "async" if proxy_url %>
+  <% fallback_image = image_path("branding/lightning.png") %>
+  <% lightning_key = "branding/lightning1_24_11.png" %>
+  <% proxy_url = image_proxy_url(lightning_key, width: 1600, height: 900, fit: "cover", format: "webp") %>
+  <% hero_image = s3_object_exists?(lightning_key) ? proxy_url : fallback_image %>
+  <%= image_tag(hero_image,
+                class: "featured-about-bg",
+                loading: "lazy",
+                decoding: "async") %>
 
   <div class="featured-about-text">
     <div class="featured-about-flag" aria-hidden="true"></div>
-    <div class="rotating-words">
-      <span>Designing</span>
-      <span>Creating</span>
-      <span>Building</span>
-      <span>Developing</span>
-      <span>Deploying</span>
-      <span>Delivering</span>
+    <p class="featured-about-kicker">Web Development & IT Consulting</p>
+    <h2 class="featured-about-title">Scalable products without the bloat</h2>
+    <p class="featured-about-copy">
+      Custom web apps, internal tools, and business infrastructure. Delivering fast, deploying secure, and optimizing to scale since 2020.
+    </p>
+    <div class="featured-about-actions">
+      <%= link_to "View Services", services_path, class: "featured-about-action primary" %>
+      <%= link_to "Start a Project", contact_path, class: "featured-about-action ghost" %>
     </div>
-
-    <h3 class="featured-about-subtitle">Since 2020</h3>
   </div>
 </section>

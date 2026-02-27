@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_24_202500) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_25_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -93,6 +93,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_24_202500) do
     t.datetime "updated_at", null: false
     t.index "idea_id, lower((title)::text)", name: "index_goals_on_idea_id_and_lower_title", unique: true
     t.index ["idea_id"], name: "index_goals_on_idea_id"
+    t.check_constraint "status = ANY (ARRAY[0, 1, 2, 3])", name: "goals_status_check"
   end
 
   create_table "ideas", force: :cascade do |t|
@@ -192,6 +193,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_24_202500) do
     t.string "task_name"
     t.datetime "updated_at", null: false
     t.index ["goal_id"], name: "index_tasks_on_goal_id"
+    t.check_constraint "status IS NULL OR (status = ANY (ARRAY[0, 1, 2, 3]))", name: "tasks_status_check"
   end
 
   create_table "users", force: :cascade do |t|
