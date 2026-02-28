@@ -98,11 +98,12 @@
 }
 
 .projects .projects-group {
-  margin-top: $spacing-xl;
-  padding: $spacing-lg;
+  margin-top: $spacing-lg;
+  padding: $spacing-lg $spacing-md;
   border-radius: $radius-md;
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.92), rgba(244, 246, 251, 0.98));
-  border: 1px solid rgba(13, 17, 26, 0.1);
+  background: #f8f9fd;
+  border: 1px solid rgba(13, 17, 26, 0.08);
+  box-shadow: $shadow-sm;
   position: relative;
   overflow: hidden;
 }
@@ -110,17 +111,17 @@
 .projects .projects-group::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 15% 15%, rgba(53, 90, 156, 0.12), transparent 45%),
-    radial-gradient(circle at 85% 0%, rgba(194, 77, 77, 0.1), transparent 45%),
-    repeating-linear-gradient(135deg, rgba(13, 17, 26, 0.05), rgba(13, 17, 26, 0.05) 1px, transparent 1px, transparent 10px);
-  opacity: 0.5;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-cool), var(--accent-warm));
+  opacity: 0.9;
   pointer-events: none;
 }
 
 .projects .projects-group:nth-of-type(even) {
-  background: linear-gradient(140deg, rgba(248, 250, 255, 0.96), rgba(235, 240, 248, 0.98));
+  background: #f2f5fb;
 }
 
 .projects .projects-group > * {
@@ -129,10 +130,12 @@
 }
 
 .projects .projects-section-header {
-  display: grid;
-  gap: $spacing-xs;
-  margin-bottom: $spacing-ml;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xs;
+  margin: 0 auto $spacing-md;
   text-align: center;
+  max-width: $container-sm;
 }
 
 .projects .projects-section-kicker {
@@ -145,7 +148,7 @@
 
 .projects .projects-section-title {
   margin: 0;
-  font-size: $heading-lg;
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
   color: $primary-color;
 }
 
@@ -160,6 +163,7 @@
 
 .projects .projects-group ul {
   margin: 0;
+  justify-content: center;
 }
 
 @media (max-width: $bp-md) {

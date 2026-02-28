@@ -1,7 +1,7 @@
 <section class="projects" id="projects">
   <div class="projects-intro">
     <h2 class="page-title">Projects</h2>
-    <p class="page-intro">Grouped by service type so it's clear where Rails apps end and static sites begin.</p>
+    <p class="page-intro">Grouped by service so you can see the scope at a glance.</p>
   </div>
   <% services = @services.to_a %>
   <% service_types = services.map(&:service_type) %>
@@ -14,9 +14,12 @@
     <% section_copy = @projects_section_copy.fetch(service.service_type, {}) %>
     <% kicker = section_copy[:kicker].presence || service.category %>
     <% summary = section_copy[:summary].presence || service.description %>
+    <% normalized_kicker = kicker.to_s.strip.downcase %>
+    <% normalized_title = service.title.to_s.strip.downcase %>
+    <% show_kicker = normalized_kicker.present? && normalized_kicker != normalized_title %>
     <div class="projects-group" id="<%= service.projects_anchor %>">
       <div class="projects-section-header">
-        <% if kicker.present? %>
+        <% if show_kicker %>
           <p class="projects-section-kicker"><%= kicker %></p>
         <% end %>
         <h3 class="projects-section-title"><%= service.title %></h3>
@@ -32,9 +35,12 @@
     <% other_copy = @projects_section_copy.fetch(:other_projects, {}) %>
     <% other_kicker = other_copy[:kicker] %>
     <% other_summary = other_copy[:summary] %>
+    <% normalized_other_kicker = other_kicker.to_s.strip.downcase %>
+    <% normalized_other_title = "Other Projects".downcase %>
+    <% show_other_kicker = normalized_other_kicker.present? && normalized_other_kicker != normalized_other_title %>
     <div class="projects-group" id="other_projects">
       <div class="projects-section-header">
-        <% if other_kicker.present? %>
+        <% if show_other_kicker %>
           <p class="projects-section-kicker"><%= other_kicker %></p>
         <% end %>
         <h3 class="projects-section-title">Other Projects</h3>
