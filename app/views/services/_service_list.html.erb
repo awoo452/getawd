@@ -10,7 +10,7 @@
       <% if service.image.present? %>
         <div class="card-image-frame">
           <% proxy_url = image_proxy_url("services/#{service.image}", width: 500, height: 500, fit: "inside", format: "webp") %>
-          <%= image_tag proxy_url, class: "card-image", loading: "lazy", decoding: "async" if proxy_url %>
+          <%= fallback_image_tag proxy_url, class: "card-image", loading: "lazy", decoding: "async" if proxy_url %>
         </div>
       <% end %>
       <div>

@@ -5,11 +5,12 @@
       <% logo_key = "branding/logo.png" %>
       <% fallback_logo = image_path("branding/logo.png") %>
       <% logo_url = s3_object_exists?(logo_key) ? proxy_url : fallback_logo %>
-      <%= image_tag(logo_url,
-                    alt: "Logo",
-                    class: "navbar-logo",
-                    loading: "lazy",
-                    decoding: "async") %>
+      <%= fallback_image_tag(logo_url,
+                            fallback: fallback_logo,
+                            alt: "Logo",
+                            class: "navbar-logo",
+                            loading: "lazy",
+                            decoding: "async") %>
     <% end %>
   </li>
   <li><%= link_to "About", about_path %></li>

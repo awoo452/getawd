@@ -11,7 +11,7 @@
   <% if @project.image.present? %>
     <div class="project-media">
       <% proxy_url = image_proxy_url(project_image_key(@project.image), width: 800, height: 800, fit: "inside", format: "webp") %>
-      <%= image_tag proxy_url, class: "project-image", loading: "lazy", decoding: "async" if proxy_url %>
+      <%= fallback_image_tag proxy_url, class: "project-image", loading: "lazy", decoding: "async" if proxy_url %>
       <div class="project-actions project-actions--overlay">
         <%= actions %>
       </div>

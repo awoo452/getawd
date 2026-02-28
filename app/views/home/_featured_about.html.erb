@@ -3,7 +3,7 @@
   <% lightning_key = "branding/lightning1_24_11.png" %>
   <% proxy_url = image_proxy_url(lightning_key, width: 1600, height: 900, fit: "cover", format: "webp") %>
   <% hero_image = s3_object_exists?(lightning_key) ? proxy_url : fallback_image %>
-  <%= image_tag(hero_image,
+  <%= fallback_image_tag(hero_image,
                 class: "featured-about-bg",
                 loading: "lazy",
                 decoding: "async") %>

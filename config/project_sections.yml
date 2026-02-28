@@ -1,0 +1,9 @@
+custom_rails_app:
+  kicker: Rails-First Custom Apps
+  summary: End-to-end Rails builds for data-heavy products, internal tools, and long-term feature work. Strong models, clean admin, and reliable deployments.
+amplify_site:
+  kicker: Static Sites on AWS Amplify
+  summary: Marketing and brochure sites with fast deploys, CDN delivery, and simple content updates. Great for clean performance and low maintenance.
+other_projects:
+  kicker: Other Projects
+  summary: Experiments, legacy builds, and one-off work that doesn't fit a service category.

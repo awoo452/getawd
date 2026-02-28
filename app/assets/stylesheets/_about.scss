@@ -4,84 +4,210 @@
   max-width: $container-lg;
   margin: 0 auto $spacing-xl;
   padding: $section-padding;
-  background: $surface-muted;
-  border: 1px solid $border-color;
+  background: linear-gradient(140deg, var(--surface-1), var(--surface-2));
+  border: 1px solid rgba(13, 17, 26, 0.12);
   border-radius: $radius-lg;
-  box-shadow: $shadow-md;
+  box-shadow: $shadow-lg;
+  position: relative;
+  overflow: hidden;
 }
 
-.about h1 {
-  margin: 0 0 $spacing-ml;
-  font-size: $heading-xl;
-  color: $primary-color;
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 12% 12%, rgba(53, 90, 156, 0.16), transparent 52%),
+    radial-gradient(circle at 88% -10%, rgba(194, 77, 77, 0.12), transparent 45%),
+    repeating-linear-gradient(135deg, var(--grid-line), var(--grid-line) 1px, transparent 1px, transparent 12px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.about > * {
+  position: relative;
+  z-index: 1;
+}
+
+.about-hero {
+  display: grid;
+  gap: $spacing-lg;
+  align-items: start;
+  margin-bottom: $spacing-lg;
   text-align: center;
 }
 
-#paragraphs_from_db {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
+.about-hero-text {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: $spacing-ml;
-  width: 100%;
+  gap: $spacing-sm;
+  text-align: center;
 }
 
-#paragraphs_from_db li {
+.about-hero-kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: $font-xs;
+  color: $secondary-color;
+}
+
+.about-hero .page-title {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.about-hero-lede {
+  margin: 0;
+  color: $text-color;
+  font-size: $font-xl;
+  line-height: 1.6;
+  max-width: $container-sm;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.about-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  justify-content: center;
+}
+
+.about-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-2xs $spacing-sm;
+  border-radius: $radius-pill;
+  background: var(--accent-soft);
+  border: 1px solid rgba(53, 90, 156, 0.2);
+  color: $secondary-color;
+  font-size: $font-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.about-hero-panel {
   background: $surface-color;
-  border: 1px solid $border-color;
+  border: 1px solid rgba(13, 17, 26, 0.12);
   border-radius: $radius-md;
-  padding: $card-padding-compact;
+  padding: $card-padding;
   box-shadow: $shadow-sm;
   text-align: center;
 }
 
-@media (min-width: $bp-sm) {
-  #paragraphs_from_db {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  #paragraphs_from_db li {
-    grid-column: span 2;
-  }
-
-  #paragraphs_from_db li:last-child:nth-child(2n + 1) {
-    grid-column: span 4;
-  }
+.about-hero-panel h2 {
+  margin: 0 0 $spacing-sm;
+  font-size: $heading-md;
+  color: $secondary-color;
 }
 
-@media (min-width: $bp-lg) {
-  #paragraphs_from_db {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  #paragraphs_from_db li {
-    grid-column: span 2;
-  }
-
-  #paragraphs_from_db li:nth-last-child(2):nth-child(3n + 1),
-  #paragraphs_from_db li:last-child:nth-child(3n + 2) {
-    grid-column: span 3;
-  }
-
-  #paragraphs_from_db li:last-child:nth-child(3n + 1) {
-    grid-column: span 6;
-  }
+.about-hero-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $spacing-xs;
+  color: $text-color;
+  text-align: center;
 }
 
-#paragraphs_from_db .about-image {
+.about-hero-list li {
+  background: $surface-muted;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  padding: $spacing-sm;
+  line-height: 1.5;
+}
+
+.about-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+}
+
+.about-highlight {
+  background: $surface-color;
+  border: 1px solid rgba(13, 17, 26, 0.12);
+  border-radius: $radius-md;
+  padding: $card-padding-compact;
+  box-shadow: $shadow-sm;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.about-highlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: 4px solid transparent;
+  border-image: linear-gradient(90deg, var(--accent-cool), var(--accent-warm)) 1;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.about-highlight h2 {
+  margin: 0 0 $spacing-xs;
+  font-size: $heading-md;
+  color: $secondary-color;
+  text-align: center;
+}
+
+.about-highlight p {
+  margin: 0;
+  color: $text-color;
+  line-height: 1.55;
+}
+
+.about-sections {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $spacing-lg;
+}
+
+.about-card {
+  background: $surface-color;
+  border: 1px solid rgba(13, 17, 26, 0.12);
+  border-radius: $radius-md;
+  padding: $card-padding;
+  box-shadow: $shadow-sm;
+  display: grid;
+  gap: $spacing-lg;
+  align-items: center;
+  text-align: left;
+}
+
+.about-card-body h3 {
+  margin: 0 0 $spacing-xs;
+  font-size: $heading-md;
+  color: $secondary-color;
+  text-align: left;
+}
+
+.about-card-body p {
+  margin: 0;
+  color: $text-color;
+  line-height: 1.6;
+}
+
+.about-image {
   height: clamp(160px, 25vw, 400px);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto $spacing-sm;
+  margin: 0 auto;
   padding: $spacing-xs;
   background: $surface-muted;
-  border: 1px solid $border-color;
+  border: 1px solid rgba(13, 17, 26, 0.12);
   border-radius: $radius-md;
 }
 
-#paragraphs_from_db .about-image img {
+.about-image img {
   max-height: clamp(160px, 25vw, 400px);
   width: auto;
   height: auto;
@@ -89,16 +215,18 @@
   display: block;
 }
 
-#paragraphs_from_db h3 {
-  margin: 0 0 $spacing-xs;
-  font-size: $heading-md;
-  color: $secondary-color;
-}
+@media (min-width: $bp-md) {
+  .about-hero {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  }
 
-#paragraphs_from_db p {
-  margin: 0;
-  color: $text-color;
-  line-height: 1.55;
+  .about-card {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  }
+
+  .about-card:nth-child(even) .about-image {
+    order: 2;
+  }
 }
 
 @media (max-width: $bp-mobile) {
@@ -106,7 +234,21 @@
     padding: $spacing-lg;
   }
 
-  .about h1 {
+  .about-hero .page-title,
+  .about-hero-lede,
+  .about-hero-kicker {
+    text-align: center;
+  }
+
+  .about-hero-badges {
+    justify-content: center;
+  }
+
+  .about-card {
+    text-align: center;
+  }
+
+  .about-card-body h3 {
     text-align: center;
   }
 }

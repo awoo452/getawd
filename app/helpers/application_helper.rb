@@ -21,7 +21,7 @@ module ApplicationHelper
         secret_access_key: creds["secret_access_key"]
       ).head_object(bucket: creds["bucket"], key: key)
       true
-    rescue Aws::S3::Errors::NotFound, Aws::S3::Errors::Forbidden
+    rescue Aws::S3::Errors::NotFound, Aws::S3::Errors::Forbidden, Aws::Errors::ServiceError
       false
     end
   end
@@ -57,5 +57,17 @@ module ApplicationHelper
     final_query = query.present? ? "#{query}&signature=#{signature}" : "signature=#{signature}"
 
     "#{base.chomp("/")}#{path}?#{final_query}"
+  end
+
+  def fallback_image_tag(src, fallback: nil, **options)
+    return if src.blank?
+
+    fallback_url = fallback.presence || image_path("branding/logo.png")
+    data = (options[:data] || {}).dup
+    data[:controller] = [data[:controller], "fallback-image"].compact.join(" ")
+    data[:"fallback_image_src_value"] = fallback_url
+    data[:action] = [data[:action], "error->fallback-image#swap"].compact.join(" ")
+    options[:data] = data
+    image_tag(src, **options)
   end
 end

@@ -1,19 +1,59 @@
 <section class="about">
-  <h1 class="page-title">About AWDevelopment</h1>
+  <div class="about-hero">
+    <div class="about-hero-text">
+      <p class="about-hero-kicker">Rails-First Development | AWS-Ready Infrastructure | IT Consulting</p>
+      <h1 class="page-title">About AWDevelopment</h1>
+      <p class="about-hero-lede">
+        I build production software that stays calm under real-world use. Rails and PostgreSQL for the core,
+        pragmatic JavaScript where it counts, and infrastructure that favors reliability over hype.
+      </p>
+      <div class="about-hero-badges">
+        <span class="about-hero-badge">Rails-first</span>
+        <span class="about-hero-badge">Operationally boring</span>
+        <span class="about-hero-badge">Long-term ownership</span>
+      </div>
+    </div>
 
-  <ul id="paragraphs_from_db">
+    <div class="about-hero-panel">
+      <h2>What You Can Expect</h2>
+      <ul class="about-hero-list">
+        <li><strong>Clear scope.</strong> Tight requirements, predictable milestones, and no mystery work.</li>
+        <li><strong>Stable delivery.</strong> Clean deployments, sensible defaults, and calm on-call.</li>
+        <li><strong>Future-ready code.</strong> Documentation, sane patterns, and an easy handoff.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="about-highlights">
+    <article class="about-highlight">
+      <h2>Clarity Over Complexity</h2>
+      <p>Simple data models, obvious flows, and tools that stay out of the way.</p>
+    </article>
+    <article class="about-highlight">
+      <h2>Built to Last</h2>
+      <p>Designed for years of usage, not just a demo day or quick launch.</p>
+    </article>
+    <article class="about-highlight">
+      <h2>Support That Sticks</h2>
+      <p>Monitoring, updates, and steady improvements once the app is live.</p>
+    </article>
+  </div>
+
+  <ul id="paragraphs_from_db" class="about-sections">
     <% @about_sections.each_with_index do |section, index| %>
-      <li>
+      <li class="about-card">
         <div class="about-image">
-          <% proxy_url = image_proxy_url(about_image_key("#{index + 1}.png"), width: 900, height: 900, fit: "inside", format: "webp") %>
-          <%= image_tag proxy_url,
+          <% proxy_url = image_proxy_url(about_image_key("#{section.position || (index + 1)}.png"), width: 900, height: 900, fit: "inside", format: "webp") %>
+          <%= fallback_image_tag proxy_url,
             alt: "Logo",
             class: "about-image-img",
             loading: "lazy",
             decoding: "async" if proxy_url %>
         </div>
-        <h3><%= section.header %></h3>
-        <p><%= section.body %></p>
+        <div class="about-card-body">
+          <h3><%= section.header %></h3>
+          <p><%= section.body %></p>
+        </div>
       </li>
     <% end %>
   </ul>

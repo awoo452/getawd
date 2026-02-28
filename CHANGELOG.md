@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.24.29] 2026/02/28
+
+### Changed
+- Refreshed the About page layout with a centered hero, expectation panel, and highlight cards.
+- Added projects section kickers/summaries sourced from `config/project_sections.yml`.
+- Added alternating project section backgrounds to separate service groups visually.
+- Stimulus fallback image controller + immediate swap on broken images.
+- S3Service/S3Proxy changes to ignore blank ENV values.
+- s3.yml now treats blank region vars as unset.
+- Navbar logo now uses fallback_image_tag.
+
+### Fixed
+- Added fallback image handling to swap broken S3/proxy images to `branding/logo.png`.
+- Made S3 config region-aware via env defaults and ensured `.env` includes AWS region settings.
+
 ## [1.24.28] 2026/02/28
 
 ### Fixed

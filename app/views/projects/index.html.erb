@@ -1,5 +1,8 @@
 <section class="projects" id="projects">
-  <h2 class="page-title">Projects</h2>
+  <div class="projects-intro">
+    <h2 class="page-title">Projects</h2>
+    <p class="page-intro">Grouped by service type so it's clear where Rails apps end and static sites begin.</p>
+  </div>
   <% services = @services.to_a %>
   <% service_types = services.map(&:service_type) %>
   <% projects_by_type = @projects.group_by(&:service_type) %>
@@ -8,15 +11,37 @@
   <% services.each do |service| %>
     <% service_projects = projects_by_type[service.service_type] || [] %>
     <% next if service_projects.empty? %>
+    <% section_copy = @projects_section_copy.fetch(service.service_type, {}) %>
+    <% kicker = section_copy[:kicker].presence || service.category %>
+    <% summary = section_copy[:summary].presence || service.description %>
     <div class="projects-group" id="<%= service.projects_anchor %>">
-      <h3 class="projects-section-title"><%= service.title %></h3>
+      <div class="projects-section-header">
+        <% if kicker.present? %>
+          <p class="projects-section-kicker"><%= kicker %></p>
+        <% end %>
+        <h3 class="projects-section-title"><%= service.title %></h3>
+        <% if summary.present? %>
+          <p class="projects-section-summary"><%= summary %></p>
+        <% end %>
+      </div>
       <%= render "project_list", projects: service_projects %>
     </div>
   <% end %>
 
   <% if other_projects.any? %>
+    <% other_copy = @projects_section_copy.fetch(:other_projects, {}) %>
+    <% other_kicker = other_copy[:kicker] %>
+    <% other_summary = other_copy[:summary] %>
     <div class="projects-group" id="other_projects">
-      <h3 class="projects-section-title">Other Projects</h3>
+      <div class="projects-section-header">
+        <% if other_kicker.present? %>
+          <p class="projects-section-kicker"><%= other_kicker %></p>
+        <% end %>
+        <h3 class="projects-section-title">Other Projects</h3>
+        <% if other_summary.present? %>
+          <p class="projects-section-summary"><%= other_summary %></p>
+        <% end %>
+      </div>
       <%= render "project_list", projects: other_projects %>
     </div>
   <% end %>

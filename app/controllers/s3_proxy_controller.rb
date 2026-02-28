@@ -46,10 +46,16 @@ class S3ProxyController < ApplicationController
   end
 
   def s3_bucket
-    @s3_bucket ||= Rails.application.config_for(:s3)["bucket"]
+    return @s3_bucket if defined?(@s3_bucket)
+
+    config = Rails.application.config_for(:s3) || {}
+    @s3_bucket = config["bucket"].presence || ENV["AWS_BUCKET"].presence
   end
 
   def s3_region
-    @s3_region ||= Rails.application.config_for(:s3)["region"]
+    return @s3_region if defined?(@s3_region)
+
+    config = Rails.application.config_for(:s3) || {}
+    @s3_region = config["region"].presence || ENV["AWS_REGION"].presence || ENV["AWS_DEFAULT_REGION"].presence || "us-west-1"
   end
 end
