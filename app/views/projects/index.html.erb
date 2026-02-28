@@ -11,9 +11,8 @@
   <% services.each do |service| %>
     <% service_projects = projects_by_type[service.service_type] || [] %>
     <% next if service_projects.empty? %>
-    <% section_copy = @projects_section_copy.fetch(service.service_type, {}) %>
-    <% kicker = section_copy[:kicker].presence || service.category %>
-    <% summary = section_copy[:summary].presence || service.description %>
+    <% kicker = service.category %>
+    <% summary = service.description %>
     <% normalized_kicker = kicker.to_s.strip.downcase %>
     <% normalized_title = service.title.to_s.strip.downcase %>
     <% show_kicker = normalized_kicker.present? && normalized_kicker != normalized_title %>
@@ -32,10 +31,8 @@
   <% end %>
 
   <% if other_projects.any? %>
-    <% other_copy = @projects_section_copy.fetch(:other_projects, {}) %>
-    <% other_kicker = other_copy[:kicker] %>
-    <% other_summary = other_copy[:summary] %>
-    <% normalized_other_kicker = other_kicker.to_s.strip.downcase %>
+    <% other_summary = "Experiments, legacy builds, and one-off work that doesn't fit a service category." %>
+    <% normalized_other_kicker = "" %>
     <% normalized_other_title = "Other Projects".downcase %>
     <% show_other_kicker = normalized_other_kicker.present? && normalized_other_kicker != normalized_other_title %>
     <div class="projects-group" id="other_projects">
