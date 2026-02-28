@@ -33,14 +33,18 @@
   display: grid;
   gap: $spacing-lg;
   align-items: start;
-  margin-bottom: $spacing-lg;
+  margin: 0 auto $spacing-lg;
   text-align: center;
+  justify-items: center;
+  width: 100%;
+  max-width: $container-md;
 }
 
 .about-hero-text {
   display: grid;
   gap: $spacing-sm;
   text-align: center;
+  justify-items: center;
 }
 
 .about-hero-kicker {
@@ -122,10 +126,12 @@
 }
 
 .about-highlights {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: $spacing-md;
-  margin-bottom: $spacing-lg;
+  margin: 0 auto $spacing-lg;
+  width: 100%;
 }
 
 .about-highlight {
@@ -137,6 +143,9 @@
   position: relative;
   overflow: hidden;
   text-align: center;
+  flex: 0 1 320px;
+  width: 100%;
+  max-width: 360px;
 }
 
 .about-highlight::before {
