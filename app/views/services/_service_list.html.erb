@@ -1,3 +1,4 @@
+<% show_projects = local_assigns.fetch(:show_projects, true) %>
 <ul>
   <% services.each do |service| %>
     <li>
@@ -15,7 +16,9 @@
       <div>
         <div class="card-actions">
           <% anchor = service.projects_anchor %>
-          <%= link_to "View Projects", anchor.present? ? projects_path(anchor: anchor) : projects_path %>
+          <% if show_projects %>
+            <%= link_to "View Projects", anchor.present? ? projects_path(anchor: anchor) : projects_path %>
+          <% end %>
           <% if service.url.present? %>
             <%= link_to "Learn More", service.url, target: "_blank", rel: "noopener" %>
           <% else %>

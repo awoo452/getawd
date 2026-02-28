@@ -1,9 +1,20 @@
 <section class="services">
-  <h2 class="page-title">Services</h2>
-  <p class="page-intro">
-    Standard services we currently offer - from simple business sites to full Rails apps with integrations.
-  </p>
-  <%= render "service_list", services: @services %>
+  <% if @featured_services.any? %>
+    <h3>Featured</h3>
+    <p class="page-intro">
+      Featured Services are the standardized packages we currently offer.
+    </p>
+    <%= render "service_list", services: @featured_services %>
+  <% end %>
+
+  <% if @other_services.any? %>
+    <h3>Also Ask About</h3>
+    <p class="page-intro">
+      Related Services are non-standardized 'build to suit' type projects we can contribute to.
+    </p>
+    <%= render "service_list", services: @other_services, show_projects: false %>
+  <% end %>
+
   <%= render "shared/pagination",
         page: @services_page,
         total_pages: @services_total_pages,
