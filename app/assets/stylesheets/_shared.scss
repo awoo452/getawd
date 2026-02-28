@@ -337,6 +337,7 @@ h3.page-title {
 
 .projects-group {
   margin-top: $spacing-xl;
+  scroll-margin-top: calc(#{$navbar-logo-height} + #{$spacing-lg});
 }
 
 .projects-group:first-of-type {
