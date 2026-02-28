@@ -39,6 +39,7 @@
 
   .card-actions a {
     @include action-primary();
+    border-radius: $radius-pill;
   }
 
 }

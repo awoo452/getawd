@@ -5,6 +5,10 @@ body {
   margin: 0;
   padding: 0;
   background-color: $background-color;
+  background-image:
+    radial-gradient(1200px 800px at 8% -10%, rgba(53, 90, 156, 0.12), transparent 60%),
+    radial-gradient(900px 600px at 110% 0%, rgba(194, 77, 77, 0.1), transparent 55%),
+    linear-gradient(180deg, $background-color 0%, lighten($background-color, 2%) 40%, $background-color 100%);
 }
 
 h1,
@@ -13,6 +17,8 @@ h3 {
   margin: 0 0 $spacing-sm;
   font-weight: 700;
   color: $primary-color;
+  font-family: $font-display;
+  letter-spacing: 0.02em;
 }
 
 h1 {
@@ -61,6 +67,8 @@ h3 {
   margin-bottom: $spacing-xl;
   box-shadow: $shadow-md;
   transition: transform $transition-base, box-shadow $transition-base;
+  position: relative;
+  overflow: hidden;
 
   h2 {
     font-size: $heading-lg;
@@ -122,6 +130,118 @@ h3 {
 .featured-services,
 .featured-projects,
 .featured-videos {
+  background: linear-gradient(140deg, var(--surface-1), var(--surface-2));
+  border: 1px solid rgba(13, 17, 26, 0.1);
+  box-shadow: 0 16px 34px rgba(10, 14, 20, 0.12);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 12%, rgba(53, 90, 156, 0.16), transparent 50%),
+      radial-gradient(circle at 85% -10%, rgba(194, 77, 77, 0.12), transparent 45%),
+      repeating-linear-gradient(135deg, var(--grid-line), var(--grid-line) 1px, transparent 1px, transparent 10px);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: clamp(1.35rem, 2vw, 1.7rem);
+  }
+
+  h2::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 3px;
+    margin: $spacing-sm auto 0;
+    background: linear-gradient(90deg, var(--accent-cool), var(--accent-warm));
+    border-radius: $radius-pill;
+  }
+
+  ul li {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f6fb 100%);
+    border: 1px solid rgba(13, 17, 26, 0.12);
+    box-shadow: 0 12px 24px rgba(10, 14, 20, 0.12);
+    position: relative;
+    overflow: hidden;
+    transition: transform $transition-base, box-shadow $transition-base;
+    animation: liftIn 0.55s ease both;
+  }
+
+  ul li a {
+    border-radius: $radius-pill;
+  }
+
+  ul li::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-top: 4px solid transparent;
+    border-image: linear-gradient(90deg, var(--accent-cool), var(--accent-warm)) 1;
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  ul li:nth-child(2) { animation-delay: 0.05s; }
+  ul li:nth-child(3) { animation-delay: 0.1s; }
+  ul li:nth-child(4) { animation-delay: 0.15s; }
+}
+
+.featured-blog-posts ul li:hover,
+.featured-services ul li:hover,
+.featured-projects ul li:hover,
+.featured-videos ul li:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 32px rgba(10, 14, 20, 0.18);
+}
+
+.featured-about .featured-about-action,
+.featured-blog-posts a,
+.featured-services a,
+.featured-projects a,
+.featured-videos a,
+.services a,
+.projects a,
+.blog-posts a,
+.videos a,
+.games a,
+.documents a {
+  border-radius: $radius-pill;
+}
+
+@keyframes liftIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-blog-posts ul li,
+  .featured-services ul li,
+  .featured-projects ul li,
+  .featured-videos ul li {
+    animation: none;
+  }
+}
+
+.featured-blog-posts,
+.featured-services,
+.featured-projects,
+.featured-videos {
   ul li {
     h2,
     h3 {
@@ -159,6 +279,26 @@ h3 {
       -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+  }
+}
+
+@media (max-width: $bp-md) {
+  .featured-blog-posts,
+  .featured-services,
+  .featured-projects,
+  .featured-videos,
+  .blog-posts,
+  .projects,
+  .videos,
+  .games,
+  .documents {
+    ul li {
+      h2,
+      h3 {
+        font-size: clamp(1.1rem, 4vw, 1.35rem);
+        -webkit-line-clamp: 2;
+      }
     }
   }
 }

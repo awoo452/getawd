@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.24.25] 2026/02/28
+## [1.24.26] 2026/02/27
+
+### Changed
+- Front eond stoyling brot to ou boy chotGPT
+
+## [1.24.25] 2026/02/27
 
 ### Changed
 - Split services index into Featured Services and an "Also Ask About" section.

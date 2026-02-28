@@ -1,36 +1,114 @@
 .navbar {
-  background-color: $navbar-bg;
-  padding: $spacing-md;
-  border-bottom: 2px solid $primary-color;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: linear-gradient(90deg, #1f2532 0%, #263252 55%, #2f4f8a 100%);
+  padding: $spacing-xs 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 28px rgba(9, 12, 18, 0.25);
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-cool), var(--accent-warm));
+    opacity: 0.75;
+  }
+
   ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; // Center the items
+    align-items: center;
+    justify-content: flex-end;
+    gap: $spacing-sm;
+    margin: 0 auto;
+    padding: $spacing-xs $spacing-md $spacing-sm;
+    max-width: $container-xl;
+  }
+
+  .nav-public {
+    padding-bottom: $spacing-sm;
+  }
+
+  .nav-signed-in {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: $spacing-xs;
+    padding-bottom: $spacing-xs;
+    justify-content: center;
+  }
+
+  li {
     margin: 0;
-    padding: 0;
 
-    li {
-      margin: $spacing-xs;
+    a {
+      color: $navbar-link;
+      text-decoration: none;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $radius-pill;
+      transition: background-color $transition-base, transform $transition-base;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      font-weight: 600;
+      text-transform: uppercase;
+      position: relative;
 
-      a {
-        color: $navbar-link;
-        text-decoration: none;
-        padding: $spacing-xs $spacing-md;
-        border-radius: $radius-sm;
-        transition: background-color $transition-base;
-
-        &:not(:has(img)):hover {
-          background-color: $primary-color;
-        }
+      &:not(:has(img)):hover {
+        background-color: rgba(255, 255, 255, 0.12);
+        transform: translateY(-1px);
       }
 
-      // Logo special style
-      .navbar-logo {
-        height: $navbar-logo-height; // Set a height for the logo
-        width: auto; // Keep the aspect ratio
+      &:not(:has(img))::after {
+        content: "";
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: -6px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent-cool), var(--accent-warm));
+        border-radius: $radius-pill;
+        opacity: 0;
+        transform: scaleX(0.6);
+        transition: opacity $transition-base, transform $transition-base;
+      }
+
+      &:not(:has(img)):hover::after {
+        opacity: 1;
+        transform: scaleX(1);
       }
     }
+
+    .navbar-logo {
+      height: $navbar-logo-height;
+      width: auto;
+      filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
+    }
+  }
+
+  .nav-public li:first-child {
+    margin-right: auto;
+  }
+
+  .nav-signed-in a,
+  .nav-signed-in button {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    opacity: 0.85;
+  }
+
+  .nav-signed-in button {
+    background: rgba(255, 255, 255, 0.12);
+    color: $navbar-link;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 14px;
+    border-radius: $radius-pill;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.65rem;
   }
 }
 
@@ -38,13 +116,22 @@
 @media (max-width: $bp-md) {
   .navbar {
     ul {
-      flex-direction: column; // Stack items vertically
-      align-items: center; // Center the items
+      flex-direction: row;
+      justify-content: center;
+      gap: $spacing-xs;
+      padding-bottom: $spacing-md;
+    }
 
-      li {
-        width: 100%; // Make each item full-width
-        text-align: center; // Center text
-      }
+    li:first-child {
+      flex-basis: 100%;
+      display: flex;
+      justify-content: center;
+      margin-right: 0;
+      margin-bottom: $spacing-xs;
+    }
+
+    li a {
+      letter-spacing: 0.12em;
     }
   }
 }

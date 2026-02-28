@@ -1,11 +1,25 @@
 // Shared theme tokens (2026 refresh)
-$primary-color: #3a579d;
-$secondary-color: #3e3e3e;
-$background-color: #ecf0f1;
+:root {
+  --ink-strong: #0d111a;
+  --ink-muted: #465563;
+  --accent-cool: #355a9c;
+  --accent-warm: #c24d4d;
+  --accent-soft: #f4f7ff;
+  --surface-1: #f6f7fb;
+  --surface-2: #eef1f7;
+  --surface-3: #e6ecf4;
+  --grid-line: rgba(13, 17, 26, 0.08);
+  --panel-glow: rgba(43, 74, 147, 0.18);
+}
+
+$primary-color: #355a9c;
+$secondary-color: #2f333a;
+$background-color: #edf1f7;
 $text-color: #465563;
 $text-on-primary: #ffffff;
 $hover-color: lighten($primary-color, 30%);
-$font-stack: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+$font-stack: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
+$font-display: 'Orbitron', 'Space Grotesk', sans-serif;
 
 $surface-color: #ffffff;
 $surface-muted: lighten($background-color, 5%);
@@ -184,7 +198,7 @@ $blackjack-button-border-hover: rgba(0, 0, 0, 0.35);
 
 @mixin action-primary(
   $padding: $spacing-xs $spacing-md,
-  $radius: $radius-sm,
+  $radius: $radius-pill,
   $hover-bg: $hover-color,
   $transition: background-color $transition-base,
   $include-hover: true

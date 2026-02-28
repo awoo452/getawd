@@ -2,4 +2,7 @@
   &copy; <%= Time.current.year %> AWDevelopment. All rights reserved.
   | <%= link_to "Terms", "/terms" %>
   | <%= link_to "Privacy", "/privacy" %>
+  <% unless user_signed_in? %>
+    | <%= link_to "Sign In", new_user_session_path %>
+  <% end %>
 </footer>
