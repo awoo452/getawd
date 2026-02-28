@@ -17,6 +17,7 @@
         <div class="card-actions">
           <% anchor = service.projects_anchor %>
           <%= link_to "View Projects", anchor.present? ? projects_path(anchor: anchor) : projects_path %>
+          <%= link_to "Learn More", services_path %>
           <%= link_to "Get Started", contact_path %>
         </div>
       </li>
