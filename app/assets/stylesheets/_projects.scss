@@ -97,7 +97,8 @@
   margin-right: auto;
 }
 
-.projects .projects-group {
+.projects .projects-group,
+.services .services-group {
   margin-top: $spacing-lg;
   padding: $spacing-lg $spacing-md;
   border-radius: $radius-md;
@@ -108,7 +109,8 @@
   overflow: hidden;
 }
 
-.projects .projects-group::before {
+.projects .projects-group::before,
+.services .services-group::before {
   content: "";
   position: absolute;
   left: 0;
@@ -120,16 +122,19 @@
   pointer-events: none;
 }
 
-.projects .projects-group:nth-of-type(even) {
+.projects .projects-group:nth-of-type(even),
+.services .services-group:nth-of-type(even) {
   background: #f2f5fb;
 }
 
-.projects .projects-group > * {
+.projects .projects-group > *,
+.services .services-group > * {
   position: relative;
   z-index: 1;
 }
 
-.projects .projects-section-header {
+.projects .projects-section-header,
+.services .services-section-header {
   display: flex;
   flex-direction: column;
   gap: $spacing-2xs;
@@ -138,7 +143,8 @@
   max-width: $container-sm;
 }
 
-.projects .projects-section-kicker {
+.projects .projects-section-kicker,
+.services .services-section-kicker {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -146,13 +152,15 @@
   color: $secondary-color;
 }
 
-.projects .projects-section-title {
+.projects .projects-section-title,
+.services .services-section-title {
   margin: 0;
   font-size: clamp(1.6rem, 2.2vw, 2rem);
   color: $primary-color;
 }
 
-.projects .projects-section-summary {
+.projects .projects-section-summary,
+.services .services-section-summary {
   margin: 0;
   color: $text-color;
   max-width: $container-sm;
@@ -161,13 +169,15 @@
   line-height: 1.6;
 }
 
-.projects .projects-group ul {
+.projects .projects-group ul,
+.services .services-group ul {
   margin: 0;
   justify-content: center;
 }
 
 @media (max-width: $bp-md) {
-  .projects .projects-group {
+  .projects .projects-group,
+  .services .services-group {
     padding: $spacing-md;
   }
 }

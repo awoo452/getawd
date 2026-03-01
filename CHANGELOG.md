@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.24.34] 2026/02/28
+
+### Changed
+- Took all the best parts and pieces of all the front end and made it all standardized across all the public facing pages.
+- This commit brought to you by ChatGPT.
+  - There aren't any bugs except for all the ones I'll find later.
+
 ## [1.24.33] 2026/02/28
 
 ### Changed

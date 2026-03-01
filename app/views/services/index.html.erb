@@ -1,18 +1,36 @@
 <section class="services">
-  <% if @featured_services.any? %>
-    <h3>Featured</h3>
+  <div class="section-intro">
+    <p class="section-kicker">Offerings</p>
+    <h2 class="page-title">Services</h2>
     <p class="page-intro">
-      Featured Services are the standardized packages we currently offer.
+      Clear scopes, reliable delivery, and long-term support for the work that matters.
     </p>
-    <%= render "service_list", services: @featured_services %>
+  </div>
+
+  <% if @featured_services.any? %>
+    <div class="services-group">
+      <div class="services-section-header">
+        <p class="services-section-kicker">Featured</p>
+        <h3 class="services-section-title">Standard Packages</h3>
+        <p class="services-section-summary">
+          Featured Services are the standardized packages we currently offer.
+        </p>
+      </div>
+      <%= render "service_list", services: @featured_services %>
+    </div>
   <% end %>
 
   <% if @other_services.any? %>
-    <h3>Also Ask About</h3>
-    <p class="page-intro">
-      Related Services are non-standardized 'build to suit' type projects we can contribute to.
-    </p>
-    <%= render "service_list", services: @other_services, show_projects: false %>
+    <div class="services-group">
+      <div class="services-section-header">
+        <p class="services-section-kicker">Also Ask About</p>
+        <h3 class="services-section-title">Build-to-Suit Work</h3>
+        <p class="services-section-summary">
+          Related Services are non-standardized 'build to suit' type projects we can contribute to.
+        </p>
+      </div>
+      <%= render "service_list", services: @other_services, show_projects: false %>
+    </div>
   <% end %>
 
   <%= render "shared/pagination",

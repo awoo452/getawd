@@ -1,92 +1,64 @@
-#contact {
-    text-align: center;
-    padding: $section-padding;
-    background-color: $surface-muted;
-    border-radius: $radius-md;
-    border: 1px solid $border-color;
-    box-shadow: $shadow-md;
-    margin-bottom: $spacing-xl;
-  
-    h2 {
-      font-size: $heading-lg;
-      margin: $spacing-lg 0 $spacing-md; // Spacing above and below the subheading
-      color: $secondary-color;
-    }
+.contact {
+  text-align: center;
+  padding: $section-padding;
+  background-color: $surface-muted-strong;
+  border-radius: $radius-md;
+  border: 1px solid $border-color;
+  box-shadow: $shadow-md;
+  margin-bottom: $spacing-xl;
+}
 
-    h2.page-title {
-      margin-top: 0;
-      margin-bottom: $spacing-md;
-      font-size: $heading-xl;
-      color: $primary-color;
-    }
-  
-    ul {
-      
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      gap: $spacing-md;
-      li {
-        background: $surface-color;
-        border: 1px solid $border-color;
-        border-radius: $radius-sm;
-        padding: $spacing-md;
-        margin-bottom: $spacing-md;
-        transition: transform $transition-base, box-shadow $transition-base;
-        strong {
-          color: $primary-color; // Emphasize the strong elements
-        }
-  
-        // Add hover effect for list items
-        &:hover {
-          transform: translateY(-3px);
-          box-shadow: $shadow-sm;
-        }
-      }
-    }
-  
-    p {
-      font-size: $font-xl;
-      margin: $spacing-lg 0;
-      text-align: center; // Center the paragraph
-      color: $text-color;
-    }
-  
-    // Styles for social media links
-    a {
-      @include action-primary();
-    }
-    
-    .social_media {
-      flex-wrap: wrap;
-    }
-  }
+.contact-panels {
+  display: grid;
+  gap: $spacing-lg;
+  margin-top: $spacing-lg;
+}
 
-  .contact-box {
-  display: flex;
-  justify-content: center;
+.contact-panel {
+  background: $surface-color;
+  border: 1px solid rgba(13, 17, 26, 0.12);
+  border-radius: $radius-md;
+  padding: $card-padding;
+  box-shadow: $shadow-sm;
+  text-align: center;
+}
+
+.contact-panel h3 {
+  margin: 0 0 $spacing-xs;
+  font-size: $heading-md;
+  color: $secondary-color;
+
+}
+
+.contact-panel-intro {
+  margin: 0 0 $spacing-md;
+  color: $text-color;
+  line-height: 1.6;
+}
+
+.contact-panel--social {
+  text-align: center;
+}
+
+.contact-panel--social .contact-panel-intro {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .contact-form {
-  background: $surface-color;
-  padding: $section-padding;
-  border-radius: $radius-md;
-  width: 100%;
-  max-width: $container-card;
-  border: 1px solid $border-color;
-  box-shadow: $shadow-sm;
+  display: grid;
+  gap: $spacing-md;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: $spacing-md;
+  margin: 0;
 
   label {
     margin-bottom: $spacing-2xs;
-    font-weight: bold;
+    font-weight: 600;
     color: $secondary-color;
   }
 
@@ -96,6 +68,8 @@
     border-radius: $radius-sm;
     border: 1px solid $border-color;
     font-family: $font-stack;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   textarea {
@@ -108,8 +82,58 @@
   @include action-primary($padding: $spacing-sm $spacing-lg);
   border: none;
   cursor: pointer;
+  justify-self: center;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+}
+
+.social-links li {
+  margin: 0;
+  flex: 1 1 160px;
+  display: flex;
+}
+
+.social-links a {
+  @include action-primary($padding: $spacing-sm $spacing-md);
+  width: 100%;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  max-width: 100%;
+  gap: $spacing-xs;
+}
+
+.social-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.social-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .hp {
   display: none;
+}
+
+@media (min-width: $bp-md) {
+  .contact-panels {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: start;
+  }
 }

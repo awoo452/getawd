@@ -59,7 +59,8 @@ h3 {
 .projects,
 .services,
 .documents,
-.featured-videos {
+.featured-videos,
+.videos {
   padding: $section-padding;
   background-color: $surface-muted-strong;
   border-radius: $radius-md;
@@ -311,7 +312,8 @@ h3 {
 .services,
 .games,
 .documents,
-.featured-videos {
+.featured-videos,
+.videos {
   ul li .card-image-frame {
     @include image-frame();
   }
@@ -335,16 +337,42 @@ h3.page-title {
   max-width: $container-xs;
 }
 
-.projects-group {
+.section-intro {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+}
+
+.section-intro .page-title {
+  margin-bottom: $spacing-xs;
+}
+
+.section-intro .page-intro {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.section-kicker {
+  margin: 0 0 $spacing-2xs;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: $font-xs;
+  color: $secondary-color;
+}
+
+.projects-group,
+.services-group {
   margin-top: $spacing-xl;
   scroll-margin-top: calc(#{$navbar-logo-height} + #{$spacing-lg});
 }
 
-.projects-group:first-of-type {
+.projects-group:first-of-type,
+.services-group:first-of-type {
   margin-top: 0;
 }
 
-.projects-section-title {
+.projects-section-title,
+.services-section-title {
   font-size: $heading-md;
   margin-bottom: $spacing-ml;
   text-align: center;

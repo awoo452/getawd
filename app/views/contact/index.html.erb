@@ -1,6 +1,22 @@
-<section id="contact">
-  <h2 class="page-title">Contact Us</h2>
+<section class="contact" id="contact">
+  <div class="section-intro">
+    <p class="section-kicker">Let's Build</p>
+    <h2 class="page-title">Contact</h2>
+    <p class="page-intro">
+      Share the scope, timeline, and constraints. I'll reply with a plan and next steps.
+    </p>
+  </div>
 
-  <%= render "contact_form" %>
-  <%= render "social_links", contact_info: @contact_info %>
+  <div class="contact-panels">
+    <div class="contact-panel contact-panel--form">
+      <h3>Start a Project</h3>
+      <p class="contact-panel-intro">
+        A few details are enough to get a scoped response.
+      </p>
+      <%= render "contact_form" %>
+    </div>
+    <div class="contact-panel contact-panel--social">
+      <%= render "social_links", contact_info: @contact_info %>
+    </div>
+  </div>
 </section>

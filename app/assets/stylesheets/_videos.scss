@@ -1,69 +1,16 @@
 .videos {
-    padding: $section-padding;
-    background-color: $surface-muted-strong;
-    border-radius: $radius-md;
-    border: 1px solid $border-color;
-    margin-bottom: $spacing-xl;
-    box-shadow: $shadow-md;
-    h2 {
-      font-size: $heading-lg;
-      margin-bottom: $spacing-md;
-      color: $primary-color;
-      text-align: center;
-    }
-  
-    ul {
-      list-style-type: none;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: $spacing-lg;
-      li {
-        background: $surface-color;
-        border: 1px solid $border-color;
-        border-radius: $radius-md;
-        padding: $card-padding;
-        flex: 1 1 $card-min-width;
-        box-shadow: $shadow-sm;
-        transition: transform $transition-base, box-shadow $transition-base;
-        text-align: center;
-
-        h3 {
-          font-size: $heading-md;
-          margin: 0 0 $spacing-xs;
-          color: $secondary-color;
-          text-align: center;
-        }
-  
-        p {
-          margin: 0 0 $spacing-md;
-        }
-
-        .card-image-frame {
-          @include image-frame();
-        }
-
-        .card-image {
-          @include image-fit;
-        }
-
-        .card-actions {
-          display: flex;
-          justify-content: center;
-        }
-
-        a {
-          @include action-primary();
-        }
-
-        // Add hover effect for the video card
-        &:hover {
-          transform: translateY(-5px);
-          box-shadow: $shadow-md;
-        }
-      }
-    }
+  .card-actions {
+    display: flex;
+    justify-content: center;
   }
+}
+
+.videos-empty {
+  margin: 0;
+  text-align: center;
+  color: $text-color;
+  font-size: $font-xl;
+}
 
   .videos.video-detail {
     .video-embed {
