@@ -1,5 +1,11 @@
 <section class="blog-posts">
-  <h2 class="page-title">Blog Posts</h2>
+  <div class="blog-posts-intro">
+    <p class="blog-posts-kicker">Updates &amp; Notes</p>
+    <h2 class="page-title">Blog Posts</h2>
+    <p class="page-intro">
+      Long-form updates, build notes, and project spotlights from recent work.
+    </p>
+  </div>
   <%= render "blog_post_list", blog_posts: @blog_posts %>
   <%= render "shared/pagination",
         page: @blog_posts_page,

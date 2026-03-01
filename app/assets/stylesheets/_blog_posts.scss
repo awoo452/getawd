@@ -1,0 +1,22 @@
+.blog-posts .blog-posts-intro {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+}
+
+.blog-posts .blog-posts-intro .page-title {
+  margin-bottom: $spacing-xs;
+}
+
+.blog-posts .blog-posts-intro .page-intro {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.blog-posts .blog-posts-kicker {
+  margin: 0 0 $spacing-2xs;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: $font-xs;
+  color: $secondary-color;
+}

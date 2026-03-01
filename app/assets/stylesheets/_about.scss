@@ -4,6 +4,7 @@
   max-width: $container-lg;
   margin: 0 auto $spacing-xl;
   padding: $section-padding;
+  box-sizing: border-box;
   background: linear-gradient(140deg, var(--surface-1), var(--surface-2));
   border: 1px solid rgba(13, 17, 26, 0.12);
   border-radius: $radius-lg;
@@ -27,6 +28,10 @@
 .about > * {
   position: relative;
   z-index: 1;
+}
+
+.about .page-title {
+  font-size: clamp(2rem, 4vw, $heading-xl);
 }
 
 .about-hero {
@@ -63,7 +68,7 @@
 .about-hero-lede {
   margin: 0;
   color: $text-color;
-  font-size: $font-xl;
+  font-size: clamp(1rem, 2.4vw, $font-xl);
   line-height: 1.6;
   max-width: $container-sm;
   margin-left: auto;
@@ -103,7 +108,7 @@
 
 .about-hero-panel h2 {
   margin: 0 0 $spacing-sm;
-  font-size: $heading-md;
+  font-size: clamp(1.2rem, 2.2vw, $heading-md);
   color: $secondary-color;
 }
 
@@ -160,7 +165,7 @@
 
 .about-highlight h2 {
   margin: 0 0 $spacing-xs;
-  font-size: $heading-md;
+  font-size: clamp(1.2rem, 2.2vw, $heading-md);
   color: $secondary-color;
   text-align: center;
 }
@@ -193,7 +198,7 @@
 
 .about-card-body h3 {
   margin: 0 0 $spacing-xs;
-  font-size: $heading-md;
+  font-size: clamp(1.2rem, 2.2vw, $heading-md);
   color: $secondary-color;
   text-align: left;
 }

@@ -4,20 +4,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.24.33] 2026/02/28
+
+### Changed
+- Blog stuff, don't worry ChatGPT I'll go ahead and figure this part out where we put it in the changelog.
+- Bonus points for fixing the about view that we decided needed to be blown out.
+
 ## [1.24.32] 2026/02/28
 
 ### Changed
-- Console cleanup
+- Console cleanup.
 
 ## [1.24.31] 2026/02/28
 
 ### Changed
-- Final cleanup for projects overhaul
+- Final cleanup for projects overhaul.
 
 ## [1.24.30] 2026/02/28
 
 ### Changed
-- Final cleanup for about overhaul, with css flex implemented where chat produced grid that looked like garbage
+- Final cleanup for about overhaul, with css flex implemented where chat produced grid that looked like garbage.
 
 ## [1.24.29] 2026/02/28
 
