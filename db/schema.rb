@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_25_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_01_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -21,6 +21,43 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_25_000000) do
     t.integer "position", null: false
     t.datetime "updated_at", null: false
     t.index ["position"], name: "index_about_sections_on_position", unique: true
+  end
+
+  create_table "assignment_items", force: :cascade do |t|
+    t.bigint "assignment_pool_id", null: false
+    t.string "label", null: false
+    t.string "frequency", default: "weekly", null: false
+    t.integer "weight", default: 1, null: false
+    t.boolean "active", default: true, null: false
+    t.integer "estimated_time"
+    t.string "source_type"
+    t.bigint "source_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignment_pool_id"], name: "index_assignment_items_on_assignment_pool_id"
+    t.index ["source_type", "source_id"], name: "index_assignment_items_on_source"
+  end
+
+  create_table "assignment_logs", force: :cascade do |t|
+    t.bigint "assignment_item_id", null: false
+    t.bigint "task_id", null: false
+    t.date "assigned_on", null: false
+    t.date "week_start", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assigned_on"], name: "index_assignment_logs_on_assigned_on"
+    t.index ["assignment_item_id"], name: "index_assignment_logs_on_assignment_item_id"
+    t.index ["task_id"], name: "index_assignment_logs_on_task_id"
+    t.index ["week_start"], name: "index_assignment_logs_on_week_start"
+  end
+
+  create_table "assignment_pools", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "goal_id", null: false
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_assignment_pools_on_goal_id_unique", unique: true
   end
 
   create_table "blog_posts", force: :cascade do |t|
@@ -221,6 +258,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_25_000000) do
     t.index ["project_id"], name: "index_videos_on_project_id"
   end
 
+  add_foreign_key "assignment_items", "assignment_pools"
+  add_foreign_key "assignment_logs", "assignment_items"
+  add_foreign_key "assignment_logs", "tasks"
+  add_foreign_key "assignment_pools", "goals"
   add_foreign_key "blog_posts", "projects"
   add_foreign_key "goals", "ideas"
   add_foreign_key "reward_rules", "rewards"

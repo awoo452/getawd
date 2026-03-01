@@ -700,6 +700,31 @@ DOCUMENTS = [
     metadata: { "version" => "1.23.30", "category" => "how-to", "section" => "tasks", "doc_date" => "2026/02/06" }
   },
   {
+    slug: "assignment-pools",
+    title: "Assignments: Auto-Assigning Work",
+    subheadings: [
+      "Purpose",
+      "Core Tables",
+      "How Daily + Weekly Assignment Works",
+      "Chores Setup (Example)",
+      "How Tasks Are Named",
+      "Operational Notes"
+    ],
+    body: [
+      "Assignment pools let recurring goals auto-pick work items so you don’t have to decide manually each day or week.",
+      "Tables: assignment_pools (one per goal), assignment_items (the items to pick from), assignment_logs (what was assigned and when).",
+      "When a goal has an active assignment pool, the recurring task generator creates tasks from assignment items instead of creating a single generic task. Daily items are created every day. Weekly items are limited to one per week (non-repeating within the same week).",
+      "Example (Chores): create a pool for the Chores goal, add one daily item (Dishes), and add weekly items (Sweep & Mop, Bathroom, Kitchen, Vacuum, Laundry, Organize). The generator will add Dishes daily and pick one weekly chore per week.",
+      "Tasks are named as 'Goal Title — Item Label' so you can see exactly what was assigned (ex: 'Chores — Kitchen').",
+      "There is no UI for pools/items yet. Use SQL or Rails console to create pools/items, then run the recurring task generator (or wait for the daily job) to materialize tasks."
+    ],
+    images: [
+      { "alt" => "Assignments overview", "file" => "logo-classic.png", "caption" => "Auto-assigned items per goal." }
+    ],
+    youtube_id: [],
+    metadata: { "version" => "1.25.0", "category" => "how-to", "section" => "assignments", "doc_date" => "2026/03/01" }
+  },
+  {
     slug: "rewards",
     title: "Rewards: Eligibility, Redemption, and History",
     subheadings: [

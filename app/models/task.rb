@@ -10,6 +10,7 @@ class Task < ApplicationRecord
     :time_bound
 
   belongs_to :goal, optional: true
+  has_one :assignment_log, dependent: :destroy
   has_many :reward_tasks, dependent: :destroy
   has_many :rewards, through: :reward_tasks
 
