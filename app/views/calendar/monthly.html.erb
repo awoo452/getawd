@@ -1,6 +1,2 @@
 <% goal_icons = defined?(GOAL_ICONS) ? GOAL_ICONS : {} %>
-<nav class="calendar-nav">
-  <%= link_to "Daily", calendar_daily_path, class: "calendar-nav-link" %>
-  <%= link_to "Monthly", calendar_monthly_path, class: "calendar-nav-link" %>
-</nav>
 <%= render "monthly_tasks", tasks: @tasks, goal_icons: goal_icons %>
