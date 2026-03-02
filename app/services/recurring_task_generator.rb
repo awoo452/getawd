@@ -15,7 +15,7 @@ class RecurringTaskGenerator
         priority: goal.priority,
         start_date: date,
         due_date: date,
-        estimated_time: default_estimated_time(goal),
+        estimated_time: goal.estimated_daily_task_time || 30,
         actual_time: 0,
         status: :not_started,
         eligible_reward: goal.eligible_reward
@@ -24,7 +24,8 @@ class RecurringTaskGenerator
   end
 
   def self.create_assignment_tasks(goal, pool, date)
-    week_start = date.beginning_of_week
+    week_start = date.beginning_of_week(:sunday)
+    reset_weekly_items_if_needed(pool, date, week_start)
 
     pool.assignment_items.active.daily.find_each do |item|
       next if assignment_logged?(item, date, week_start)
@@ -32,31 +33,34 @@ class RecurringTaskGenerator
       create_assignment_task(goal, item, date, week_start)
     end
 
-    weekly_item = select_weekly_item(pool, week_start)
+    return if weekly_assigned_for_date?(pool, date)
+
+    weekly_item = select_weekly_item(pool)
     return unless weekly_item
     return if assignment_logged?(weekly_item, date, week_start)
 
     create_assignment_task(goal, weekly_item, date, week_start)
   end
 
-  def self.select_weekly_item(pool, week_start)
-    existing_weekly = pool.assignment_logs
-      .joins(:assignment_item)
-      .where(week_start: week_start, assignment_items: { frequency: "weekly" })
-      .exists?
-    return nil if existing_weekly
-
+  def self.select_weekly_item(pool)
     candidates = pool.assignment_items.active.weekly
     return nil if candidates.empty?
 
     candidates.order(Arel.sql("RANDOM()")).first
   end
 
+  def self.weekly_assigned_for_date?(pool, date)
+    pool.assignment_logs
+      .joins(:assignment_item)
+      .where(assigned_on: date, assignment_items: { frequency: "weekly" })
+      .exists?
+  end
+
   def self.assignment_logged?(item, date, week_start)
     if item.daily?
       AssignmentLog.exists?(assignment_item: item, assigned_on: date)
     elsif item.weekly?
-      AssignmentLog.exists?(assignment_item: item, week_start: week_start)
+      AssignmentLog.exists?(assignment_item: item, assigned_on: date)
     else
       AssignmentLog.exists?(assignment_item: item, assigned_on: date)
     end
@@ -70,7 +74,7 @@ class RecurringTaskGenerator
       priority: goal.priority,
       start_date: date,
       due_date: date,
-      estimated_time: item.estimated_time || default_estimated_time(goal),
+      estimated_time: item.estimated_time || goal.estimated_daily_task_time || 30,
       actual_time: 0,
       status: :not_started,
       eligible_reward: goal.eligible_reward
@@ -82,41 +86,20 @@ class RecurringTaskGenerator
       assigned_on: date,
       week_start: week_start
     )
+
+    item.update!(active: false) if item.weekly?
+  end
+
+  def self.reset_weekly_items_if_needed(pool, date, week_start)
+    return unless date == week_start
+
+    pool.assignment_items.weekly.update_all(active: true)
   end
 
   def self.assignment_task_name(goal, item)
     return goal.title if item.label.blank?
 
     "#{goal.title} — #{item.label}"
-  end
-
-  def self.default_estimated_time(goal)
-    title = goal.title.downcase
-
-    case title
-    when /med/
-      5
-    when /feed dog/
-      5
-    when /walk dog/
-      30
-    when /chore/
-      15
-    when /strength/
-      5
-    when /meal/
-      30
-    when /career/
-      30
-    when /hydration/
-      10
-    when /shower/
-      15
-    when /household/
-      30
-    else
-      30
-    end
   end
 
 end
