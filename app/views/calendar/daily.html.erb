@@ -1,0 +1,11 @@
+<% goal_icons = defined?(GOAL_ICONS) ? GOAL_ICONS : {} %>
+<nav class="calendar-nav">
+  <%= link_to "Daily", calendar_daily_path, class: "calendar-nav-link" %>
+  <%= link_to "Monthly", calendar_monthly_path, class: "calendar-nav-link" %>
+</nav>
+<nav class="calendar-nav">
+  <%= link_to "Previous Day", calendar_daily_path(start_date: @calendar_start_date.to_date - 1.day), class: "calendar-nav-link" %>
+  <%= link_to "Today", calendar_daily_path(start_date: Time.zone.today), class: "calendar-nav-link" %>
+  <%= link_to "Next Day", calendar_daily_path(start_date: @calendar_start_date.to_date + 1.day), class: "calendar-nav-link" %>
+</nav>
+<%= render "daily_tasks", tasks: @tasks, goal_icons: goal_icons, date: @calendar_start_date %>

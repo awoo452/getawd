@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get "/terms", to: "legal#terms"
   get "/privacy", to: "legal#privacy"
   get 'dashboard', to: 'dashboard#index'
-  get 'calendar',  to: 'calendar#show'
+  get 'calendar',        to: 'calendar#daily'
+  get 'calendar/daily',  to: 'calendar#daily'
+  get 'calendar/monthly', to: 'calendar#monthly'
   get 'landscaping', to: 'landscaping#index'
   get 'media/*key', to: 's3_proxy#show', as: :s3_media, format: false
 

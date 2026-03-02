@@ -1,4 +1,0 @@
-<% goal_icons = defined?(GOAL_ICONS) ? GOAL_ICONS : {} %>
-<%= render "daily_tasks", tasks: @tasks, goal_icons: goal_icons %>
-<hr class="calendar-divider">
-<%= render "monthly_tasks", tasks: @this_months_tasks, goal_icons: goal_icons, start_date: @calendar_start_date %>

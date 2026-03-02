@@ -24,27 +24,27 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_000000) do
   end
 
   create_table "assignment_items", force: :cascade do |t|
-    t.bigint "assignment_pool_id", null: false
-    t.string "label", null: false
-    t.string "frequency", default: "weekly", null: false
-    t.integer "weight", default: 1, null: false
     t.boolean "active", default: true, null: false
-    t.integer "estimated_time"
-    t.string "source_type"
-    t.bigint "source_id"
+    t.bigint "assignment_pool_id", null: false
     t.datetime "created_at", null: false
+    t.integer "estimated_time"
+    t.string "frequency", default: "weekly", null: false
+    t.string "label", null: false
+    t.bigint "source_id"
+    t.string "source_type"
     t.datetime "updated_at", null: false
+    t.integer "weight", default: 1, null: false
     t.index ["assignment_pool_id"], name: "index_assignment_items_on_assignment_pool_id"
     t.index ["source_type", "source_id"], name: "index_assignment_items_on_source"
   end
 
   create_table "assignment_logs", force: :cascade do |t|
-    t.bigint "assignment_item_id", null: false
-    t.bigint "task_id", null: false
     t.date "assigned_on", null: false
-    t.date "week_start", null: false
+    t.bigint "assignment_item_id", null: false
     t.datetime "created_at", null: false
+    t.bigint "task_id", null: false
     t.datetime "updated_at", null: false
+    t.date "week_start", null: false
     t.index ["assigned_on"], name: "index_assignment_logs_on_assigned_on"
     t.index ["assignment_item_id"], name: "index_assignment_logs_on_assignment_item_id"
     t.index ["task_id"], name: "index_assignment_logs_on_task_id"
@@ -52,11 +52,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_000000) do
   end
 
   create_table "assignment_pools", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "goal_id", null: false
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
+    t.bigint "goal_id", null: false
+    t.string "name", null: false
     t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_assignment_pools_on_goal_id"
     t.index ["goal_id"], name: "index_assignment_pools_on_goal_id_unique", unique: true
   end
 

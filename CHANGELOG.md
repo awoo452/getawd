@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.3] 2026/03/02
+
+### Changed
+- Split calendar into dedicated daily and monthly pages to isolate navigation and filtering.
+
+### Fixed
+- Daily calendar now respects the requested date and shows correct header/prev-next navigation.
+
 ## [1.25.2] 2026/03/01
 
 ### Fixed

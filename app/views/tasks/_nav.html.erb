@@ -3,7 +3,8 @@
   <li><%= link_to "#{GOAL_ICONS["back"]}#{GOAL_ICONS["task"]}", tasks_path %>Back to Tasks</li>
   <li class="action-divider"><hr></li>
   <li><%= link_to "#{GOAL_ICONS["goal"]}", goals_path %>Go to Goals</li>
-  <li><%= link_to "#{GOAL_ICONS["calendar"]}", calendar_path %>Go to Calendar</li>
+  <li><%= link_to "#{GOAL_ICONS["calendar"]}", calendar_daily_path %>Go to Calendar (Daily)</li>
+  <li><%= link_to "#{GOAL_ICONS["calendar"]}", calendar_monthly_path %>Go to Calendar (Monthly)</li>
   <li class="action-divider"><hr></li>
   <li><%= button_to "Delete Task", task, method: :delete, data: { confirm: "Are you sure?" } %></li>
 </ul>

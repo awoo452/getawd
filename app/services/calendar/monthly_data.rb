@@ -1,6 +1,6 @@
 module Calendar
-  class ShowData
-    Result = Struct.new(:tasks, :this_months_tasks, :start_date, keyword_init: true)
+  class MonthlyData
+    Result = Struct.new(:tasks, :start_date, keyword_init: true)
 
     def self.call(start_date: nil)
       new(start_date: start_date).call
@@ -12,14 +12,9 @@ module Calendar
 
     def call
       month_range = @start_date.beginning_of_month..@start_date.end_of_month
-      month_tasks = Task.includes(:goal).where(due_date: month_range)
-      daily_tasks = Task.includes(:goal).where(due_date: Time.zone.today)
+      tasks = Task.includes(:goal).where(due_date: month_range)
 
-      Result.new(
-        tasks: daily_tasks,
-        this_months_tasks: month_tasks,
-        start_date: @start_date
-      )
+      Result.new(tasks: tasks, start_date: @start_date)
     end
 
     private

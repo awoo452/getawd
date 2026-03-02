@@ -1,8 +1,12 @@
 class CalendarController < ApplicationController
-  def show
-    data = Calendar::ShowData.call(start_date: params[:month])
+  def daily
+    data = Calendar::DailyData.call(start_date: params[:start_date])
     @tasks = data.tasks
-    @this_months_tasks = data.this_months_tasks
     @calendar_start_date = data.start_date
+  end
+
+  def monthly
+    data = Calendar::MonthlyData.call(start_date: params[:start_date])
+    @tasks = data.tasks
   end
 end

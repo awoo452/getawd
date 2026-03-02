@@ -1,6 +1,6 @@
 <section id="task-calendar-monthly">
   <h1><%= goal_icons["calendar"] %> | Monthly Calendar</h1>
-  <%= month_calendar(attribute: :due_date, start_date: start_date) do |date| %>
+  <%= month_calendar(attribute: :due_date) do |date| %>
     <ul class="task-calendar-monthly-day">
       <strong class="date_day"><%= date.day %></strong>
 
