@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.6] 2026/03/02
+
+### Changed
+- Projects on landing page should go to the more details page, not the actual project. Now they do that.
+
 ## [1.25.5] 2026/03/02
 
 ### Changed
