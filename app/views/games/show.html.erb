@@ -1,5 +1,7 @@
 <section id="game-container">
-  <h2><%= @game.game_name %></h2>
+<%= render "shared/logged_in_heading",
+      icon: "🎮",
+      title: @game.game_name %>
   <div id="game">
     <%= render "videos", game: @game %>
     <%= render "progress", game: @game %>

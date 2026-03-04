@@ -1,3 +1,7 @@
+<%= render "shared/logged_in_heading",
+      icon: GOAL_ICONS["task"],
+      title: @task.task_name %>
+
 <div class="tasks-list">
   <div class="task-card <%= @task.status.humanize %>">
     <%= render "details", task: @task %>

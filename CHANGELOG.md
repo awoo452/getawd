@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.10] 2026/03/04
+
+### Changed
+- Standardized logged-in page headings across authenticated pages (calendar, dashboard, tasks, goals, reports, rewards, documents, games, feedback, ideas).
+- Daily calendar date now lives inside the shared heading.
+
 ## [1.25.9] 2026/03/03
 
 ### Changed

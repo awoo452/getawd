@@ -1,5 +1,6 @@
 <% gaming_levels = [1, 2] %>
 
+<%= render "shared/logged_in_heading", title: "Rewards" %>
 <div class="rewards">
   <%= render "task_rewards", task_rewards_today: @task_rewards_today %>
   <hr>

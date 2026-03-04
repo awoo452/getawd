@@ -1,4 +1,6 @@
-<h1>Feedback</h1>
+<%= render "shared/logged_in_heading",
+      icon: "💬",
+      title: "Feedback" %>
 
 <%= render "feedback_list", title: "Open", feedback: @open_feedback, variant: :open %>
 <%= render "feedback_list", title: "Completed", feedback: @completed_feedback, variant: :completed %>

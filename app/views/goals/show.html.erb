@@ -1,3 +1,7 @@
+<%= render "shared/logged_in_heading",
+      icon: (GOAL_ICONS[@goal.category] || GOAL_ICONS["goal"]),
+      title: @goal.title %>
+
 <div class="goals-list">
   <div class="goal-card <%= @goal.status.humanize %>">
     <%= render "details", goal: @goal %>

@@ -1,6 +1,5 @@
+<%= render "shared/logged_in_heading", title: "Gaming Highlights" %>
 <section class="games">
-  <h2>Gaming Highlights</h2>
-  <h3>Some of our favorite video game highlights, how-tos, and other happenings with the games we play.</h3>
   <%= render "game_list", games: @games %>
   <%= render "shared/pagination",
         page: @games_page,

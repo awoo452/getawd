@@ -1,5 +1,7 @@
 <section id="task-calendar-monthly">
-  <h1><%= goal_icons["calendar"] %> | Monthly Calendar</h1>
+  <%= render "shared/logged_in_heading",
+        icon: goal_icons["calendar"],
+        title: "Monthly Calendar" %>
   <%= month_calendar(attribute: :due_date) do |date| %>
     <ul class="task-calendar-monthly-day">
       <strong class="date_day"><%= date.day %></strong>

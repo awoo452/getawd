@@ -1,5 +1,7 @@
 <div class="reports-wrapper">
-  <h1>Accountability Reporting</h1>
+  <%= render "shared/logged_in_heading",
+        icon: "📈",
+        title: "Accountability Reporting" %>
   <%= render "monthly_summary",
         completed_on_time_count: @completed_on_time_count,
         completed_late_count: @completed_late_count,

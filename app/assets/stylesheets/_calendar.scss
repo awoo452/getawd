@@ -64,6 +64,7 @@
   }
 }
 
+
 .orbitron-text {
   font-family: 'Orbitron', sans-serif;
 }
@@ -90,6 +91,12 @@
   justify-content: center;
   align-items: flex-start;
   gap: $spacing-md;
+}
+
+.calendar-daily-date {
+  margin: 0 0 $spacing-md 0;
+  text-align: center;
+  color: $text-color;
 }
 
 .calendar-divider {

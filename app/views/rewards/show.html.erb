@@ -1,5 +1,8 @@
 <% return unless @reward.present? %>
 
+<%= render "shared/logged_in_heading",
+      icon: "🎁",
+      title: @reward.name.presence || "Reward ##{@reward.id}" %>
 <%= render "reward_header", reward: @reward %>
 <%= render "reward_form", reward: @reward %>
 <%= render "reward_details", reward: @reward %>

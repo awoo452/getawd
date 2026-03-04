@@ -1,5 +1,5 @@
+<%= render "shared/logged_in_heading", title: "Documents" %>
 <section class="documents">
-  <h2>Documents</h2>
   <div class="documents-index">
     <% @documents_by_category.sort_by { |category, _| category.to_s.downcase }.each do |category, documents| %>
       <details class="documents-category">

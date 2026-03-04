@@ -1,4 +1,6 @@
-<h1>Add Feedback</h1>
+<%= render "shared/logged_in_heading",
+      icon: "💬",
+      title: "Add Feedback" %>
 
 <%= form_with model: @feedback, local: true do |f| %>
   <%= render "shared/form_errors", form_object: @feedback %>

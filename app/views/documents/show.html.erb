@@ -1,5 +1,7 @@
 <section class="document">
-  <h1><%= @document.title %></h1>
+<%= render "shared/logged_in_heading",
+      icon: "📚",
+      title: @document.title %>
   <%= render "document_sections", document: @document %>
   <%= render "document_videos", document: @document %>
   <%= render "document_metadata", document: @document %>

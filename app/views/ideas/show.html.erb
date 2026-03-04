@@ -1,5 +1,7 @@
 <div class="dashboard-panel">
   <%= render "legend" %>
-  <h1><%= @emoji %> <%= @idea.title %></h1>
+  <%= render "shared/logged_in_heading",
+        icon: @emoji,
+        title: @idea.title %>
   <%= render "goals", idea: @idea %>
 </div>

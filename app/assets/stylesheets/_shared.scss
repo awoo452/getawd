@@ -360,6 +360,14 @@ h3.page-title {
   color: $secondary-color;
 }
 
+.logged-in-heading {
+  margin: $spacing-md 0 $spacing-lg;
+  padding: 0;
+  font-size: $heading-lg;
+  color: $primary-color;
+  text-align: center;
+}
+
 .projects-group,
 .services-group {
   margin-top: $spacing-xl;

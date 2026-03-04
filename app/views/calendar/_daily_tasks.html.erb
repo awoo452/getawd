@@ -1,5 +1,7 @@
 <section id="task-calendar-daily">
-  <h1><%= goal_icons["task"] %> | Daily Tasks</h1>
+  <%= render "shared/logged_in_heading",
+        icon: goal_icons["task"],
+        title: "Daily Tasks" %>
   <p class="calendar-daily-date">
     <strong><%= date.strftime("%A, %B %-d, %Y") %></strong>
   </p>

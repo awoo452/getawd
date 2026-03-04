@@ -1,5 +1,7 @@
 <% goal_icons = defined?(GOAL_ICONS) ? GOAL_ICONS : {} %>
-<h1 class="page-title page-title--centered">Dashboard</h1>
+<%= render "shared/logged_in_heading",
+      icon: GOAL_ICONS["dashboard"],
+      title: "Dashboard" %>
 <section class="dashboard-wrapper">
   <%= render "ideas_panel", ideas: @ideas %>
   <%= render "summary_panel",

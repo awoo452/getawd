@@ -1,4 +1,6 @@
-<h1 class="page-title page-title--centered">Editing goal</h1>
+<%= render "shared/logged_in_heading",
+      icon: GOAL_ICONS["goal"],
+      title: "Edit Goal" %>
 
 <%= render "form", goal: @goal %>
 
