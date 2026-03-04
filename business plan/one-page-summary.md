@@ -3,6 +3,10 @@
 ## What We Do
 AWDevelopment builds production-ready web applications and business sites with a focus on reliability, maintainability, and clear delivery. The core stack is Ruby on Rails, PostgreSQL, and AWS, plus AWS Amplify for fast, low-budget marketing sites.
 
+## Mission and Vision
+Mission: Build practical, production-ready web software that stays simple to maintain, ships predictably, and holds up under real-world use.
+Vision: Become the trusted, low-drama development partner for businesses that value clear thinking, stable infrastructure, and systems that keep working as they grow.
+
 ## Who We Serve
 - Small to mid-sized businesses that need a low-budget startup site that can expand
 - Businesses that need modernization or fixes on an existing site

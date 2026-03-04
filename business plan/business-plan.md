@@ -12,8 +12,8 @@ AWDevelopment is a solo web development studio led by Aaron, a Washington State-
 - Positioning: Practical, long-term maintainable software with clear delivery and stable infrastructure
 
 ## Mission and Vision
-- Mission: Build practical, production-ready web software that is easy to maintain and performs reliably over time.
-- Vision: Become the trusted go-to developer for businesses that need clear thinking, low-drama delivery, and systems that do not break under real-world use.
+- Mission: Build practical, production-ready web software that stays simple to maintain, ships predictably, and holds up under real-world use.
+- Vision: Become the trusted, low-drama development partner for businesses that value clear thinking, stable infrastructure, and systems that keep working as they grow.
 
 ## Services and Offerings
 Primary offerings are shaped by demonstrated work on client and personal projects.

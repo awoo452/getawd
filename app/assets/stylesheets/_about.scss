@@ -37,7 +37,7 @@
 .about-hero {
   display: grid;
   gap: $spacing-lg;
-  align-items: start;
+  align-items: center;
   margin: 0 auto $spacing-lg;
   text-align: center;
   justify-items: center;
@@ -107,6 +107,67 @@
 }
 
 .about-hero-panel h2 {
+  margin: 0 0 $spacing-sm;
+  font-size: clamp(1.2rem, 2.2vw, $heading-md);
+  color: $secondary-color;
+}
+
+.about-mission-vision {
+  background: $surface-color;
+  border: 1px solid rgba(13, 17, 26, 0.12);
+  border-radius: $radius-md;
+  padding: $card-padding;
+  box-shadow: $shadow-sm;
+  text-align: center;
+  display: grid;
+  gap: $spacing-sm;
+}
+
+.about-mission-vision h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.2vw, $heading-md);
+  color: $secondary-color;
+}
+
+.about-mission-vision-grid {
+  display: grid;
+  gap: $spacing-sm;
+}
+
+.about-mission-vision-card {
+  background: $surface-muted;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  padding: $spacing-sm;
+  text-align: left;
+}
+
+.about-mission-vision-card h3 {
+  margin: 0 0 $spacing-2xs;
+  font-size: clamp(1rem, 2vw, $font-xl);
+  color: $secondary-color;
+}
+
+.about-mission-vision-card p {
+  margin: 0;
+  color: $text-color;
+  line-height: 1.55;
+}
+
+.about-expectations {
+  background: $surface-color;
+  border: 1px solid rgba(13, 17, 26, 0.12);
+  border-radius: $radius-md;
+  padding: $card-padding;
+  box-shadow: $shadow-sm;
+  text-align: center;
+  margin: 0 auto $spacing-lg;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: $container-md;
+}
+
+.about-expectations h2 {
   margin: 0 0 $spacing-sm;
   font-size: clamp(1.2rem, 2.2vw, $heading-md);
   color: $secondary-color;
@@ -184,6 +245,15 @@
   gap: $spacing-lg;
 }
 
+.about-more {
+  margin: $spacing-lg 0 0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: $font-xs;
+  color: $secondary-color;
+}
+
 .about-card {
   background: $surface-color;
   border: 1px solid rgba(13, 17, 26, 0.12);
@@ -238,6 +308,10 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
   }
 
+  .about-mission-vision-card {
+    text-align: left;
+  }
+
   .about-card:nth-child(even) .about-image {
     order: 2;
   }
@@ -256,6 +330,10 @@
 
   .about-hero-badges {
     justify-content: center;
+  }
+
+  .about-mission-vision-card {
+    text-align: center;
   }
 
   .about-card {

@@ -3,11 +3,14 @@
   <ul>
     <% featured_videos.each do |video| %>
       <li>
-        <h3><%= link_to video.title, video_path(video) %></h3>
+        <h3><%= video.title %></h3>
         <p><%= video.description %></p>
         <% if video.youtube_id.present? %>
           <iframe src="https://www.youtube.com/embed/<%= video.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>" frameborder="0" allowfullscreen></iframe>
         <% end %>
+        <div>
+          <%= link_to "View Details", video_path(video) %>
+        </div>
       </li>
     <% end %>
   </ul>
