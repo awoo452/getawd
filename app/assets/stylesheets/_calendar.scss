@@ -18,8 +18,12 @@
     }
 
     .date_day {
-      position: absolute;
       font-weight: bold;
+      background: $surface-muted;
+      padding: 0 $spacing-2xs;
+      border-radius: $radius-sm;
+      flex: 0 0 100%;
+      margin-bottom: $spacing-2xs;
     }
 
     .status-dot {
@@ -67,12 +71,16 @@
 #task-calendar-monthly {
   ul {
     padding: $spacing-2xs;
-    max-height: $calendar-task-max-height;
-    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2xs;
+    align-items: flex-start;
+    max-height: none;
+    overflow: visible;
     margin: 0;
   }
   li {
-    margin-left: $calendar-item-indent;
+    margin-left: 0;
   }
 }
 
@@ -111,4 +119,18 @@
     margin: 0;
     padding: 0;
   }
+}
+
+.quick-complete-form {
+  display: inline;
+}
+
+.quick-complete-button {
+  margin-left: $spacing-2xs;
+  font-size: 0.9rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  line-height: 1;
 }

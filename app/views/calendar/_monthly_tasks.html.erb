@@ -7,10 +7,7 @@
       <% tasks_for_date = tasks.select { |task| task.due_date.present? && task.due_date.in_time_zone.to_date == date } %>
       <% tasks_for_date.sort_by { |t| [t.priority.nil? ? -1 : t.priority] }.each do |task| %>
         <li class="task">
-          <%= link_to (goal_icons[task.goal&.category] || "📝"), task_path(task), title: task.task_name %> |
-          <span class="estimated-time orbitron-text">
-            <%= render "task_time_status", task: task, goal_icons: goal_icons %>
-          </span>
+          <%= link_to (goal_icons[task.goal&.category] || "📝"), task_path(task), title: task.task_name, class: "task-emoji" %>
         </li>
       <% end %>
     </ul>

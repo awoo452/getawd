@@ -24,6 +24,15 @@
                 <span class="estimated-time orbitron-text">
                   <%= render "task_time_status", task: task, goal_icons: goal_icons %>
                 </span>
+                <% unless task.completed? %>
+                  <%= button_to "✅",
+                        complete_on_time_task_path(task),
+                        method: :patch,
+                        form_class: "quick-complete-form",
+                        class: "quick-complete-button",
+                        title: "Quick complete",
+                        aria: { label: "Quick complete" } %>
+                <% end %>
               </li>
             <% end %>
           </ul>

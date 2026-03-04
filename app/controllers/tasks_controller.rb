@@ -47,7 +47,7 @@ class TasksController < ApplicationController
   # app/controllers/tasks_controller.rb
   def complete_on_time
     @task = Tasks::CompleteOnTime.call(task_id: params[:id])
-    redirect_to @task, notice: "Task completed on time."
+    redirect_back fallback_location: @task, notice: "Task completed on time."
   end
   
   private
