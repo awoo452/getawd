@@ -11,7 +11,7 @@
             <%= fallback_image_tag proxy_url, class: "card-image", loading: "lazy", decoding: "async" if proxy_url %>
           </div>
         <% end %>
-        <div>
+        <div class="card-actions">
           <%= link_to "Read More", blog_post_path(blog_post) %>
         </div>
       </li>

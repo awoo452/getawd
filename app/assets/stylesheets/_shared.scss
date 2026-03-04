@@ -197,6 +197,16 @@ h3 {
   ul li:nth-child(4) { animation-delay: 0.15s; }
 }
 
+.featured-blog-posts ul li .card-actions,
+.featured-projects ul li .card-actions,
+.featured-videos ul li .card-actions {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+  margin-top: $spacing-md;
+}
+
 .featured-blog-posts ul li:hover,
 .featured-services ul li:hover,
 .featured-projects ul li:hover,
