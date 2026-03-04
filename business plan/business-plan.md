@@ -45,6 +45,36 @@ The market includes general web agencies and freelancers. AWDevelopment differen
 - Avoiding unnecessary complexity and large dependency stacks
 - Delivering with clear, predictable timelines and scope
 
+## Market Position
+AWDevelopment is positioned between low-cost site builders and high-cost agencies. The studio competes primarily with:
+
+- Freelancers charging $75–$150/hour
+- Agencies selling $8k–$40k project engagements
+
+The positioning targets clients who need professional delivery without the overhead of a full agency team.
+
+## Pricing Model
+AWDevelopment uses fixed-scope pricing to provide predictable costs for clients and avoid hourly billing uncertainty.
+
+Typical ranges:
+
+- Static business websites (AWS Amplify): $1,500–$3,000
+- Expanded business websites: $3,500–$7,000
+- Custom Rails applications: $8,000–$25,000+
+- Consulting: $125/hour (2-hour minimum)
+
+Clients may optionally enroll in monthly hosting and maintenance packages ranging from $100–$500 per month depending on support level.
+The pricing structure reflects the focus on maintainable architecture, stable infrastructure, and long-term support.
+
+## Maintenance Packages
+- Basic: $100/month (hosting, updates, backups, uptime monitoring)
+- Standard: $250/month (everything in Basic, small updates, email support)
+- Pro: $500/month (priority support, feature updates, performance monitoring)
+
+## Pricing Rationale
+AWDevelopment sells stability, ownership, and long-term maintainability. Pricing is framed around risk reduction and business value rather than hours.
+The goal is to deliver systems that remain reliable as the business grows and avoid the typical plugin-heavy, fragile builds.
+
 ## Go-To-Market Strategy
 - Portfolio-driven marketing through the public site
 - Case studies and project spotlights from real client work
@@ -79,6 +109,7 @@ The market includes general web agencies and freelancers. AWDevelopment differen
 - Short-term goal: consistent monthly project flow with low-budget retainers
 - Long-term goal: stable mix of project work and retainers
 - Target yearly revenue: $100k–$200k
+- Example monthly mix to reach $120k/year: 2 small sites at $2k each, 1 medium project at $6k, and $3k in retainers (about $13k/month)
 
 ## Risks and Mitigations
 - Risk: Overreliance on a small client pool
