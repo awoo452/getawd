@@ -30,6 +30,7 @@
                   <%= button_to "✅",
                         complete_on_time_task_path(task),
                         method: :patch,
+                        params: { return_to: request.fullpath },
                         form_class: "quick-complete-form",
                         class: "quick-complete-button",
                         title: "Quick complete",

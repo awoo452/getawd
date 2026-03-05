@@ -2,5 +2,6 @@
   <%= button_to "Complete On Time Today",
       complete_on_time_task_path(task),
       method: :patch,
+      params: { return_to: request.fullpath },
       data: { confirm: "Mark this task completed today?" } %>
 <% end %>
