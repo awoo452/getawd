@@ -11,6 +11,8 @@ class GoalsController < ApplicationController
 
   # GET /goals/1 or /goals/1.json
   def show
+    @recurring_tasks = @goal.recurring_tasks.order(created_at: :desc)
+    @new_recurring_task = @goal.recurring_tasks.build
   end
 
   # GET /goals/new

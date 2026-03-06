@@ -3,14 +3,21 @@
   <%= form.text_field :assigned_to, class: "form-input" %>
 </div>
 
-<div class="form-field">
-  <%= form.label :goal_id, "Related Goal" %>
-  <%= form.collection_select :goal_id,
-        Goal.all,
-        :id,
-        ->(g) { "#{GOAL_ICONS[g.category.to_s] || "📝"} #{g.title}" },
-        { class: "form-input" } %>
-</div>
+<% hide_goal = local_assigns.fetch(:hide_goal, false) %>
+<% goal_value = local_assigns.fetch(:goal, task.try(:goal)) %>
+<% if hide_goal %>
+  <%= form.hidden_field :goal_id, value: goal_value&.id %>
+  <p><strong>Goal:</strong> <%= goal_value&.title || "Not assigned" %></p>
+<% else %>
+  <div class="form-field">
+    <%= form.label :goal_id, "Related Goal" %>
+    <%= form.collection_select :goal_id,
+          Goal.all,
+          :id,
+          ->(g) { "#{GOAL_ICONS[g.category.to_s] || "📝"} #{g.title}" },
+          { class: "form-input" } %>
+  </div>
+<% end %>
 
 <div class="form-field">
   <%= form.label :estimated_time, "Estimated Time (Minutes):" %>
@@ -21,10 +28,3 @@
   <%= form.label :actual_time, "Actual Time (Minutes):" %>
   <%= form.number_field :actual_time, class: "form-input" %>
 </div>
-
-<% if task.new_record? && task.is_a?(Task) %>
-  <div class="form-field">
-    <%= form.check_box :recurring %>
-    <%= form.label :recurring, "Create as recurring task" %>
-  </div>
-<% end %>

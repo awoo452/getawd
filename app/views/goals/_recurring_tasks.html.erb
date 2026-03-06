@@ -1,0 +1,54 @@
+<section class="goals-list">
+  <div class="goal-card">
+    <h2>Recurring Tasks</h2>
+
+    <details class="task-card" <%= "open" if recurring_task.errors.any? %>>
+      <summary>New Recurring Task</summary>
+      <%= form_with(model: [goal, recurring_task], local: true, html: { class: "task_form" }) do |form| %>
+        <%= render "shared/form_errors", form_object: recurring_task %>
+
+        <%= render "tasks/form_details", form: form %>
+        <%= render "tasks/form_status", form: form, task: recurring_task %>
+        <%= render "tasks/form_schedule", form: form, task: recurring_task %>
+        <%= render "tasks/form_meta", form: form, task: recurring_task, hide_goal: true, goal: goal %>
+
+        <div class="form-field">
+          <%= form.check_box :active %>
+          <%= form.label :active, "Active" %>
+        </div>
+
+        <div class="form-actions">
+          <%= form.submit "Add Recurring Task", class: "form-submit" %>
+        </div>
+      <% end %>
+    </details>
+
+    <% if recurring_tasks.any? %>
+      <% recurring_tasks.each do |rec_task| %>
+        <details class="task-card <%= rec_task.status.humanize %>" <%= "open" if rec_task.errors.any? %>>
+          <summary><%= rec_task.task_name.presence || "(Untitled Recurring Task)" %></summary>
+          <%= form_with(model: [goal, rec_task], local: true, html: { class: "task_form" }) do |form| %>
+            <%= render "shared/form_errors", form_object: rec_task %>
+
+            <%= render "tasks/form_details", form: form %>
+            <%= render "tasks/form_status", form: form, task: rec_task %>
+            <%= render "tasks/form_schedule", form: form, task: rec_task %>
+            <%= render "tasks/form_meta", form: form, task: rec_task, hide_goal: true, goal: goal %>
+
+            <div class="form-field">
+              <%= form.check_box :active %>
+              <%= form.label :active, "Active" %>
+            </div>
+
+            <div class="form-actions">
+              <%= form.submit "Update Recurring Task", class: "form-submit" %>
+              <%= button_to "Delete", goal_recurring_task_path(goal, rec_task), method: :delete, data: { confirm: "Delete this recurring task?" }, class: "form-submit" %>
+            </div>
+          <% end %>
+        </details>
+      <% end %>
+    <% else %>
+      <p><em>No recurring tasks yet.</em></p>
+    <% end %>
+  </div>
+</section>

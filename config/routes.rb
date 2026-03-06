@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   get 'media/*key', to: 's3_proxy#show', as: :s3_media, format: false
 
   # Resources
-  resources :goals
+  resources :goals do
+    resources :recurring_tasks, only: [:create, :update, :destroy]
+  end
   resources :tasks do
     member do
       patch :complete_on_time

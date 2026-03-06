@@ -4,8 +4,13 @@
 
 <div class="goals-list">
   <div class="goal-card <%= @goal.status.humanize %>">
-    <%= render "details", goal: @goal %>
+    <%= render "goals/details", goal: @goal %>
   </div>
 </div>
 
-<%= render "nav", goal: @goal %>
+<%= render "goals/recurring_tasks",
+      goal: @goal,
+      recurring_tasks: @recurring_tasks,
+      recurring_task: @new_recurring_task %>
+
+<%= render "goals/nav", goal: @goal %>

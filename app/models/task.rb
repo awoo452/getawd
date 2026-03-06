@@ -35,7 +35,7 @@ class Task < ApplicationRecord
 
   after_update :handle_completion, if: :saved_change_to_status?
 
-  attr_accessor :recurring, :repeat_until
+  attr_accessor :repeat_until
 
   private
 

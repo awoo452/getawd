@@ -21,7 +21,6 @@ class RecurringTask < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
-  validates :due_date, presence: true
   validates :priority,
     numericality: {
       only_integer: true,
@@ -36,5 +35,5 @@ class RecurringTask < ApplicationRecord
     self.status ||= :not_started
   end
 
-  attr_accessor :recurring, :repeat_until
+  # No virtual attributes needed for recurring tasks
 end
