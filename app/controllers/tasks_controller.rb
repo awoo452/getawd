@@ -18,7 +18,7 @@ class TasksController < ApplicationController
     if recurring_requested?
       @recurring_task = RecurringTask.new(recurring_task_params)
       if @recurring_task.save
-        redirect_to @recurring_task, notice: "Recurring task created."
+        redirect_to tasks_path, notice: "Recurring task created."
       else
         @task = @recurring_task
         render :new, status: :unprocessable_entity

@@ -23,7 +23,6 @@ Rails.application.routes.draw do
       patch :complete_on_time
     end
   end
-  resources :recurring_tasks
   resources :documents
   get '/docs/:slug', to: 'documents#show_by_slug', as: :doc
   # remove plural resources; using singular controllers above

@@ -11,6 +11,7 @@
 <p><strong>Assigned To:</strong> <%= task.assigned_to %></p>
 <p><strong>Estimated Time (Minutes):</strong> <%= task.estimated_time %></p>
 <p><strong>Actual Time (Minutes):</strong> <%= task.actual_time %></p>
+<p><strong>Recurring:</strong> <%= task.recurring_task_id.present? ? "✓" : "—" %></p>
 <p>
   <strong>Goal:</strong>
   <% if task.goal.present? %>
