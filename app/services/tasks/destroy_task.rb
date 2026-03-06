@@ -25,11 +25,7 @@ module Tasks
     def delete_recurring_task_instances(task_id)
       return unless ActiveRecord::Base.connection.data_source_exists?("recurring_task_instances")
 
-      ActiveRecord::Base.connection.exec_delete(
-        "DELETE FROM recurring_task_instances WHERE task_id = $1",
-        "SQL",
-        [[nil, task_id]]
-      )
+      RecurringTaskInstance.where(task_id: task_id).delete_all
     end
   end
 end
