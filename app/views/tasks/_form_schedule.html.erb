@@ -8,7 +8,7 @@
   <%= form.date_field :due_date, class: "form-input datepicker" %>
 </div>
 
-<% if task.new_record? %>
+<% if task.new_record? && task.is_a?(Task) %>
   <div class="form-field">
     <%= form.label :repeat_until, "Add this task every day until" %>
     <%= form.date_field :repeat_until, class: "form-input datepicker" %>

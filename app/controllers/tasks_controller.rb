@@ -15,6 +15,17 @@ class TasksController < ApplicationController
   end
 
   def create
+    if recurring_requested?
+      @recurring_task = RecurringTask.new(recurring_task_params)
+      if @recurring_task.save
+        redirect_to @recurring_task, notice: "Recurring task created."
+      else
+        @task = @recurring_task
+        render :new, status: :unprocessable_entity
+      end
+      return
+    end
+
     result = Tasks::CreateTask.call(params: task_params)
 
     if result.success?
@@ -82,6 +93,34 @@ class TasksController < ApplicationController
       :relevant,
       :time_bound
     )
+  end
+
+  def recurring_task_params
+    params.require(:task).permit(
+      :task_name,
+      :description,
+      :status,
+      :hold_until,
+      :priority,
+      :start_date,
+      :due_date,
+      :completion_date,
+      :assigned_to,
+      :estimated_time,
+      :actual_time,
+      :goal_id,
+      :eligible_reward,
+      :specific,
+      :measurable,
+      :attainable,
+      :relevant,
+      :time_bound,
+      :active
+    )
+  end
+
+  def recurring_requested?
+    params.dig(:task, :recurring).to_s == "1"
   end
   
 end

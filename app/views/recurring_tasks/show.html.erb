@@ -1,0 +1,11 @@
+<%= render "shared/logged_in_heading",
+      icon: GOAL_ICONS["task"],
+      title: @recurring_task.task_name %>
+
+<div class="tasks-list">
+  <div class="task-card <%= @recurring_task.status.humanize %>">
+    <%= render "tasks/details", task: @recurring_task %>
+  </div>
+</div>
+
+<%= render "nav", recurring_task: @recurring_task %>

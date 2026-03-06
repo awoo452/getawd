@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.16] 2026/03/05
+
+### Added
+- Recurring Tasks CRUD (separate from Tasks) with their own table and navigation entry.
+- Tasks can be created as recurring via a checkbox that creates a recurring task definition.
+- Tasks now link back to the recurring task definition via recurring_task_id.
+
+### Changed
+- Recurring task generation now uses recurring task definitions (not goals) and allows multiple tasks per goal per day.
+- Removed the recurring checkbox from Goal form; goals are no longer the recurring task manager.
+- Daily calendar now includes an "Other Tasks" section for tasks without priority 1-5.
+
 ## [1.25.15] 2026/03/04
 
 ### Changed

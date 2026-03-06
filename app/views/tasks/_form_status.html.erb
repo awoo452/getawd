@@ -1,7 +1,7 @@
 <div class="form-field">
   <%= form.label :status %>
   <%= form.select :status,
-                  Task.statuses.keys.map { |status| [status.humanize, status] },
+                  task.class.statuses.keys.map { |status| [status.humanize, status] },
                   { include_blank: false, class: "form-input" } %>
 </div>
 

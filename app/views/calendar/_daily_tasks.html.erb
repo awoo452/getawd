@@ -41,6 +41,35 @@
           </ul>
         </div>
       <% end %>
+
+      <% other_tasks = tasks_for_date.select { |t| t.priority.blank? || !(1..5).include?(t.priority) } %>
+      <% if other_tasks.any? %>
+        <div class="task-level">
+          <h3>Other Tasks</h3>
+
+          <ul>
+            <% other_tasks.each do |task| %>
+              <li class="task">
+                <%= link_to (goal_icons[task.goal&.category] || "📝"), edit_task_path(task) %>
+                <span><%= task.task_name %></span>
+                <span class="estimated-time orbitron-text">
+                  <%= render "task_time_status", task: task, goal_icons: goal_icons %>
+                </span>
+                <% unless task.completed? %>
+                  <%= button_to "✅",
+                        complete_on_time_task_path(task),
+                        method: :patch,
+                        params: { return_to: request.fullpath },
+                        form_class: "quick-complete-form",
+                        class: "quick-complete-button",
+                        title: "Quick complete",
+                        aria: { label: "Quick complete" } %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </section>

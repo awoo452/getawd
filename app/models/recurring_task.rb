@@ -1,5 +1,5 @@
-# app/models/task.rb
-class Task < ApplicationRecord
+# app/models/recurring_task.rb
+class RecurringTask < ApplicationRecord
   include Holdable
 
   store_accessor :smart,
@@ -9,11 +9,8 @@ class Task < ApplicationRecord
     :relevant,
     :time_bound
 
-  belongs_to :goal, optional: true
-  belongs_to :recurring_task, optional: true
-  has_one :assignment_log, dependent: :destroy
-  has_many :reward_tasks, dependent: :destroy
-  has_many :rewards, through: :reward_tasks
+  belongs_to :goal
+  has_many :tasks, dependent: :nullify
 
   enum :status, {
     not_started: 0,
@@ -21,6 +18,8 @@ class Task < ApplicationRecord
     on_hold: 2,
     completed: 3
   }
+
+  scope :active, -> { where(active: true) }
 
   validates :due_date, presence: true
   validates :priority,
@@ -33,14 +32,9 @@ class Task < ApplicationRecord
   validates :estimated_time, numericality: true
   validates :actual_time, numericality: true
 
-  after_update :handle_completion, if: :saved_change_to_status?
-
-  attr_accessor :recurring, :repeat_until
-
-  private
-
-  def handle_completion
-    Tasks::HandleCompletion.call(task: self)
+  after_initialize do
+    self.status ||= :not_started
   end
 
+  attr_accessor :recurring, :repeat_until
 end

@@ -78,7 +78,6 @@ class GoalsController < ApplicationController
       :category,
       :idea_id,
       :status,
-      :recurring,
       :hold_until,
       :completed_at,
       :specific,

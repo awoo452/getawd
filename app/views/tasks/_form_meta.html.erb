@@ -21,3 +21,10 @@
   <%= form.label :actual_time, "Actual Time (Minutes):" %>
   <%= form.number_field :actual_time, class: "form-input" %>
 </div>
+
+<% if task.new_record? && task.is_a?(Task) %>
+  <div class="form-field">
+    <%= form.check_box :recurring %>
+    <%= form.label :recurring, "Create as recurring task" %>
+  </div>
+<% end %>

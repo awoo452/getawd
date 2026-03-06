@@ -1,24 +1,32 @@
 class RecurringTaskGenerator
   def self.run_for(date = Time.zone.today)
-    Goal.where(recurring: true).find_each do |goal|
-      if goal.assignment_pool&.active?
-        create_assignment_tasks(goal, goal.assignment_pool, date)
-        next
-      end
+    date = date.to_date
 
-      next if Task.exists?(goal: goal, due_date: date)
+    Goal.joins(:assignment_pool).merge(AssignmentPool.active).find_each do |goal|
+      create_assignment_tasks(goal, goal.assignment_pool, date)
+    end
+
+    RecurringTask.active.find_each do |recurring_task|
+      start_on = recurring_task.start_date || recurring_task.due_date
+      next if start_on.present? && date < start_on
+      next if Task.exists?(recurring_task: recurring_task, due_date: date)
 
       Task.create!(
-        task_name: goal.title,
-        description: goal.description,
-        goal: goal,
-        priority: goal.priority,
+        task_name: recurring_task.task_name,
+        description: recurring_task.description,
+        goal: recurring_task.goal,
+        priority: recurring_task.priority,
         start_date: date,
         due_date: date,
-        estimated_time: goal.estimated_daily_task_time || 30,
-        actual_time: 0,
-        status: :not_started,
-        eligible_reward: goal.eligible_reward
+        estimated_time: recurring_task.estimated_time || recurring_task.goal&.estimated_daily_task_time || 30,
+        actual_time: recurring_task.actual_time || 0,
+        status: recurring_task.status || :not_started,
+        hold_until: recurring_task.hold_until,
+        assigned_to: recurring_task.assigned_to,
+        completion_date: recurring_task.completion_date,
+        eligible_reward: recurring_task.eligible_reward,
+        smart: recurring_task.smart,
+        recurring_task: recurring_task
       )
     end
   end

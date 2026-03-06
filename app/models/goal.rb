@@ -12,6 +12,7 @@ class Goal < ApplicationRecord
 
   belongs_to :idea
   has_many :tasks, dependent: :destroy
+  has_many :recurring_tasks, dependent: :destroy
   has_one :assignment_pool, dependent: :destroy
 
   enum :status, {

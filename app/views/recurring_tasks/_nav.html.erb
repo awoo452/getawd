@@ -1,0 +1,11 @@
+<ul class="actions-list">
+  <li><%= link_to "Edit Recurring Task", edit_recurring_task_path(recurring_task) %></li>
+  <li><%= link_to "Back to Recurring Tasks", recurring_tasks_path %></li>
+  <li><%= link_to "Back to Tasks", tasks_path %></li>
+  <li class="action-divider"><hr></li>
+  <li><%= link_to "Go to Goals", goals_path %></li>
+  <li><%= link_to "Go to Calendar (Daily)", calendar_daily_path %></li>
+  <li><%= link_to "Go to Calendar (Monthly)", calendar_monthly_path %></li>
+  <li class="action-divider"><hr></li>
+  <li><%= button_to "Delete Recurring Task", recurring_task, method: :delete, data: { confirm: "Are you sure?" } %></li>
+</ul>
