@@ -5,17 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/
 spec/v2.0.0.html).
 
-## [1.25.22] 2026/03/06
+## [1.25.23] 2026/03/05
+
+### Fixed
+- Business plan refinement
+
+## [1.25.22] 2026/03/05
 
 ### Fixed
 - Use `RecurringTaskInstance` delete_all to clear rows before destroying tasks.
 
-## [1.25.21] 2026/03/06
+## [1.25.21] 2026/03/05
 
 ### Fixed
 - Avoid `exec_delete` bind errors when cleaning up recurring task instances on task deletion.
 
-## [1.25.20] 2026/03/06
+## [1.25.20] 2026/03/05
 
 ### Fixed
 - Delete recurring task instances before destroying a task to avoid FK violations.
