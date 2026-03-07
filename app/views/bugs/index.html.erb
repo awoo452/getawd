@@ -1,0 +1,8 @@
+<%= render "shared/logged_in_heading",
+      icon: "🐞",
+      title: "Bugs" %>
+
+<%= render "bug_list", title: "Open", bugs: @open_bugs, variant: :open %>
+<%= render "bug_list", title: "Completed", bugs: @completed_bugs, variant: :completed %>
+
+<%= link_to "➕ New Bug", new_bug_path, class: "btn" %>

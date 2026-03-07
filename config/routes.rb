@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   # remove plural resources; using singular controllers above
   resources :blog_posts, only: [:index, :show]
   resources :feedbacks, only: [:new, :create, :index], path: "feedback"
+  resources :bugs, only: [:new, :create, :index]
   resources :games,     only: [:index, :show]
   resources :ideas, only: [:show]
   resources :projects,  only: [:index, :show]

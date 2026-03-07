@@ -1,0 +1,19 @@
+<section class="dashboard-panel">
+  <h3><%= title %></h3>
+
+  <% bugs.each do |bug| %>
+    <div class="summary-section">
+      <strong><%= bug.title %></strong>
+      <% if variant == :open && bug.section.present? %>
+        (<%= bug.section %>)
+      <% end %>
+      <% if variant == :completed && bug.commit_ref.present? %>
+        — commit: <%= bug.commit_ref %>
+      <% end %>
+      <% if variant == :open %>
+        <br>
+        <%= bug.body %>
+      <% end %>
+    </div>
+  <% end %>
+</section>

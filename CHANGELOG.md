@@ -5,21 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/
 spec/v2.0.0.html).
 
-## [1.25.28] 2026/03/07
-
-### Changed
-- Aligned services and about copy with the business plan and package positioning.
-- Featured client projects to match the case study focus.
-
 ## [1.25.27] 2026/03/07
 
 ### Added
+- Added a Bugs section mirroring Feedback with open/completed listings and commit references.
+
+## [1.25.26] 2026/03/06
+
+- Aligned services and about copy with the business plan and package positioning.
+- Featured client projects to match the case study focus.
 - Drafted real case studies for Beard Industries, Beard Bros Dumpsters, and Pickled Pirates Racing.
 - Linked initial case study targets in the go-to-market plan.
-
-## [1.25.26] 2026/03/07
-
-### Added
 - Go-to-market plan document for AWDevelopment.
 - Case study template and placeholders for future write-ups.
 
