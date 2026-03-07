@@ -6,7 +6,8 @@ class RecurringTaskGenerator
       create_assignment_tasks(goal, goal.assignment_pool, date)
     end
 
-    RecurringTask.active.find_each do |recurring_task|
+    RecurringTask.active.includes(goal: :assignment_pool).find_each do |recurring_task|
+      next if recurring_task.goal&.assignment_pool&.active?
       start_on = recurring_task.start_date || recurring_task.due_date
       next if start_on.present? && date < start_on
       next if Task.exists?(recurring_task: recurring_task, due_date: date)
