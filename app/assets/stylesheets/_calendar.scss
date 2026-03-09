@@ -83,6 +83,11 @@
   li {
     margin-left: 0;
   }
+
+  .task-emoji.is-completed {
+    filter: grayscale(1);
+    opacity: 0.45;
+  }
 }
 
 .daily-task-levels {
