@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: %i[ show destroy ]
+  skip_before_action :authenticate_user!, only: %i[public_index show_by_slug]
 
   # GET /documents or /documents.json
   def index
@@ -10,8 +11,17 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def public_index
+    data = Documents::IndexData.call(paginator: method(:paginate))
+    @documents = data.documents.select(&:public_document?)
+    @documents_by_category = @documents.group_by do |document|
+      document.category || "uncategorized"
+    end
+  end
+
   def show_by_slug
     @document = Document.find_by!(slug: params[:slug])
+    raise ActiveRecord::RecordNotFound unless @document.public_document?
     render :show
   end
 

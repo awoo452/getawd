@@ -10,6 +10,13 @@ class Document < ApplicationRecord
     nil
   end
 
+  def public_document?
+    metadata_value = metadata_hash
+    return false unless metadata_value.is_a?(Hash)
+
+    metadata_value["public"] == true || metadata_value["public"] == "true"
+  end
+
   private
 
   def metadata_hash

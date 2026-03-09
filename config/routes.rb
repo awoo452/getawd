@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     end
   end
   resources :documents
+  get '/docs', to: 'documents#public_index', as: :public_docs
   get '/docs/:slug', to: 'documents#show_by_slug', as: :doc
   # remove plural resources; using singular controllers above
   resources :blog_posts, only: [:index, :show]
