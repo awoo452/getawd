@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  devise_for :users, defaults: { format: :html }
+  devise_for :users, defaults: { format: :html }, controllers: {
+    sessions: "users/sessions"
+  }
 
   # Static pages
   get 'about',     to: 'about#index'
