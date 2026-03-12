@@ -2,7 +2,14 @@
   <%= render "shared/logged_in_heading",
         icon: goal_icons["calendar"],
         title: "Monthly Calendar" %>
-  <%= month_calendar(attribute: :due_date) do |date| %>
+  <% previous_month = start_date.to_date.prev_month %>
+  <% next_month = start_date.to_date.next_month %>
+  <nav class="calendar-nav">
+    <%= link_to "Previous", calendar_monthly_date_path(start_date: previous_month), data: { turbo: false } %>
+    <%= link_to "Today", calendar_monthly_path, data: { turbo: false } %>
+    <%= link_to "Next", calendar_monthly_date_path(start_date: next_month), data: { turbo: false } %>
+  </nav>
+  <%= month_calendar(attribute: :due_date, start_date: start_date) do |date| %>
     <ul class="task-calendar-monthly-day">
       <strong class="date_day"><%= date.day %></strong>
 

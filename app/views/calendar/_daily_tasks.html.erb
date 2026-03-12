@@ -5,7 +5,14 @@
   <p class="calendar-daily-date">
     <strong><%= date.strftime("%A, %B %-d, %Y") %></strong>
   </p>
-  <%= calendar(number_of_days: 1) do |date| %>
+  <% previous_date = date.to_date - 1.day %>
+  <% next_date = date.to_date + 1.day %>
+  <nav class="calendar-nav">
+    <%= link_to "Previous", calendar_daily_date_path(start_date: previous_date), data: { turbo: false } %>
+    <%= link_to "Today", calendar_daily_path, data: { turbo: false } %>
+    <%= link_to "Next", calendar_daily_date_path(start_date: next_date), data: { turbo: false } %>
+  </nav>
+  <%= calendar(number_of_days: 1, start_date: date) do |date| %>
     <% tasks_for_date = tasks.select { |task| task.due_date.present? && task.due_date.in_time_zone.to_date == date } %>
 
     <div class="daily-task-levels">

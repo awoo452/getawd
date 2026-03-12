@@ -14,14 +14,19 @@ module ApplicationHelper
     return true if !Rails.env.development? && !Rails.env.test?
 
     begin
-      creds = Rails.application.config_for(:s3)
+      creds = Rails.application.config_for(:s3) || {}
+      region = creds["region"].presence || ENV["AWS_REGION"].presence || ENV["AWS_DEFAULT_REGION"].presence || "us-west-1"
+      bucket = creds["bucket"].presence || ENV["AWS_BUCKET"].presence
+
+      return false if bucket.blank?
+
       Aws::S3::Client.new(
-        region: creds["region"],
-        access_key_id: creds["access_key_id"],
-        secret_access_key: creds["secret_access_key"]
-      ).head_object(bucket: creds["bucket"], key: key)
+        region: region,
+        access_key_id: creds["access_key_id"].presence || ENV["AWS_ACCESS_KEY_ID"].presence,
+        secret_access_key: creds["secret_access_key"].presence || ENV["AWS_SECRET_ACCESS_KEY"].presence
+      ).head_object(bucket: bucket, key: key)
       true
-    rescue Aws::S3::Errors::NotFound, Aws::S3::Errors::Forbidden, Aws::Errors::ServiceError
+    rescue Aws::S3::Errors::NotFound, Aws::S3::Errors::Forbidden, Aws::Errors::ServiceError, Aws::Errors::MissingCredentialsError, Aws::Errors::MissingRegionError
       false
     end
   end
@@ -34,7 +39,11 @@ module ApplicationHelper
     bucket = ENV["AWS_BUCKET"]
 
     unless base.present? && signing_key.present? && bucket.present?
-      return S3Service.new.presigned_url(key)
+      begin
+        return S3Service.new.presigned_url(key)
+      rescue Aws::Errors::MissingCredentialsError, Aws::Errors::MissingRegionError
+        return nil
+      end
     end
 
     path_key = key.to_s.sub(%r{\A/}, "")

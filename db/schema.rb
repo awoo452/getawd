@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_02_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_07_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -75,6 +75,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_02_000000) do
     t.index ["slug"], name: "index_blog_posts_on_slug", unique: true
   end
 
+  create_table "bugs", force: :cascade do |t|
+    t.text "body"
+    t.string "commit_ref"
+    t.boolean "completed", default: false, null: false
+    t.datetime "created_at", null: false
+    t.string "section"
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "documents", force: :cascade do |t|
     t.json "body"
     t.datetime "created_at", null: false
@@ -125,7 +135,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_02_000000) do
     t.datetime "hold_until"
     t.bigint "idea_id", null: false
     t.integer "priority"
-    t.boolean "recurring", default: false
     t.jsonb "smart", default: {}, null: false
     t.integer "status", default: 0, null: false
     t.string "title"
@@ -159,6 +168,27 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_02_000000) do
     t.datetime "updated_at", null: false
     t.string "url"
     t.index ["service_type"], name: "index_projects_on_service_type"
+  end
+
+  create_table "recurring_tasks", force: :cascade do |t|
+    t.boolean "active", default: true, null: false
+    t.integer "actual_time", default: 0, null: false
+    t.string "assigned_to"
+    t.date "completion_date"
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.date "due_date"
+    t.string "eligible_reward"
+    t.integer "estimated_time", default: 30, null: false
+    t.bigint "goal_id"
+    t.datetime "hold_until"
+    t.integer "priority"
+    t.jsonb "smart", default: {}, null: false
+    t.date "start_date"
+    t.integer "status"
+    t.string "task_name"
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_recurring_tasks_on_goal_id"
   end
 
   create_table "reward_rules", force: :cascade do |t|
@@ -226,12 +256,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_02_000000) do
     t.bigint "goal_id"
     t.datetime "hold_until"
     t.integer "priority"
+    t.bigint "recurring_task_id"
     t.jsonb "smart", default: {}, null: false
     t.date "start_date"
     t.integer "status"
     t.string "task_name"
     t.datetime "updated_at", null: false
     t.index ["goal_id"], name: "index_tasks_on_goal_id"
+    t.index ["recurring_task_id", "due_date"], name: "index_tasks_on_recurring_task_id_and_due_date"
+    t.index ["recurring_task_id"], name: "index_tasks_on_recurring_task_id"
     t.check_constraint "status IS NULL OR (status = ANY (ARRAY[0, 1, 2, 3]))", name: "tasks_status_check"
   end
 
@@ -266,10 +299,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_02_000000) do
   add_foreign_key "assignment_pools", "goals"
   add_foreign_key "blog_posts", "projects"
   add_foreign_key "goals", "ideas"
+  add_foreign_key "recurring_tasks", "goals"
   add_foreign_key "reward_rules", "rewards"
   add_foreign_key "reward_tasks", "rewards"
   add_foreign_key "reward_tasks", "tasks"
   add_foreign_key "rewards", "goals"
   add_foreign_key "tasks", "goals"
+  add_foreign_key "tasks", "recurring_tasks"
   add_foreign_key "videos", "projects"
 end

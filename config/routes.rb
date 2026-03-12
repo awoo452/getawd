@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   get 'calendar',        to: 'calendar#daily'
   get 'calendar/daily',  to: 'calendar#daily'
+  get 'calendar/daily/:start_date', to: 'calendar#daily', as: :calendar_daily_date
   get 'calendar/monthly', to: 'calendar#monthly'
+  get 'calendar/monthly/:start_date', to: 'calendar#monthly', as: :calendar_monthly_date
   get 'landscaping', to: 'landscaping#index'
   get 'media/*key', to: 's3_proxy#show', as: :s3_media, format: false
 

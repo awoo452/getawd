@@ -1,2 +1,2 @@
 <% goal_icons = defined?(GOAL_ICONS) ? GOAL_ICONS : {} %>
-<%= render "monthly_tasks", tasks: @tasks, goal_icons: goal_icons %>
+<%= render "monthly_tasks", tasks: @tasks, goal_icons: goal_icons, start_date: @calendar_start_date %>
