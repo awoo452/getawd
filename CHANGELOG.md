@@ -1,23 +1,23 @@
 # Changelog
-
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/
 spec/v2.0.0.html).
 
-## [1.25.32] 2026/03/12
-
+## [1.25.34] - 2026-03-14
 ### Added
 - Removing related logging to isolate production related issue that I could not repro in dev for calendar
 
-## [1.25.31] 2026/03/12
+## [1.25.32] - 2026-03-12
+### Added
+- Removing related logging to isolate production related issue that I could not repro in dev for calendar
 
+## [1.25.31] - 2026-03-12
 ### Added
 - AWS config for dev
 - A calendar update that should fix the calendar's inability to filter by tasks correctly per month.
 
-## [1.25.30] 2026/03/08
-
+## [1.25.30] - 2026-03-08
 ### Added
 - Public documentation index at /docs, with slug-based public doc pages.
 
@@ -25,24 +25,21 @@ spec/v2.0.0.html).
 - Documents now honor a metadata public flag to control public visibility.
 - Legal terms/privacy pages now allow public access.
 
-## [1.25.29] 2026/03/08
-
+## [1.25.29] - 2026-03-08
 ### Changed
 - Forced remember-me on sign-in and made session cookies long-lived + shared across subdomains to reduce mobile logouts.
 - Canonicalized host to getawd.com and removed cross-subdomain session cookies.
 
-## [1.25.28] 2026/03/08
-
+## [1.25.28] - 2026-03-08
 ### Changed
 - Grayed completed task emojis in the monthly calendar.
 
 ## [1.25.27] 2026/03/07
-
 ### Added
 - Added a Bugs section mirroring Feedback with open/completed listings and commit references.
 
 ## [1.25.26] 2026/03/06
-
+### Changed
 - Aligned services and about copy with the business plan and package positioning.
 - Featured client projects to match the case study focus.
 - Drafted real case studies for Beard Industries, Beard Bros Dumpsters, and Pickled Pirates Racing.
@@ -51,12 +48,10 @@ spec/v2.0.0.html).
 - Case study template and placeholders for future write-ups.
 
 ## [1.25.25] 2026/03/06
-
 ### Fixed
 - Skip recurring task generation for goals with active assignment pools to prevent duplicate base chores.
 
 ## [1.25.24] 2026/03/05
-
 ### Fixed
 - Business plan (one page summary) refinement
 
