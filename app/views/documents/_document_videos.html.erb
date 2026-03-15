@@ -1,4 +1,4 @@
-<% youtube_ids = document.youtube_id.is_a?(Array) ? document.youtube_id : [] %>
+<% youtube_ids = document.youtube_ids %>
 <% if youtube_ids.any? %>
   <h3>Videos</h3>
   <% youtube_ids.each do |video_id| %>

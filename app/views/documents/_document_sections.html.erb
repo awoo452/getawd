@@ -1,6 +1,6 @@
-<% subheadings = document.subheadings || [] %>
-<% body = document.body || [] %>
-<% images = document.images || [] %>
+<% subheadings = document.subheadings_list %>
+<% body = document.body_list %>
+<% images = document.images_list %>
 
 <% subheadings.each_with_index do |subheading, index| %>
   <h3><%= subheading %></h3>

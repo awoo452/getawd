@@ -1,8 +1,8 @@
 <div id="<%= dom_id document %>">
   <h3><%= document.title %></h3>
 
-  <% if document.images.present? %>
-    <% img = document.images.first %>
+  <% if document.images_list.any? %>
+    <% img = document.images_list.first %>
     <% if img.present? && img["file"].present? %>
       <div class="card-image-frame">
         <% proxy_url = image_proxy_url(document_image_key(document, img), width: 500, height: 500, fit: "inside", format: "webp") %>
