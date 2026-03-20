@@ -27,6 +27,7 @@ module AwDevelopment
     config.time_zone = "Pacific Time (US & Canada)"
     config.active_record.default_timezone = :utc
     config.beginning_of_week = :sunday
+    config.active_storage.variant_processor = :disabled
     # Avoid preload headers that trigger unused-preload warnings with Turbo visits.
     config.action_view.preload_links_header = false
     # config.eager_load_paths << Rails.root.join("extras")
