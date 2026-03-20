@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Keep Ruby pinned for Heroku/runtime consistency
-ruby "4.0.1"
+ruby "4.0.2"
 
 # Added by a human
 gem 'bootstrap', '~> 5.0.0' # unreleased
