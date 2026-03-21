@@ -17,7 +17,7 @@ class GoalsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create goal" do
     assert_difference("Goal.count") do
-      post goals_url, params: { goal: { category: @goal.category, completed_at: @goal.completed_at, description: @goal.description, due_date: @goal.due_date, priority: @goal.priority, status: @goal.status, title: @goal.title } }
+      post goals_url, params: { goal: { category: @goal.category, completed_at: @goal.completed_at, description: @goal.description, due_date: @goal.due_date, idea_id: @goal.idea_id, priority: @goal.priority, status: @goal.status, title: "New Goal Title" } }
     end
 
     assert_redirected_to goal_url(Goal.last)

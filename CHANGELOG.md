@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.41] - 2026-03-21
+### Fixed
+- Aligned controller tests with current routes and required goal parameters.
+
 ## [1.25.40] - 2026-03-21
 ### Fixed
 - Guarded S3Service initialization when bucket credentials are missing to prevent test-time errors.

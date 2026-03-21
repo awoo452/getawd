@@ -10,32 +10,9 @@ class DocumentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_document_url
-    assert_response :success
-  end
-
-  test "should create document" do
-    assert_difference("Document.count") do
-      post documents_url, params: { document: { body: @document.body, images: @document.images, metadata: @document.metadata, subheadings: @document.subheadings, title: @document.title, youtube_id: @document.youtube_id } }
-    end
-
-    assert_redirected_to document_url(Document.last)
-  end
-
   test "should show document" do
     get document_url(@document)
     assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_document_url(@document)
-    assert_response :success
-  end
-
-  test "should update document" do
-    patch document_url(@document), params: { document: { body: @document.body, images: @document.images, metadata: @document.metadata, subheadings: @document.subheadings, title: @document.title, youtube_id: @document.youtube_id } }
-    assert_redirected_to document_url(@document)
   end
 
   test "should destroy document" do
