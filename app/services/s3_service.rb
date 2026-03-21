@@ -3,11 +3,16 @@ require "aws-sdk-s3"
 class S3Service
   def initialize
     creds = s3_creds
+    @bucket_name = creds[:bucket]
+    return if @bucket_name.blank?
+
     @s3 = Aws::S3::Resource.new(s3_options(creds))
-    @bucket = @s3.bucket(creds[:bucket])
+    @bucket = @s3.bucket(@bucket_name)
   end
 
   def upload(file_path, key, public: false)
+    return nil if @bucket.blank?
+
     opts = {}
     obj = @bucket.object(key)
     obj.upload_file(file_path, opts)
@@ -16,6 +21,7 @@ class S3Service
 
   def presigned_url(key, expires_in: 3600)
     return nil if key.blank?
+    return nil if @bucket_name.blank?
 
     creds = s3_creds
     signer = Aws::S3::Presigner.new(s3_options(creds))

@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.40] - 2026-03-21
+### Fixed
+- Guarded S3Service initialization when bucket credentials are missing to prevent test-time errors.
+
 ## [1.25.39] - 2026-03-21
 ### Fixed
 - Updated Devise route helpers to use keyword arguments and silence Rails 8.2 deprecation warnings.
