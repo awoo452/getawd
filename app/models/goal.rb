@@ -11,6 +11,7 @@ class Goal < ApplicationRecord
     :time_bound
 
   belongs_to :idea
+  has_many :rewards, dependent: :nullify
   has_many :tasks, dependent: :destroy
   has_many :recurring_tasks, dependent: :destroy
   has_one :assignment_pool, dependent: :destroy
