@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.44] - 2026-03-21
+### Changed
+- Standardized changelog dates to YYYY-MM-DD.
+
+## [1.25.43] - 2026-03-21
+### Added
+- Added the /up health check route.
+
 ## [1.25.42] - 2026-03-21
 ### Changed
 - Standardized legal pages on JSON-backed content and added the Accessibility page.
@@ -82,11 +90,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Grayed completed task emojis in the monthly calendar.
 
-## [1.25.27] 2026/03/07
+## [1.25.27] - 2026-03-07
 ### Added
 - Added a Bugs section mirroring Feedback with open/completed listings and commit references.
 
-## [1.25.26] 2026/03/06
+## [1.25.26] - 2026-03-06
 ### Changed
 - Aligned services and about copy with the business plan and package positioning.
 - Featured client projects to match the case study focus.
@@ -95,50 +103,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Go-to-market plan document for AWDevelopment.
 - Case study template and placeholders for future write-ups.
 
-## [1.25.25] 2026/03/06
+## [1.25.25] - 2026-03-06
 ### Fixed
 - Skip recurring task generation for goals with active assignment pools to prevent duplicate base chores.
 
-## [1.25.24] 2026/03/05
+## [1.25.24] - 2026-03-05
 ### Fixed
 - Business plan (one page summary) refinement
 
-## [1.25.23] 2026/03/05
+## [1.25.23] - 2026-03-05
 
 ### Fixed
 - Business plan refinement
 
-## [1.25.22] 2026/03/05
+## [1.25.22] - 2026-03-05
 
 ### Fixed
 - Use `RecurringTaskInstance` delete_all to clear rows before destroying tasks.
 
-## [1.25.21] 2026/03/05
+## [1.25.21] - 2026-03-05
 
 ### Fixed
 - Avoid `exec_delete` bind errors when cleaning up recurring task instances on task deletion.
 
-## [1.25.20] 2026/03/05
+## [1.25.20] - 2026-03-05
 
 ### Fixed
 - Delete recurring task instances before destroying a task to avoid FK violations.
 
-## [1.25.19] 2026/03/05
+## [1.25.19] - 2026-03-05
 
 ### Removed
 - Recurring tasks managed on the related goal show.
 
-## [1.25.18] 2026/03/05
+## [1.25.18] - 2026-03-05
 
 ### Removed
 - Recurring task indicated on the show.
 
-## [1.25.17] 2026/03/05
+## [1.25.17] - 2026-03-05
 
 ### Removed
 - Goals being recurring. It wasn't the right way to do it.
 
-## [1.25.16] 2026/03/05
+## [1.25.16] - 2026-03-05
 
 ### Added
 - Recurring Tasks CRUD (separate from Tasks) with their own table and navigation entry.
@@ -150,65 +158,65 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Removed the recurring checkbox from Goal form; goals are no longer the recurring task manager.
 - Daily calendar now includes an "Other Tasks" section for tasks without priority 1-5.
 
-## [1.25.15] 2026/03/04
+## [1.25.15] - 2026-03-04
 
 ### Changed
 - Quick complete is useless if it takes u to a random page when u click it.
 
-## [1.25.14] 2026/03/04
+## [1.25.14] - 2026-03-04
 
 ### Changed
 - Normalized featured landing card action spacing and applied card-actions styling to blog, project, and video cards.
 
-## [1.25.13] 2026/03/03
+## [1.25.13] - 2026-03-03
 
 ### Added
 - Mission and vision statements added to the business plan and one-page summary.
 - Mission and vision section added to the About page.
 
-## [1.25.12] 2026/03/04
+## [1.25.12] - 2026-03-04
 
 ### Changed
 - Featured videos on the landing page now link to their show pages.
 
-## [1.25.11] 2026/03/03
+## [1.25.11] - 2026-03-03
 
 ### Changed
 - featured about small change
 
-## [1.25.10] 2026/03/03
+## [1.25.10] - 2026-03-03
 
 ### Changed
 - Standardized logged-in page headings across authenticated pages (calendar, dashboard, tasks, goals, reports, rewards, documents, games, feedback, ideas).
 - Daily calendar date now lives inside the shared heading.
 
-## [1.25.9] 2026/03/03
+## [1.25.9] - 2026-03-03
 
 ### Changed
 - Daily calendar now includes a quick-complete button for open tasks.
 - Monthly calendar now renders emoji-only task entries with wrapped layout to avoid scrolling.
 
-## [1.25.8] 2026/03/03
+## [1.25.8] - 2026-03-03
 
 ### Added
 - Business plan expansion, mostly related to costs and billing.
 
-## [1.25.7] 2026/03/02
+## [1.25.7] - 2026-03-02
 
 ### Added
 - Business plan.
 
-## [1.25.6] 2026/03/02
+## [1.25.6] - 2026-03-02
 
 ### Changed
 - Projects on landing page should go to the more details page, not the actual project. Now they do that.
 
-## [1.25.5] 2026/03/02
+## [1.25.5] - 2026-03-02
 
 ### Changed
 - Calendar had redundancies. Now it doesn't thanks to this here commit.
 
-## [1.25.4] 2026/03/02
+## [1.25.4] - 2026-03-02
 
 ### Changed
 - Goal-level estimated_daily_task_time added; recurring task generation now uses goal defaults instead of hardcoded case logic.
@@ -216,7 +224,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - Assignment pools now select one weekly chore per day from active items, reset weekly items on Sunday, and avoid same-day duplicates.
 
-## [1.25.3] 2026/03/02
+## [1.25.3] - 2026-03-02
 
 ### Changed
 - Split calendar into dedicated daily and monthly pages to isolate navigation and filtering.
@@ -224,18 +232,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - Daily calendar now respects the requested date and shows correct header/prev-next navigation.
 
-## [1.25.2] 2026/03/01
+## [1.25.2] - 2026-03-01
 
 ### Fixed
 - Calendar month navigation now follows the requested month while keeping the daily view on today.
 
-## [1.25.1] 2026/03/01
+## [1.25.1] - 2026-03-01
 
 ### Removed
 - Maybe if we get rid of the seed files altogether Chat will stop trying to give me random seed files instead of insert / update statements.
 - Telling it not to update the seed file is worthless, that's for sure.
 
-## [1.25.0] 2026/03/01
+## [1.25.0] - 2026-03-01
 
 ### Added
 - Assignment pools, items, and logs to support auto-assigned recurring work.
@@ -243,35 +251,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Recurring task generator now supports daily and weekly assignment pools.
 
-## [1.24.34] 2026/02/28
+## [1.24.34] - 2026-02-28
 
 ### Changed
 - Took all the best parts and pieces of all the front end and made it all standardized across all the public facing pages.
 - This commit brought to you by ChatGPT.
   - There aren't any bugs except for all the ones I'll find later.
 
-## [1.24.33] 2026/02/28
+## [1.24.33] - 2026-02-28
 
 ### Changed
 - Blog stuff, don't worry ChatGPT I'll go ahead and figure this part out where we put it in the changelog.
 - Bonus points for fixing the about view that we decided needed to be blown out.
 
-## [1.24.32] 2026/02/28
+## [1.24.32] - 2026-02-28
 
 ### Changed
 - Console cleanup.
 
-## [1.24.31] 2026/02/28
+## [1.24.31] - 2026-02-28
 
 ### Changed
 - Final cleanup for projects overhaul.
 
-## [1.24.30] 2026/02/28
+## [1.24.30] - 2026-02-28
 
 ### Changed
 - Final cleanup for about overhaul, with css flex implemented where chat produced grid that looked like garbage.
 
-## [1.24.29] 2026/02/28
+## [1.24.29] - 2026-02-28
 
 ### Changed
 - Refreshed the About page layout with a centered hero, expectation panel, and highlight cards.
@@ -286,63 +294,63 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added fallback image handling to swap broken S3/proxy images to `branding/logo.png`.
 - Made S3 config region-aware via env defaults and ensured `.env` includes AWS region settings.
 
-## [1.24.28] 2026/02/28
+## [1.24.28] - 2026-02-28
 
 ### Fixed
 - Added scroll offset for project section anchors to align with the sticky navbar.
 - Finalizing Landing Card material
 
-## [1.24.27] 2026/02/27
+## [1.24.27] - 2026-02-27
 
 ### Changed
 - Link to learn more about the service
 
-## [1.24.26] 2026/02/27
+## [1.24.26] - 2026-02-27
 
 ### Changed
 - Front eond stoyling brot to ou boy chotGPT
 
-## [1.24.25] 2026/02/27
+## [1.24.25] - 2026-02-27
 
 ### Changed
 - Split services index into Featured Services and an "Also Ask About" section.
 - Hid the "View Projects" button for non-featured services.
 
-## [1.24.24] 2026/02/26
+## [1.24.24] - 2026-02-26
 
 ### Changed
 - Reworked the landing hero copy and CTAs to clearly call out web development and IT consulting services.
 - Added Rails-side fallback handling for missing landing hero and logo images in development.
 
-## [1.24.23] 2026/02/25
+## [1.24.23] - 2026-02-25
 
 ### Changed
 - Restricted S3 proxy redirects to an allowlist of S3 hosts (plus optional `S3_PROXY_ALLOWED_HOSTS`).
 
-## [1.24.22] 2026/02/25
+## [1.24.22] - 2026-02-25
 
 ### Changed
 - Added database check constraints to keep task/goal status values within enum bounds.
 - Validated document metadata to ensure it is a hash or valid JSON before save.
 
-## [1.24.21] 2026/02/25
+## [1.24.21] - 2026-02-25
 
 ### Changed
 - Added error summary display to the feedback form and clarified the shared form error header.
 
-## [1.24.20] 2026/02/25
+## [1.24.20] - 2026-02-25
 
 ### Changed
 - Replaced the `AboutSection` default scope with an explicit `ordered` scope.
 - Added basic validations for core content models (games, landscaping jobs, services, projects, videos, blog posts).
 
-## [1.24.19] 2026/02/25
+## [1.24.19] - 2026-02-25
 
 ### Changed
 - Normalized indentation in the User model.
 - Deleting an Idea now cascades to its Goals via `dependent: :destroy`.
 
-## [1.24.18] 2026/02/25
+## [1.24.18] - 2026-02-25
 
 ### Changed
 - Extracted task lookup into a shared before_action for show/edit.
@@ -350,12 +358,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 - Dropped redundant CSRF protection override in the blackjack controller.
 
-## [1.24.17] 2026/02/24
+## [1.24.17] - 2026-02-24
 
 ### Changed
 - Moved reward redemption actions into a dedicated controller while keeping routes intact.
 
-## [1.24.16] 2026/02/24
+## [1.24.16] - 2026-02-24
 
 ### Changed
 - Moved document category parsing into `Document#category`.
@@ -363,7 +371,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 - Dropped the unused `document_params` and controller-only category helper.
 
-## [1.24.15] 2026/02/24
+## [1.24.15] - 2026-02-24
 
 ### Removed
 - Dropped the unused `idea_stats` route that had no controller.
@@ -371,76 +379,76 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Centralized authentication in `ApplicationController` and explicitly skipped it for public controllers.
 
-## [1.24.14] 2026/02/24
+## [1.24.14] - 2026-02-24
 
 ### Added
 - Project/blog_post association plus project show page rendering for related blog posts.
 
-## [1.24.13] 2026/02/24
+## [1.24.13] - 2026-02-24
 
 ### Added
 - Project/video association plus project show page rendering for related videos.
 
-## [1.24.12] 2026/02/24
+## [1.24.12] - 2026-02-24
 
 ### Changed
 - ChatGPT is actually incapable of following anything other than shitty directions.
 
-## [1.24.11] 2026/02/24
+## [1.24.11] - 2026-02-24
 
 ### Changed
 - Added layout tokens and shared mixins/placeholders in _theme.scss for containers, breakpoints, images, and primary actions.
 - Replaced hard-coded sizes with tokens and deduped panel, action button, and image-frame styles across the SCSS files.
 - Converted calendar layout sizing to use theme tokens.
 
-## [1.24.10] 2026/02/24
+## [1.24.10] - 2026-02-24
 
 ### Changed
 - Simplified radius/shadow tokens and normalized usages across SCSS partials.
 
-## [1.24.9] 2026/02/24
+## [1.24.9] - 2026-02-24
 
 ### Changed
 - Reduced spacing and font tokens to a smaller scale.
 
-## [1.24.8] 2026/02/24
+## [1.24.8] - 2026-02-24
 
 ### Changed
 - Refactored shared styling into `_shared.scss` and replaced hardcoded values with theme tokens across SCSS partials.
 
-## [1.24.7] 2026/02/24
+## [1.24.7] - 2026-02-24
 
 ### Fixed
 - Playing with the front end, nothing that matters enough for ChatGPT to give me a changelog about
 
-## [1.24.6] 2026/02/24
+## [1.24.6] - 2026-02-24
 
 ### Fixed
 - Footer fixed since ChatGPT can't figure out branding and human can't proofread.
 
-## [1.24.5] 2026/02/24
+## [1.24.5] - 2026-02-24
 
 ### Fixed
 - Normalized project URLs so missing schemes no longer resolve as relative `getawd.com` paths.
 
-## [1.24.4] 2026/02/24
+## [1.24.4] - 2026-02-24
 
 ### Added
 - Featured services section on the landing page.
 
-## [1.24.3] 2026/02/24
+## [1.24.3] - 2026-02-24
 
 ### Changed
 - Services titles no longer truncate in the index list.
 - Services styles extracted to a dedicated stylesheet.
 - Removed Services from the global card title clamp rule to prevent ellipses.
 
-## [1.24.2] 2026/02/24
+## [1.24.2] - 2026-02-24
 
 ### Changed
 - Services list now renders card images when provided.
 
-## [1.24.1] 2026/02/24
+## [1.24.1] - 2026-02-24
 
 ### Changed
 - Me: Let's just do some really basic filtering on the projects page
@@ -449,7 +457,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Projects index now groups by service types from the database, with an "Other Projects" fallback for nil or unmapped types.
 - Service project anchors now derive from the stored `service_type` without hardcoded mappings.
 
-## [1.24.0] 2026/02/24
+## [1.24.0] - 2026-02-24
 
 ### Added
 - Services table to describe available offerings.
@@ -461,12 +469,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Projects index grouped by service type with anchors for Services card links.
 
-## [1.23.49] 2026/02/22
+## [1.23.49] - 2026-02-22
 
 ### Added
 - Meta description for the home page to improve search previews.
 
-## [1.23.48] 2026/02/22
+## [1.23.48] - 2026-02-22
 
 ### Added
 - Terms of Use and Privacy Policy pages.
@@ -475,13 +483,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Footer now links to Terms and Privacy.
 
-## [1.23.47] 2026/02/22
+## [1.23.47] - 2026-02-22
 
 ### Changed
 - Dumb clanker can't even get the branding right
 - Dumb human can't even proofread
 
-## [1.23.46] 2026/02/21
+## [1.23.46] - 2026-02-21
 
 ### Changed
 - Projects index now links to internal project detail pages, with external links moved to show.
@@ -489,73 +497,73 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Videos index now links to detail pages with thumbnails instead of embedded players.
 - Video show page now includes a dedicated embed layout and navigation back to the index.
 
-## [1.23.45] 2026/02/20
+## [1.23.45] - 2026-02-20
 
 ### Changed
 - Documents section is organized unlike ur desk lol
 
-## [1.23.44] 2026/02/20
+## [1.23.44] - 2026-02-20
 
 ### Changed
 - Mirrored Ryder's World image proxy with signed resize URLs and S3 presign fallback.
 - Routed all UI images through the proxy with WebP sizing and updated media/system docs.
 - Added an image proxy setup doc with CloudFormation + secret + env var checklist.
 
-## [1.23.43] 2026/02/15
+## [1.23.43] - 2026-02-15
 
 ### Changed
 - Forced Devise remember-me on sign-in; set a 2-year remember window with sliding renewal
 - Added basic PWA metadata and a web manifest to support iOS "Add to Home Screen"
 
-## [1.23.42] 2026/02/07
+## [1.23.42] - 2026-02-07
 
 ### Changed
 - Normalized reward redemption params and surfaced invalid reward/game selections.
 
-## [1.23.41] 2026/02/07
+## [1.23.41] - 2026-02-07
 
 ### Fixed
 - Guarded date normalization when parsing fails to avoid nil to_date errors.
 
-## [1.23.40] 2026/02/07
+## [1.23.40] - 2026-02-07
 
 ### Changed
 - Surface invalid filter params for goals/tasks instead of silently skipping them.
 
-## [1.23.39] 2026/02/07
+## [1.23.39] - 2026-02-07
 
 ### Changed
 - Normalized query params for goals/tasks filters and sorting to keep inputs predictable.
 
-## [1.23.38] 2026/02/07
+## [1.23.38] - 2026-02-07
 
 ### Changed
 - Defaulted all controllers to require authentication, with an explicit public allowlist.
 
-## [1.23.37] 2026/02/06
+## [1.23.37] - 2026-02-06
 
 ### Changed
 - Aligned DB constraints with model expectations (non-null requirements, case-insensitive goal uniqueness).
 - Backfilled missing task/document fields before enforcing constraints.
 - Enforced unique reward-task joins and added matching model validations.
 
-## [1.23.36] 2026/02/06
+## [1.23.36] - 2026-02-06
 
 ### Changed
 - setting ruby-version file because pinning it to 4.0.1 isn't enough or whatever
 
-## [1.23.35] 2026/02/06
+## [1.23.35] - 2026-02-06
 
 ### Changed
 - Shitposting in the 403 message for the love of the game.
 
-## [1.23.34] 2026/02/06
+## [1.23.34] - 2026-02-06
 
 ### Changed
 - Locked production host allowlist to `APP_HOST`/`APP_HOSTS` (defaults to getawd.com, www.getawd.com)
 - Set explicit session cookie key and SameSite/secure settings
 
-## [1.23.33] 2026/02/06
+## [1.23.33] - 2026-02-06
 
 ### Changed
 - Standardized priority levels to 1–5 across the app.
@@ -567,125 +575,125 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - Prevented goals/tasks from accepting priority values outside 1–5.
 
-## [1.23.32] 2026/02/06
+## [1.23.32] - 2026-02-06
 
 ### Changed
 - Removed pagination from docs section because ChatGPT can do the thing where they tell you they implement pagination but what actually happens is they paginate most of the shit and hope you won't notice the 2 or 3 missing articles that aren't called because you let a robot do a man's job.
 
-## [1.23.31] 2026/02/06
+## [1.23.31] - 2026-02-06
 
 ### Changed
 - Grouped documents index by `metadata["category"]`, with uncategorized fallback.
 
-## [1.23.30] 2026/02/06
+## [1.23.30] - 2026-02-06
 
 ### Changed
 - Document helper now maps `logo-classic.png` to `branding/logo-classic.png` for docs placeholders.
 
-## [1.23.29] 2026/02/06
+## [1.23.29] - 2026-02-06
 
 ### Changed
 - Standardized landing and index card truncation rules for titles and descriptions.
 - Unified list card imagery into square, centered 500px frames across featured and index views.
 - Aligned document card markup with the standardized card typography.
 
-## [1.23.28] 2026/02/04
+## [1.23.28] - 2026-02-04
 
 ### Added
 - Auth page styling and custom Devise views for sign in, sign up, and password reset flows.
 
-## [1.23.27] 2026/02/04
+## [1.23.27] - 2026-02-04
 
 ### Changed
 - Landscaping job images now render inside a square, overflow-hidden frame.
 - Blackjack visuals updated to classic green felt styling with card-like elements.
 
-## [1.23.26] 2026/02/04
+## [1.23.26] - 2026-02-04
 
 ### Changed
 - Standardized landscaping/blackjack styling with shared theme variables and square image sizing.
 
-## [1.23.25] 2026/02/04
+## [1.23.25] - 2026-02-04
 
 ### Fixed
 - Restored `landscaping_image_url` helper for landscaping image rendering.
 - Linked landscaping page to contact page instead of inline contact details.
 
-## [1.23.24] 2026/02/04
+## [1.23.24] - 2026-02-04
 
 ### Changed
 - Split blackjack and landscaping views into focused partials.
 
-## [1.23.23] 2026/02/04
+## [1.23.23] - 2026-02-04
 
 ### Changed
 - Split feedbacks, navbar, and reward history/level sections into focused partials.
 
-## [1.23.22] 2026/02/04
+## [1.23.22] - 2026-02-04
 
 ### Changed
 - Split documents show, games index, blog posts show, and goals show into focused partials.
 
-## [1.23.21] 2026/02/04
+## [1.23.21] - 2026-02-04
 
 ### Changed
 - Split ideas show, projects index, and blog posts index into focused partials.
 - Shared pagination partial for blog posts and projects.
 
-## [1.23.20] 2026/02/04
+## [1.23.20] - 2026-02-04
 
 ### Changed
 - Prevented duplicate level rewards from re-earning after redemption on the same day.
 
-## [1.23.19] 2026/02/04
+## [1.23.19] - 2026-02-04
 
 ### Changed
 - Split reports, contact, and task show views into focused partials.
 
-## [1.23.18] 2026/02/04
+## [1.23.18] - 2026-02-04
 
 ### Changed
 - Split rewards show view into focused partials.
 - Split game show view into focused partials.
 - Split home featured sections into focused partials.
 
-## [1.23.17] 2026/02/04
+## [1.23.17] - 2026-02-04
 
 ### Changed
 - Split task and goal forms into focused partials and shared error rendering.
 
-## [1.23.16] 2026/02/04
+## [1.23.16] - 2026-02-04
 
 ### Changed
 - Split calendar views into focused partials and centralized time status display.
 
-## [1.23.15] 2026/02/04
+## [1.23.15] - 2026-02-04
 
 ### Changed
 - Split dashboard index into focused partials.
 
-## [1.23.14] 2026/02/04
+## [1.23.14] - 2026-02-04
 
 ### Changed
 - Split rewards index into focused partials and removed view-level queries.
 
-## [1.23.13] 2026/02/04
+## [1.23.13] - 2026-02-04
 
 ### Changed
 - Removed stray controller-style `index` method from `LandscapingJob`.
 - Extracted hold/resume timing logic into `Holdable::NormalizeHoldUntil` and `Holdable::ResumeIfReady`.
 
-## [1.23.12] 2026/02/04
+## [1.23.12] - 2026-02-04
 
 ### Changed
 - Extracted reward eligibility checks into `Rewards::Eligibility`.
 
-## [1.23.11] 2026/02/04
+## [1.23.11] - 2026-02-04
 
 ### Changed
 - Moved task completion reward logic into `Tasks::HandleCompletion`.
 
-## [1.23.10] 2026/02/04
+## [1.23.10] - 2026-02-04
 
 ### Changed
 - Extracted calendar loading into `Calendar::ShowData`.
@@ -695,7 +703,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Extracted S3 proxy resolution into `S3Proxy::ShowData`.
 - Extracted videos pagination into `Videos::IndexData`.
 
-## [1.23.9] 2026/02/04
+## [1.23.9] - 2026-02-04
 
 ### Changed
 - Extracted about page loading into `About::IndexData`.
@@ -706,24 +714,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Extracted projects pagination into `Projects::IndexData`.
 - Extracted feedback listing/creation/update into `Feedbacks::IndexData`, `Feedbacks::CreateFeedback`, and `Feedbacks::UpdateFeedback`.
 
-## [1.23.8] 2026/02/04
+## [1.23.8] - 2026-02-04
 
 ### Changed
 - Extracted document index pagination into `Documents::IndexData`.
 - Extracted document deletion into `Documents::DestroyDocument`.
 
-## [1.23.7] 2026/02/04
+## [1.23.7] - 2026-02-04
 
 ### Changed
 - Extracted blackjack game logic into `Blackjack::Game`.
 
-## [1.23.6] 2026/02/04
+## [1.23.6] - 2026-02-04
 
 ### Changed
 - Extracted dashboard aggregation into `Dashboard::IndexData`.
 - Extracted reports aggregation into `Reports::IndexData`.
 
-## [1.23.5] 2026/02/04
+## [1.23.5] - 2026-02-04
 
 ### Changed
 - Extracted goal index filtering/sorting into `Goals::IndexData`.
@@ -731,7 +739,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Extracted goal updates into `Goals::UpdateGoal`.
 - Extracted goal deletion into `Goals::DestroyGoal`.
 
-## [1.23.4] 2026/02/04
+## [1.23.4] - 2026-02-04
 
 ### Changed
 - Made reward redemption require an explicit level (or reward_id) to avoid silent fallback to Level 1.
@@ -740,7 +748,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Extracted task index filtering/sorting into `Tasks::IndexData`.
 - Extracted task deletion into `Tasks::DestroyTask` for consistent controller flow.
 
-## [1.23.3] 2026/02/03
+## [1.23.3] - 2026-02-03
 
 ### Changed
 - Extracted reward level redemption logic into `Rewards::RedeemLevel`.
@@ -748,17 +756,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Extracted `redeem_task` logic into `Rewards::RedeemTask`.
 - Extracted rewards index aggregation into `Rewards::IndexData`.
 
-## [1.23.2] 2026/02/03
+## [1.23.2] - 2026-02-03
 
 ### Changed
 - Removed inline view styles/scripts and aligned CSP for Turbo/importmap to keep console clean.
 
-## [1.23.1] 2026/02/01
+## [1.23.1] - 2026-02-01
 
 ### Changed
 - Slight logo adjustment. New year new me or whatever.
 
-## [1.23.0] 2026/02/01
+## [1.23.0] - 2026-02-01
 
 ### Changed
 - Migrated About section content from static YAML to database-backed `about_sections`
@@ -777,7 +785,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Seed data for About section to support consistent local and production setup
 - Shared SCSS theme tokens for site-wide colors, typography, spacing, and shadows
 
-## [1.22.18] 2026/01/31
+## [1.22.18] - 2026-01-31
 
 ### Added
 - Added Feedback model for tracking site feedback and TODOs
@@ -798,17 +806,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Isolated feedback functionality from dashboard and reports
 - Designed feedback workflow to support batch processing and release-based cleanup
 
-## [1.22.17] 2026/01/31
+## [1.22.17] - 2026-01-31
 
 ### Added
 - Report card addition
 
-## [1.22.16] 2026/01/31
+## [1.22.16] - 2026-01-31
 
 ### Added
 - Completion chain expansion to include more context and an emoji based on success or failure
 
-## [1.22.15] 2026/01/31
+## [1.22.15] - 2026-01-31
 
 ### Added
 - Added ReportsController with dedicated `/reports` index for historical accountability reporting
@@ -822,24 +830,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Imported reports stylesheet into application styles
 - Isolated Reports layout and panels to prevent dashboard CSS bleed
 
-## [1.22.14] 2026/01/26
+## [1.22.14] - 2026-01-26
 
 ### Changed
 - Well would you look at that, ChatGPT can't even stick to formatting the changelog correctly and it took me 5+ commits to realize it.
 
-## [1.22.13] 2026/01/26
+## [1.22.13] - 2026-01-26
 
 ### Changed
 - Cached S3 presigned URLs with a TTL shorter than their actual expiration
 - Switched per-request/thread caching to Rails cache to avoid serving expired URLs
 
-## [1.22.12] 2026/01/25
+## [1.22.12] - 2026-01-25
 
 ### Added
 - Routed image requests through a stable /media proxy to avoid expired S3 presigned URLs
 - Added S3 proxy controller + route to mint fresh presigned URLs per request
 
-## [1.22.11] 2026/01/25
+## [1.22.11] - 2026-01-25
 
 ### Fixed
 - Guarded dashboard constants to avoid crashes if icon/idea maps are missing
@@ -847,13 +855,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Hardened contact/about YAML loading and guarded missing social/about data
 - Guarded home featured links, blog images, and video embeds when data is missing
 
-## [1.22.10] 2026/01/25
+## [1.22.10] - 2026-01-25
 
 ### Added
 - Added pagination and ordering for projects index, and guarded empty project URLs
 - Added pagination for videos index and fixed videos show to use the requested video
 
-## [1.22.9] 2026/01/25
+## [1.22.9] - 2026-01-25
 
 ### Changed
 - Hardened document rendering against nil/mismatched JSON arrays
@@ -863,33 +871,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added pagination and ordering for blog posts index
 - Slug migration for blog_posts
 
-## [1.22.8] 2026/01/25
+## [1.22.8] - 2026-01-25
 
 ### Added
 - Expanded seed data for tasks, games, documents, and rewards
 
-## [1.22.7] 2026/01/25
+## [1.22.7] - 2026-01-25
 
 ### Fixed
 - Fixed task list filters, N+1 goals, and repeat-until validation
 - Applied goal filters to rendered lists and eager loaded ideas
 - Removed unused Reward#redeem! and hardened game progress_data parsing
 
-## [1.22.6] 2026/01/25
+## [1.22.6] - 2026-01-25
 
 ### Added
 - Made completion footage URL requirement apply only to level (gaming) rewards
 - Added level 3 auto-funding payload on redemption
 - Display reward update errors on the reward show page
 
-## [1.22.5] 2026/01/25
+## [1.22.5] - 2026-01-25
 
 ### Changed
 - Eager loaded goals on dashboard/calendar task lists to reduce N+1 queries
 - Guarded calendar view against tasks without goals
 - Reduced reward availability counting N+1 queries on dashboard
 
-## [1.22.4] 2026/01/25
+## [1.22.4] - 2026-01-25
 
 ### Changed
 - Removed S3 presign debug logging and tightened production asset/ActiveStorage settings
@@ -901,7 +909,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added report-only Content Security Policy
 - Updated Devise routes to avoid upcoming keyword deprecation warnings
 
-## [1.22.3] 2026/01/25
+## [1.22.3] - 2026-01-25
 
 ### Changed
 - Prepared database.yml for primary/cable/queue/cache connections and bumped Rails to 8.1.x
@@ -911,7 +919,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Removed Ruby version pin from Gemfile
 - Pinned Ruby to 4.0.1
 
-## [1.22.2] 2026/01/25
+## [1.22.2] - 2026-01-25
 
 ### Changed
 - Removed duplicated `handle_completion` and `earned_on_date` definitions in `Task`
@@ -921,22 +929,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Hardened reward redemption validation for level rewards and invalid game selections
 - Aligned reward helper calculations with level-only earned rewards and on-hold task exclusions
 
-## [1.22.1] 2026/01/24
+## [1.22.1] - 2026-01-24
 
 ### Changed
 - games show was borked because I don't use rspec or whatever
 
-## [1.22.0] 2026/01/19
+## [1.22.0] - 2026-01-19
 
 ### Added
 - Blackjack lol
 
-## [1.21.32] 2026/01/19
+## [1.21.32] - 2026-01-19
 
 ### Changed
 - Serving images for the remaining app sections without ability to expand
 
-## [1.21.31] 2026/01/19
+## [1.21.31] - 2026-01-19
 
 ### Changed
 - Updated Documents index page to load images via `S3Helper` instead of public S3 URLs
@@ -945,7 +953,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Removed remaining hardcoded S3 URLs from Documents views
 - Aligned Documents image loading behavior with Games S3 implementation
 
-## [1.21.30] 2026/01/18
+## [1.21.30] - 2026-01-18
 
 ### Changed
 - Added app-specific IAM credentials for S3 access
@@ -1477,10 +1485,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Migration to add youtube playlist ID to the videos section
 - Display that playlist on the games/show if it exists
 
-## [1.19.1] – 2025-11-19
+## [1.19.1] - 2025-11-19 –
 
 ### Added
-- `game_image_url` helper to resolve S3-hosted game images  
+- `game_image_url` helper to resolve S3-hosted game images
   (stored at `games/{game_id}/game{x}.png`)
 - Game image display added to **Games index**
 - YouTube embed, image gallery, and full progress data sections added to **Games show**
@@ -1494,7 +1502,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Games index updated to render game cards only when `show_to_public` is true
 - Reorganized show page markup for consistent layout and cleaner structure
 
-## [1.19.0] – 2025-11-17
+## [1.19.0] - 2025-11-17 –
 
 ### Added
 - `game_title` column added to `games` table, to reference actual title of game
@@ -1513,14 +1521,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - `progress_data` populated for all seeded games
 - Games index updated to only list games where `show_to_public?` is `true`
 
-## [1.18.11] 2025-11-15
+## [1.18.11] - 2025-11-15
 
 ### Changed
 - About section
   - about `index.html.erb` added another about tile and a header
   - updated some info in `about_info.yml` to display on that page
 
-## [1.18.10] 2025-11-15
+## [1.18.10] - 2025-11-15
 
 ### Added
 - Lightning background added to `featured-about` section using S3-hosted image
@@ -1540,12 +1548,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Removed unused or redundant animation attempts from previous iterations
 
 
-## [1.18.9] 2025-10-26
+## [1.18.9] - 2025-10-26
 
 ### Changed
 - Contact Info (contact_info.yml) for Twitch
 
-## [1.18.8] 2025-10-26
+## [1.18.8] - 2025-10-26
 
 ### Changed
 - Logo
@@ -1581,17 +1589,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Simplified `.idea-box` styles by moving `.idea-stats` handling inside each tile instead of relying on `.idea-stats-panel`
 - Removed unused `.idea-stats-panel` and `.idea-stat-box` styles, as stats now live inside individual idea tiles
 
-## [1.18.3] – 2025-09-27
+## [1.18.3] - 2025-09-27 –
 
 ### Changed
 - Completing a goal toady should actually make it complete today, even if we're not in UTC. :|
 
-## [1.18.2] – 2025-09-27
+## [1.18.2] - 2025-09-27 –
 
 ### Changed
 - Added dashboard nav in ideas section of dashboard to quickly add a goal or task.
 
-## [1.18.1] – 2025-09-27
+## [1.18.1] - 2025-09-27 –
 
 ### Added
 - New `complete_on_time` member route for tasks
@@ -1608,7 +1616,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Goal show page updated to render inside `.goal-card` for consistency with index views
 - Replaced raw `<hr>` separators in show page action lists with `.divider` list items styled via SCSS
 
-## [1.18.0] – 2025-09-17
+## [1.18.0] - 2025-09-17 –
 
 ### Added
 - `paginate` helper in `ApplicationController`, reusable across controllers
@@ -1645,7 +1653,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Additional clarity added to ideas in relation to how the colors are coordinating to the ideas
 - SCSS cleaned up for dashboard
 
-## [1.17.1] -2025-09-11
+## [1.17.1] - 2025-09-11
 
 ### Changed
 - contact follow us section needed flex wrap to avoid blowout on small screens
@@ -1776,32 +1784,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - **`app/views/layouts/_navbar.html.erb`**
   - Replaced local `logo.png` with S3-hosted version via `logo_url` helper.
-  
+
 - **`app/views/about/index.html.erb`**
   - Updated all about section images to use `about_image_url(num)` helper for S3-hosted images.
-  
+
 - **`app/views/blog_posts/index.html.erb`**, **`blog_posts/show.html.erb`**
   - Replaced local blog post images with S3-hosted versions via `blog_image_url(filename)`.
-  
+
 - **`app/views/projects/index.html.erb`**
   - Replaced all project images with S3 URLs using `project_image_url(filename)` helper.
-  
+
 - **`app/views/landscaping_jobs/index.html.erb`**
   - Updated landscaping job images to use S3-hosted URLs via `landscaping_image_url(filename)` helper.
 
 ### Added
 - **`application_helper.rb`**
-  - `logo_url`, `about_image_url(num)`, `blog_image_url(filename)`,  
+  - `logo_url`, `about_image_url(num)`, `blog_image_url(filename)`,
     `project_image_url(filename)`, and `landscaping_image_url(filename)` helpers.
 
 ### Removed
 - Local assets from `app/assets/images/` now hosted on S3:
   - `about1.png` to `about3.png`, `blogx.png`, `projectx.png`, `landscapingx.png`, etc.
 
-## [1.15.1] - 2025/08/01
+## [1.15.1] - 2025-08-01
 ### Setting bucket to public altogether, will only be used for public facing images.
 
-## [1.15.0] - 2025/08/01
+## [1.15.0] - 2025-08-01
 ### Added
 - **`config/s3.yml`**
   - Environment-specific bucket, region, and access key config for AWS S3
@@ -1810,33 +1818,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`Gemfile`**
   - Added `aws-sdk-s3` for S3 integration
 
-## [1.14.5] - 2025/07/30
+## [1.14.5] - 2025-07-30
 ### Changed
 - **`rewards/index.html.erb`**
-  - Added link to create a new reward.  
+  - Added link to create a new reward.
   - Enhanced layout and presentation with new styles.
 
 - **`_rewards.scss`**
   - Added styling for the new link and general layout improvements.
 
-## [1.14.4] - 2025/07/30
+## [1.14.4] - 2025-07-30
 ### Changed
 - **`rewards_controller.rb`**
   - Only shows tasks that are incomplete when associating a new reward
 
-## [1.14.3] - 2025/07/30
+## [1.14.3] - 2025-07-30
 ### Thanks Rails for throwing a credential pity party
 
-## [1.14.2] - 2025/07/30
+## [1.14.2] - 2025-07-30
 ### RePrecompile my balls
 - https://stackoverflow.com/questions/19650621/heroku-upload-precompiling-assets-failed
 - Removing this line, not necessary and the issue was actually related to SCSS, where I was calling variables that didn't exist.
 
-## [1.14.1] - 2025/07/29
+## [1.14.1] - 2025-07-29
 ### Precompile my balls
 - https://stackoverflow.com/questions/19650621/heroku-upload-precompiling-assets-failed
 
-## [1.14.0] - 2025/07/29
+## [1.14.0] - 2025-07-29
 ### Rewards System Integration
 
 ### Added
@@ -1869,7 +1877,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - System is structured for future expansion of rule types and reward logic.
 - Displays on dashboard, with link to rewards.
 
-## [1.13.12] - 2025/07/012
+## [1.13.12] - 2025-07-012 -
 ### Time Zone Consistency Fixes (Continued...)
 
 ### Changed
@@ -1887,7 +1895,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improves accuracy and consistency of all date-based filtering.
 
 
-## [1.13.11] - 2025/07/11
+## [1.13.11] - 2025-07-11
 ### Time Zone Fixes & Contact/About Updates
 
 ### Changed
@@ -1901,7 +1909,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **About Section**
   - Added two new images of me.
 
-## [1.13.10] - 2025/07/07
+## [1.13.10] - 2025-07-07
 ### Time Tracking Scoped to Today
 
 ### Added
@@ -1917,7 +1925,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Notes
 - Improves visibility into today's effort without noise from future/past tasks.
 
-## [1.13.9] - 2025/07/07
+## [1.13.9] - 2025-07-07
 ### Dashboard Summary Expansion & Filtering Fixes
 
 ### Added
@@ -1938,7 +1946,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Further refines the dashboard into a high-level performance view.
 - Filtering logic now behaves as expected for completed goals.
 
-## [1.13.8] - 2025/07/07
+## [1.13.8] - 2025-07-07
 ### Filtering Overhaul & Dashboard Summary
 
 ### Added
@@ -1974,7 +1982,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Significantly improves filtering UX across dashboard, tasks, and goals.
 - Adds visibility into due-today items for better daily planning.
 
-## [1.13.7] - 2025/07/06  
+## [1.13.7] - 2025-07-06
 ### Seed File Fixes & Repeatable Tasks
 
 ### Changed
@@ -1983,7 +1991,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`repeatable_tasks.rb`**, **`.gitignore`**
   - Added repeatable task commands for convenience; file ignored from version control.
 
-## [1.13.6] - 2025/07/01
+## [1.13.6] - 2025-07-01
 ### Bug Fixes & Clarity Improvements
 
 ### Changed
@@ -1992,32 +2000,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`calendar/show.html.erb`**
   - Daily calendar now displays the task name for better clarity.
 
-## [1.13.5] - 2025/06/17
+## [1.13.5] - 2025-06-17
 ### Gaming Version Control Implementation, Necessary to Improve Goal Tracking, Checkpoints, Calculation of Related Metrics, and Ultimately an Increase of Productivity Across the Entirety of the Gaming Platform this Section Supports. The Numbers Mason.
 
 ### Changed
 - **Database**:
   - Developed insert statement to add information to DB for first series
-- **`games/index.html.erb`**: 
+- **`games/index.html.erb`**:
   - Removed game_notes from games/index
-- **`stylesheets/application.html.erb`**, **`games/show.html.erb`**: 
+- **`stylesheets/application.html.erb`**, **`games/show.html.erb`**:
 - Updating to apply style to each individual game section on the show (was referencing game class, needed to reference game id)
 
-## [1.13.4] - 2025/06/17
+## [1.13.4] - 2025-06-17
 ### Navigation Clean-Up
 
 ### Added
-- **`dashboard/index.html.erb`**  
+- **`dashboard/index.html.erb`**
   - Added links to create new tasks and goals directly from the dashboard.
 
 ### Changed
 - **`goals/show.html.erb`**, **`tasks/show.html.erb`**
-  - Reorganized sub-navigation layout to reduce clutter and improve usability.  
+  - Reorganized sub-navigation layout to reduce clutter and improve usability.
   - Moved delete buttons to avoid accidental clicks.
   - Converted sub-nav to unordered list with inline styles (temporary solution; further styling needed and there's nothing more permanent than a temporary solution :D).
 
 
-## [1.13.3] - 2025/06/10
+## [1.13.3] - 2025-06-10
 ### Form Styling Updates
 
 ### Changed
@@ -2026,7 +2034,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`goals/_form.html.erb`**, **`tasks/_form.html.erb`**, **`_form.scss`**
   - Updated the description field to use a larger `<textarea>` for better usability.
 
-## [1.13.2] - 2025/06/10
+## [1.13.2] - 2025-06-10
 ### Form Styling Updates
 
 ### Changed
@@ -2035,7 +2043,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`tasks/new.html.erb`**, **`tasks/edit.html.erb`**, **`goals/new.html.erb`**, **`goals/edit.html.erb`**
   - Centered `<h1>` headers for improved visual hierarchy.
 
-## [1.13.1] - 2025/06/09 (Nice)
+## [1.13.1] - 2025-06-09 -  (Nice)
 ### Dashboard Upgrades
 
 ### Changed
@@ -2049,7 +2057,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`dashboard/_goal_card.html.erb`**
   - Added emojis for visual clarity.
 
-## [1.13.0] - 2025/06/07
+## [1.13.0] - 2025-06-07
 ### Dashboard Initial Release
 
 ### Added
@@ -2064,7 +2072,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`assets/stylesheets/dashboard.scss`**
   - Color-coded tasks by status for better visual distinction.
 
-## [1.12.30] - 2025/06/07
+## [1.12.30] - 2025-06-07
 ### Goal Migration for Status
 ### Dashboard Completed Goal Separation
 
@@ -2084,7 +2092,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Added `status:integer` to `goals`.
 
 
-## [1.12.29] - 2025/06/06
+## [1.12.29] - 2025-06-06
 ### Dashboard Layout & Task Sorting Upgrade
 
 ### Added
@@ -2100,20 +2108,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Improved responsive layout with `flex-wrap` and consistent dimensions across containers
 
 ### Backend
-- **`dashboard_controller.rb`**  
+- **`dashboard_controller.rb`**
   - Split `@tasks` into `@active_tasks` and `@completed_tasks`
   - Applied ordering by `due_date` on both collections
 
-## [1.12.28] - 2025/05/11  
-### Landscaping Expansion  
+## [1.12.28] - 2025-05-11
+### Landscaping Expansion
 
-### Changed  
-- **`landscaping/index.html.erb`**  
-  - Added more clarity around target market and job types  
-- **`_landscaping.scss`**  
-  - Styled the list of services and contact information  
+### Changed
+- **`landscaping/index.html.erb`**
+  - Added more clarity around target market and job types
+- **`_landscaping.scss`**
+  - Styled the list of services and contact information
 
-## [1.12.27] - 2025/05/10
+## [1.12.27] - 2025-05-10
 ### Landscaping, About Updates
 
 ### Added
@@ -2128,13 +2136,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`about/index.html.erb`**
   - Rearranged content to align with new image layout
 
-## [1.12.26] - 2025/05/10
+## [1.12.26] - 2025-05-10
 ### Readme updates
 
-## [1.12.26] - 2025/05/10
+## [1.12.26] - 2025-05-10
 ### Readme updates
 
-## [1.12.25] - 2025/05/10
+## [1.12.25] - 2025-05-10
 ### Dashboard Upgrades
 
 ### Added
@@ -2145,60 +2153,60 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`layouts/_nav.html.erb`**:
   - Added Dashboard link visible only when `user_signed_in?`.
 
-## [1.12.24] - 2025/05/07  
-### Dashboard  
+## [1.12.24] - 2025-05-07
+### Dashboard
 
-### Added  
-- **`dashboard/index.html.erb`**:  
-  - Displays all key models with basic info and edit links.  
-- **`dashboard_controller.rb`**:  
-  - Initial controller setup for centralized admin view.  
-- **`assets/stylesheets/dashboard.scss`**:  
-  - New SCSS file for custom dashboard styling.  
+### Added
+- **`dashboard/index.html.erb`**:
+  - Displays all key models with basic info and edit links.
+- **`dashboard_controller.rb`**:
+  - Initial controller setup for centralized admin view.
+- **`assets/stylesheets/dashboard.scss`**:
+  - New SCSS file for custom dashboard styling.
 
-### Changed  
-- **`dashboard_controller.rb`**:  
-  - Displays associated tasks and completion status.  
-- **`dashboard.scss`**:  
-  - Stylized dashboard layout for better readability.  
-- **`dashboard/index.html.erb`**:  
+### Changed
+- **`dashboard_controller.rb`**:
+  - Displays associated tasks and completion status.
+- **`dashboard.scss`**:
+  - Stylized dashboard layout for better readability.
+- **`dashboard/index.html.erb`**:
   - Shows progress bar for each model's task completion.
 
-## [1.12.23] - 2025/05/06
+## [1.12.23] - 2025-05-06
 ### Hey have a README
 
 ### Changed
-- **`README.MD`**:  
+- **`README.MD`**:
   - Put stuff in it, just read it if you've made it this far.
 
 
-## [1.12.22] - 2025/04/06  
-### Goal Section Cleanup  
+## [1.12.22] - 2025-04-06
+### Goal Section Cleanup
 
-### Changed  
-- **`goals_controller.rb`**:  
-  - Updated logic to exclude completed goals by default.  
-- **`goals/index.html.erb`**:  
-  - Added checkbox toggle to show/hide completed goals.  
+### Changed
+- **`goals_controller.rb`**:
+  - Updated logic to exclude completed goals by default.
+- **`goals/index.html.erb`**:
+  - Added checkbox toggle to show/hide completed goals.
 
-### Notes  
+### Notes
 - Helps focus on active goals while retaining access to completed ones when needed.
 
-## [1.12.21] - 2025/03/14  
-### Task Name Tooltip  
+## [1.12.21] - 2025-03-14
+### Task Name Tooltip
 
-### Changed  
-- **`calendar/show.html.erb`**:  
+### Changed
+- **`calendar/show.html.erb`**:
   - Added tooltip to display `task_name` when hovering over tasks on the calendar.
 
-## [1.12.20] - 2025/02/24
+## [1.12.20] - 2025-02-24
 ### Completed tasks now show as such
 
 ### Changed
 - **`calendar/show.html.erb`**:
   - Completed tasks now display a checkmark instead of time remaining and a progress bar.
 
-## [1.12.19] - 2025/02/24
+## [1.12.19] - 2025-02-24
 ### General Debugging & Clean-Up
 
 ### Changed
@@ -2210,13 +2218,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Applied Google Font.
   - General layout and style improvements.
 
-## [1.12.18] - 2025/02/24
+## [1.12.18] - 2025-02-24
 ### General Debugging & Clean-Up
 
 ### Changed
 - project4.png
 
-## [1.12.17] - 2025/02/24
+## [1.12.17] - 2025-02-24
 ### General Debugging & Clean-Up
 
 ### Changed
@@ -2228,8 +2236,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`_calendar.scss`**:
   - Ensured colors display correctly.
 
-## [1.12.16] - 2025/02/22  
-### General Debugging & Clean-Up  
+## [1.12.16] - 2025-02-22
+### General Debugging & Clean-Up
 
 ### Changed
 - **`seeds/tasks.rb`**:
@@ -2247,15 +2255,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 - **`goals/_goal.html.erb`**:
 
-### Added  
-- **Task Manager project image** 
+### Added
+- **Task Manager project image**
 
-### Notes  
-- **Consistency upgrades** for better UI flow.  
-- **Stronger data integrity** (no more NaN).  
-- **Visual improvements** across the board.  
+### Notes
+- **Consistency upgrades** for better UI flow.
+- **Stronger data integrity** (no more NaN).
+- **Visual improvements** across the board.
 
-## [1.12.15] - 2025/02/22
+## [1.12.15] - 2025-02-22
 ### General Debugging & Clean-Up
 
 ### Changed
@@ -2267,7 +2275,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improves **visual appeal** of the calendar by removing unnecessary UI clutter.
 - Style tweaks are **under evaluation** decisions pending future AI performance reviews.
 
-## [1.12.14] - 2025/02/22
+## [1.12.14] - 2025-02-22
 ### General Debugging & Clean-Up
 
 ### Changed
@@ -2275,16 +2283,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - **All tasks** now **display by default** on the calendar again.
   - Refined **progress wheel logic** to handle anything thrown at it.
 
-### Notes  
+### Notes
 - Ensures **complete task visibility** on the calendar.
 - Progress wheel is now **more resilient** to unexpected data inputs.
 
-### [1.12.13] - 2025/02/22
+## [1.12.13] - 2025-02-22
 ### General Debugging & Clean-Up
 
 ### Changed
 - **`goal_icons.yml`**:
-  - Expanded with **more categories**, brother.  
+  - Expanded with **more categories**, brother.
 - **`task.rb`**:
   - **Validation enforced**: Tasks now **require** `estimated_time` and `actual_time`.
   - No more funny business—**NaN values are not welcome**.
@@ -2294,35 +2302,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Expands **goal categorization** for better organization.
 
 
-## [1.12.12] - 2025/02/22  
-### Calendar Upgrades  
+## [1.12.12] - 2025-02-22
+### Calendar Upgrades
 
-### Changed  
-- **`calendar/show.html.erb`**:  
-  - Displays **estimated time remaining** for tasks on both **daily** and **monthly** calendars.  
-  - Updated **status-dot colors** to indicate task timing:  
-    - **Black** → Estimated time.  
-    - **Green** → Completed on time.  
-    - **Red** → Completed time exceeded estimate.  
-- **`stylesheets/_calendar.scss`**:  
-  - Adjusted styling for **status-dot** display and visibility.  
+### Changed
+- **`calendar/show.html.erb`**:
+  - Displays **estimated time remaining** for tasks on both **daily** and **monthly** calendars.
+  - Updated **status-dot colors** to indicate task timing:
+    - **Black** → Estimated time.
+    - **Green** → Completed on time.
+    - **Red** → Completed time exceeded estimate.
+- **`stylesheets/_calendar.scss`**:
+  - Adjusted styling for **status-dot** display and visibility.
 
-### Notes  
-- Improves **time tracking** directly on the calendar for better task management.  
-- **Visual cues** make it easier to see task progress at a glance.  
+### Notes
+- Improves **time tracking** directly on the calendar for better task management.
+- **Visual cues** make it easier to see task progress at a glance.
 
-## [1.12.11] - 2025/02/22  
-### Search Implementation for Goals  
+## [1.12.11] - 2025-02-22
+### Search Implementation for Goals
 
-### Changed  
-- **`goals/index.html.erb`**, **`goals_controller.rb`**, **`tasks/index.html.erb`**:  
-  - Added **search functionality** for goals, similar to tasks but **without filtering**.  
+### Changed
+- **`goals/index.html.erb`**, **`goals_controller.rb`**, **`tasks/index.html.erb`**:
+  - Added **search functionality** for goals, similar to tasks but **without filtering**.
 
-### Notes  
-- Enables **basic goal searching** for easier navigation.  
-- Matches existing **task search behavior**, maintaining UI consistency. 
+### Notes
+- Enables **basic goal searching** for easier navigation.
+- Matches existing **task search behavior**, maintaining UI consistency.
 
-## [1.12.10] - 2025/02/22
+## [1.12.10] - 2025-02-22
 ### SCSS Consistency & Pagination Update
 
 ### Changed
@@ -2335,25 +2343,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Ensures **consistent styling** across the app by properly setting SCSS variables.
 - Adjusts **pagination for better usability** while future optimizations are considered.
 
-## [1.12.9] - 2025/02/22
+## [1.12.9] - 2025-02-22
 ### Task Icons, Task Icons Everywhere
 
 ### Changed
 - **`calendar/show.html.erb`**:
   - Added **task icons** to calendar view for better visualization.
-- **`goals/index.html.erb`**: 
+- **`goals/index.html.erb`**:
   - Added **edit link** for each goal to improve navigation.
 - **`application.scss` & `tasks/index.html.erb`**:
   - Centered tables for **Tasks** and **Goals** for a more polished layout.
 - **`tasks/index.html.erb`**:
   - Now displays the **related goal** for each task.
 
-### Notes  
+### Notes
 - Enhances UI with **icons on the calendar** for quick task identification.
 - Improves **goal management** with direct edit links.
 - Layout improvements make **task/goal tables easier to read**.
 
-## [1.12.8] - 2025/02/22
+## [1.12.8] - 2025-02-22
 ### Task Icons
 
 ### Changed
@@ -2366,32 +2374,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improves data integrity by properly linking tasks to **actual goals**.
 - Enhances development environment with additional **seed data**.
 
-## [1.12.7] - 2025/02/21  
-### Task Icons  
+## [1.12.7] - 2025-02-21
+### Task Icons
 
-### Added  
-- **`goal_icons.yml`**: Stores icon mappings for different goal categories.  
-- **`goal_icons.rb`**: Handles logic for retrieving goal-related icons.  
+### Added
+- **`goal_icons.yml`**: Stores icon mappings for different goal categories.
+- **`goal_icons.rb`**: Handles logic for retrieving goal-related icons.
 
-### Changed  
-- **`_goal.html.erb`**:  
-  - Updated to reference **goal_icons** for displaying relevant icons.  
-- **`goal_icons`**:  
-  - Added initial set of icons for goal categories.  
-- **`goals/index.html.erb`**:  
-  - Now displays icons next to goal titles instead of a separate **Icon** column.  
-  - Renamed **Title** column to **Goal** for better clarity.  
-- **`goals_controller.rb`**:  
-  - Integrated **GOAL_ICONS** for managing goal-related icons.  
-- **`goals/_form.html.erb` & `tasks/_form.html.erb`**:  
-  - Updated dropdown menus to include **related categories/icons**.  
+### Changed
+- **`_goal.html.erb`**:
+  - Updated to reference **goal_icons** for displaying relevant icons.
+- **`goal_icons`**:
+  - Added initial set of icons for goal categories.
+- **`goals/index.html.erb`**:
+  - Now displays icons next to goal titles instead of a separate **Icon** column.
+  - Renamed **Title** column to **Goal** for better clarity.
+- **`goals_controller.rb`**:
+  - Integrated **GOAL_ICONS** for managing goal-related icons.
+- **`goals/_form.html.erb` & `tasks/_form.html.erb`**:
+  - Updated dropdown menus to include **related categories/icons**.
 
-### Notes  
-- Introduces **visual indicators** for goal categories, improving UI clarity.  
-- Streamlines table layout by embedding icons within the **Goal** column.  
-- Dropdown menus now provide **better category selection** with icons.  
+### Notes
+- Introduces **visual indicators** for goal categories, improving UI clarity.
+- Streamlines table layout by embedding icons within the **Goal** column.
+- Dropdown menus now provide **better category selection** with icons.
 
-## [1.12.6] - 2025/02/21
+## [1.12.6] - 2025-02-21
 ### Tasks Section Upgrades, descriptions for tasks / goals
 
 ### Changed
@@ -2406,12 +2414,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`application.scss`**:
   - Aligning <p> sherman 42 wallaby way Sydney tag
 
-### Notes  
-- Improves navigation by linking related sections.  
-- Enhances user understanding of **tasks and goals** with better descriptions.  
-- Prevents confusion around time-tracking units.  
+### Notes
+- Improves navigation by linking related sections.
+- Enhances user understanding of **tasks and goals** with better descriptions.
+- Prevents confusion around time-tracking units.
 
-## [1.12.5] - 2025/02/20
+## [1.12.5] - 2025-02-20
 ### Goals Section Upgrades & Frontend Improvements
 
 ### Changed
@@ -2421,30 +2429,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Consolidated **Goals** and **Tasks** styles for consistency and maintainability.
 
 ### Removed
-- **`tasks.scss`** and **`goals.scss`**:  
+- **`tasks.scss`** and **`goals.scss`**:
   - Merged into `application.scss` to standardize styles.
 
 ### Notes
 - Improved frontend consistency between Goals and Tasks.
 - New metric helps with better tracking of time spent on goals.
 
-## [1.12.4] - 2025/02/20  
-### Goals Section Upgrades  
+## [1.12.4] - 2025-02-20
+### Goals Section Upgrades
 
-### Changed  
-- **`goals_controller.rb`**:  
-  - Goals are now sorted by **due date (ascending)**—closer due dates appear first.  
-- **`goals/index.html.erb`**:  
-  - Implemented `goals_by_due_date_asc` for proper sorting.  
-  - Added links to related tasks for better navigation.  
-- **`tasks_controller.rb`**:  
-  - Updated filtering logic to retrieve tasks when a `goal_id` is present.  
+### Changed
+- **`goals_controller.rb`**:
+  - Goals are now sorted by **due date (ascending)**—closer due dates appear first.
+- **`goals/index.html.erb`**:
+  - Implemented `goals_by_due_date_asc` for proper sorting.
+  - Added links to related tasks for better navigation.
+- **`tasks_controller.rb`**:
+  - Updated filtering logic to retrieve tasks when a `goal_id` is present.
 
-### Notes  
-- Improves organization of Goals by prioritizing urgent ones.  
-- Enhances navigation by linking tasks directly to their respective goals.  
+### Notes
+- Improves organization of Goals by prioritizing urgent ones.
+- Enhances navigation by linking tasks directly to their respective goals.
 
-## [1.12.3] - 2025/02/20
+## [1.12.3] - 2025-02-20
 ### Goals Section Upgrades
 
 ### Added
@@ -2457,34 +2465,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Established a **one-to-many** relationship between Goals and Tasks.
 
 ### Removed
-- **Default scaffold 'notice' tags**:  
+- **Default scaffold 'notice' tags**:
   - Removed due to inconsistent behavior and unnecessary clutter.
 
 ### Notes
 - Goals now display progress-related info for better tracking.
 - Tasks can now be associated with Goals, improving structure.
 
-## [1.12.2] - 2025/02/19  
-### Goals Section Upgrades & Seed File Enhancements  
+## [1.12.2] - 2025-02-19
+### Goals Section Upgrades & Seed File Enhancements
 
-### Added  
-- **Migration** to associate tasks with goals.  
-- **`seeds/goals.rb`**: Seed file for generating dummy goal data.  
+### Added
+- **Migration** to associate tasks with goals.
+- **`seeds/goals.rb`**: Seed file for generating dummy goal data.
 
-### Changed  
-- **`task.rb`**: Tasks now belong to a goal.  
-- **`tasks/_form.html.erb`**: Added a dropdown to associate tasks with a goal.  
-- **`tasks/show.html.erb`**: Displays the corresponding goal for each task.  
-- **`tasks_controller.rb`**: Requires `goal_id` when creating tasks.  
-- **`seeds/tasks.rb`**: Now includes `goal_id` for seeded tasks.  
-- **`seeds/goals.rb`**: Populated with dummy data for testing.  
+### Changed
+- **`task.rb`**: Tasks now belong to a goal.
+- **`tasks/_form.html.erb`**: Added a dropdown to associate tasks with a goal.
+- **`tasks/show.html.erb`**: Displays the corresponding goal for each task.
+- **`tasks_controller.rb`**: Requires `goal_id` when creating tasks.
+- **`seeds/tasks.rb`**: Now includes `goal_id` for seeded tasks.
+- **`seeds/goals.rb`**: Populated with dummy data for testing.
 
-### Notes  
-- Strengthens task-goal relationships for better organization.  
-- Improves seeding process for easier testing and development.  
+### Notes
+- Strengthens task-goal relationships for better organization.
+- Improves seeding process for easier testing and development.
 
 
-## [1.12.1] - 2025/02/19
+## [1.12.1] - 2025-02-19
 ### Goals Section
 
 ### Added
@@ -2504,32 +2512,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Streamlines authentication to ensure goal-related actions are secure.
 
 
-## [1.12.0] - 2025/02/18
+## [1.12.0] - 2025-02-18
 ## Front end changes for greater consistency
 
 ### Changes
 - Various changes to scss and html.erb files for a more organized front end.
 
-## [1.11.6] - 2025/02/17  
-### SCSS Cleanup & Project Refactoring  
+## [1.11.6] - 2025-02-17
+### SCSS Cleanup & Project Refactoring
 
-### Added  
-- **`_about.scss`**: New SCSS partial for About page styles.  
-- **`_contact.scss`**: New SCSS partial for Contact page styles.  
+### Added
+- **`_about.scss`**: New SCSS partial for About page styles.
+- **`_contact.scss`**: New SCSS partial for Contact page styles.
 
-### Changed  
-- **`application.scss`**: Moved About and Contact styles to dedicated SCSS files for better organization.  
-- **`projects_controller.rb`**: Removed `show` action since projects link to external URLs.  
+### Changed
+- **`application.scss`**: Moved About and Contact styles to dedicated SCSS files for better organization.
+- **`projects_controller.rb`**: Removed `show` action since projects link to external URLs.
 
-### Removed  
-- **`projects/show.html.erb`**: Removed unnecessary view file (not ever needed).  
+### Removed
+- **`projects/show.html.erb`**: Removed unnecessary view file (not ever needed).
 
-### Notes  
-- Improved SCSS structure for easier maintenance.  
-- Simplified project handling by removing an unnecessary controller action and view.  
+### Notes
+- Improved SCSS structure for easier maintenance.
+- Simplified project handling by removing an unnecessary controller action and view.
 
 
-## [1.11.5] - 2025/02/17
+## [1.11.5] - 2025-02-17
 ### Footer Implementation
 
 ### Added
@@ -2543,7 +2551,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - The new footer improves site consistency and navigation.
 - Fixed structural issue in blog posts to prevent layout breaks.
 
-## [1.11.4] - 2025/02/17
+## [1.11.4] - 2025-02-17
 ### Blog Cleanup
 
 ### Changed
@@ -2555,7 +2563,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improves readability and structure of the blog section.
 - Simplifies blog post presentation by removing unnecessary bloat.
 
-## [1.11.3] - 2025/02/16
+## [1.11.3] - 2025-02-16
 ### Homepage Updates
 
 ### Changed
@@ -2567,19 +2575,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improves homepage organization for a better user experience.
 - Enhanced styling consistency for section headers.
 
-## [1.11.2] - 2025/02/11  
-### Status Indicators and App Name Fix  
+## [1.11.2] - 2025-02-11
+### Status Indicators and App Name Fix
 
-### Changed  
-- **`_calendar.scss`**: Added `.status-dot` class for task status indicators.  
-- **`calendar/show.html.erb`**: Implemented status dots in both calendar views.  
-- **`layouts/application.html.erb`**: Fixed app name display from **"AwD"** to **"AWD"**.  
+### Changed
+- **`_calendar.scss`**: Added `.status-dot` class for task status indicators.
+- **`calendar/show.html.erb`**: Implemented status dots in both calendar views.
+- **`layouts/application.html.erb`**: Fixed app name display from **"AwD"** to **"AWD"**.
 
-### Notes  
-- Status indicators improve task visibility in the calendar.  
-- Minor UI correction for consistent branding.  
+### Notes
+- Status indicators improve task visibility in the calendar.
+- Minor UI correction for consistent branding.
 
-## [1.11.1] - 2025/02/08
+## [1.11.1] - 2025-02-08
 ### Improved Pagination and SCSS Organization
 
 ### Added
@@ -2594,7 +2602,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - SCSS files are now more modular, improving maintainability.
 - Pagination logic enhances task list usability and prevents long page loads.
 
-## [1.11.0] 2025/02/08
+## [1.11.0] - 2025-02-08
 ### Calendar Moved to Its Own Section
 
 ### Added
@@ -2606,15 +2614,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`tasks/index.html.erb`**: Removed embedded calendar
 - **`calendar/show.html.erb`**: Moved calendar here from task index
 - **`calendar_controller.rb`**:
-  - Now displays tasks for the selected month only  
-  - Requires authentication before access  
-- **`application.scss`, `_calendar.scss`**: Cleaned up and organized styles  
+  - Now displays tasks for the selected month only
+  - Requires authentication before access
+- **`application.scss`, `_calendar.scss`**: Cleaned up and organized styles
 - **`_navbar.scss`**: Fixed text size issue that caused nav to break
 
 ### Notes
 - This change prevents the task list pagination from affecting the calendar.
 
-## [1.10.14] 2025/02/07
+## [1.10.14] - 2025-02-07
 ### Recurring tasks, backup db
 
 ### Added
@@ -2622,7 +2630,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - console.rb
 
 ### Changed
-- gitignore 
+- gitignore
     - ignoring that database dump file
 - console.rb
     - logic for recurring tasks
@@ -2633,34 +2641,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - tasks_controller.rb
     - pagination logic added
 
-## [1.10.13] 2024/12/29
+## [1.10.13] - 2024-12-29
 ### Bug Fix (validate start_date presence)
 
 ### Changed
 - models/task.rb
     - ensure due_date is provided before allowing a task to be created (it needs that to display on the calendar)
-    
-## [1.10.12] 2024/12/2
+
+## [1.10.12] - 2024-12-02
 ### Updating how the buttons display
 
 ### Changed
 - home/index.html.erb, projects, blog_posts, application.scss
     - Button was landing on same line as image in some resolutions, causing display issues.
 
-## [1.10.11] 2024/12/2
+## [1.10.11] - 2024-12-02
 ### Adding new blog post image
 
 ### Added
 - blog7.png
 
-## [1.10.10] 2024/12/2
+## [1.10.10] - 2024-12-02
 ### Contact info fixes
 
 ### Changed
 - index.heml.erb, application.scss, contact_info.yml
     - Related to what content displays, and where.
 
-## [1.10.9] 2024/11/23
+## [1.10.9] - 2024-11-23
 ### Gaming Section Updates
 #### Been doing changelogs wrong this whole time lol whoops
 
@@ -2679,7 +2687,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     - Auth for any action for now
 
 
-## [1.9.9] 2024/11/12
+## [1.9.9] - 2024-11-12
 ### Documentation section
 
 ### Added
@@ -2701,9 +2709,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - seeds/documents.rb
     - dummy data
 - documents/index.html.erb, show.html.erb, _document.html.erb
-    - Seeing what we want when we want 
+    - Seeing what we want when we want
 
-## [1.9.8] 2024/11/12
+## [1.9.8] - 2024-11-12
 ### Gaming section
 
 ### Added
@@ -2727,10 +2735,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     - gaming section added (if logged in for now)
 
 
-## [1.9.7] 2024/11/11
+## [1.9.7] - 2024-11-11
 ### Simple Calendar for Task Tracking
 
-### Added 
+### Added
 - _calendar.scss
     - Any custom calendar styling goes here
     - Also referenced this file on application.scss
@@ -2743,7 +2751,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - tasks/index.html.erb
     - Electing to put calendar directly on this page for now
 
-## [1.9.6] 2024/10/27
+## [1.9.6] - 2024-10-27
 ### Refining Task Manager | Front end fixes
 
 ### Changed
@@ -2751,7 +2759,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     - Removed chatGPT generated front end styling directly on the html.erb file :facepalm:
     - Moved search box and filtering to it's own section altogether
 
-## [1.9.5] 2024/10/27
+## [1.9.5] - 2024-10-27
 ### Refining Task Manager | Hidden Tasks | Checkboxes for filtering
 
 ### Changed
@@ -2761,7 +2769,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 -tasks/index.html.erb
     - Added checkbox to show all tasks, on hold, completed
 
-## [1.9.4] 2024/10/22
+## [1.9.4] - 2024-10-22
 ### Refining Task Manager with search, sorting
 #### Updating Public Facing Contact Info
 
@@ -2782,7 +2790,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     - Basic search form
 - tasks_helper.rb
 
-## [1.9.3] 2024/10/22
+## [1.9.3] - 2024-10-22
 ### Cleanup
 
 ### Fixed
@@ -2791,13 +2799,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     - Make it such that status displays through the use of mapping.
 
 
-## [1.9.2] 2024/10/22
+## [1.9.2] - 2024-10-22
 ### New Featured Project
 
 ### Added
 - blog6.png
     - To correspond with the update statement made to blog.
-    
+
 ### Changed
 - images/project5.png
     - Updated for the actual project moxicloud-ui
@@ -2805,7 +2813,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     - Tracking specific update statements made
 
 
-## [1.9.1] 2024/10/21
+## [1.9.1] - 2024-10-21
 ### Launch Time
 
 ### Changed
@@ -2814,7 +2822,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - .gitignore
     - Guess where all that README info went. It's still public info thanks to this repository :D
 
-## [1.9.0] 2024/10/21
+## [1.9.0] - 2024-10-21
 ### Sweeping the floor
 
 ### Changed
@@ -2823,26 +2831,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - tasks/index.html.erb
     - Insert redneck - **Thems be some fancy new 'new / create' routes boihhhhh, it'd be a shame if the user couldn't.. use 'em**
 
-## [1.8.9] 2024/10/21
+## [1.8.9] - 2024-10-21
 ### Removing, and then re-adding task_params because chat GPT
 
 ### Changed
 - Put back task_params method
 
-## [1.8.8] 2024/10/21
+## [1.8.8] - 2024-10-21
 ### Basically chatGPT told me to remove task_params
 
 ### Changed
 - Removed task params so that stuff would display on the front end
 - As it turns out, those params had nothing to do with it, and chatGPT and I did not quite see eye to eye. We both understand the importance of strict params, especially when it comes to user input. This rubber ducky sucks sometimes.
 
-## [1.8.7] 2024/10/21
+## [1.8.7] - 2024-10-21
 ### 187 on a motherCRUDDin (lap)TOP
 
 ### Added
 - new, edit, _form.html.erb
 
-### Changed 
+### Changed
 - _navbar.scss, application.scss
     - Updates to color and how stuff displays
 - new, edit, _form.html.erb
@@ -2852,7 +2860,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - routes.rb
     - converted to full beans resources for tasks. That's a Jeff Arcuri reference, look him up.
 
-## [1.8.6] 2024/10/20
+## [1.8.6] - 2024-10-20
 ### Devise Gem | Tasks cannot be accessed at all unless signed in
 
 ### Changed
@@ -2862,14 +2870,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - application.scss
     - blog-post didn't have image sizing set appropriately
 
-## [1.8.5] 2024/10/20
+## [1.8.5] - 2024-10-20
 ### Devise Gem | Tasks hidden unless signed in
 
 ### Changed
 - _navbar.html.erb
     - <% if user_signed_in? %> for tasks
 
-## [1.8.4] 2024/10/20
+## [1.8.4] - 2024-10-20
 ### Devise Gem Implemented
 
 ### Added
@@ -2884,7 +2892,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - routes.rb, related to devise implementation and user model
 - schema.rb, related to devise implementation and user model
 
-## [1.7.4] 2024/10/20
+## [1.7.4] - 2024-10-20
 ### Refactoring application.scss
 
 ### Changed
@@ -2893,21 +2901,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     - Updated to make stuff centered in the cards
     - Make videos more taller too
 
-## [1.7.3] 2024/10/20
+## [1.7.3] - 2024-10-20
 ### Standard 1:1 image sizing for most content
 
 ### Changed
 - README.md
     - Standard image sizing
 
-## [1.7.2] 2024/10/19
+## [1.7.2] - 2024-10-19
 ### Front end implementation including new images, API font
 
 ### Changed
 - README.md
     - Call it what it is
 
-## [1.7.1] 2024/10/19
+## [1.7.1] - 2024-10-19
 ### Front end implementation including new images, API font
 
 ### Changed
@@ -2922,7 +2930,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - blog_posts/show.html.erb
     - Updated how the image displays, so that it displays
 
-## [1.6.1] 2024/10/19
+## [1.6.1] - 2024-10-19
 ### Front end cleanup and organization
 
 ### Changed
@@ -2938,7 +2946,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     - wrapped in section tag with appropriate id 'tasks'
 
 
-## [1.6.0] 2024/10/19
+## [1.6.0] - 2024-10-19
 ### Chat GPTify the front end
 
 ### Added
@@ -2954,7 +2962,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - navbar.scss
     - stylization specific to the navbar
 
-## [1.5.0] 2024/10/19
+## [1.5.0] - 2024-10-19
 ### Implementing Sass (npm install -g sass)
 
 ### Added
@@ -2969,7 +2977,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 - application.css
 
-## [1.4.0] 2024/10/19
+## [1.4.0] - 2024-10-19
 ### Other 'featured' migrations
 
 ### Added
@@ -2981,7 +2989,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - seeds.rb
     - Updated to add 'featured' data
 
-## [1.3.0] 2024/10/19
+## [1.3.0] - 2024-10-19
 ### Migration for better featured blog post control, database correction
 
 ### Added
@@ -2997,7 +3005,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - database.yml
     - was referencing aw_development db. Corrected that.
 
-## [1.2.0] 2024/10/18
+## [1.2.0] - 2024-10-18
 ### Seed refactoring, files contain actual information
 
 ### Added
@@ -3025,7 +3033,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 - n/a
 
-## [1.1.0] 2024/10/18
+## [1.1.0] - 2024-10-18
 ### Addressing some initial concerns, seed file upgrade (continued)
 
 ### Added
@@ -3042,7 +3050,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - seeds.rb
     - Added starter content for each model in the DB, with references to this file as necessary.
 - blog_posts/index.html.erb
-    - Displaying all blog posts now. 
+    - Displaying all blog posts now.
     - Featured blog_posts remain on the index
 - blog_posts_controller.rb
     - @blog_posts = all blog posts
@@ -3056,7 +3064,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 - n/a
 
-## [1.0.0] 2024/10/17
+## [1.0.0] - 2024-10-17
 
 ### Added
 - n/a
@@ -3073,16 +3081,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - n/a
 
-### Security 
+### Security
 - n/a
 
 ---
 
-## [Unreleased] 2024/10/17
+## [Unreleased] - 2024-10-17
 ### Task index and show, seed file to populate data
 
 ### Added
-- 
+-
 
 ### Changed
 - tasks_controller.rb
@@ -3095,9 +3103,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
     - Some dummy data to populate the database with rails db:seed
 
 ### Removed
-- 
+-
 
-## [Unreleased] 2024/10/17
+## [Unreleased] - 2024-10-17
 ### Creating an About Section
 
 ### Added
@@ -3113,7 +3121,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - home_controller.rb
     - @about = action to add on it's own controller
 
-## [Unreleased] 2024/10/16
+## [Unreleased] - 2024-10-16
 ### Displaying content appropriately, timezone update, YAML File
 
 ### Added
@@ -3135,7 +3143,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - README.md
     - Referenced this file
 
-## [Unreleased] 2024/10/16
+## [Unreleased] - 2024-10-16
 ### Initial Site Framework and Navbar
 
 ### Added
@@ -3153,7 +3161,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 - application.html.erb
-    - navbar is rendered here 
+    - navbar is rendered here
 - routes.rb
     - Index established (home#index)
     - Other routes set to page#index

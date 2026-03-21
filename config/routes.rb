@@ -66,5 +66,7 @@ Rails.application.routes.draw do
   post "/blackjack/reset", to: "blackjack#reset",     as: :reset_blackjack
   post "/blackjack/hard",  to: "blackjack#hard_reset",as: :hard_reset_blackjack
 
-
+  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
+  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  get "up" => "rails/health#show", as: :rails_health_check
 end
