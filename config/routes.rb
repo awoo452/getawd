@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post "contact", to: "contact#create"
   get "/terms", to: "legal#terms"
   get "/privacy", to: "legal#privacy"
+  get "/accessibility", to: "legal#accessibility"
   get 'dashboard', to: 'dashboard#index'
   get 'calendar',        to: 'calendar#daily'
   get 'calendar/daily',  to: 'calendar#daily'

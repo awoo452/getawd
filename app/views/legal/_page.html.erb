@@ -1,0 +1,23 @@
+<section class="legal-page">
+  <h1><%= @page["title"] %></h1>
+
+  <% if @effective_date.present? %>
+    <p>Effective <%= @effective_date %></p>
+  <% end %>
+
+  <p><%= @page["intro"] %></p>
+
+  <% @page["sections"].each do |section| %>
+    <h2><%= section["heading"] %></h2>
+    <% if section["items"] %>
+      <ul>
+        <% section["items"].each do |item| %>
+          <li><%= item %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p><%= section["body"] %></p>
+    <% end %>
+  <% end %>
+
+</section>
