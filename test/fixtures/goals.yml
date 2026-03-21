@@ -1,19 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
+  title: First Goal
   description: MyText
   due_date: 2025-02-19
   priority: 1
   category: MyString
-  status: MyString
+  status: not_started
   completed_at: 2025-02-19 20:14:51
+  idea: one
 
 two:
-  title: MyString
+  title: Second Goal
   description: MyText
   due_date: 2025-02-19
   priority: 1
   category: MyString
-  status: MyString
+  status: not_started
   completed_at: 2025-02-19 20:14:51
+  idea: two

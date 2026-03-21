@@ -3,6 +3,9 @@ require "application_system_test_case"
 class GoalsTest < ApplicationSystemTestCase
   setup do
     @goal = goals(:one)
+    @idea = ideas(:one)
+    @user = users(:one)
+    sign_in @user
   end
 
   test "visiting the index" do
@@ -11,43 +14,32 @@ class GoalsTest < ApplicationSystemTestCase
   end
 
   test "should create goal" do
-    visit goals_url
-    click_on "New goal"
+    visit dashboard_url
+    click_on "New Goal"
 
-    fill_in "Category", with: @goal.category
-    fill_in "Completed at", with: @goal.completed_at
-    fill_in "Description", with: @goal.description
-    fill_in "Due date", with: @goal.due_date
-    fill_in "Priority", with: @goal.priority
-    fill_in "Status", with: @goal.status
-    fill_in "Title", with: @goal.title
-    click_on "Create Goal"
+    new_title = "New Goal Title"
+    fill_in "Title", with: new_title
+    select @idea.title, from: "Idea"
+    click_on "Save Goal"
 
-    assert_text "Goal was successfully created"
-    click_on "Back"
+    assert_text new_title
   end
 
   test "should update Goal" do
     visit goal_url(@goal)
-    click_on "Edit this goal", match: :first
+    click_on "Edit this Goal", match: :first
 
-    fill_in "Category", with: @goal.category
-    fill_in "Completed at", with: @goal.completed_at
-    fill_in "Description", with: @goal.description
-    fill_in "Due date", with: @goal.due_date
-    fill_in "Priority", with: @goal.priority
-    fill_in "Status", with: @goal.status
-    fill_in "Title", with: @goal.title
-    click_on "Update Goal"
+    updated_title = "Updated Goal Title"
+    fill_in "Title", with: updated_title
+    click_on "Save Goal"
 
-    assert_text "Goal was successfully updated"
-    click_on "Back"
+    assert_text updated_title
   end
 
   test "should destroy Goal" do
     visit goal_url(@goal)
-    click_on "Destroy this goal", match: :first
+    click_on "Delete Goal", match: :first
 
-    assert_text "Goal was successfully destroyed"
+    assert_current_path goals_path
   end
 end

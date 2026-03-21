@@ -1,8 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/
-spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.25.38] - 2026-03-21
+### Added
+- Added GitHub Actions CI with Postgres-backed test and system test jobs.
+### Fixed
+- Filled user and goal fixtures to satisfy database constraints.
+- Updated system tests to authenticate and align with the current goals/documents UI.
+- Signed in a fixture user for integration tests to satisfy auth-protected routes.
+- Fixed YAML fixture formatting for users to prevent test load errors.
+### Changed
+- Use the rack test driver for system tests when running in CI to avoid selenium requirements.
+- Run system tests unconditionally in CI to avoid workflow file parsing issues.
+- Switched system tests to the rack test driver for reliable runs without selenium.
 
 ## [1.25.37] - 2026-03-19
 ### Changed
