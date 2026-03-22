@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.49] - 2026-03-22
+### Changed
+- Updated dependencies to address security advisories and generated RuboCop TODO config.
+
 ## [1.25.48] - 2026-03-22
 ### Added
 - Added Brakeman, Bundler Audit, and RuboCop Omakase gems plus CI binstubs/config.
