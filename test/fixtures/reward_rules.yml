@@ -3,9 +3,9 @@
 one:
   reward: one
   rule_type: MyString
-  params: 
+  params:
 
 two:
   reward: two
   rule_type: MyString
-  params: 
+  params:

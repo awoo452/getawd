@@ -54,7 +54,7 @@ class TasksController < ApplicationController
       redirect_back fallback_location: tasks_path, notice: "Task completed on time."
     end
   end
-  
+
   private
 
   def set_task

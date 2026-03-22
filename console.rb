@@ -24,17 +24,17 @@ end
 def add_task_once_weekly(weekday, task_name, description = "No description provided")
     valid_weekdays = Date::DAYNAMES.map(&:downcase)
     weekday = weekday.downcase
-  
+
     unless valid_weekdays.include?(weekday)
       raise ArgumentError, "Invalid weekday. Please provide a valid weekday name (e.g., 'Monday', 'Tuesday', etc.)"
     end
-  
+
     start_date = Date.today.beginning_of_month
     end_date = Date.today.end_of_month
-  
+
     (start_date..end_date).each do |date|
       next unless date.strftime("%A").downcase == weekday
-  
+
       Task.find_or_create_by!(
         task_name: task_name,
         due_date: date

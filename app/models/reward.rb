@@ -4,7 +4,7 @@ class Reward < ApplicationRecord
   has_many :reward_rules, dependent: :destroy
   has_many :reward_tasks, dependent: :destroy
   has_many :tasks, through: :reward_tasks
-  
+
   def eligible?
     Rewards::Eligibility.eligible?(self)
   end
