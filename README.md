@@ -4,8 +4,6 @@ A personal web app. A digital workspace for tasks, goals, rewards, planning, and
 
 This is not a polished product. It is an ongoing Rails project where I design, break, and rebuild real systems as I learn. Some personal background and side projects live in the Blog and Projects sections. Releases are versioned and tracked in the changelog for anyone interested in the technical evolution of the app.
 
----
-
 ## Features
 
 - Task system with priorities, recurring goals, and daily task levels
@@ -15,20 +13,11 @@ This is not a polished product. It is an ongoing Rails project where I design, b
 - Private file storage using Amazon S3 with presigned URLs
 - Custom UI and layout system
 
----
+### Built With
 
-## Built With
+Ruby on Rails, PostgreSQL, Amazon S3 (private + public objects, presigned access), Simple Calendar, Devise, custom SCSS.
 
-- Ruby on Rails
-- PostgreSQL
-- Amazon S3 (private + public objects, presigned access)
-- Simple Calendar
-- Devise
-- Custom SCSS
-
----
-
-## Storage Architecture
+### Storage Architecture
 
 - Files are stored in S3
 - Database stores filenames only, never full URLs
@@ -36,8 +25,22 @@ This is not a polished product. It is an ongoing Rails project where I design, b
 - Private files are served using temporary presigned URLs via `S3Service` and `S3Helper`
 - IAM permissions are scoped per application
 
----
+## Setup
+
+Prereqs: Ruby, PostgreSQL, and AWS credentials if you need S3 access.
+
+1. `bundle install`
+2. `bin/rails db:prepare`
+
+## Run
+
+1. `bin/rails server`
+
+## Tests
+
+1. `bin/rails test`
+2. `bin/rails test:system`
 
 ## Changelog
 
-For updates and technical changes, see the [CHANGELOG.md](./CHANGELOG.md).
+See [`CHANGELOG.md`](./CHANGELOG.md) for notable changes.
