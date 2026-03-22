@@ -1,19 +1,22 @@
 def add_task_every_day(task_name, description)
+  start_date = Date.today.beginning_of_month
+  end_date = Date.today.end_of_month
+  tasks = Array(task_name)
 
-    (start_date..end_date).each do |date|
-        tasks.each do |task|
-        
+  (start_date..end_date).each do |date|
+    tasks.each do |task|
       Task.find_or_create_by!(
-            task_name: task, 
-            due_date: date
-    ) do |t|
-      t.description = description # Manually provided description
-      t.status = 0
-      t.priority = 1
-      t.start_date = date
-      t.estimated_time = 30
-      t.created_at = Time.current
-      t.updated_at = Time.current
+        task_name: task,
+        due_date: date
+      ) do |t|
+        t.description = description # Manually provided description
+        t.status = 0
+        t.priority = 1
+        t.start_date = date
+        t.estimated_time = 30
+        t.created_at = Time.current
+        t.updated_at = Time.current
+      end
     end
   end
 end
