@@ -3,11 +3,15 @@
   flex-direction: column;
   align-items: center;
 
-  .status-legend {
+  .status-legend,
+  .idea-status-legend {
     display: flex;
     justify-content: center;
     gap: $spacing-md;
     margin-bottom: $spacing-md;
+    flex-wrap: wrap;
+    row-gap: $spacing-xs;
+    max-width: 100%;
 
     .legend-item {
       display: flex;

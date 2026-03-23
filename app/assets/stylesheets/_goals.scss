@@ -6,6 +6,8 @@
   border-bottom: 1px solid $border-color-soft;
   width: 100%;
   text-align: center;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* Status states */
