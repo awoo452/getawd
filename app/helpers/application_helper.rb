@@ -1,5 +1,6 @@
 require "cgi"
 require "openssl"
+require "aws-sdk-s3"
 
 module ApplicationHelper
   def safe_asset_path(asset_name)

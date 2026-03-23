@@ -1,11 +1,11 @@
 development:
-  bucket: <%= ENV["AWS_BUCKET"].presence || "getawd-dev" %>
+  bucket: <%= ENV["AWS_BUCKET"].presence %>
   region: <%= ENV["AWS_REGION"].presence || ENV["AWS_DEFAULT_REGION"].presence || "us-west-1" %>
   access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
   secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
 
 production:
-  bucket: <%= ENV["AWS_BUCKET"].presence || "getawd-prod" %>
+  bucket: <%= ENV["AWS_BUCKET"].presence %>
   region: <%= ENV["AWS_REGION"].presence || ENV["AWS_DEFAULT_REGION"].presence || "us-west-1" %>
   access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
   secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>

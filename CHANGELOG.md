@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.53] - 2026-03-22
+### Fixed
+- Required the S3 SDK in helpers to prevent missing constant errors in dev/test.
+- Fail fast in production when S3 configuration is missing, with a clear error message.
+- Allow unconfigured S3 in dev/test by returning nil for presigned URLs/uploads.
+- Removed default S3 bucket fallbacks so missing env vars surface immediately.
+
 ## [1.25.52] - 2026-03-22
 ### Fixed
 - Prevented mobile form zoom by keeping input font sizes at 16px or larger.
