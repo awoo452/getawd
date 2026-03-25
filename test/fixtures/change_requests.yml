@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  requester_name: "Alex"
+  requester_email: "alex@example.com"
+  summary: "Add export"
+  details: "Allow exporting data to CSV."
+  priority: "medium"
+  status: "new"
+
+two:
+  requester_name: "Jordan"
+  requester_email: "jordan@example.com"
+  summary: "Improve search"
+  details: "Add fuzzy matching for documents."
+  priority: "high"
+  status: "reviewing"

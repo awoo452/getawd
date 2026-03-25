@@ -12,7 +12,7 @@ class BugsController < ApplicationController
   end
 
   def create
-    result = Bugs::CreateBug.call(params: bug_params)
+    result = Bugs::CreateBug.call(params: bug_params.merge(ip_address: request.remote_ip))
     @bug = result.bug
     if result.success?
       redirect_to bugs_path, notice: "Bug added"
@@ -42,11 +42,16 @@ class BugsController < ApplicationController
 
   def bug_params
     params.require(:bug).permit(
-      :title,
-      :body,
-      :section,
-      :completed,
-      :commit_ref
+      :reporter_name,
+      :reporter_email,
+      :summary,
+      :details,
+      :steps_to_reproduce,
+      :expected_behavior,
+      :actual_behavior,
+      :severity,
+      :status,
+      :environment
     )
   end
 end

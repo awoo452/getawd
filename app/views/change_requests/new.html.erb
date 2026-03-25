@@ -1,0 +1,55 @@
+<%= render "shared/logged_in_heading",
+      icon: "🧭",
+      title: "Request a Change" %>
+
+<%= form_with model: @change_request, local: true do |f| %>
+  <%= render "shared/form_errors", form_object: @change_request %>
+
+  <div class="form-field">
+    <%= f.label :requester_name, "Name" %>
+    <%= f.text_field :requester_name, required: true %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :requester_email, "Email" %>
+    <%= f.email_field :requester_email, required: true %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :summary, "Change summary" %>
+    <%= f.text_field :summary, required: true %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :details, "Describe the change" %>
+    <%= f.text_area :details, rows: 6, required: true %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :benefit, "Why is this valuable?" %>
+    <%= f.text_area :benefit, rows: 4 %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :acceptance_criteria, "Acceptance criteria" %>
+    <%= f.text_area :acceptance_criteria, rows: 4 %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :priority %>
+    <%= f.select :priority, ChangeRequest::PRIORITIES.map { |value| [value.humanize, value] } %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :target_release, "Target release (optional)" %>
+    <%= f.text_field :target_release %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :status %>
+    <%= f.select :status, ChangeRequest::STATUSES.map { |value| [value.humanize, value] } %>
+  </div>
+
+  <%= f.submit "Save Change Request", class: "btn" %>
+
+<% end %>

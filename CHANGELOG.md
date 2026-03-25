@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.56] - 2026-03-25
+### Added
+- Standardized bugs and change requests to the shared schema, including IP capture.
+### Changed
+- Replaced feedback flows with change requests using the standard fields and statuses.
+
 ## [1.25.55] - 2026-03-23
 ### Fixed
 - Wrapped dashboard legends and long task/goal text to stop layout blowouts.

@@ -1,23 +1,58 @@
 <%= render "shared/logged_in_heading",
       icon: "🐞",
-      title: "Add Bug" %>
+      title: "Report a Bug" %>
 
 <%= form_with model: @bug, local: true do |f| %>
   <%= render "shared/form_errors", form_object: @bug %>
 
   <div class="form-field">
-    <%= f.label :title %>
-    <%= f.text_field :title, required: true %>
+    <%= f.label :reporter_name, "Name" %>
+    <%= f.text_field :reporter_name, required: true %>
   </div>
 
   <div class="form-field">
-    <%= f.label :section, "Section / Area" %>
-    <%= f.text_field :section, placeholder: "dashboard, reports, calendar, etc" %>
+    <%= f.label :reporter_email, "Email" %>
+    <%= f.email_field :reporter_email, required: true %>
   </div>
 
   <div class="form-field">
-    <%= f.label :body, "Details" %>
-    <%= f.text_area :body, rows: 5 %>
+    <%= f.label :summary, "Bug summary" %>
+    <%= f.text_field :summary, required: true %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :details, "What happened?" %>
+    <%= f.text_area :details, rows: 6, required: true %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :steps_to_reproduce, "Steps to reproduce" %>
+    <%= f.text_area :steps_to_reproduce, rows: 5 %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :expected_behavior, "Expected behavior" %>
+    <%= f.text_area :expected_behavior, rows: 3 %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :actual_behavior, "Actual behavior" %>
+    <%= f.text_area :actual_behavior, rows: 3 %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :severity %>
+    <%= f.select :severity, Bug::SEVERITIES.map { |value| [value.humanize, value] } %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :environment, "Environment (browser, OS, device)" %>
+    <%= f.text_field :environment %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :status %>
+    <%= f.select :status, Bug::STATUSES.map { |value| [value.humanize, value] } %>
   </div>
 
   <%= f.submit "Save Bug", class: "btn" %>

@@ -1,0 +1,8 @@
+<%= render "shared/logged_in_heading",
+      icon: "🧭",
+      title: "Change Requests" %>
+
+<%= render "change_request_list", title: "Open", change_requests: @open_change_requests, variant: :open %>
+<%= render "change_request_list", title: "Completed", change_requests: @completed_change_requests, variant: :completed %>
+
+<%= link_to "➕ New Change Request", new_change_request_path, class: "btn" %>

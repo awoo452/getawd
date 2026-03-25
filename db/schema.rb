@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_07_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_25_000001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -76,12 +76,33 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_07_000000) do
   end
 
   create_table "bugs", force: :cascade do |t|
-    t.text "body"
-    t.string "commit_ref"
-    t.boolean "completed", default: false, null: false
+    t.text "actual_behavior"
     t.datetime "created_at", null: false
-    t.string "section"
-    t.string "title", null: false
+    t.text "details", null: false
+    t.string "environment"
+    t.text "expected_behavior"
+    t.string "ip_address"
+    t.string "reporter_email", null: false
+    t.string "reporter_name", null: false
+    t.string "severity", default: "medium", null: false
+    t.string "status", default: "new", null: false
+    t.text "steps_to_reproduce"
+    t.string "summary", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "change_requests", force: :cascade do |t|
+    t.text "acceptance_criteria"
+    t.text "benefit"
+    t.datetime "created_at", null: false
+    t.text "details", null: false
+    t.string "ip_address"
+    t.string "priority", default: "medium", null: false
+    t.string "requester_email", null: false
+    t.string "requester_name", null: false
+    t.string "status", default: "new", null: false
+    t.string "summary", null: false
+    t.string "target_release"
     t.datetime "updated_at", null: false
   end
 
@@ -96,16 +117,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_07_000000) do
     t.datetime "updated_at", null: false
     t.json "youtube_id"
     t.index ["slug"], name: "index_documents_on_slug", unique: true
-  end
-
-  create_table "feedbacks", force: :cascade do |t|
-    t.text "body"
-    t.string "commit_ref"
-    t.boolean "completed", default: false, null: false
-    t.datetime "created_at", null: false
-    t.string "section"
-    t.string "title", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "games", force: :cascade do |t|
@@ -155,6 +166,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_07_000000) do
     t.text "description"
     t.string "image"
     t.string "title"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.integer "calories_per_serving"
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "image"
+    t.text "ingredients"
+    t.text "instructions"
+    t.string "secondary_image"
+    t.integer "servings"
+    t.string "source_url"
+    t.string "title", null: false
+    t.integer "total_time_minutes"
     t.datetime "updated_at", null: false
   end
 

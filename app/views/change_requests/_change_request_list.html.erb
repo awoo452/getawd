@@ -1,13 +1,13 @@
 <section class="dashboard-panel">
   <h3><%= title %></h3>
 
-  <% bugs.each do |bug| %>
+  <% change_requests.each do |request| %>
     <div class="summary-section">
-      <strong><%= bug.summary %></strong>
-      <span>— <%= bug.status.humanize %></span>
+      <strong><%= request.summary %></strong>
+      <span>— <%= request.status.humanize %></span>
       <% if variant == :open %>
         <br>
-        <%= bug.details %>
+        <%= request.details %>
       <% end %>
     </div>
   <% end %>
