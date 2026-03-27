@@ -103,7 +103,7 @@ GEM
     bcrypt (3.1.22)
     bigdecimal (4.1.0)
     bindex (0.8.1)
-    bootsnap (1.21.1)
+    bootsnap (1.23.0)
       msgpack (~> 1.2)
     bootstrap (5.0.2)
       autoprefixer-rails (>= 9.1.0)
