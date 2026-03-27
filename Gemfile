@@ -4,7 +4,7 @@ source "https://rubygems.org"
 ruby "4.0.2"
 
 # Added by a human
-gem 'bootstrap', '~> 5.0.0' # unreleased
+gem 'bootstrap', '~> 5.3.0' # unreleased
 gem 'sassc-rails' # unreleased
 gem "simple_calendar" # 1.9.7
 gem "aws-sdk-s3", require: false
