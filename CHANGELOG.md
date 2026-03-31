@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.25.61] - 2026-03-30
+### Changed
+- Updated mcp to 0.10.0 to address CVE-2026-33946.
+
 ## [1.25.60] - 2026-03-30
 ### Changed
 - Overhauled the landscaping page hero, highlights, and services layout with the "Touching Grass... Yours." messaging.
