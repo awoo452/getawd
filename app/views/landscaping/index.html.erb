@@ -1,9 +1,42 @@
 <div class="landscaping-jobs">
-  <h1 class="mt-0">AW Lawn & Landscape</h1>
-  <%= render "services" %>
-  <p class="landscaping-contact-link">
-    <%= link_to "Contact us", contact_path %>
-  </p>
-  <hr class="mb-2">
-  <%= render "jobs", jobs: @LandscapingJobs %>
+  <section class="landscaping-hero">
+    <p class="landscaping-eyebrow">Touching Grass... Yours.</p>
+    <h1 class="mt-0">AW Lawn & Landscape</h1>
+    <p class="landscaping-hero-intro">
+      The internet told us to "go touch grass" and we took it literally. Expect crisp edges, clean
+      beds, and a yard that looks dialed-in, all while you enjoy your weekend.
+    </p>
+    <div class="landscaping-hero-actions">
+      <%= link_to "Contact us", contact_path, class: "landscaping-cta-button" %>
+      <span class="landscaping-hero-note">Fast Quotes | Tidy, Scheduled Work | Satisfaction Guaranteed</span>
+    </div>
+  </section>
+
+  <section class="landscaping-highlights">
+    <div class="landscaping-highlight-card">
+      <h2>One-time resets</h2>
+      <p>Move-outs, post-party recoveries, or that "we'll do it later" yard that needs it now. We handle projects of all sizes with care and attention to detail.</p>
+    </div>
+    <div class="landscaping-highlight-card">
+      <h2>Maintenance that sticks</h2>
+      <p>Weekly or seasonal plans that keep curb appeal consistent throughout the diverse seasons we face here in the Pacific Northwest.</p>
+    </div>
+    <div class="landscaping-highlight-card">
+      <h2>Details matter</h2>
+      <p>Grass, shrubs, gravel, and parking strips handled with clean lines, service on time, and a commitment to quality backed by years of professional service.</p>
+    </div>
+  </section>
+
+  <section class="landscaping-services">
+    <h2>Services we handle</h2>
+    <%= render "services" %>
+  </section>
+
+  <section class="landscaping-work">
+    <div class="landscaping-work-header">
+      <h2>Recent yard recoveries</h2>
+      <p>Small snapshots of clean lines, fresh beds, and revived paths.</p>
+    </div>
+    <%= render "jobs", jobs: @LandscapingJobs %>
+  </section>
 </div>

@@ -1,7 +1,7 @@
 .services-list {
   list-style: none;
   padding: 0;
-  margin: $spacing-xl auto;
+  margin: $spacing-lg auto 0;
   display: flex;
   flex-wrap: wrap;
   gap: $spacing-xs;
@@ -61,12 +61,127 @@
   border-radius: $radius-md;
   box-shadow: $shadow-sm;
   font-family: $font-stack;
+  position: relative;
+  overflow: hidden;
 
   h1 {
     font-size: $heading-xl;
     color: $landscaping-accent;
     text-align: center;
     margin-bottom: $spacing-xl;
+  }
+
+  .landscaping-hero {
+    text-align: center;
+    padding: $spacing-xl $spacing-lg;
+    border-radius: $radius-lg;
+    background: linear-gradient(135deg, lighten($landscaping-hero-bg, 2%) 0%, $landscaping-hero-bg 60%);
+    border: 1px solid $landscaping-border;
+    box-shadow: $shadow-sm;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: $spacing-xl;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(46, 94, 62, 0.12), transparent 45%),
+        radial-gradient(circle at 80% -10%, rgba(46, 94, 62, 0.16), transparent 40%);
+      pointer-events: none;
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .landscaping-eyebrow {
+    margin: 0 0 $spacing-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: $font-xs;
+    color: $landscaping-accent;
+    font-weight: 700;
+  }
+
+  .landscaping-hero-intro {
+    max-width: 720px;
+    margin: 0 auto $spacing-lg;
+    font-size: $font-xl;
+    color: $text-color;
+    line-height: 1.6;
+  }
+
+  .landscaping-hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+
+  .landscaping-cta-button {
+    @include action-primary($padding: $spacing-sm $spacing-lg);
+    font-weight: 700;
+  }
+
+  .landscaping-hero-note {
+    font-size: $font-xs;
+    color: $text-color;
+  }
+
+  .landscaping-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: $spacing-md;
+    margin-bottom: $spacing-xl;
+  }
+
+  .landscaping-highlight-card {
+    background: $landscaping-card-bg;
+    border: 1px solid $landscaping-border;
+    border-radius: $radius-md;
+    padding: $spacing-md;
+    box-shadow: $shadow-sm;
+    text-align: center;
+
+    h2 {
+      font-size: $heading-md;
+      color: $landscaping-accent;
+      margin-bottom: $spacing-xs;
+    }
+
+    p {
+      margin: 0;
+      color: $text-color;
+    }
+  }
+
+  .landscaping-services {
+    margin-bottom: $spacing-xl;
+
+    h2 {
+      text-align: center;
+      color: $landscaping-accent;
+      margin-bottom: $spacing-md;
+    }
+  }
+
+  .landscaping-work-header {
+    text-align: center;
+    margin-bottom: $spacing-lg;
+
+    h2 {
+      color: $landscaping-accent;
+    }
+
+    p {
+      margin: 0 auto;
+      max-width: 640px;
+      color: $text-color;
+    }
   }
 
   .jobs-grid {
@@ -91,7 +206,7 @@
       box-shadow: $shadow-md;
     }
 
-    h2 {
+    h3 {
       font-size: $heading-md;
       color: $landscaping-accent;
       margin-bottom: $spacing-xs;
