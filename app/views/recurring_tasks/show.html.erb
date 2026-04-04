@@ -1,0 +1,27 @@
+<%= render "shared/logged_in_heading",
+      icon: GOAL_ICONS["task"],
+      title: (@recurring_task.task_name.presence || "Recurring Task") %>
+
+<div class="tasks-list">
+  <div class="task-card <%= @recurring_task.status.humanize %>">
+    <%= form_with(model: [@goal, @recurring_task], local: true, html: { class: "task_form" }) do |form| %>
+      <%= render "shared/form_errors", form_object: @recurring_task %>
+
+      <%= render "tasks/form_details", form: form %>
+      <%= render "tasks/form_status", form: form, task: @recurring_task %>
+      <%= render "tasks/form_schedule", form: form, task: @recurring_task %>
+      <%= render "tasks/form_meta", form: form, task: @recurring_task, hide_goal: true, goal: @goal %>
+
+      <div class="form-field">
+        <%= form.check_box :active %>
+        <%= form.label :active, "Active" %>
+      </div>
+
+      <div class="form-actions">
+        <%= form.submit "Save Recurring Task", class: "form-submit" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render "recurring_tasks/nav", goal: @goal, recurring_task: @recurring_task %>

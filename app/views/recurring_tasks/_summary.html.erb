@@ -1,0 +1,8 @@
+<% if recurring_task.description.present? %>
+  <p><strong>Description:</strong> <%= recurring_task.description %></p>
+<% end %>
+<p><strong>Status:</strong> <%= recurring_task.status.humanize %></p>
+<p><strong>Start Date:</strong> <%= recurring_task.start_date || "—" %></p>
+<p><strong>Due Date:</strong> <%= recurring_task.due_date || "—" %></p>
+<p><strong>Priority:</strong> <%= recurring_task.priority || "—" %></p>
+<p><strong>Active:</strong> <%= recurring_task.active? ? "✓" : "—" %></p>

@@ -1,6 +1,6 @@
 class RecurringTasksController < ApplicationController
   before_action :set_goal
-  before_action :set_recurring_task, only: %i[update destroy]
+  before_action :set_recurring_task, only: %i[show update destroy]
 
   def create
     @recurring_task = @goal.recurring_tasks.build(recurring_task_params)
@@ -14,17 +14,15 @@ class RecurringTasksController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def update
     if @recurring_task.update(recurring_task_params)
-      redirect_to goal_path(@goal), notice: "Recurring task updated."
+      redirect_to goal_recurring_task_path(@goal, @recurring_task), notice: "Recurring task updated."
     else
-      load_recurring_tasks
-      @recurring_tasks = @recurring_tasks.map do |task|
-        task.id == @recurring_task.id ? @recurring_task : task
-      end
-      @new_recurring_task = @goal.recurring_tasks.build
       flash.now[:alert] = @recurring_task.errors.full_messages.join(", ")
-      render "goals/show", status: :unprocessable_entity
+      render :show, status: :unprocessable_entity
     end
   end
 
@@ -69,4 +67,5 @@ class RecurringTasksController < ApplicationController
   def load_recurring_tasks
     @recurring_tasks = @goal.recurring_tasks.order(created_at: :desc)
   end
+
 end

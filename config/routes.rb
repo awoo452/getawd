@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   # Resources
   resources :goals do
-    resources :recurring_tasks, only: [:create, :update, :destroy]
+    resources :recurring_tasks, only: [:create, :show, :update, :destroy]
   end
   resources :tasks do
     member do
