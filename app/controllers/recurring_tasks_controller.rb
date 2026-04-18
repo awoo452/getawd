@@ -67,5 +67,4 @@ class RecurringTasksController < ApplicationController
   def load_recurring_tasks
     @recurring_tasks = @goal.recurring_tasks.order(created_at: :desc)
   end
-
 end
