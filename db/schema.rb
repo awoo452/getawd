@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_25_000001) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_30_000006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -119,6 +119,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_25_000001) do
     t.index ["slug"], name: "index_documents_on_slug", unique: true
   end
 
+  create_table "food_items", force: :cascade do |t|
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.string "food_type", null: false
+    t.string "location", null: false
+    t.string "name", null: false
+    t.integer "position", default: 0, null: false
+    t.string "unit", default: "each", null: false
+    t.datetime "updated_at", null: false
+    t.index ["active", "position"], name: "index_food_items_on_active_and_position"
+    t.index ["food_type"], name: "index_food_items_on_food_type"
+    t.index ["location"], name: "index_food_items_on_location"
+  end
+
   create_table "games", force: :cascade do |t|
     t.date "completion_date"
     t.datetime "created_at", null: false
@@ -184,6 +198,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_25_000001) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pantry_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "food_item_id", null: false
+    t.date "last_restocked_at"
+    t.integer "min_quantity", default: 1, null: false
+    t.integer "quantity_on_hand", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_item_id"], name: "index_pantry_items_on_food_item_id", unique: true
+  end
+
   create_table "projects", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
@@ -194,6 +218,31 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_25_000001) do
     t.datetime "updated_at", null: false
     t.string "url"
     t.index ["service_type"], name: "index_projects_on_service_type"
+  end
+
+  create_table "recipe_ingredients", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "food_item_id", null: false
+    t.integer "position", default: 0, null: false
+    t.integer "quantity", default: 1, null: false
+    t.bigint "recipe_id", null: false
+    t.string "slot_type"
+    t.datetime "updated_at", null: false
+    t.index ["food_item_id"], name: "index_recipe_ingredients_on_food_item_id"
+    t.index ["recipe_id", "food_item_id"], name: "index_recipe_ingredients_on_recipe_id_and_food_item_id", unique: true
+    t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.string "meal_type_suggestion"
+    t.string "name", null: false
+    t.integer "position", default: 0, null: false
+    t.integer "servings", default: 2, null: false
+    t.datetime "updated_at", null: false
+    t.index ["active"], name: "index_recipes_on_active"
+    t.index ["meal_type_suggestion"], name: "index_recipes_on_meal_type_suggestion"
   end
 
   create_table "recurring_tasks", force: :cascade do |t|
@@ -270,6 +319,26 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_25_000001) do
     t.index ["service_type"], name: "index_services_on_service_type"
   end
 
+  create_table "shopping_list_items", force: :cascade do |t|
+    t.boolean "checked_off", default: false, null: false
+    t.datetime "created_at", null: false
+    t.bigint "food_item_id", null: false
+    t.integer "quantity_needed", default: 1, null: false
+    t.bigint "shopping_list_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_item_id"], name: "index_shopping_list_items_on_food_item_id"
+    t.index ["shopping_list_id", "food_item_id"], name: "index_shopping_list_items_on_shopping_list_id_and_food_item_id", unique: true
+    t.index ["shopping_list_id"], name: "index_shopping_list_items_on_shopping_list_id"
+  end
+
+  create_table "shopping_lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.date "generated_on", null: false
+    t.string "status", default: "active", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status"], name: "index_shopping_lists_on_status"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.integer "actual_time", null: false
     t.string "assigned_to"
@@ -325,11 +394,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_25_000001) do
   add_foreign_key "assignment_pools", "goals"
   add_foreign_key "blog_posts", "projects"
   add_foreign_key "goals", "ideas"
+  add_foreign_key "pantry_items", "food_items"
+  add_foreign_key "recipe_ingredients", "food_items"
+  add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recurring_tasks", "goals"
   add_foreign_key "reward_rules", "rewards"
   add_foreign_key "reward_tasks", "rewards"
   add_foreign_key "reward_tasks", "tasks"
   add_foreign_key "rewards", "goals"
+  add_foreign_key "shopping_list_items", "food_items"
+  add_foreign_key "shopping_list_items", "shopping_lists"
   add_foreign_key "tasks", "goals"
   add_foreign_key "tasks", "recurring_tasks"
   add_foreign_key "videos", "projects"

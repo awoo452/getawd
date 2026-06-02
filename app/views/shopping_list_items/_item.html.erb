@@ -1,0 +1,9 @@
+<li id="shopping_list_item_<%= item.id %>" class="shopping-item <%= item.checked_off ? 'shopping-item-checked' : '' %>">
+  <%= button_to item.checked_off ? "☑" : "☐",
+        shopping_list_item_path(item),
+        method: :patch,
+        class: "shopping-item-check" %>
+  <span class="shopping-item-name"><%= item.food_item.name %></span>
+  <span class="shopping-item-qty"><%= item.quantity_needed %> <%= item.food_item.unit %></span>
+  <span class="shopping-item-location"><%= item.food_item.location_label %></span>
+</li>

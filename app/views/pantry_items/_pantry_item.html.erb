@@ -1,0 +1,16 @@
+<% return if pantry_item.nil? %>
+<div id="pantry_item_<%= pantry_item.id %>" class="pantry-item pantry-item-<%= pantry_item.stock_status %>">
+  <div class="pantry-item-name"><%= pantry_item.food_item.name %></div>
+  <div class="pantry-item-location"><%= pantry_item.food_item.location_label %></div>
+  <div class="pantry-item-qty">
+    <%= button_to "−", decrement_pantry_item_path(pantry_item),
+          method: :patch, class: "qty-btn qty-btn-minus",
+          disabled: pantry_item.quantity_on_hand.zero? %>
+    <span class="qty-value pantry-badge pantry-<%= pantry_item.stock_status %>">
+      <%= pantry_item.quantity_on_hand %> <%= pantry_item.food_item.unit %>
+    </span>
+    <%= button_to "+", increment_pantry_item_path(pantry_item),
+          method: :patch, class: "qty-btn qty-btn-plus" %>
+  </div>
+  <div class="pantry-item-min">min: <%= pantry_item.min_quantity %></div>
+</div>

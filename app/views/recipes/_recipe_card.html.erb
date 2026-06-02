@@ -1,0 +1,13 @@
+<div class="recipe-card <%= recipe.can_cook? ? 'recipe-ready' : 'recipe-missing' %>">
+  <div class="recipe-card-type"><%= recipe.meal_type_emoji %></div>
+  <h3 class="recipe-card-name"><%= link_to recipe.name, recipe_path(recipe) %></h3>
+  <div class="recipe-card-meta">
+    <span><%= recipe.recipe_ingredients.size %> ingredients</span>
+    <span><%= recipe.servings %> servings</span>
+  </div>
+  <% unless recipe.can_cook? %>
+    <div class="recipe-card-missing">
+      Missing: <%= recipe.missing_ingredients.map { |ri| ri.food_item.name }.join(", ") %>
+    </div>
+  <% end %>
+</div>

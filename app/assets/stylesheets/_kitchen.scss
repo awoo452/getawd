@@ -1,0 +1,464 @@
+.kitchen-wrapper {
+  width: 90%;
+  max-width: $container-xl;
+  margin: 0 auto;
+  padding: $spacing-md 0;
+}
+
+// ── Stats bar ──────────────────────────────────────────
+.kitchen-stats {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-lg;
+}
+
+.kitchen-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-md;
+  border: 1px solid $border-color;
+  background: $surface-color;
+  min-width: 120px;
+
+  .stat-number {
+    font-size: $font-2xl;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: $font-xs;
+    color: $text-muted;
+    margin-top: $spacing-2xs;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &.stat-danger {
+    border-color: $danger-color;
+    background: $legend-red;
+    .stat-number { color: $danger-color; }
+  }
+
+  &.stat-warning {
+    border-color: $warning-color;
+    background: $legend-yellow;
+    .stat-number { color: $warning-color; }
+  }
+
+  &.stat-ok {
+    border-color: $success-color;
+    .stat-number { color: $success-color; }
+  }
+}
+
+// ── Action row ─────────────────────────────────────────
+.kitchen-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  justify-content: center;
+  margin-bottom: $spacing-lg;
+}
+
+.kitchen-btn {
+  display: inline-block;
+  padding: $spacing-xs $spacing-md;
+  background: $surface-muted;
+  color: $text-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-pill;
+  text-decoration: none;
+  font-size: $font-base;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover { background: $surface-muted-strong; }
+
+  &.kitchen-btn-primary {
+    background: $primary-color;
+    color: $text-on-primary;
+    border-color: $primary-color;
+    &:hover { background: darken($primary-color, 8%); }
+  }
+
+  &.kitchen-btn-danger {
+    background: $legend-red;
+    color: $danger-color;
+    border-color: $danger-color;
+    &:hover { background: darken($legend-red, 6%); }
+  }
+}
+
+// ── Section headings ───────────────────────────────────
+.kitchen-section {
+  margin-bottom: $spacing-xl;
+}
+
+.kitchen-section-title {
+  font-size: $font-xl;
+  font-weight: 600;
+  margin-bottom: $spacing-sm;
+  padding-bottom: $spacing-2xs;
+  border-bottom: 2px solid $border-color;
+}
+
+.kitchen-empty {
+  color: $text-muted;
+  text-align: center;
+  margin: $spacing-xl 0;
+}
+
+// ── Recipe cards ───────────────────────────────────────
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: $spacing-md;
+}
+
+.recipe-card {
+  background: $surface-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  box-shadow: $shadow-sm;
+  transition: box-shadow $transition-fast;
+
+  &:hover { box-shadow: $shadow-md; }
+
+  &.recipe-ready  { border-left: 4px solid $success-color; }
+  &.recipe-missing { border-left: 4px solid $warning-color; }
+
+  .recipe-card-type {
+    font-size: 1.5rem;
+    margin-bottom: $spacing-2xs;
+  }
+
+  .recipe-card-name {
+    font-size: $font-base;
+    font-weight: 600;
+    margin: 0 0 $spacing-xs;
+    a { color: $text-color; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  }
+
+  .recipe-card-meta {
+    display: flex;
+    gap: $spacing-sm;
+    font-size: $font-xs;
+    color: $text-muted;
+    margin-bottom: $spacing-xs;
+  }
+
+  .recipe-card-missing {
+    font-size: $font-xs;
+    color: $warning-color;
+    margin-top: $spacing-xs;
+  }
+}
+
+// ── Recipe detail (show page) ──────────────────────────
+.recipe-detail {
+  background: $surface-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  max-width: $container-sm;
+  margin: 0 auto;
+}
+
+.recipe-detail-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+}
+
+.recipe-type-badge {
+  background: $surface-muted;
+  border-radius: $radius-pill;
+  padding: $spacing-2xs $spacing-sm;
+  font-size: $font-xs;
+}
+
+.recipe-servings {
+  font-size: $font-xs;
+  color: $text-muted;
+}
+
+.recipe-status-badge {
+  border-radius: $radius-pill;
+  padding: $spacing-2xs $spacing-sm;
+  font-size: $font-xs;
+  font-weight: 600;
+
+  &.recipe-ready-badge {
+    background: $legend-green;
+    color: $success-color;
+  }
+
+  &.recipe-missing-badge {
+    background: $legend-yellow;
+    color: $warning-color;
+  }
+}
+
+.recipe-ingredients-heading {
+  font-size: $font-xl;
+  margin-bottom: $spacing-sm;
+}
+
+.recipe-ingredients-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recipe-ingredient {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-sm;
+  padding: $spacing-xs 0;
+  border-bottom: 1px solid $border-color-light;
+  font-size: $font-base;
+
+  &:last-child { border-bottom: none; }
+
+  .ingredient-qty {
+    font-weight: 600;
+    min-width: 60px;
+  }
+
+  .ingredient-name {
+    flex: 1;
+  }
+
+  .ingredient-stock {
+    font-size: $font-xs;
+    color: $text-muted;
+  }
+
+  .ingredient-need {
+    color: $danger-color;
+    margin-left: $spacing-xs;
+  }
+
+  &.ingredient-ok   .ingredient-name { color: $text-color; }
+  &.ingredient-missing .ingredient-name { color: $danger-color; }
+}
+
+// ── Filter pills (recipes index) ───────────────────────
+.recipe-type-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  justify-content: center;
+  margin-bottom: $spacing-lg;
+
+  .filter-pill {
+    padding: $spacing-2xs $spacing-sm;
+    background: $surface-muted;
+    border: 1px solid $border-color;
+    border-radius: $radius-pill;
+    text-decoration: none;
+    color: $text-color;
+    font-size: $font-xs;
+    transition: background-color $transition-fast;
+
+    &:hover { background: $surface-muted-strong; }
+
+    &.active {
+      background: $primary-color;
+      color: $text-on-primary;
+      border-color: $primary-color;
+    }
+  }
+}
+
+// ── Pantry grid ────────────────────────────────────────
+.pantry-legend {
+  display: flex;
+  gap: $spacing-sm;
+  justify-content: center;
+  margin-bottom: $spacing-md;
+}
+
+.pantry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-sm;
+}
+
+.pantry-item {
+  background: $surface-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  padding: $spacing-sm;
+  text-align: center;
+
+  &.pantry-item-out  { border-color: $danger-color;  background: $legend-red; }
+  &.pantry-item-low  { border-color: $warning-color; background: $legend-yellow; }
+  &.pantry-item-ok   { border-color: $border-color; }
+
+  .pantry-item-name {
+    font-weight: 600;
+    font-size: $font-base;
+    margin-bottom: $spacing-2xs;
+  }
+
+  .pantry-item-location {
+    font-size: $font-xs;
+    color: $text-muted;
+    margin-bottom: $spacing-xs;
+  }
+
+  .pantry-item-min {
+    font-size: $font-xs;
+    color: $text-muted;
+    margin-top: $spacing-2xs;
+  }
+
+  .pantry-item-qty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-xs;
+  }
+}
+
+.pantry-badge {
+  display: inline-block;
+  padding: $spacing-2xs $spacing-xs;
+  border-radius: $radius-sm;
+  font-size: $font-xs;
+  font-weight: 600;
+
+  &.pantry-ok  { background: $legend-green; color: $success-color; }
+  &.pantry-low { background: $legend-yellow; color: $warning-color; }
+  &.pantry-out { background: $legend-red; color: $danger-color; }
+}
+
+.qty-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: $surface-muted;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  font-size: $font-xl;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+  transition: background-color $transition-fast;
+
+  &:hover:not(:disabled) { background: $surface-muted-strong; }
+  &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+
+.qty-value {
+  min-width: 60px;
+  text-align: center;
+}
+
+// ── Shopping list ──────────────────────────────────────
+.shopping-list-header {
+  text-align: center;
+  margin-bottom: $spacing-md;
+  color: $text-muted;
+}
+
+.shopping-complete-badge {
+  display: inline-block;
+  background: $legend-green;
+  color: $success-color;
+  border-radius: $radius-pill;
+  padding: $spacing-2xs $spacing-sm;
+  font-size: $font-xs;
+  font-weight: 600;
+  margin-left: $spacing-xs;
+}
+
+.shopping-list-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-sm;
+
+  &.shopping-list-active   { background: $surface-color; border: 1px solid $primary-color; }
+  &.shopping-list-archived { background: $surface-muted; border: 1px solid $border-color; }
+
+  .shopping-list-meta {
+    font-size: $font-base;
+  }
+
+  .shopping-list-actions {
+    display: flex;
+    gap: $spacing-xs;
+  }
+}
+
+.shopping-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.shopping-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-xs $spacing-sm;
+  border-bottom: 1px solid $border-color-light;
+
+  &:last-child { border-bottom: none; }
+
+  &.shopping-item-checked {
+    .shopping-item-name { text-decoration: line-through; color: $text-muted; }
+  }
+
+  .shopping-item-check {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .shopping-item-name {
+    flex: 1;
+    font-weight: 500;
+  }
+
+  .shopping-item-qty {
+    font-size: $font-xs;
+    color: $text-muted;
+    min-width: 60px;
+    text-align: right;
+  }
+
+  .shopping-item-location {
+    font-size: $font-xs;
+    color: $text-muted;
+    min-width: 70px;
+    text-align: right;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .recipe-grid   { grid-template-columns: 1fr; }
+  .pantry-grid   { grid-template-columns: repeat(2, 1fr); }
+  .kitchen-stats { gap: $spacing-sm; }
+}

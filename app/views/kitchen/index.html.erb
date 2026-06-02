@@ -1,0 +1,46 @@
+<%= render "shared/logged_in_heading", title: "Kitchen" %>
+
+<div class="kitchen-wrapper">
+
+  <div class="kitchen-stats">
+    <div class="kitchen-stat <%= @out_of_stock_count > 0 ? 'stat-danger' : 'stat-ok' %>">
+      <span class="stat-number"><%= @out_of_stock_count %></span>
+      <span class="stat-label">Out of Stock</span>
+    </div>
+    <div class="kitchen-stat <%= @low_stock_count > @out_of_stock_count ? 'stat-warning' : (@low_stock_count > 0 ? 'stat-warning' : 'stat-ok') %>">
+      <span class="stat-number"><%= @low_stock_count %></span>
+      <span class="stat-label">Low / Out</span>
+    </div>
+    <div class="kitchen-stat">
+      <span class="stat-number"><%= Recipe.active.count %></span>
+      <span class="stat-label">Recipes</span>
+    </div>
+  </div>
+
+  <div class="kitchen-actions">
+    <%= link_to "View Pantry", pantry_items_path, class: "kitchen-btn" %>
+    <%= link_to "All Recipes", recipes_path, class: "kitchen-btn" %>
+    <% if @active_shopping_list %>
+      <%= link_to "Active Shopping List (#{@active_shopping_list.total_count} items)", @active_shopping_list, class: "kitchen-btn kitchen-btn-primary" %>
+    <% else %>
+      <%= button_to "Generate Shopping List", shopping_lists_path, method: :post, class: "kitchen-btn kitchen-btn-primary" %>
+    <% end %>
+  </div>
+
+  <% Recipe::MEAL_TYPES.each do |meal_type| %>
+    <% recipes = @recipes_by_type[meal_type] %>
+    <% next if recipes.blank? %>
+
+    <section class="kitchen-section">
+      <h2 class="kitchen-section-title">
+        <%= Recipe::MEAL_TYPE_EMOJI[meal_type] %> <%= Recipe::MEAL_TYPE_LABELS[meal_type] %>
+      </h2>
+      <div class="recipe-grid">
+        <% recipes.each do |recipe| %>
+          <%= render "recipes/recipe_card", recipe: recipe %>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+
+</div>

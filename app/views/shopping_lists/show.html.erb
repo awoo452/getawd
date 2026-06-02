@@ -1,0 +1,40 @@
+<%= render "shared/logged_in_heading", title: "Shopping List" %>
+
+<div class="kitchen-wrapper">
+  <div class="kitchen-actions">
+    <%= link_to "← Lists", shopping_lists_path, class: "kitchen-btn" %>
+    <% if @shopping_list.active? %>
+      <%= button_to "Archive (Done Shopping)", archive_shopping_list_path(@shopping_list),
+            method: :patch, class: "kitchen-btn kitchen-btn-primary" %>
+    <% end %>
+  </div>
+
+  <div class="shopping-list-header">
+    <p>
+      Generated <%= @shopping_list.generated_on.strftime("%B %-d, %Y") %> &mdash;
+      <strong><%= @shopping_list.checked_count %> / <%= @shopping_list.total_count %></strong> checked
+      <% if @shopping_list.complete? %>
+        <span class="shopping-complete-badge">All Done!</span>
+      <% end %>
+    </p>
+  </div>
+
+  <% if @items_by_type.empty? %>
+    <p class="kitchen-empty">No items on this list.</p>
+  <% else %>
+    <% FoodItem::FOOD_TYPES.each do |food_type| %>
+      <% items = @items_by_type[food_type] %>
+      <% next if items.blank? %>
+      <section class="kitchen-section">
+        <h2 class="kitchen-section-title">
+          <%= FoodItem::FOOD_TYPE_EMOJI[food_type] %> <%= FoodItem::FOOD_TYPE_LABELS[food_type] %>
+        </h2>
+        <ul class="shopping-items-list">
+          <% items.each do |item| %>
+            <%= render "shopping_list_items/item", item: item %>
+          <% end %>
+        </ul>
+      </section>
+    <% end %>
+  <% end %>
+</div>

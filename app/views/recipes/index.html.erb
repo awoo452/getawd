@@ -1,0 +1,45 @@
+<%= render "shared/logged_in_heading", title: "Recipes" %>
+
+<div class="kitchen-wrapper">
+  <div class="kitchen-actions">
+    <%= link_to "← Kitchen", kitchen_path, class: "kitchen-btn" %>
+  </div>
+
+  <div class="recipe-type-filter">
+    <%= link_to "All", recipes_path, class: "filter-pill #{'active' if @meal_type_filter.nil?}" %>
+    <% Recipe::MEAL_TYPES.each do |type| %>
+      <%= link_to "#{Recipe::MEAL_TYPE_EMOJI[type]} #{Recipe::MEAL_TYPE_LABELS[type]}",
+            recipes_path(meal_type: type),
+            class: "filter-pill #{'active' if @meal_type_filter == type}" %>
+    <% end %>
+  </div>
+
+  <% if @recipes_by_type.empty? %>
+    <p class="kitchen-empty">No recipes found.</p>
+  <% else %>
+    <% Recipe::MEAL_TYPES.each do |meal_type| %>
+      <% recipes = @recipes_by_type[meal_type] %>
+      <% next if recipes.blank? %>
+      <section class="kitchen-section">
+        <h2 class="kitchen-section-title">
+          <%= Recipe::MEAL_TYPE_EMOJI[meal_type] %> <%= Recipe::MEAL_TYPE_LABELS[meal_type] %>
+        </h2>
+        <div class="recipe-grid">
+          <% recipes.each do |recipe| %>
+            <%= render "recipe_card", recipe: recipe %>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+    <% if @recipes_by_type.key?(nil) %>
+      <section class="kitchen-section">
+        <h2 class="kitchen-section-title">🍽️ Other</h2>
+        <div class="recipe-grid">
+          <% @recipes_by_type[nil].each do |recipe| %>
+            <%= render "recipe_card", recipe: recipe %>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+  <% end %>
+</div>

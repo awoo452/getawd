@@ -3,6 +3,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.26.0] - 2026-05-30
+### Added
+- Kitchen section (`/kitchen`) for pantry inventory and meal planning.
+- `FoodItem` model: catalog of 80 food items with food_type, location, unit, and position.
+- `PantryItem` model: tracks current on-hand quantity and reorder threshold per food item.
+- `Recipe` model: 33 seed recipes (breakfast, lunch, dinner) with meal type suggestions and servings.
+- `RecipeIngredient` model: links recipes to food items with per-ingredient quantities.
+- `ShoppingList` and `ShoppingListItem` models: generate and check off shopping lists from low-stock items.
+- `KitchenController`, `PantryItemsController`, `RecipesController`, `ShoppingListsController`, `ShoppingListItemsController`.
+- Turbo-powered +/− quantity buttons on pantry index; check-off toggles on shopping list.
+- "Cook This" action on recipe show page — decrements all ingredient pantry counts in one click.
+- Kitchen nav link added for signed-in users.
+- `_kitchen.scss` stylesheet.
+- Seed data calibrated for 1 active adult male + 1 five-year-old child.
+
 ## [1.25.62] - 2026-04-04
 ### Fixed
 - rubocop -a

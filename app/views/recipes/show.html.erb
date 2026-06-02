@@ -1,0 +1,43 @@
+<%= render "shared/logged_in_heading", title: @recipe.name %>
+
+<div class="kitchen-wrapper">
+  <div class="kitchen-actions">
+    <%= link_to "← Recipes", recipes_path, class: "kitchen-btn" %>
+    <%= link_to "← Kitchen", kitchen_path, class: "kitchen-btn" %>
+    <%= button_to "✓ I Cooked This", cook_recipe_path(@recipe),
+          method: :post,
+          class: "kitchen-btn kitchen-btn-primary",
+          data: { confirm: "Mark #{@recipe.name} as cooked and deduct ingredients from pantry?" } %>
+  </div>
+
+  <div class="recipe-detail">
+    <div class="recipe-detail-header">
+      <span class="recipe-type-badge"><%= @recipe.meal_type_emoji %> <%= @recipe.meal_type_label %></span>
+      <span class="recipe-servings"><%= @recipe.servings %> servings</span>
+      <% if @recipe.can_cook? %>
+        <span class="recipe-status-badge recipe-ready-badge">Ready to Cook</span>
+      <% else %>
+        <span class="recipe-status-badge recipe-missing-badge">Missing Ingredients</span>
+      <% end %>
+    </div>
+
+    <h2 class="recipe-ingredients-heading">Ingredients</h2>
+    <ul class="recipe-ingredients-list">
+      <% @recipe.recipe_ingredients.each do |ri| %>
+        <% pantry = ri.food_item.pantry_item %>
+        <% have = pantry&.quantity_on_hand.to_i %>
+        <% enough = have >= ri.quantity %>
+        <li class="recipe-ingredient <%= enough ? 'ingredient-ok' : 'ingredient-missing' %>">
+          <span class="ingredient-qty"><%= ri.quantity %> <%= ri.food_item.unit %></span>
+          <span class="ingredient-name"><%= ri.food_item.name %></span>
+          <span class="ingredient-stock">
+            (<%= have %> on hand)
+            <% unless enough %>
+              <strong class="ingredient-need">need <%= ri.quantity - have %> more</strong>
+            <% end %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -57,6 +57,30 @@ Rails.application.routes.draw do
 
   post "rewards/:id/redeem_task", to: "reward_redemptions#redeem_task", as: :redeem_task_reward
 
+  # Kitchen / Pantry / Inventory
+  get '/kitchen', to: 'kitchen#index', as: :kitchen
+
+  resources :pantry_items, only: [:index, :update] do
+    member do
+      patch :increment
+      patch :decrement
+    end
+  end
+
+  resources :recipes, only: [:index, :show] do
+    member do
+      post :cook
+    end
+  end
+
+  resources :shopping_lists, only: [:index, :show, :create, :destroy] do
+    member do
+      patch :archive
+    end
+  end
+
+  resources :shopping_list_items, only: [:update]
+
   ## If you're still reading you deserve to know about this
   get  "/blackjack",        to: "blackjack#show",  as: :blackjack
 
