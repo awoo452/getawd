@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_06_000002) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_06_000004) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -400,6 +400,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_000002) do
     t.index ["project_id"], name: "index_videos_on_project_id"
   end
 
+  create_table "workout_plans", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.date "planned_on", null: false
+    t.bigint "task_id"
+    t.datetime "updated_at", null: false
+    t.integer "workout_type", null: false
+    t.index ["planned_on"], name: "index_workout_plans_on_planned_on", unique: true
+    t.index ["task_id"], name: "index_workout_plans_on_task_id"
+  end
+
   add_foreign_key "assignment_items", "assignment_pools"
   add_foreign_key "assignment_logs", "assignment_items"
   add_foreign_key "assignment_logs", "tasks"
@@ -421,4 +431,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_000002) do
   add_foreign_key "tasks", "goals"
   add_foreign_key "tasks", "recurring_tasks"
   add_foreign_key "videos", "projects"
+  add_foreign_key "workout_plans", "tasks", on_delete: :nullify
 end

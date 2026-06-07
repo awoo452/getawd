@@ -1,0 +1,187 @@
+.workouts-wrapper {
+  width: 90%;
+  max-width: $container-xl;
+  margin: 0 auto;
+  padding: $spacing-md 0;
+}
+
+// ── Week summary bar ────────────────────────────────────
+
+.workouts-week-summary {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-lg;
+}
+
+.week-summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-2xs;
+  background: $surface-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  padding: $spacing-sm $spacing-lg;
+  min-width: 100px;
+}
+
+.week-summary-emoji  { font-size: 1.5rem; line-height: 1; }
+.week-summary-count  { font-size: $font-2xl; font-weight: 700; line-height: 1; }
+.week-summary-label  { font-size: $font-xs; color: $text-muted; text-transform: uppercase; letter-spacing: 0.05em; }
+
+// ── Nav ─────────────────────────────────────────────────
+
+.workout-planner-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.workout-planner-range {
+  font-weight: 600;
+  min-width: 200px;
+  text-align: center;
+}
+
+.workout-btn {
+  display: inline-block;
+  padding: $spacing-xs $spacing-md;
+  background: $surface-muted;
+  color: $text-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-pill;
+  text-decoration: none;
+  font-size: $font-base;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover { background: $surface-muted-strong; }
+}
+
+// ── 7-day grid ──────────────────────────────────────────
+
+.workout-planner-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: $spacing-sm;
+}
+
+.workout-day-card {
+  background: $surface-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+  transition: box-shadow $transition-fast;
+
+  &:hover { box-shadow: $shadow-md; }
+
+  &.workout-today .workout-day-header {
+    background: $primary-color;
+    color: $text-on-primary;
+
+    .workout-day-name { color: rgba($text-on-primary, 0.75); }
+  }
+}
+
+.workout-day-header {
+  background: $surface-muted;
+  padding: $spacing-xs;
+  text-align: center;
+}
+
+.workout-day-name {
+  display: block;
+  font-size: $font-xs;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.workout-day-num {
+  display: block;
+  font-size: $font-2xl;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.workout-day-body {
+  padding: $spacing-sm $spacing-xs;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+}
+
+.workout-planned {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-2xs;
+  text-align: center;
+}
+
+.workout-emoji { font-size: 1.75rem; line-height: 1; }
+
+.workout-label {
+  font-size: $font-xs;
+  font-weight: 600;
+  color: $text-color;
+}
+
+.workout-remove {
+  background: none;
+  border: none;
+  color: $text-muted;
+  cursor: pointer;
+  font-size: $font-base;
+  padding: 0;
+  line-height: 1;
+
+  &:hover { color: $danger-color; }
+}
+
+.workout-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xs;
+  width: 100%;
+}
+
+.workout-select {
+  width: 100%;
+  font-size: $font-xs;
+  padding: 2px $spacing-2xs;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  background: $surface-color;
+  color: $text-color;
+}
+
+.workout-submit {
+  width: 100%;
+  font-size: $font-xs;
+  padding: 2px;
+  background: $primary-color;
+  color: $text-on-primary;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover { background: darken($primary-color, 8%); }
+}
+
+@media (max-width: $bp-mobile) {
+  .workout-planner-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .workouts-week-summary { gap: $spacing-sm; }
+}

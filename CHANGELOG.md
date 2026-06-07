@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.28.0] - 2026-06-06
+### Added
+- `WorkoutPlan` model: maps a date to a workout type (run, body_combat, pushups, rest) with a unique constraint per day. Auto-creates a calendar task on save; removes it on destroy; syncs task name on type change.
+- `WorkoutsController` with Sunday–Saturday week view, prev/next navigation, and a weekly count summary (2x run / 2x Body Combat / 2x Pushups / 1x Rest targets shown).
+- `WorkoutPlansController` with `create`, `update`, `destroy` actions.
+- `/workouts` route and "Workouts" nav link for signed-in users.
+- `_workouts.scss` stylesheet.
+### Fixed
+- Deactivated `recurring_tasks` records for Breakfast, Lunch, Dinner, Cardio, and Strength Training goals. Previously only assignment pools were deactivated, which inadvertently re-enabled these recurring tasks since the generator skips them only when the pool is active.
+
 ## [1.27.0] - 2026-06-06
 ### Added
 - `MealPlan` model: links a recipe to a specific date and meal slot (breakfast/lunch/dinner) with a unique constraint per date+slot.

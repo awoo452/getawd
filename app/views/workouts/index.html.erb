@@ -1,0 +1,22 @@
+<%= render "shared/logged_in_heading", title: "Workouts" %>
+
+<div class="workouts-wrapper">
+
+  <div class="workouts-week-summary">
+    <% WorkoutPlan::TYPES.reject { |t| t == "rest" }.each do |type| %>
+      <div class="week-summary-item">
+        <span class="week-summary-emoji"><%= WorkoutPlan::EMOJIS[type] %></span>
+        <span class="week-summary-count"><%= @week_counts[type] %>/2</span>
+        <span class="week-summary-label"><%= WorkoutPlan::LABELS[type] %></span>
+      </div>
+    <% end %>
+    <div class="week-summary-item">
+      <span class="week-summary-emoji"><%= WorkoutPlan::EMOJIS["rest"] %></span>
+      <span class="week-summary-count"><%= @week_counts["rest"] %>/1</span>
+      <span class="week-summary-label">Rest</span>
+    </div>
+  </div>
+
+  <%= render "workouts/week_planner" %>
+
+</div>

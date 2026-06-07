@@ -57,6 +57,11 @@ Rails.application.routes.draw do
 
   post "rewards/:id/redeem_task", to: "reward_redemptions#redeem_task", as: :redeem_task_reward
 
+  # Workouts
+  get '/workouts',                        to: 'workouts#index', as: :workouts
+  get '/workouts/week/:week_start',       to: 'workouts#index', as: :workouts_week
+  resources :workout_plans, only: [:create, :update, :destroy]
+
   # Kitchen / Pantry / Inventory
   get '/kitchen',                        to: 'kitchen#index', as: :kitchen
   get '/kitchen/week/:week_start',       to: 'kitchen#index', as: :kitchen_week

@@ -37,3 +37,15 @@ dinner_goal:
   priority: 1
   status: not_started
   idea: one
+
+cardio_goal:
+  title: Cardio
+  priority: 2
+  status: not_started
+  idea: one
+
+strength_goal:
+  title: Strength Training
+  priority: 2
+  status: not_started
+  idea: one
