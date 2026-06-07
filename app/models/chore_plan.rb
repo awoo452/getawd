@@ -1,7 +1,8 @@
 class ChorePlan < ApplicationRecord
-  TYPES = %w[sweep_mop bathroom kitchen vacuum laundry garbage organization].freeze
+  TYPES = %w[dishes sweep_mop bathroom kitchen vacuum laundry garbage organization].freeze
 
   LABELS = {
+    "dishes"       => "Dishes",
     "sweep_mop"    => "Sweep & Mop",
     "bathroom"     => "Bathroom",
     "kitchen"      => "Kitchen",
@@ -12,6 +13,7 @@ class ChorePlan < ApplicationRecord
   }.freeze
 
   EMOJIS = {
+    "dishes"       => "🍽️",
     "sweep_mop"    => "🧹",
     "bathroom"     => "🚿",
     "kitchen"      => "🧽",
@@ -24,6 +26,7 @@ class ChorePlan < ApplicationRecord
   belongs_to :task, optional: true
 
   enum :chore_type, {
+    dishes:       0,
     sweep_mop:    1,
     bathroom:     2,
     kitchen:      3,

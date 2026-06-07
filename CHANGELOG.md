@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.29.4] - 2026-06-07
+### Fixed
+- Added Dishes back to `ChorePlan` as a manually plannable chore type. Removed the misleading "daily — auto-scheduled" banner that implied automation which didn't exist.
+
 ## [1.29.3] - 2026-06-07
 ### Changed
 - Chore planner now shows a weekly legend bar (matching workout planner style) with a ✓/— indicator per chore type. Once a chore type is assigned anywhere in the week it is removed from all remaining day dropdowns, preventing accidental double-assignment.
