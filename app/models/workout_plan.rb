@@ -16,8 +16,8 @@ class WorkoutPlan < ApplicationRecord
   }.freeze
 
   GOAL_TITLES = {
-    "run"         => "Cardio",
-    "body_combat" => "Cardio",
+    "run"         => "Tacoma City Half Marathon",
+    "body_combat" => "Tacoma City Half Marathon",
     "pushups"     => "Strength Training",
     "rest"        => nil
   }.freeze

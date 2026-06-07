@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.28.2] - 2026-06-07
+### Fixed
+- `WorkoutPlan::GOAL_TITLES` mapped run and body_combat to `"Cardio"` which does not exist as a goal title. Corrected to `"Tacoma City Half Marathon"` (goal 544). Run and body combat tasks were being created with `goal: nil`.
+
 ## [1.28.1] - 2026-06-06
 ### Security
 - Updated Puma from 8.0.0 to 8.0.2 to fix CVE-2026-47736 (PROXY Protocol v1 remote memory exhaustion, High) and CVE-2026-47737 (repeated protocol headers on persistent connections, High).
@@ -16,6 +20,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - `_workouts.scss` stylesheet.
 ### Fixed
 - Deactivated `recurring_tasks` records for Breakfast, Lunch, Dinner, Cardio, and Strength Training goals. Previously only assignment pools were deactivated, which inadvertently re-enabled these recurring tasks since the generator skips them only when the pool is active.
+### Tests
+- `test/models/workout_plan_test.rb`: 18 tests covering validations, task generation, correct task names per type, goal associations, type-change sync, and destroy.
+- `test/controllers/workout_plans_controller_test.rb`: 7 tests covering create, update, and destroy actions.
+- `test/controllers/workouts_controller_test.rb`: 7 tests covering index, week navigation, and planned workout visibility.
+- Added `workout_plans.yml` fixture; added Tacoma City Half Marathon and Strength Training goal entries to `goals.yml`.
 
 ## [1.27.0] - 2026-06-06
 ### Added

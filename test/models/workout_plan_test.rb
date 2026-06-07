@@ -59,7 +59,7 @@ class WorkoutPlanTest < ActiveSupport::TestCase
     assert_equal date, wp.task.due_date
   end
 
-  test "run and body_combat link to cardio goal" do
+  test "run and body_combat link to the running goal" do
     wp = WorkoutPlan.create!(planned_on: Date.new(2026, 7, 7), workout_type: :run)
     assert_equal goals(:cardio_goal), wp.task.goal
   end
