@@ -3,6 +3,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.27.0] - 2026-06-06
+### Added
+- `MealPlan` model: links a recipe to a specific date and meal slot (breakfast/lunch/dinner) with a unique constraint per date+slot.
+- Meal planner auto-creates a calendar task when a meal is planned; task name, date, and goal are derived from the assigned recipe and slot. Task is removed automatically when the meal plan is removed.
+- `MealPlansController` with `create`, `update`, and `destroy` actions.
+- Sunday–Saturday week view meal planner grid on the kitchen page, with prev/next week navigation via path-based routing (`/kitchen/week/:week_start`).
+- Recipe dropdowns in empty planner cells are filtered by meal type (breakfast recipes for breakfast slot, etc.).
+### Changed
+- Deactivated the assignment pools for Breakfast, Lunch, and Dinner goals; pending tasks from those pools deleted. Meal source is now the MealPlan system exclusively.
+### Tests
+- `test/models/meal_plan_test.rb`: 16 tests covering validations, task generation on create, task name sync on recipe change, and task removal on destroy.
+- `test/controllers/meal_plans_controller_test.rb`: 7 tests covering create, update, and destroy actions.
+- `test/controllers/kitchen_controller_test.rb`: 6 tests covering the kitchen index and week navigation.
+- Added `recipes.yml`, `meal_plans.yml` fixtures; added Breakfast/Lunch/Dinner goal entries to `goals.yml`.
+
 ## [1.26.0] - 2026-05-30
 ### Added
 - Kitchen section (`/kitchen`) for pantry inventory and meal planning.

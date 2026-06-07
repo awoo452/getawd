@@ -58,7 +58,9 @@ Rails.application.routes.draw do
   post "rewards/:id/redeem_task", to: "reward_redemptions#redeem_task", as: :redeem_task_reward
 
   # Kitchen / Pantry / Inventory
-  get '/kitchen', to: 'kitchen#index', as: :kitchen
+  get '/kitchen',                        to: 'kitchen#index', as: :kitchen
+  get '/kitchen/week/:week_start',       to: 'kitchen#index', as: :kitchen_week
+  resources :meal_plans, only: [:create, :update, :destroy]
 
   resources :pantry_items, only: [:index, :update] do
     member do

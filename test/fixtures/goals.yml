@@ -19,3 +19,21 @@ two:
   status: not_started
   completed_at: 2025-02-19 20:14:51
   idea: two
+
+breakfast_goal:
+  title: Breakfast
+  priority: 1
+  status: not_started
+  idea: one
+
+lunch_goal:
+  title: Lunch
+  priority: 1
+  status: not_started
+  idea: one
+
+dinner_goal:
+  title: Dinner
+  priority: 1
+  status: not_started
+  idea: one

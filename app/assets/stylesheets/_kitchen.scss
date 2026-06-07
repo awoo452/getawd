@@ -457,8 +457,151 @@
   }
 }
 
+// ── Meal planner ───────────────────────────────────────
+
+.meal-planner-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.meal-planner-range {
+  font-weight: 600;
+  min-width: 200px;
+  text-align: center;
+}
+
+.meal-planner-grid {
+  display: grid;
+  grid-template-columns: 90px repeat(7, 1fr);
+  gap: 1px;
+  background: $border-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.meal-planner-cell {
+  background: $surface-color;
+  padding: $spacing-xs;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.meal-planner-header {
+  background: $surface-muted;
+  font-weight: 600;
+  min-height: 44px;
+
+  &.meal-planner-today {
+    background: $primary-color;
+    color: $text-on-primary;
+
+    .meal-planner-day-name { color: rgba($text-on-primary, 0.75); }
+  }
+}
+
+.meal-planner-day-name {
+  font-size: $font-xs;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.meal-planner-day-num {
+  font-size: $font-xl;
+  font-weight: 700;
+  line-height: 1.1;
+  display: block;
+}
+
+.meal-planner-slot-label {
+  background: $surface-muted;
+  font-weight: 600;
+  font-size: $font-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $text-muted;
+}
+
+.meal-planner-day-cell {
+  min-height: 72px;
+}
+
+.meal-planner-recipe-name {
+  font-size: $font-xs;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: $spacing-2xs;
+}
+
+.meal-planner-remove {
+  background: none;
+  border: none;
+  color: $text-muted;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  line-height: 1;
+
+  &:hover { color: $danger-color; }
+}
+
+.meal-planner-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xs;
+  width: 100%;
+}
+
+.meal-planner-select {
+  width: 100%;
+  font-size: $font-xs;
+  padding: 2px $spacing-2xs;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  background: $surface-color;
+  color: $text-color;
+}
+
+.meal-planner-submit {
+  width: 100%;
+  font-size: $font-xs;
+  padding: 2px;
+  background: $primary-color;
+  color: $text-on-primary;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover { background: darken($primary-color, 8%); }
+}
+
 @media (max-width: $bp-mobile) {
   .recipe-grid   { grid-template-columns: 1fr; }
   .pantry-grid   { grid-template-columns: repeat(2, 1fr); }
   .kitchen-stats { gap: $spacing-sm; }
+
+  .meal-planner-grid {
+    grid-template-columns: 54px repeat(7, 1fr);
+  }
+
+  .meal-planner-cell {
+    padding: $spacing-2xs 2px;
+  }
+
+  .meal-planner-day-num  { font-size: $font-base; }
+  .meal-planner-day-name { font-size: 0.6rem; }
+  .meal-planner-select   { font-size: 0.6rem; }
+  .meal-planner-submit   { font-size: 0.6rem; }
+  .meal-planner-recipe-name { font-size: 0.6rem; }
+  .meal-planner-slot-label  { font-size: 0.6rem; }
 }

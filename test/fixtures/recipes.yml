@@ -1,0 +1,20 @@
+breakfast_recipe:
+  name: Scrambled Eggs
+  meal_type_suggestion: breakfast
+  servings: 2
+  active: true
+  position: 1
+
+lunch_recipe:
+  name: Turkey Sandwich
+  meal_type_suggestion: lunch
+  servings: 1
+  active: true
+  position: 1
+
+dinner_recipe:
+  name: Spaghetti
+  meal_type_suggestion: dinner
+  servings: 4
+  active: true
+  position: 1

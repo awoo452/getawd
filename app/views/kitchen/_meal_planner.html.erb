@@ -1,0 +1,50 @@
+<div class="meal-planner-nav">
+  <%= link_to "← Prev", kitchen_week_path((@week_start - 7.days).strftime("%Y-%m-%d")), class: "kitchen-btn" %>
+  <span class="meal-planner-range">
+    <%= @week_start.strftime("%b %-d") %> – <%= (@week_start + 6.days).strftime("%b %-d, %Y") %>
+  </span>
+  <%= link_to "Next →", kitchen_week_path((@week_start + 7.days).strftime("%Y-%m-%d")), class: "kitchen-btn" %>
+</div>
+
+<div class="meal-planner-grid">
+
+  <%# Header row %>
+  <div class="meal-planner-cell meal-planner-header meal-planner-slot-label"></div>
+  <% @week_dates.each do |date| %>
+    <div class="meal-planner-cell meal-planner-header <%= 'meal-planner-today' if date == Time.zone.today %>">
+      <span class="meal-planner-day-name"><%= date.strftime("%a") %></span>
+      <span class="meal-planner-day-num"><%= date.strftime("%-d") %></span>
+    </div>
+  <% end %>
+
+  <%# Meal slot rows %>
+  <% MealPlan::SLOTS.each do |slot| %>
+    <div class="meal-planner-cell meal-planner-slot-label">
+      <%= slot.capitalize %>
+    </div>
+
+    <% @week_dates.each do |date| %>
+      <% meal_plan = @meal_plans_by_date_slot[[date, slot]] %>
+      <div class="meal-planner-cell meal-planner-day-cell">
+        <% if meal_plan %>
+          <span class="meal-planner-recipe-name"><%= meal_plan.recipe.name %></span>
+          <%= button_to "×", meal_plan_path(meal_plan),
+                method: :delete,
+                class: "meal-planner-remove",
+                form: { data: { turbo_confirm: "Remove this meal?" } } %>
+        <% else %>
+          <%= form_with model: MealPlan.new, url: meal_plans_path, class: "meal-planner-form" do |f| %>
+            <%= f.hidden_field :planned_on, value: date %>
+            <%= f.hidden_field :meal_slot, value: slot %>
+            <%= f.select :recipe_id,
+                  options_from_collection_for_select(@recipes_for_slot[slot], :id, :name),
+                  { prompt: "—" },
+                  class: "meal-planner-select" %>
+            <%= f.submit "Plan", class: "meal-planner-submit" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

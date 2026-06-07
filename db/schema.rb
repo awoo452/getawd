@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_30_000006) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_06_000002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -181,6 +181,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_30_000006) do
     t.string "image"
     t.string "title"
     t.datetime "updated_at", null: false
+  end
+
+  create_table "meal_plans", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "meal_slot", null: false
+    t.date "planned_on", null: false
+    t.bigint "recipe_id", null: false
+    t.bigint "task_id"
+    t.datetime "updated_at", null: false
+    t.index ["planned_on", "meal_slot"], name: "index_meal_plans_on_planned_on_and_meal_slot", unique: true
+    t.index ["recipe_id"], name: "index_meal_plans_on_recipe_id"
+    t.index ["task_id"], name: "index_meal_plans_on_task_id"
   end
 
   create_table "meals", force: :cascade do |t|
@@ -394,6 +406,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_30_000006) do
   add_foreign_key "assignment_pools", "goals"
   add_foreign_key "blog_posts", "projects"
   add_foreign_key "goals", "ideas"
+  add_foreign_key "meal_plans", "recipes"
+  add_foreign_key "meal_plans", "tasks", on_delete: :nullify
   add_foreign_key "pantry_items", "food_items"
   add_foreign_key "recipe_ingredients", "food_items"
   add_foreign_key "recipe_ingredients", "recipes"

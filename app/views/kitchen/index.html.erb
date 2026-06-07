@@ -27,6 +27,11 @@
     <% end %>
   </div>
 
+  <section class="kitchen-section">
+    <h2 class="kitchen-section-title">Meal Planner</h2>
+    <%= render "kitchen/meal_planner" %>
+  </section>
+
   <% Recipe::MEAL_TYPES.each do |meal_type| %>
     <% recipes = @recipes_by_type[meal_type] %>
     <% next if recipes.blank? %>
