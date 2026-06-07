@@ -12,6 +12,9 @@ This is not a polished product. It is an ongoing Rails project where I design, b
 - Ideas → Goals → Tasks → Rewards hierarchy
 - Private file storage using Amazon S3 with presigned URLs
 - Custom UI and layout system
+- **Kitchen** — pantry inventory, recipe catalog, shopping list generation
+- **Meal Planner** — weekly breakfast/lunch/dinner planning tied to recipes; auto-creates calendar tasks
+- **Workout Planner** — weekly workout scheduling (run, Body Combat, pushups, rest); auto-creates calendar tasks
 
 ### Built With
 

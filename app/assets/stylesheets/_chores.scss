@@ -1,0 +1,152 @@
+.chores-wrapper {
+  width: 90%;
+  max-width: $container-xl;
+  margin: 0 auto;
+  padding: $spacing-md 0;
+}
+
+.chore-planner-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.chore-planner-range {
+  font-weight: 600;
+  min-width: 200px;
+  text-align: center;
+}
+
+.chore-btn {
+  display: inline-block;
+  padding: $spacing-xs $spacing-md;
+  background: $surface-muted;
+  color: $text-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-pill;
+  text-decoration: none;
+  font-size: $font-base;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover { background: $surface-muted-strong; }
+}
+
+.chore-planner-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: $spacing-sm;
+}
+
+.chore-day-card {
+  background: $surface-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+
+  &.chore-today .chore-day-header {
+    background: $primary-color;
+    color: $text-on-primary;
+    .chore-day-name { color: rgba($text-on-primary, 0.75); }
+  }
+}
+
+.chore-day-header {
+  background: $surface-muted;
+  padding: $spacing-xs;
+  text-align: center;
+}
+
+.chore-day-name {
+  display: block;
+  font-size: $font-xs;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chore-day-num {
+  display: block;
+  font-size: $font-2xl;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.chore-day-body {
+  padding: $spacing-xs;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xs;
+}
+
+.chore-planned-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2xs;
+  background: $surface-muted;
+  border-radius: $radius-sm;
+  padding: 2px $spacing-xs;
+  font-size: $font-xs;
+}
+
+.chore-item-emoji { flex: 0 0 auto; }
+
+.chore-item-label {
+  flex: 1;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chore-remove {
+  background: none;
+  border: none;
+  color: $text-muted;
+  cursor: pointer;
+  font-size: $font-xs;
+  padding: 0;
+  line-height: 1;
+  flex: 0 0 auto;
+
+  &:hover { color: $danger-color; }
+}
+
+.chore-form {
+  display: flex;
+  gap: $spacing-2xs;
+  margin-top: auto;
+}
+
+.chore-select {
+  flex: 1;
+  font-size: $font-xs;
+  padding: 2px $spacing-2xs;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  background: $surface-color;
+  color: $text-color;
+  min-width: 0;
+}
+
+.chore-submit {
+  font-size: $font-xs;
+  padding: 2px $spacing-xs;
+  background: $primary-color;
+  color: $text-on-primary;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color $transition-fast;
+
+  &:hover { background: darken($primary-color, 8%); }
+}
+
+@media (max-width: $bp-mobile) {
+  .chore-planner-grid { grid-template-columns: repeat(4, 1fr); }
+}

@@ -57,6 +57,11 @@ Rails.application.routes.draw do
 
   post "rewards/:id/redeem_task", to: "reward_redemptions#redeem_task", as: :redeem_task_reward
 
+  # Chores
+  get '/chores',                   to: 'chores#index', as: :chores
+  get '/chores/week/:week_start',  to: 'chores#index', as: :chores_week
+  resources :chore_plans, only: [:create, :destroy]
+
   # Workouts
   get '/workouts',                        to: 'workouts#index', as: :workouts
   get '/workouts/week/:week_start',       to: 'workouts#index', as: :workouts_week

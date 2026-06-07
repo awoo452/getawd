@@ -3,6 +3,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.29.0] - 2026-06-07
+### Added
+- `ChorePlan` model: maps a date + chore type to a calendar task. Multiple chore types can be assigned to the same day; unique constraint is on `[planned_on, chore_type]`. Auto-creates a task on save, removes it on destroy.
+- Chore types: Dishes, Sweep & Mop, Bathroom, Kitchen, Vacuum, Laundry, Garbage, Organization.
+- `ChoresController` with Sunday–Saturday week view and prev/next navigation.
+- `ChorePlansController` with `create` and `destroy` actions.
+- `/chores` route and "Chores" nav link for signed-in users.
+- `_chores.scss` stylesheet.
+### Tests
+- `test/models/chore_plan_test.rb`: 12 tests covering validations, multi-chore-per-day, task generation, goal association, and destroy.
+- `test/controllers/chore_plans_controller_test.rb`: 5 tests covering create and destroy.
+- `test/controllers/chores_controller_test.rb`: 6 tests covering index, week navigation, and planned chore visibility.
+
 ## [1.28.2] - 2026-06-07
 ### Fixed
 - `WorkoutPlan::GOAL_TITLES` mapped run and body_combat to `"Cardio"` which does not exist as a goal title. Corrected to `"Tacoma City Half Marathon"` (goal 544). Run and body combat tasks were being created with `goal: nil`.

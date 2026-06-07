@@ -1,0 +1,48 @@
+<div class="chore-planner-nav">
+  <%= link_to "← Prev", chores_week_path((@week_start - 7.days).strftime("%Y-%m-%d")), class: "chore-btn" %>
+  <span class="chore-planner-range">
+    <%= @week_start.strftime("%b %-d") %> – <%= (@week_start + 6.days).strftime("%b %-d, %Y") %>
+  </span>
+  <%= link_to "Next →", chores_week_path((@week_start + 7.days).strftime("%Y-%m-%d")), class: "chore-btn" %>
+</div>
+
+<div class="chore-planner-grid">
+  <% @week_dates.each do |date| %>
+    <% plans = @chore_plans_by_date[date] || [] %>
+    <% assigned_types = plans.map(&:chore_type) %>
+    <% remaining = ChorePlan::TYPES - assigned_types %>
+
+    <div class="chore-day-card <%= 'chore-today' if date == Time.zone.today %>">
+
+      <div class="chore-day-header">
+        <span class="chore-day-name"><%= date.strftime("%a") %></span>
+        <span class="chore-day-num"><%= date.strftime("%-d") %></span>
+      </div>
+
+      <div class="chore-day-body">
+        <% plans.each do |plan| %>
+          <div class="chore-planned-item">
+            <span class="chore-item-emoji"><%= plan.emoji %></span>
+            <span class="chore-item-label"><%= plan.label %></span>
+            <%= button_to "×", chore_plan_path(plan),
+                  method: :delete,
+                  class: "chore-remove",
+                  form: { data: { turbo_confirm: "Remove #{plan.label}?" } } %>
+          </div>
+        <% end %>
+
+        <% if remaining.any? %>
+          <%= form_with model: ChorePlan.new, url: chore_plans_path, class: "chore-form" do |f| %>
+            <%= f.hidden_field :planned_on, value: date %>
+            <%= f.select :chore_type,
+                  remaining.map { |t| ["#{ChorePlan::EMOJIS[t]} #{ChorePlan::LABELS[t]}", t] },
+                  { prompt: "+ add" },
+                  class: "chore-select" %>
+            <%= f.submit "Add", class: "chore-submit" %>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+</div>

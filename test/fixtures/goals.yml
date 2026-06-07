@@ -49,3 +49,9 @@ strength_goal:
   priority: 2
   status: not_started
   idea: one
+
+chores_goal:
+  title: Chores
+  priority: 2
+  status: not_started
+  idea: one
