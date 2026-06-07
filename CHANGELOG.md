@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.29.3] - 2026-06-07
+### Changed
+- Chore planner now shows a weekly legend bar (matching workout planner style) with a ✓/— indicator per chore type. Once a chore type is assigned anywhere in the week it is removed from all remaining day dropdowns, preventing accidental double-assignment.
+
 ## [1.29.2] - 2026-06-07
 ### Added
 - Recipe create, edit, and delete. `RecipesController` now has full CRUD. Form uses `accepts_nested_attributes_for` with a grouped ingredient select (food items grouped by type), quantity input per row, remove checkbox for existing ingredients, and a no-JS "Add Ingredient" button that re-renders with a blank row — same pattern as rydersworld meals.

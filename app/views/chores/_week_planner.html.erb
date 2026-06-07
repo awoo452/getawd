@@ -10,7 +10,7 @@
   <% @week_dates.each do |date| %>
     <% plans = @chore_plans_by_date[date] || [] %>
     <% assigned_types = plans.map(&:chore_type) %>
-    <% remaining = ChorePlan::TYPES - assigned_types %>
+    <% remaining = ChorePlan::TYPES - @week_used_types %>
 
     <div class="chore-day-card <%= 'chore-today' if date == Time.zone.today %>">
 

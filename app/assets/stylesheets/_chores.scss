@@ -21,6 +21,26 @@
 .chore-daily-label  { font-weight: 600; }
 .chore-daily-note   { color: $text-muted; font-size: $font-xs; margin-left: auto; }
 
+.chores-week-summary {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-lg;
+}
+
+.week-summary-done {
+  border-color: $success-color;
+  .week-summary-count { color: $success-color; }
+}
+
+.week-summary-note {
+  font-size: $font-xs;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .chore-planner-nav {
   display: flex;
   align-items: center;

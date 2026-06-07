@@ -2,6 +2,21 @@
 
 <div class="chores-wrapper">
 
+  <div class="chores-week-summary">
+    <div class="week-summary-item">
+      <span class="week-summary-emoji">🍽️</span>
+      <span class="week-summary-label">Dishes</span>
+      <span class="week-summary-note">daily</span>
+    </div>
+    <% ChorePlan::TYPES.each do |type| %>
+      <div class="week-summary-item <%= @week_counts[type] > 0 ? 'week-summary-done' : '' %>">
+        <span class="week-summary-emoji"><%= ChorePlan::EMOJIS[type] %></span>
+        <span class="week-summary-count"><%= @week_counts[type] > 0 ? "✓" : "—" %></span>
+        <span class="week-summary-label"><%= ChorePlan::LABELS[type] %></span>
+      </div>
+    <% end %>
+  </div>
+
   <div class="chore-daily-banner">
     <span class="chore-daily-emoji">🍽️</span>
     <span class="chore-daily-label">Dishes</span>
