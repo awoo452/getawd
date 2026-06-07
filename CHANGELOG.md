@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.29.6] - 2026-06-07
+### Changed
+- Replaced "Garbage" chore type with "Rooms" (🛏️) — deep clean of bedroom and Ryder's room.
+
+## [1.29.5] - 2026-06-07
+### Fixed
+- Dishes is now a daily chore — it can be added to every day of the week. Weekly dedup logic only applies to the 7 weekly chore types. Added `DAILY_TYPES` and `WEEKLY_TYPES` constants to `ChorePlan` to make this distinction explicit.
+
 ## [1.29.4] - 2026-06-07
 ### Fixed
 - Added Dishes back to `ChorePlan` as a manually plannable chore type. Removed the misleading "daily — auto-scheduled" banner that implied automation which didn't exist.

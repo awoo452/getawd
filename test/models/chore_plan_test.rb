@@ -52,7 +52,7 @@ class ChorePlanTest < ActiveSupport::TestCase
   # ── Task removal on destroy ──────────────────────────────
 
   test "destroying chore plan destroys its task" do
-    cp = ChorePlan.create!(planned_on: Date.new(2026, 7, 5), chore_type: :garbage)
+    cp = ChorePlan.create!(planned_on: Date.new(2026, 7, 5), chore_type: :rooms)
     assert_difference "Task.count", -1 do
       cp.destroy
     end

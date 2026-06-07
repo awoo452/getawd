@@ -1,5 +1,7 @@
 class ChorePlan < ApplicationRecord
-  TYPES = %w[dishes sweep_mop bathroom kitchen vacuum laundry garbage organization].freeze
+  TYPES        = %w[dishes sweep_mop bathroom kitchen vacuum laundry rooms organization].freeze
+  DAILY_TYPES  = %w[dishes].freeze
+  WEEKLY_TYPES = (TYPES - DAILY_TYPES).freeze
 
   LABELS = {
     "dishes"       => "Dishes",
@@ -8,7 +10,7 @@ class ChorePlan < ApplicationRecord
     "kitchen"      => "Kitchen",
     "vacuum"       => "Vacuum",
     "laundry"      => "Laundry",
-    "garbage"      => "Garbage",
+    "rooms"        => "Rooms",
     "organization" => "Organization"
   }.freeze
 
@@ -19,7 +21,7 @@ class ChorePlan < ApplicationRecord
     "kitchen"      => "🧽",
     "vacuum"       => "🌀",
     "laundry"      => "👕",
-    "garbage"      => "🗑️",
+    "rooms"        => "🛏️",
     "organization" => "📦"
   }.freeze
 
@@ -32,7 +34,7 @@ class ChorePlan < ApplicationRecord
     kitchen:      3,
     vacuum:       4,
     laundry:      5,
-    garbage:      6,
+    rooms:        6,
     organization: 7
   }
 

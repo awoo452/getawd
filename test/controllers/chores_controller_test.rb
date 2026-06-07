@@ -27,7 +27,7 @@ class ChoresControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "planned chore appears in the week view" do
-    ChorePlan.create!(planned_on: Date.new(2026, 6, 7), chore_type: :laundry)
+    ChorePlan.create!(planned_on: Date.new(2026, 6, 7), chore_type: :rooms)
     get chores_week_url("2026-06-07")
     assert_match "Laundry", response.body
   end

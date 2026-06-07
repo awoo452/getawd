@@ -7,8 +7,8 @@ class ChoresController < ApplicationController
     plans = ChorePlan.where(planned_on: @week_start..week_end)
     @chore_plans_by_date = plans.group_by(&:planned_on)
 
-    @week_counts    = ChorePlan::TYPES.index_with { |t| plans.count { |p| p.chore_type == t } }
-    @week_used_types = @week_counts.select { |_, count| count > 0 }.keys
+    @week_counts     = ChorePlan::TYPES.index_with { |t| plans.count { |p| p.chore_type == t } }
+    @week_used_types = ChorePlan::WEEKLY_TYPES.select { |t| @week_counts[t] > 0 }
   end
 
   private
