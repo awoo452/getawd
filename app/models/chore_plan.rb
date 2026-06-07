@@ -40,7 +40,7 @@ class ChorePlan < ApplicationRecord
   validates :chore_type,  presence: true
   validates :planned_on,  uniqueness: { scope: :chore_type }
 
-  after_create  :generate_task
+  after_create :generate_task
   before_destroy :remove_task
 
   def label = LABELS[chore_type]
