@@ -4,7 +4,7 @@ class ChorePlansControllerTest < ActionDispatch::IntegrationTest
   test "create makes a chore plan and redirects to chores" do
     assert_difference "ChorePlan.count", 1 do
       post chore_plans_url, params: {
-        chore_plan: { planned_on: "2026-07-10", chore_type: "dishes" }
+        chore_plan: { planned_on: "2026-07-10", chore_type: "sweep_mop" }
       }
     end
     assert_redirected_to chores_url
@@ -19,10 +19,10 @@ class ChorePlansControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create with duplicate type and date redirects with alert" do
-    ChorePlan.create!(planned_on: Date.new(2026, 7, 11), chore_type: :dishes)
+    ChorePlan.create!(planned_on: Date.new(2026, 7, 11), chore_type: :sweep_mop)
     assert_no_difference "ChorePlan.count" do
       post chore_plans_url, params: {
-        chore_plan: { planned_on: "2026-07-11", chore_type: "dishes" }
+        chore_plan: { planned_on: "2026-07-11", chore_type: "sweep_mop" }
       }
     end
     assert_redirected_to chores_url

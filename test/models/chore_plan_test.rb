@@ -4,23 +4,23 @@ class ChorePlanTest < ActiveSupport::TestCase
   # ── Validations ─────────────────────────────────────────
 
   test "valid with date and chore type" do
-    cp = ChorePlan.new(planned_on: Date.new(2026, 7, 1), chore_type: :dishes)
+    cp = ChorePlan.new(planned_on: Date.new(2026, 7, 1), chore_type: :sweep_mop)
     assert cp.valid?
   end
 
   test "invalid without planned_on" do
-    cp = ChorePlan.new(chore_type: :dishes)
+    cp = ChorePlan.new(chore_type: :sweep_mop)
     assert cp.invalid?
   end
 
   test "same chore type on same day is invalid" do
-    ChorePlan.create!(planned_on: Date.new(2026, 7, 1), chore_type: :dishes)
-    dup = ChorePlan.new(planned_on: Date.new(2026, 7, 1), chore_type: :dishes)
+    ChorePlan.create!(planned_on: Date.new(2026, 7, 1), chore_type: :sweep_mop)
+    dup = ChorePlan.new(planned_on: Date.new(2026, 7, 1), chore_type: :sweep_mop)
     assert dup.invalid?
   end
 
   test "different chore types on same day are valid" do
-    ChorePlan.create!(planned_on: Date.new(2026, 7, 1), chore_type: :dishes)
+    ChorePlan.create!(planned_on: Date.new(2026, 7, 1), chore_type: :sweep_mop)
     cp = ChorePlan.new(planned_on: Date.new(2026, 7, 1), chore_type: :laundry)
     assert cp.valid?
   end
@@ -45,14 +45,14 @@ class ChorePlanTest < ActiveSupport::TestCase
   end
 
   test "generated task links to chores goal" do
-    cp = ChorePlan.create!(planned_on: Date.new(2026, 7, 4), chore_type: :dishes)
+    cp = ChorePlan.create!(planned_on: Date.new(2026, 7, 4), chore_type: :laundry)
     assert_equal goals(:chores_goal), cp.task.goal
   end
 
   # ── Task removal on destroy ──────────────────────────────
 
   test "destroying chore plan destroys its task" do
-    cp = ChorePlan.create!(planned_on: Date.new(2026, 7, 5), chore_type: :kitchen)
+    cp = ChorePlan.create!(planned_on: Date.new(2026, 7, 5), chore_type: :garbage)
     assert_difference "Task.count", -1 do
       cp.destroy
     end

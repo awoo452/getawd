@@ -5,6 +5,22 @@
   padding: $spacing-md 0;
 }
 
+.chore-daily-banner {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: $surface-muted;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  padding: $spacing-sm $spacing-md;
+  margin-bottom: $spacing-lg;
+  font-size: $font-base;
+}
+
+.chore-daily-emoji  { font-size: 1.4rem; }
+.chore-daily-label  { font-weight: 600; }
+.chore-daily-note   { color: $text-muted; font-size: $font-xs; margin-left: auto; }
+
 .chore-planner-nav {
   display: flex;
   align-items: center;

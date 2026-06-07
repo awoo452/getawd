@@ -457,6 +457,120 @@
   }
 }
 
+// ── Recipe form ────────────────────────────────────────
+
+.recipe-form {
+  background: $surface-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  max-width: $container-sm;
+  margin: 0 auto;
+}
+
+.recipe-form-errors {
+  background: $legend-red;
+  border: 1px solid $danger-color;
+  border-radius: $radius-sm;
+  padding: $spacing-sm $spacing-md;
+  margin-bottom: $spacing-md;
+  color: $danger-color;
+  font-size: $font-base;
+}
+
+.recipe-form-fields {
+  margin-bottom: $spacing-lg;
+}
+
+.recipe-form-row {
+  margin-bottom: $spacing-md;
+
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: $font-base;
+    margin-bottom: $spacing-2xs;
+  }
+}
+
+.recipe-form-row-inline {
+  display: flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+
+  > div { flex: 1; min-width: 120px; }
+}
+
+.recipe-form-active {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding-top: $spacing-lg;
+
+  label { font-weight: 400; margin: 0; }
+}
+
+.recipe-form-section-heading {
+  font-size: $font-xl;
+  font-weight: 600;
+  margin: 0 0 $spacing-sm;
+  padding-bottom: $spacing-2xs;
+  border-bottom: 2px solid $border-color;
+}
+
+.recipe-ingredients-form-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-sm;
+}
+
+.recipe-ingredient-row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.recipe-ingredient-select {
+  flex: 1;
+  padding: $spacing-xs;
+  border: 1px solid $border-color-soft;
+  border-radius: $radius-sm;
+  font-size: $font-base;
+  background: $surface-color;
+}
+
+.recipe-ingredient-qty {
+  width: 64px;
+  padding: $spacing-xs;
+  border: 1px solid $border-color-soft;
+  border-radius: $radius-sm;
+  font-size: $font-base;
+  text-align: center;
+}
+
+.recipe-ingredient-destroy-check { display: none; }
+
+.recipe-ingredient-remove-label {
+  font-size: $font-xs;
+  color: $danger-color;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover { text-decoration: underline; }
+}
+
+.recipe-form-add {
+  margin-bottom: $spacing-md;
+}
+
+.recipe-form-actions {
+  display: flex;
+  gap: $spacing-xs;
+  padding-top: $spacing-md;
+  border-top: 1px solid $border-color;
+}
+
 // ── Meal planner ───────────────────────────────────────
 
 .meal-planner-nav {

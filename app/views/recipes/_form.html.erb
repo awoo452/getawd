@@ -1,0 +1,73 @@
+<%= form_with model: @recipe, class: "recipe-form" do |f| %>
+  <% if @recipe.errors.any? %>
+    <div class="recipe-form-errors">
+      <% @recipe.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="recipe-form-fields">
+    <div class="recipe-form-row">
+      <%= f.label :name, "Recipe Name" %>
+      <%= f.text_field :name, class: "form-input", placeholder: "e.g. Scrambled Eggs" %>
+    </div>
+
+    <div class="recipe-form-row recipe-form-row-inline">
+      <div>
+        <%= f.label :meal_type_suggestion, "Meal Type" %>
+        <%= f.select :meal_type_suggestion,
+              Recipe::MEAL_TYPES.map { |t| ["#{Recipe::MEAL_TYPE_EMOJI[t]} #{Recipe::MEAL_TYPE_LABELS[t]}", t] },
+              { prompt: "— Any —" },
+              class: "form-input" %>
+      </div>
+      <div>
+        <%= f.label :servings, "Servings" %>
+        <%= f.number_field :servings, min: 1, class: "form-input" %>
+      </div>
+      <div class="recipe-form-active">
+        <%= f.check_box :active %>
+        <%= f.label :active, "Active" %>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="recipe-form-section-heading">Ingredients</h3>
+
+  <div class="recipe-ingredients-form-list">
+    <% @recipe.recipe_ingredients.each do |ri| %>
+      <%= f.fields_for :recipe_ingredients, ri do |ri_fields| %>
+        <% next if ri_fields.object.marked_for_destruction? %>
+        <div class="recipe-ingredient-row">
+          <%= ri_fields.grouped_collection_select :food_item_id,
+                FoodItem::FOOD_TYPES,
+                ->(type) { @food_items_by_type[type] },
+                :itself,
+                :id,
+                :name,
+                { prompt: "— select ingredient —" },
+                class: "recipe-ingredient-select" %>
+          <%= ri_fields.number_field :quantity, min: 1, placeholder: "qty", class: "recipe-ingredient-qty" %>
+          <% if ri.persisted? %>
+            <%= ri_fields.check_box :_destroy, class: "recipe-ingredient-destroy-check" %>
+            <label class="recipe-ingredient-remove-label">Remove</label>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="recipe-form-add">
+    <%= button_tag "+ Add Ingredient",
+          type: "submit",
+          name: "add_ingredient",
+          value: "1",
+          class: "kitchen-btn",
+          formnovalidate: true %>
+  </div>
+
+  <div class="recipe-form-actions">
+    <%= f.submit @recipe.persisted? ? "Save Changes" : "Create Recipe", class: "kitchen-btn kitchen-btn-primary" %>
+    <%= link_to "Cancel", @recipe.persisted? ? @recipe : recipes_path, class: "kitchen-btn" %>
+  </div>
+<% end %>

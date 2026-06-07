@@ -1,0 +1,8 @@
+<%= render "shared/logged_in_heading", title: "New Recipe" %>
+
+<div class="kitchen-wrapper">
+  <div class="kitchen-actions">
+    <%= link_to "← Recipes", recipes_path, class: "kitchen-btn" %>
+  </div>
+  <%= render "form" %>
+</div>

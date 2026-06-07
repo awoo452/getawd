@@ -1,5 +1,13 @@
 <%= render "shared/logged_in_heading", title: "Chores" %>
 
 <div class="chores-wrapper">
+
+  <div class="chore-daily-banner">
+    <span class="chore-daily-emoji">🍽️</span>
+    <span class="chore-daily-label">Dishes</span>
+    <span class="chore-daily-note">daily — auto-scheduled</span>
+  </div>
+
   <%= render "chores/week_planner" %>
+
 </div>

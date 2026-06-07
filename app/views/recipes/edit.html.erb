@@ -1,0 +1,9 @@
+<%= render "shared/logged_in_heading", title: "Edit #{@recipe.name}" %>
+
+<div class="kitchen-wrapper">
+  <div class="kitchen-actions">
+    <%= link_to "← Recipe", @recipe, class: "kitchen-btn" %>
+    <%= link_to "← Recipes", recipes_path, class: "kitchen-btn" %>
+  </div>
+  <%= render "form" %>
+</div>

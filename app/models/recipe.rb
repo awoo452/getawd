@@ -22,6 +22,10 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients, -> { order(:slot_type, :position) }, dependent: :destroy
   has_many :food_items, through: :recipe_ingredients
 
+  accepts_nested_attributes_for :recipe_ingredients,
+    reject_if: proc { |attrs| attrs[:food_item_id].blank? },
+    allow_destroy: true
+
   scope :active,        -> { where(active: true) }
   scope :ordered,       -> { order(:position, :name) }
   scope :by_meal_type,  ->(type) { where(meal_type_suggestion: type) }

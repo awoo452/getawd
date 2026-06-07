@@ -4,6 +4,9 @@
   <div class="kitchen-actions">
     <%= link_to "← Recipes", recipes_path, class: "kitchen-btn" %>
     <%= link_to "← Kitchen", kitchen_path, class: "kitchen-btn" %>
+    <%= link_to "Edit", edit_recipe_path(@recipe), class: "kitchen-btn" %>
+    <%= button_to "Delete", @recipe, method: :delete, class: "kitchen-btn kitchen-btn-danger",
+          form: { data: { turbo_confirm: "Delete #{@recipe.name}?" } } %>
     <%= button_to "✓ I Cooked This", cook_recipe_path(@recipe),
           method: :post,
           class: "kitchen-btn kitchen-btn-primary",

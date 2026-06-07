@@ -79,7 +79,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :recipes, only: [:index, :show] do
+  resources :recipes do
     member do
       post :cook
     end
