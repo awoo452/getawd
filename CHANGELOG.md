@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.29.7] - 2026-06-07
+### Added
+- Bulk add to pantry: each pantry item card now has a number input + "Add" button that calls `bulk_increment` — type 40 and click Add instead of clicking + 40 times.
+- Full food item CRUD (`FoodItemsController`, `/food_items`). Create, edit, and delete food items. New food items automatically get a pantry entry (qty 0, min 1).
+- "Food Items" link in pantry action bar. Food items index groups by type with edit/delete per row.
+
 ## [1.29.6] - 2026-06-07
 ### Changed
 - Replaced "Garbage" chore type with "Rooms" (🛏️) — deep clean of bedroom and Ryder's room.

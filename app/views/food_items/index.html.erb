@@ -1,0 +1,38 @@
+<%= render "shared/logged_in_heading", title: "Food Items" %>
+
+<div class="kitchen-wrapper">
+  <div class="kitchen-actions">
+    <%= link_to "← Pantry", pantry_items_path, class: "kitchen-btn" %>
+    <%= link_to "+ Add Food Item", new_food_item_path, class: "kitchen-btn kitchen-btn-primary" %>
+  </div>
+
+  <% FoodItem::FOOD_TYPES.each do |food_type| %>
+    <% items = @food_items_by_type[food_type] %>
+    <% next if items.blank? %>
+
+    <section class="kitchen-section">
+      <h2 class="kitchen-section-title">
+        <%= FoodItem::FOOD_TYPE_EMOJI[food_type] %> <%= FoodItem::FOOD_TYPE_LABELS[food_type] %>
+      </h2>
+      <div class="food-items-list">
+        <% items.each do |food_item| %>
+          <div class="food-item-row">
+            <span class="food-item-row-name"><%= food_item.name %></span>
+            <span class="food-item-row-meta">
+              <%= food_item.location_label %> &middot; <%= food_item.unit %>
+              <% unless food_item.active? %>
+                <span class="food-item-inactive-badge">inactive</span>
+              <% end %>
+            </span>
+            <span class="food-item-row-actions">
+              <%= link_to "Edit", edit_food_item_path(food_item), class: "kitchen-btn" %>
+              <%= button_to "Delete", food_item_path(food_item), method: :delete,
+                    class: "kitchen-btn kitchen-btn-danger",
+                    data: { turbo_confirm: "Remove #{food_item.name} and its pantry entry?" } %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+</div>

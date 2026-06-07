@@ -30,6 +30,8 @@ class FoodItem < ApplicationRecord
   }.freeze
 
   has_one  :pantry_item, dependent: :destroy
+
+  after_create :create_pantry_item
   has_many :recipe_ingredients, dependent: :destroy
   has_many :recipes, through: :recipe_ingredients
   has_many :shopping_list_items, dependent: :destroy
@@ -47,4 +49,10 @@ class FoodItem < ApplicationRecord
   def type_label    = FOOD_TYPE_LABELS[food_type]  || food_type.humanize
   def type_emoji    = FOOD_TYPE_EMOJI[food_type]   || "🍽️"
   def location_label = LOCATION_LABELS[location]   || location.humanize
+
+  private
+
+  def create_pantry_item
+    PantryItem.create!(food_item: self, quantity_on_hand: 0, min_quantity: 1)
+  end
 end

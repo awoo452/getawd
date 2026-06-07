@@ -1,5 +1,5 @@
 class PantryItemsController < ApplicationController
-  before_action :set_pantry_item, only: [:update, :increment, :decrement]
+  before_action :set_pantry_item, only: [:update, :increment, :decrement, :bulk_increment]
 
   def index
     @pantry_by_type = FoodItem.active
@@ -23,6 +23,12 @@ class PantryItemsController < ApplicationController
 
   def decrement
     @pantry_item.decrement!
+    respond_with_item
+  end
+
+  def bulk_increment
+    amount = [params[:amount].to_i, 1].max
+    @pantry_item.increment!(amount)
     respond_with_item
   end
 

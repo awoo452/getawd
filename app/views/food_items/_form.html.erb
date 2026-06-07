@@ -1,0 +1,56 @@
+<%= form_with model: @food_item, class: "recipe-form" do |f| %>
+  <% if @food_item.errors.any? %>
+    <div class="recipe-form-errors">
+      <% @food_item.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="recipe-form-fields">
+    <div class="recipe-form-row">
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name, class: "form-input", placeholder: "e.g. Eggs, Chicken Thighs" %>
+    </div>
+
+    <div class="recipe-form-row recipe-form-row-inline">
+      <div>
+        <%= f.label :food_type, "Type" %>
+        <%= f.select :food_type,
+              FoodItem::FOOD_TYPES.map { |t| ["#{FoodItem::FOOD_TYPE_EMOJI[t]} #{FoodItem::FOOD_TYPE_LABELS[t]}", t] },
+              {},
+              class: "form-input" %>
+      </div>
+      <div>
+        <%= f.label :location, "Location" %>
+        <%= f.select :location,
+              FoodItem::LOCATIONS.map { |l| [FoodItem::LOCATION_LABELS[l], l] },
+              {},
+              class: "form-input" %>
+      </div>
+      <div>
+        <%= f.label :unit, "Unit" %>
+        <%= f.select :unit,
+              FoodItem::UNITS,
+              {},
+              class: "form-input" %>
+      </div>
+    </div>
+
+    <div class="recipe-form-row recipe-form-row-inline">
+      <div>
+        <%= f.label :position, "Sort Order" %>
+        <%= f.number_field :position, min: 0, step: 1, class: "form-input", placeholder: "0 = first" %>
+      </div>
+      <div class="recipe-form-active">
+        <%= f.check_box :active %>
+        <%= f.label :active, "Active (show in pantry)" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-form-actions">
+    <%= f.submit @food_item.persisted? ? "Save Changes" : "Add Food Item", class: "kitchen-btn kitchen-btn-primary" %>
+    <%= link_to "Cancel", food_items_path, class: "kitchen-btn" %>
+  </div>
+<% end %>

@@ -3,6 +3,8 @@
 <div class="kitchen-wrapper">
   <div class="kitchen-actions">
     <%= link_to "← Kitchen", kitchen_path, class: "kitchen-btn" %>
+    <%= link_to "+ Add Food Item", new_food_item_path, class: "kitchen-btn kitchen-btn-primary" %>
+    <%= link_to "Manage Food Items", food_items_path, class: "kitchen-btn" %>
     <% if ShoppingList.active.any? %>
       <%= link_to "Active Shopping List", ShoppingList.active.first, class: "kitchen-btn kitchen-btn-primary" %>
     <% else %>

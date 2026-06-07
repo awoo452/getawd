@@ -72,10 +72,13 @@ Rails.application.routes.draw do
   get '/kitchen/week/:week_start',       to: 'kitchen#index', as: :kitchen_week
   resources :meal_plans, only: [:create, :update, :destroy]
 
+  resources :food_items, only: [:index, :new, :create, :edit, :update, :destroy]
+
   resources :pantry_items, only: [:index, :update] do
     member do
       patch :increment
       patch :decrement
+      patch :bulk_increment
     end
   end
 

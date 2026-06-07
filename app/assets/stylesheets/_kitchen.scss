@@ -368,6 +368,84 @@
   text-align: center;
 }
 
+.pantry-item-bulk {
+  margin-top: $spacing-2xs;
+}
+
+.pantry-bulk-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-2xs;
+}
+
+.pantry-bulk-input {
+  width: 52px;
+  padding: 2px $spacing-2xs;
+  border: 1px solid $border-color-soft;
+  border-radius: $radius-sm;
+  font-size: $font-xs;
+  text-align: center;
+  background: $surface-color;
+  color: $text-color;
+}
+
+.pantry-bulk-btn {
+  padding: 2px $spacing-xs;
+  background: $surface-muted;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  font-size: $font-xs;
+  cursor: pointer;
+  color: $text-color;
+
+  &:hover { background: $surface-muted-strong; }
+}
+
+// ── Food items list ────────────────────────────────────
+.food-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xs;
+}
+
+.food-item-row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-xs $spacing-sm;
+  background: $surface-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+
+  .food-item-row-name {
+    font-weight: 600;
+    flex: 1;
+  }
+
+  .food-item-row-meta {
+    font-size: $font-xs;
+    color: $text-muted;
+    min-width: 160px;
+  }
+
+  .food-item-row-actions {
+    display: flex;
+    gap: $spacing-2xs;
+    flex-shrink: 0;
+  }
+}
+
+.food-item-inactive-badge {
+  display: inline-block;
+  background: $surface-muted;
+  border-radius: $radius-pill;
+  padding: 1px $spacing-xs;
+  font-size: $font-xs;
+  color: $text-muted;
+  margin-left: $spacing-2xs;
+}
+
 // ── Shopping list ──────────────────────────────────────
 .shopping-list-header {
   text-align: center;
