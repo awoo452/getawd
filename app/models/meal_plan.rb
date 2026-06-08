@@ -20,6 +20,7 @@ class MealPlan < ApplicationRecord
 
   after_create  :generate_task
   before_update :sync_task_name, if: :recipe_id_changed?
+  after_update  :sync_cooked_to_task, if: :saved_change_to_cooked?
   before_destroy :remove_task
 
   def deduct_inventory!
@@ -62,6 +63,14 @@ class MealPlan < ApplicationRecord
 
   def sync_task_name
     task&.update!(task_name: task_label)
+  end
+
+  def sync_cooked_to_task
+    if cooked?
+      task&.update!(status: :completed, completion_date: planned_on)
+    else
+      task&.update!(status: :not_started, completion_date: nil)
+    end
   end
 
   def remove_task

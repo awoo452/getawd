@@ -51,6 +51,8 @@ class WorkoutPlan < ApplicationRecord
 
   after_create  :generate_task
   before_update :sync_task_name, if: :workout_type_changed?
+  after_update  :sync_completion_to_task, if: :saved_change_to_completed?
+  after_update  :sync_notes_to_task, if: :saved_change_to_notes?
   before_destroy :remove_task
 
   def label = LABELS[workout_type]
@@ -75,6 +77,18 @@ class WorkoutPlan < ApplicationRecord
 
   def sync_task_name
     task&.update!(task_name: task_label)
+  end
+
+  def sync_completion_to_task
+    if completed?
+      task&.update!(status: :completed, completion_date: planned_on)
+    else
+      task&.update!(status: :not_started, completion_date: nil)
+    end
+  end
+
+  def sync_notes_to_task
+    task&.update!(description: notes)
   end
 
   def remove_task

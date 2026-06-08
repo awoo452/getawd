@@ -102,6 +102,37 @@ class WorkoutPlanTest < ActiveSupport::TestCase
     assert_nothing_raised { wp.destroy }
   end
 
+  # ── Task completion sync ─────────────────────────────────
+
+  test "marking completed syncs task status to completed" do
+    wp = WorkoutPlan.create!(planned_on: Date.new(2026, 9, 1), workout_type: :walk)
+    wp.update!(completed: true)
+    assert_equal "completed", wp.task.reload.status
+    assert_equal wp.planned_on, wp.task.reload.completion_date
+  end
+
+  test "marking incomplete reverts task to not_started" do
+    wp = WorkoutPlan.create!(planned_on: Date.new(2026, 9, 2), workout_type: :vr)
+    wp.update!(completed: true)
+    wp.update!(completed: false)
+    assert_equal "not_started", wp.task.reload.status
+    assert_nil wp.task.reload.completion_date
+  end
+
+  test "saving notes syncs to task description" do
+    wp = WorkoutPlan.create!(planned_on: Date.new(2026, 9, 3), workout_type: :board_push)
+    wp.update!(notes: "3x10 push-ups, 2x12 tricep extensions")
+    assert_equal "3x10 push-ups, 2x12 tricep extensions", wp.task.reload.description
+  end
+
+  test "notes sync does not fire when notes unchanged" do
+    wp = WorkoutPlan.create!(planned_on: Date.new(2026, 9, 4), workout_type: :board_pull)
+    wp.update!(completed: true)
+    wp.task.reload.tap { |t| t.update!(description: "untouched") }
+    wp.update!(completed: false)
+    assert_equal "untouched", wp.task.reload.description
+  end
+
   # ── Helper methods ───────────────────────────────────────
 
   test "label returns display name" do

@@ -107,6 +107,29 @@ class MealPlanTest < ActiveSupport::TestCase
     assert_equal 10.0, food_items(:bacon).pantry_item.reload.servings_on_hand # 11 - 1 (item only)
   end
 
+  # ── Cooked → task completion sync ───────────────────────
+
+  test "marking cooked completes the associated task" do
+    mp = MealPlan.create!(planned_on: Date.new(2026, 8, 1), meal_slot: :dinner, recipe: recipes(:dinner_recipe))
+    mp.update!(cooked: true)
+    assert_equal "completed", mp.task.reload.status
+    assert_equal mp.planned_on, mp.task.reload.completion_date
+  end
+
+  test "marking uncooked reverts task to not_started" do
+    mp = MealPlan.create!(planned_on: Date.new(2026, 8, 2), meal_slot: :lunch, recipe: recipes(:lunch_recipe))
+    mp.update!(cooked: true)
+    mp.update!(cooked: false)
+    assert_equal "not_started", mp.task.reload.status
+    assert_nil mp.task.reload.completion_date
+  end
+
+  test "cooked sync does nothing when meal plan has no task" do
+    mp = meal_plans(:one)
+    assert_nil mp.task_id
+    assert_nothing_raised { mp.update!(cooked: true) }
+  end
+
   # ── Task removal on destroy ──────────────────────────────
 
   test "destroying meal plan destroys its task" do

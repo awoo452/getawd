@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.28] - 2026-06-08
+### Changed
+- Marking a meal plan as cooked now completes the associated task (`status: completed`, `completion_date: planned_on`); uncooking reverts it to `not_started`.
+- Marking a workout as done now completes the associated task; undoing reverts it to `not_started`.
+- Saving workout notes now syncs them to the associated task's `description` field.
+- Added model-layer `after_update` callbacks on `MealPlan` and `WorkoutPlan` — no controller changes required.
+
 ## [1.30.27] - 2026-06-08
 ### Changed
 - Workout types replaced: `run/body_combat/pushups` → `walk/vr/board_push/board_pull`. Weekly targets: 2× walk, 2× VR, 1× board each, 1× rest.
