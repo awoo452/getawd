@@ -45,7 +45,7 @@ class FoodItem < ApplicationRecord
   validates :location,         inclusion: { in: LOCATIONS }
   validates :unit,             inclusion: { in: UNITS }
   validates :position,         numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :servings_per_unit, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+  validates :servings_per_unit, numericality: { greater_than: 0 }
   validates :unit_servings, numericality: { greater_than: 0 }, allow_nil: true
 
   def type_label    = FOOD_TYPE_LABELS[food_type]  || food_type.humanize
