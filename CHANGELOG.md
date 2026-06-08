@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.13] - 2026-06-08
+### Fixed
+- `derived_servings` now always divides by `servings_per_unit` — the `<= 1` shortcut was skipping division for decimals under 1, breaking display and `+1` unit math.
+
 ## [1.30.12] - 2026-06-08
 ### Added
 - Min Servings field moved to food item edit page via nested attributes.

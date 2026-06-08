@@ -15,8 +15,7 @@ class PantryItem < ApplicationRecord
   def out? = servings_on_hand.zero?
 
   def derived_servings
-    spu = food_item.servings_per_unit
-    raw = spu <= 1 ? servings_on_hand : servings_on_hand / spu
+    raw = servings_on_hand / food_item.servings_per_unit
     raw % 1 == 0 ? raw.to_i : raw.round(1)
   end
 
