@@ -3,18 +3,15 @@
 <div class="workouts-wrapper">
 
   <div class="workouts-week-summary">
-    <% WorkoutPlan::TYPES.reject { |t| t == "rest" }.each do |type| %>
+    <% WorkoutPlan::TYPES.each do |type| %>
       <div class="week-summary-item">
         <span class="week-summary-emoji"><%= WorkoutPlan::EMOJIS[type] %></span>
-        <span class="week-summary-count"><%= @week_counts[type] %>/2</span>
+        <span class="week-summary-count <%= 'week-summary-done' if @week_counts[type] >= WorkoutPlan::TARGETS[type] && WorkoutPlan::TARGETS[type] > 0 %>">
+          <%= @week_counts[type] %>/<%= WorkoutPlan::TARGETS[type] %>
+        </span>
         <span class="week-summary-label"><%= WorkoutPlan::LABELS[type] %></span>
       </div>
     <% end %>
-    <div class="week-summary-item">
-      <span class="week-summary-emoji"><%= WorkoutPlan::EMOJIS["rest"] %></span>
-      <span class="week-summary-count"><%= @week_counts["rest"] %>/1</span>
-      <span class="week-summary-label">Rest</span>
-    </div>
   </div>
 
   <%= render "workouts/week_planner" %>

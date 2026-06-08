@@ -30,9 +30,9 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
 
   test "planned workout appears in the week view" do
     date = Date.new(2026, 6, 7)
-    WorkoutPlan.create!(planned_on: date, workout_type: :run)
+    WorkoutPlan.create!(planned_on: date, workout_type: :walk)
     get workouts_week_url("2026-06-07")
-    assert_match "Run", response.body
+    assert_match "Dog Walk", response.body
   end
 
   test "week summary counts are shown" do

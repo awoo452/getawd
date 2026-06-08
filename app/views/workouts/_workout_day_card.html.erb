@@ -1,0 +1,43 @@
+<div id="workout_day_<%= date.iso8601 %>" class="workout-day-card <%= 'workout-today' if date == Time.zone.today %>">
+  <div class="workout-day-header">
+    <span class="workout-day-name"><%= date.strftime("%a") %></span>
+    <span class="workout-day-num"><%= date.strftime("%-d") %></span>
+  </div>
+
+  <div class="workout-day-body">
+    <% if plan %>
+      <div class="workout-planned-header">
+        <span class="workout-emoji"><%= plan.emoji %></span>
+        <span class="workout-label"><%= plan.label %></span>
+        <%= button_to "×", workout_plan_path(plan),
+              method: :delete,
+              class: "workout-remove",
+              form: { data: { turbo_confirm: "Remove this workout?" } } %>
+      </div>
+
+      <%= button_to plan.completed? ? "✓ Done" : "Mark Done",
+            toggle_complete_workout_plan_path(plan),
+            method: :patch,
+            class: "workout-complete-btn #{'workout-complete-btn-done' if plan.completed?}",
+            form: { data: { turbo_stream: true } } %>
+
+      <%= form_with model: plan, url: workout_plan_path(plan),
+            class: "workout-notes-form",
+            data: { turbo_stream: true } do |f| %>
+        <%= f.text_area :notes,
+              placeholder: "Sets, reps, duration, notes...",
+              class: "workout-notes" %>
+        <%= f.submit "Save", class: "workout-notes-save" %>
+      <% end %>
+    <% else %>
+      <%= form_with model: WorkoutPlan.new, url: workout_plans_path, class: "workout-form" do |f| %>
+        <%= f.hidden_field :planned_on, value: date %>
+        <%= f.select :workout_type,
+              WorkoutPlan::TYPES.map { |t| ["#{WorkoutPlan::EMOJIS[t]} #{WorkoutPlan::LABELS[t]}", t] },
+              { prompt: "— plan —" },
+              class: "workout-select" %>
+        <%= f.submit "Add", class: "workout-submit" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

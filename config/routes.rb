@@ -65,7 +65,11 @@ Rails.application.routes.draw do
   # Workouts
   get '/workouts',                        to: 'workouts#index', as: :workouts
   get '/workouts/week/:week_start',       to: 'workouts#index', as: :workouts_week
-  resources :workout_plans, only: [:create, :update, :destroy]
+  resources :workout_plans, only: [:create, :update, :destroy] do
+    member do
+      patch :toggle_complete
+    end
+  end
 
   # Kitchen / Pantry / Inventory
   get '/kitchen',                        to: 'kitchen#index', as: :kitchen

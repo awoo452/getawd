@@ -1,7 +1,9 @@
 one:
   planned_on: 2026-06-01
   workout_type: 0
+  completed: false
 
 two:
   planned_on: 2026-06-02
   workout_type: 3
+  completed: false

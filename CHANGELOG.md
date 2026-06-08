@@ -3,6 +3,24 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.27] - 2026-06-08
+### Changed
+- Workout types replaced: `run/body_combat/pushups` → `walk/vr/board_push/board_pull`. Weekly targets: 2× walk, 2× VR, 1× board each, 1× rest.
+- Board split: Chest & Triceps (push day) and Shoulders & Back — maps to the 4 color-coded positions on the push-up board.
+- Cardio goal renamed from "Tacoma City Half Marathon" → "Cardio Fitness" in both DB (data migration) and fixtures.
+- Converted `.workout-planner-grid` from CSS Grid to Flexbox.
+### Added
+- `notes` text field on each workout card — log sets, reps, duration, etc. Saves inline via Turbo Stream PATCH.
+- `completed` boolean with "Mark Done" / "↩ Undo" Turbo Stream toggle. Summary bar count turns green when weekly target is hit.
+- `WorkoutPlansController#toggle_complete`, `PATCH /workout_plans/:id/toggle_complete`.
+- Extracted `_workout_day_card` partial with `id="workout_day_YYYY-MM-DD"` for Turbo targeting.
+
+## [1.30.26] - 2026-06-08
+### Changed
+- Moved `deduct_inventory!` / `restore_inventory!` from `MealPlansController` private methods to public methods on `MealPlan` model where they belong.
+- Extracted `ingredient_quantity_label` view logic from inline ERB in recipe show into `RecipesHelper`.
+- Removed dead `cook` action and `POST /recipes/:id/cook` route — "I Cooked This" button was already removed from the show page.
+
 ## [1.30.25] - 2026-06-08
 ### Changed
 - Moved `deduct_inventory!` / `restore_inventory!` from `MealPlansController` private methods to public methods on `MealPlan` model where they belong.
