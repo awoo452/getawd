@@ -3,13 +3,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.30.22] - 2026-06-07
-### Fixed
-- Recipe edit: "Remove" had no visual feedback — checkbox was hidden and row stayed visible, so it appeared broken. Now hides the row immediately on click; `_destroy` is still submitted with the form.
-
 ## [1.30.21] - 2026-06-07
 ### Fixed
-- Recipe edit form: "Remove" label had no `for` attribute so clicking it never toggled the `_destroy` checkbox. Changed to `ri_fields.label :_destroy` so it's properly wired.
+- Recipe ingredient remove: added `RecipeIngredientsController#destroy`, wired Remove button as a `button_to` DELETE with Turbo Stream response that removes the row from the DOM. Removed dead `.recipe-ingredient-destroy-check` CSS.
 
 ## [1.30.20] - 2026-06-07
 ### Fixed

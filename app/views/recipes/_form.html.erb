@@ -38,7 +38,7 @@
     <% @recipe.recipe_ingredients.each do |ri| %>
       <%= f.fields_for :recipe_ingredients, ri do |ri_fields| %>
         <% next if ri_fields.object.marked_for_destruction? %>
-        <div class="recipe-ingredient-row">
+        <div class="recipe-ingredient-row" id="recipe_ingredient_<%= ri.id %>">
           <%= ri_fields.grouped_collection_select :food_item_id,
                 FoodItem::FOOD_TYPES,
                 ->(type) { @food_items_by_type[type] },
@@ -49,10 +49,10 @@
                 class: "recipe-ingredient-select" %>
           <%= ri_fields.number_field :quantity, min: 1, placeholder: "qty", class: "recipe-ingredient-qty" %>
           <% if ri.persisted? %>
-            <%= ri_fields.check_box :_destroy, class: "recipe-ingredient-destroy-check" %>
-            <%= ri_fields.label :_destroy, "Remove",
+            <%= button_to "Remove", recipe_ingredient_path(ri),
+                  method: :delete,
                   class: "recipe-ingredient-remove-label",
-                  onclick: "this.closest('.recipe-ingredient-row').style.display='none'" %>
+                  form: { data: { turbo_stream: true } } %>
           <% end %>
         </div>
       <% end %>
