@@ -50,7 +50,9 @@
           <%= ri_fields.number_field :quantity, min: 1, placeholder: "qty", class: "recipe-ingredient-qty" %>
           <% if ri.persisted? %>
             <%= ri_fields.check_box :_destroy, class: "recipe-ingredient-destroy-check" %>
-            <%= ri_fields.label :_destroy, "Remove", class: "recipe-ingredient-remove-label" %>
+            <%= ri_fields.label :_destroy, "Remove",
+                  class: "recipe-ingredient-remove-label",
+                  onclick: "this.closest('.recipe-ingredient-row').style.display='none'" %>
           <% end %>
         </div>
       <% end %>
