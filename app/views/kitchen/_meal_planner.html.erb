@@ -6,31 +6,34 @@
   <%= link_to "Next →", kitchen_week_path((@week_start + 7.days).strftime("%Y-%m-%d")), class: "kitchen-btn" %>
 </div>
 
-<div class="meal-planner-grid">
+<div class="meal-planner-table">
 
   <%# Header row %>
-  <div class="meal-planner-cell meal-planner-header meal-planner-slot-label"></div>
-  <% @week_dates.each do |date| %>
-    <div class="meal-planner-cell meal-planner-header <%= 'meal-planner-today' if date == Time.zone.today %>">
-      <span class="meal-planner-day-name"><%= date.strftime("%a") %></span>
-      <span class="meal-planner-day-num"><%= date.strftime("%-d") %></span>
-    </div>
-  <% end %>
+  <div class="meal-planner-row">
+    <div class="meal-planner-label"></div>
+    <% @week_dates.each do |date| %>
+      <div class="meal-planner-header-cell <%= 'meal-planner-today' if date == Time.zone.today %>">
+        <span class="meal-planner-day-name"><%= date.strftime("%a") %></span>
+        <span class="meal-planner-day-num"><%= date.strftime("%-d") %></span>
+      </div>
+    <% end %>
+  </div>
 
   <%# Meal slot rows %>
   <% MealPlan::SLOTS.each do |slot| %>
-    <div class="meal-planner-cell meal-planner-slot-label">
-      <%= slot.capitalize %>
+    <div class="meal-planner-row">
+      <div class="meal-planner-label meal-planner-slot-label">
+        <%= slot.capitalize %>
+      </div>
+      <% @week_dates.each do |date| %>
+        <%= render "kitchen/meal_cell",
+              date:               date,
+              slot:               slot,
+              meal_plan:          @meal_plans_by_date_slot[[date, slot]],
+              recipes_for_slot:   @recipes_for_slot[slot],
+              food_items_grouped: @food_items_grouped %>
+      <% end %>
     </div>
-
-    <% @week_dates.each do |date| %>
-      <%= render "kitchen/meal_cell",
-            date:               date,
-            slot:               slot,
-            meal_plan:          @meal_plans_by_date_slot[[date, slot]],
-            recipes_for_slot:   @recipes_for_slot[slot],
-            food_items_grouped: @food_items_grouped %>
-    <% end %>
   <% end %>
 
 </div>

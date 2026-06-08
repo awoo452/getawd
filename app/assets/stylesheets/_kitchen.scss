@@ -1,8 +1,9 @@
 .kitchen-wrapper {
-  width: 90%;
-  max-width: $container-xl;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: 0 auto;
-  padding: $spacing-md 0;
+  padding: $spacing-md;
 }
 
 // ── Stats bar ──────────────────────────────────────────
@@ -664,31 +665,49 @@
   text-align: center;
 }
 
-.meal-planner-grid {
-  display: grid;
-  grid-template-columns: 90px repeat(7, 1fr);
-  gap: 1px;
-  background: $border-color;
+.meal-planner-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   border: 1px solid $border-color;
   border-radius: $radius-md;
   overflow: hidden;
 }
 
-.meal-planner-cell {
-  background: $surface-color;
+.meal-planner-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child { border-bottom: none; }
+}
+
+.meal-planner-label {
+  flex: 0 0 auto;
+  width: 68px;
+  background: $surface-muted;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid $border-color;
+}
+
+.meal-planner-header-cell {
+  flex: 1;
+  min-width: 0;
+  background: $surface-muted;
   padding: $spacing-xs;
-  min-height: 60px;
+  text-align: center;
+  font-weight: 600;
+  min-height: 44px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-}
-
-.meal-planner-header {
-  background: $surface-muted;
-  font-weight: 600;
-  min-height: 44px;
+  border-left: 1px solid $border-color;
 
   &.meal-planner-today {
     background: $primary-color;
@@ -697,6 +716,7 @@
     .meal-planner-day-name { color: rgba($text-on-primary, 0.75); }
   }
 }
+
 
 .meal-planner-day-name {
   font-size: $font-xs;
@@ -723,24 +743,16 @@
 }
 
 .meal-planner-day-cell {
-  min-height: 72px;
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: $spacing-xs;
+  background: $surface-color;
+  border-left: 1px solid $border-color;
   display: flex;
   flex-direction: column;
   gap: 2px;
-
-  .meal-planner-form,
-  .meal-planner-add-row {
-    opacity: 0.35;
-    transition: opacity 0.12s ease;
-  }
-
-  &:hover,
-  &:focus-within {
-    .meal-planner-form,
-    .meal-planner-add-row {
-      opacity: 1;
-    }
-  }
+  overflow: hidden;
 }
 
 .meal-plan-recipe-row {
@@ -758,7 +770,7 @@
 }
 
 .meal-plan-item-name {
-  font-size: $font-xs;
+  font-size: 0.8rem;
   color: $text-muted;
   line-height: 1.3;
 }
@@ -771,11 +783,16 @@
   display: flex;
   gap: 2px;
   width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .meal-planner-select-sm {
-  flex: 1;
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
   font-size: $font-xs;
+  overflow: hidden;
 }
 
 .meal-planner-submit-sm {
@@ -800,8 +817,8 @@
 }
 
 .meal-planner-recipe-name {
-  font-size: $font-xs;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
   line-height: 1.3;
   margin-bottom: $spacing-2xs;
 }
@@ -823,23 +840,27 @@
   flex-direction: row;
   gap: 2px;
   width: 100%;
+  min-width: 0;
   align-items: center;
+  overflow: hidden;
 }
 
 .meal-planner-select {
-  flex: 1;
+  flex: 1 1 0;
+  width: 0;
   min-width: 0;
-  font-size: $font-xs;
-  padding: 2px $spacing-2xs;
+  font-size: 0.8rem;
+  padding: 2px 4px;
   border: 1px solid $border-color;
   border-radius: $radius-sm;
   background: $surface-color;
   color: $text-color;
+  overflow: hidden;
 }
 
 .meal-planner-submit {
   flex: 0 0 auto;
-  font-size: $font-xs;
+  font-size: 0.8rem;
   padding: 2px 6px;
   background: $primary-color;
   color: $text-on-primary;
@@ -857,14 +878,8 @@
   .pantry-grid   { grid-template-columns: repeat(2, 1fr); }
   .kitchen-stats { gap: $spacing-sm; }
 
-  .meal-planner-grid {
-    grid-template-columns: 54px repeat(7, 1fr);
-  }
-
-  .meal-planner-cell {
-    padding: $spacing-2xs 2px;
-  }
-
+  .meal-planner-label    { width: 44px; }
+  .meal-planner-day-cell { padding: 2px; }
   .meal-planner-day-num  { font-size: $font-base; }
   .meal-planner-day-name { font-size: 0.6rem; }
   .meal-planner-select   { font-size: 0.6rem; }

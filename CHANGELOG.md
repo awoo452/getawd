@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.18] - 2026-06-07
+### Fixed
+- Meal planner rebuilt with flexbox: outer table `flex-direction: column`, rows `flex-direction: row`, day cells `flex: 1`. Fixed overflow: `box-sizing: border-box` + `max-width: 100%` on `.kitchen-wrapper` and `.meal-planner-table` so padding doesn't push the container past the viewport.
+- Forms always visible in cells — no hover-triggered layout shifts.
+
 ## [1.30.17] - 2026-06-07
 ### Fixed
 - Meal planner "+" wiped cell on blank submission: guard blank `food_item_id` in controller (returns 422, no DOM change), added `required` on select, wrapped create in transaction so no orphaned MealPlan on failure.
