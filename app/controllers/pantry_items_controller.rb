@@ -17,7 +17,7 @@ class PantryItemsController < ApplicationController
   end
 
   def set_servings
-    amount = [params[:amount].to_i, 0].max
+    amount = [params[:amount].to_f, 0].max
     @pantry_item.set_servings!(amount)
     respond_with_turbo
   end

@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.9] - 2026-06-08
+### Fixed
+- Pantry set form now accepts decimals: `to_i` → `to_f` in `set_servings`, input step set to `0.1`.
+
 ## [1.30.8] - 2026-06-08
 ### Fixed
 - `servings_per_unit` now accepts decimals: removed `only_integer` validation, changed column to `decimal(8,2)`, updated form step to `0.1`.

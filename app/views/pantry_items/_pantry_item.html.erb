@@ -11,7 +11,7 @@
   <div class="pantry-item-min">min: <%= pantry_item.min_servings %></div>
   <div class="pantry-set-form-row">
     <%= form_with url: set_servings_pantry_item_path(pantry_item), method: :patch, class: "pantry-set-form" do |f| %>
-      <%= f.number_field :amount, value: pantry_item.servings_on_hand, min: 0, max: 9999, class: "pantry-bulk-input" %>
+      <%= f.number_field :amount, value: pantry_item.servings_on_hand, min: 0, max: 9999, step: 0.1, class: "pantry-bulk-input" %>
       <%= f.submit "Set", class: "pantry-bulk-btn" %>
     <% end %>
     <% if pantry_item.food_item.unit_servings.present? %>
