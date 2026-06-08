@@ -23,8 +23,8 @@
       <%= form_with url: meal_plan_items_path, class: "meal-planner-add-form" do |f| %>
         <%= f.hidden_field :planned_on, value: date %>
         <%= f.hidden_field :meal_slot,  value: slot %>
-        <%= f.grouped_select :food_item_id,
-              food_items_grouped,
+        <%= f.select :food_item_id,
+              grouped_options_for_select(food_items_grouped),
               { prompt: "Add item..." },
               class: "meal-planner-select meal-planner-select-sm" %>
         <%= f.submit "+", class: "meal-planner-submit meal-planner-submit-sm" %>
@@ -52,8 +52,8 @@
       <%= form_with url: meal_plan_items_path, class: "meal-planner-add-form" do |f| %>
         <%= f.hidden_field :planned_on, value: date %>
         <%= f.hidden_field :meal_slot,  value: slot %>
-        <%= f.grouped_select :food_item_id,
-              food_items_grouped,
+        <%= f.select :food_item_id,
+              grouped_options_for_select(food_items_grouped),
               { prompt: "Add item..." },
               class: "meal-planner-select meal-planner-select-sm" %>
         <%= f.submit "+", class: "meal-planner-submit meal-planner-submit-sm" %>

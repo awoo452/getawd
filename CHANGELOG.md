@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.16] - 2026-06-07
+### Fixed
+- `_meal_cell.html.erb`: replaced non-existent `f.grouped_select` with `f.select` + `grouped_options_for_select` — was crashing all meal planner cells in production.
+
 ## [1.30.15] - 2026-06-08
 ### Added
 - Meal planner cells now support individual food items alongside recipes. Add sides independently via grouped dropdown in every cell.
