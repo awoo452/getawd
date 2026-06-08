@@ -30,6 +30,7 @@ class FoodItem < ApplicationRecord
   }.freeze
 
   has_one  :pantry_item, dependent: :destroy
+  accepts_nested_attributes_for :pantry_item
 
   after_create :create_pantry_item
   has_many :recipe_ingredients, dependent: :destroy

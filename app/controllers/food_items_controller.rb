@@ -21,6 +21,7 @@ class FoodItemsController < ApplicationController
   end
 
   def edit
+    @food_item.build_pantry_item if @food_item.pantry_item.nil?
   end
 
   def update
@@ -44,6 +45,6 @@ class FoodItemsController < ApplicationController
   end
 
   def food_item_params
-    params.require(:food_item).permit(:name, :food_type, :location, :unit, :active, :position, :serving_size, :servings_per_unit, :unit_servings)
+    params.require(:food_item).permit(:name, :food_type, :location, :unit, :active, :position, :serving_size, :servings_per_unit, :unit_servings, pantry_item_attributes: [:id, :min_servings])
   end
 end

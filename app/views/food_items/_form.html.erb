@@ -64,6 +64,13 @@
     </div>
   </div>
 
+  <%= f.fields_for :pantry_item do |pf| %>
+    <div class="recipe-form-row">
+      <%= pf.label :min_servings, "Min Servings" %>
+      <%= pf.number_field :min_servings, min: 0, step: 1, class: "form-input", placeholder: "e.g. 2" %>
+    </div>
+  <% end %>
+
   <div class="recipe-form-actions">
     <%= f.submit @food_item.persisted? ? "Save Changes" : "Add Food Item", class: "kitchen-btn kitchen-btn-primary" %>
     <%= link_to "Cancel", food_items_path, class: "kitchen-btn" %>
