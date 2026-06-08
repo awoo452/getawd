@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.6] - 2026-06-08
+### Fixed
+- Removed `only_integer: true` validation on `servings_on_hand` — was blocking decimal values like 3.5 and causing 422 on `add_unit`.
+
 ## [1.30.5] - 2026-06-08
 ### Fixed
 - `add_unit!` now adds `unit_servings` directly to `servings_on_hand` (was incorrectly multiplying by `servings_per_unit`). Clicking "+ 1 can" on canned chicken with `unit_servings = 3.5` now adds exactly 3.5 servings.

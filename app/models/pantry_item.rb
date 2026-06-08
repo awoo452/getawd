@@ -8,7 +8,7 @@ class PantryItem < ApplicationRecord
     joins(:food_item).order("food_items.food_type, food_items.position, food_items.name")
   }
 
-  validates :servings_on_hand, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :servings_on_hand, numericality: { greater_than_or_equal_to: 0 }
   validates :min_servings,     numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def low? = servings_on_hand <= min_servings && !out?
