@@ -355,12 +355,27 @@
   }
 }
 
-.pantry-set-form {
+.pantry-set-form-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: $spacing-2xs;
+  gap: $spacing-xs;
   margin-top: $spacing-2xs;
+  flex-wrap: wrap;
+}
+
+.pantry-set-form {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2xs;
+}
+
+.pantry-add-unit-btn {
+  background: $primary-color;
+  color: $text-on-primary;
+  border-color: $primary-color;
+
+  &:hover { background: darken($primary-color, 8%); }
 }
 
 .pantry-bulk-input {

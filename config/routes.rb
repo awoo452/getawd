@@ -77,6 +77,7 @@ Rails.application.routes.draw do
   resources :pantry_items, only: [:index, :update] do
     member do
       patch :set_servings
+      patch :add_unit
     end
   end
 

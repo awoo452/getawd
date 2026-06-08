@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.4] - 2026-06-08
+### Added
+- `unit_servings` (decimal) field on `FoodItem` — how many servings are in one purchased unit (e.g. 3.5 servings per can). Allows values like 3.5.
+- `+ 1 can` (or bag/pack/etc.) button on pantry card — appears when `unit_servings` is set, adds `unit_servings × servings_per_unit` raw units to `servings_on_hand` in one click.
+- `add_unit` action on `PantryItemsController`, Turbo Stream response.
+- "Servings per Unit" field added to food item create/edit form with decimal step.
+
 ## [1.30.3] - 2026-06-08
 ### Fixed
 - Food item form label corrected from "Servings per Unit" to "Units per Serving" — the field is the divisor (e.g. 7 oz per serving), not a multiplier.
