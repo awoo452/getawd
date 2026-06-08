@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.21] - 2026-06-07
+### Fixed
+- Recipe edit form: "Remove" label had no `for` attribute so clicking it never toggled the `_destroy` checkbox. Changed to `ri_fields.label :_destroy` so it's properly wired.
+
 ## [1.30.20] - 2026-06-07
 ### Fixed
 - Recipe show page: ingredient stock check was using `quantity_on_hand` (packs) instead of `derived_servings` — now shows correct "on hand" count and "need X more" in servings.
