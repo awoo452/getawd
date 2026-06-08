@@ -1,9 +1,9 @@
 class PantryItem < ApplicationRecord
   belongs_to :food_item
 
-  scope :low_stock,   -> { where("servings_on_hand <= min_servings AND servings_on_hand > 0") }
+  scope :low_stock,    -> { joins(:food_item).where("pantry_items.servings_on_hand / NULLIF(food_items.servings_per_unit, 0) <= pantry_items.min_servings AND pantry_items.servings_on_hand > 0") }
   scope :out_of_stock, -> { where(servings_on_hand: 0) }
-  scope :in_stock,    -> { where("servings_on_hand > min_servings") }
+  scope :in_stock,     -> { joins(:food_item).where("pantry_items.servings_on_hand / NULLIF(food_items.servings_per_unit, 0) > pantry_items.min_servings") }
   scope :ordered_by_food, -> {
     joins(:food_item).order("food_items.food_type, food_items.position, food_items.name")
   }
@@ -11,7 +11,7 @@ class PantryItem < ApplicationRecord
   validates :servings_on_hand, numericality: { greater_than_or_equal_to: 0 }
   validates :min_servings,     numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  def low? = servings_on_hand <= min_servings && !out?
+  def low? = derived_servings <= min_servings && !out?
   def out? = servings_on_hand.zero?
 
   def derived_servings
