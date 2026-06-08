@@ -28,7 +28,7 @@
     <ul class="recipe-ingredients-list">
       <% @recipe.recipe_ingredients.each do |ri| %>
         <% pantry = ri.food_item.pantry_item %>
-        <% have = pantry&.quantity_on_hand.to_i %>
+        <% have = pantry&.derived_servings.to_f || 0 %>
         <% enough = have >= ri.quantity %>
         <li class="recipe-ingredient <%= enough ? 'ingredient-ok' : 'ingredient-missing' %>">
           <span class="ingredient-qty"><%= ri.quantity %> <%= ri.food_item.unit %></span>
@@ -36,7 +36,7 @@
           <span class="ingredient-stock">
             (<%= have %> on hand)
             <% unless enough %>
-              <strong class="ingredient-need">need <%= ri.quantity - have %> more</strong>
+              <strong class="ingredient-need">need <%= (ri.quantity - have).ceil %> more</strong>
             <% end %>
           </span>
         </li>
