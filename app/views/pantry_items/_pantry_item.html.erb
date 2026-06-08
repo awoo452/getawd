@@ -5,17 +5,24 @@
   <div class="pantry-item-qty">
     <%= button_to "−", decrement_pantry_item_path(pantry_item),
           method: :patch, class: "qty-btn qty-btn-minus",
-          disabled: pantry_item.quantity_on_hand.zero? %>
+          disabled: pantry_item.servings_on_hand.zero? %>
     <span class="qty-value pantry-badge pantry-<%= pantry_item.stock_status %>">
-      <%= pantry_item.quantity_on_hand %> <%= pantry_item.food_item.unit %>
+      <%= pantry_item.servings_on_hand %>
+      <% if pantry_item.food_item.serving_size.present? %>
+        <span class="qty-unit"><%= pantry_item.food_item.serving_size %></span>
+      <% end %>
     </span>
     <%= button_to "+", increment_pantry_item_path(pantry_item),
           method: :patch, class: "qty-btn qty-btn-plus" %>
   </div>
-  <div class="pantry-item-min">min: <%= pantry_item.min_quantity %></div>
+  <div class="pantry-item-min">min: <%= pantry_item.min_servings %></div>
   <div class="pantry-item-bulk">
+    <%= form_with url: set_servings_pantry_item_path(pantry_item), method: :patch, class: "pantry-bulk-form" do |f| %>
+      <%= f.number_field :amount, value: pantry_item.servings_on_hand, min: 0, max: 9999, class: "pantry-bulk-input" %>
+      <%= f.submit "Set", class: "pantry-bulk-btn" %>
+    <% end %>
     <%= form_with url: bulk_increment_pantry_item_path(pantry_item), method: :patch, class: "pantry-bulk-form" do |f| %>
-      <%= f.number_field :amount, value: 1, min: 1, max: 999, class: "pantry-bulk-input" %>
+      <%= f.number_field :amount, value: pantry_item.food_item.servings_per_unit, min: 1, max: 9999, class: "pantry-bulk-input" %>
       <%= f.submit "Add", class: "pantry-bulk-btn" %>
     <% end %>
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_07_000002) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_08_000001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -136,6 +136,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_07_000002) do
     t.string "location", null: false
     t.string "name", null: false
     t.integer "position", default: 0, null: false
+    t.string "serving_size"
+    t.integer "servings_per_unit", default: 1, null: false
     t.string "unit", default: "each", null: false
     t.datetime "updated_at", null: false
     t.index ["active", "position"], name: "index_food_items_on_active_and_position"
@@ -225,7 +227,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_07_000002) do
     t.bigint "food_item_id", null: false
     t.date "last_restocked_at"
     t.integer "min_quantity", default: 1, null: false
+    t.integer "min_servings", default: 1, null: false
     t.integer "quantity_on_hand", default: 0, null: false
+    t.integer "servings_on_hand", default: 0, null: false
     t.datetime "updated_at", null: false
     t.index ["food_item_id"], name: "index_pantry_items_on_food_item_id", unique: true
   end

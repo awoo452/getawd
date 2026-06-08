@@ -79,6 +79,7 @@ Rails.application.routes.draw do
       patch :increment
       patch :decrement
       patch :bulk_increment
+      patch :set_servings
     end
   end
 

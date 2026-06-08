@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.0] - 2026-06-08
+### Added
+- Serving-based pantry tracking. `FoodItem` gains `servings_per_unit` (how many servings in one purchased unit, e.g. 12 for a dozen eggs) and `serving_size` (display label, e.g. "egg", "oz", "slice"). `PantryItem` gains `servings_on_hand` and `min_servings` — ok/low/out status is now based on servings, not raw unit count.
+- Existing quantity data migrated 1:1 to servings (migration 20260608000001). Run `rails db:migrate` to apply.
+- Pantry card: **Set** form (enter exact count for inventory-taking) and **Add** form (adds N, defaulting to one unit's worth). +/− adjust by one unit (increment) or one serving (decrement).
+- `set_servings` action on `PantryItemsController`, Turbo Stream response.
+- `serving_size` and `servings_per_unit` fields on the food item create/edit form.
+
 ## [1.29.7] - 2026-06-07
 ### Added
 - Bulk add to pantry: each pantry item card now has a number input + "Add" button that calls `bulk_increment` — type 40 and click Add instead of clicking + 40 times.

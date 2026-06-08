@@ -1,18 +1,18 @@
 class PantryItem < ApplicationRecord
   belongs_to :food_item
 
-  scope :low_stock,   -> { where("quantity_on_hand <= min_quantity") }
-  scope :out_of_stock, -> { where(quantity_on_hand: 0) }
-  scope :in_stock,    -> { where("quantity_on_hand > min_quantity") }
+  scope :low_stock,   -> { where("servings_on_hand <= min_servings AND servings_on_hand > 0") }
+  scope :out_of_stock, -> { where(servings_on_hand: 0) }
+  scope :in_stock,    -> { where("servings_on_hand > min_servings") }
   scope :ordered_by_food, -> {
     joins(:food_item).order("food_items.food_type, food_items.position, food_items.name")
   }
 
-  validates :quantity_on_hand, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :min_quantity,     numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :servings_on_hand, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :min_servings,     numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  def low? = quantity_on_hand <= min_quantity
-  def out? = quantity_on_hand.zero?
+  def low? = servings_on_hand <= min_servings && !out?
+  def out? = servings_on_hand.zero?
 
   def stock_status
     return "out" if out?
@@ -20,11 +20,16 @@ class PantryItem < ApplicationRecord
     "ok"
   end
 
-  def increment!(by = 1)
-    update!(quantity_on_hand: quantity_on_hand + by, last_restocked_at: Date.current)
+  def increment!(by = nil)
+    by ||= food_item.servings_per_unit
+    update!(servings_on_hand: servings_on_hand + by, last_restocked_at: Date.current)
   end
 
   def decrement!(by = 1)
-    update!(quantity_on_hand: [quantity_on_hand - by, 0].max)
+    update!(servings_on_hand: [servings_on_hand - by, 0].max)
+  end
+
+  def set_servings!(amount)
+    update!(servings_on_hand: [amount, 0].max, last_restocked_at: Date.current)
   end
 end

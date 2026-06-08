@@ -366,16 +366,25 @@
 .qty-value {
   min-width: 60px;
   text-align: center;
+
+  .qty-unit {
+    font-size: $font-xs;
+    font-weight: 400;
+    margin-left: 2px;
+  }
 }
 
 .pantry-item-bulk {
   margin-top: $spacing-2xs;
+  display: flex;
+  gap: $spacing-xs;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .pantry-bulk-form {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: $spacing-2xs;
 }
 

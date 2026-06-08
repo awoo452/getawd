@@ -1,5 +1,5 @@
 class PantryItemsController < ApplicationController
-  before_action :set_pantry_item, only: [:update, :increment, :decrement, :bulk_increment]
+  before_action :set_pantry_item, only: [:update, :increment, :decrement, :bulk_increment, :set_servings]
 
   def index
     @pantry_by_type = FoodItem.active
@@ -32,6 +32,12 @@ class PantryItemsController < ApplicationController
     respond_with_item
   end
 
+  def set_servings
+    amount = [params[:amount].to_i, 0].max
+    @pantry_item.set_servings!(amount)
+    respond_with_item
+  end
+
   private
 
   def set_pantry_item
@@ -39,7 +45,7 @@ class PantryItemsController < ApplicationController
   end
 
   def pantry_item_params
-    params.require(:pantry_item).permit(:quantity_on_hand, :min_quantity)
+    params.require(:pantry_item).permit(:servings_on_hand, :min_servings)
   end
 
   def respond_with_item

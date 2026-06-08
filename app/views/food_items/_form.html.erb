@@ -39,6 +39,17 @@
 
     <div class="recipe-form-row recipe-form-row-inline">
       <div>
+        <%= f.label :servings_per_unit, "Servings per Unit" %>
+        <%= f.number_field :servings_per_unit, min: 1, step: 1, class: "form-input", placeholder: "e.g. 12 for a dozen eggs" %>
+      </div>
+      <div>
+        <%= f.label :serving_size, "Serving Size Label" %>
+        <%= f.text_field :serving_size, class: "form-input", placeholder: "e.g. egg, oz, slice" %>
+      </div>
+    </div>
+
+    <div class="recipe-form-row recipe-form-row-inline">
+      <div>
         <%= f.label :position, "Sort Order" %>
         <%= f.number_field :position, min: 0, step: 1, class: "form-input", placeholder: "0 = first" %>
       </div>
