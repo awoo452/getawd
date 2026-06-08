@@ -727,6 +727,20 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+
+  .meal-planner-form,
+  .meal-planner-add-row {
+    opacity: 0.35;
+    transition: opacity 0.12s ease;
+  }
+
+  &:hover,
+  &:focus-within {
+    .meal-planner-form,
+    .meal-planner-add-row {
+      opacity: 1;
+    }
+  }
 }
 
 .meal-plan-recipe-row {
@@ -806,13 +820,15 @@
 
 .meal-planner-form {
   display: flex;
-  flex-direction: column;
-  gap: $spacing-2xs;
+  flex-direction: row;
+  gap: 2px;
   width: 100%;
+  align-items: center;
 }
 
 .meal-planner-select {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   font-size: $font-xs;
   padding: 2px $spacing-2xs;
   border: 1px solid $border-color;
@@ -822,14 +838,15 @@
 }
 
 .meal-planner-submit {
-  width: 100%;
+  flex: 0 0 auto;
   font-size: $font-xs;
-  padding: 2px;
+  padding: 2px 6px;
   background: $primary-color;
   color: $text-on-primary;
   border: none;
   border-radius: $radius-sm;
   cursor: pointer;
+  white-space: nowrap;
   transition: background-color $transition-fast;
 
   &:hover { background: darken($primary-color, 8%); }

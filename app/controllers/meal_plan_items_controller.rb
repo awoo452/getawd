@@ -1,11 +1,17 @@
 class MealPlanItemsController < ApplicationController
   def create
-    meal_plan = MealPlan.find_or_create_by!(
-      planned_on: Date.parse(params[:planned_on].to_s),
-      meal_slot:  params[:meal_slot]
-    )
-    meal_plan.meal_plan_items.create!(food_item_id: params[:food_item_id])
-    respond_with_cell(meal_plan.reload)
+    return head :unprocessable_entity if params[:food_item_id].blank?
+
+    ActiveRecord::Base.transaction do
+      meal_plan = MealPlan.find_or_create_by!(
+        planned_on: Date.parse(params[:planned_on].to_s),
+        meal_slot:  params[:meal_slot]
+      )
+      meal_plan.meal_plan_items.create!(food_item_id: params[:food_item_id])
+      respond_with_cell(meal_plan.reload)
+    end
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound
+    head :unprocessable_entity
   end
 
   def destroy

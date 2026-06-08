@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.17] - 2026-06-07
+### Fixed
+- Meal planner "+" wiped cell on blank submission: guard blank `food_item_id` in controller (returns 422, no DOM change), added `required` on select, wrapped create in transaction so no orphaned MealPlan on failure.
+- Meal planner CSS: `.meal-planner-form` was `flex-direction: column` with `width: 100%` submit — every empty cell showed a giant full-width blue button. Changed to row layout, auto-width submit, inline select+button.
+- Empty cells now dim at 35% opacity until hovered/focused — reduces visual clutter across 21 empty cells.
+
 ## [1.30.16] - 2026-06-07
 ### Fixed
 - `_meal_cell.html.erb`: replaced non-existent `f.grouped_select` with `f.select` + `grouped_options_for_select` — was crashing all meal planner cells in production.
