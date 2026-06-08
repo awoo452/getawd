@@ -14,6 +14,12 @@ class PantryItem < ApplicationRecord
   def low? = servings_on_hand <= min_servings && !out?
   def out? = servings_on_hand.zero?
 
+  def derived_servings
+    spu = food_item.servings_per_unit
+    return servings_on_hand if spu <= 1
+    (servings_on_hand / spu).floor
+  end
+
   def stock_status
     return "out" if out?
     return "low" if low?

@@ -323,12 +323,12 @@
     margin-top: $spacing-2xs;
   }
 
-  .pantry-item-qty {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: $spacing-xs;
+  .pantry-item-raw {
+    font-size: $font-xs;
+    color: $text-muted;
+    margin-top: 2px;
   }
+
 }
 
 .pantry-badge {
@@ -343,25 +343,6 @@
   &.pantry-out { background: $legend-red; color: $danger-color; }
 }
 
-.qty-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  background: $surface-muted;
-  border: 1px solid $border-color;
-  border-radius: $radius-sm;
-  cursor: pointer;
-  font-size: $font-xl;
-  font-weight: 700;
-  line-height: 1;
-  padding: 0;
-  transition: background-color $transition-fast;
-
-  &:hover:not(:disabled) { background: $surface-muted-strong; }
-  &:disabled { opacity: 0.4; cursor: not-allowed; }
-}
 
 .qty-value {
   min-width: 60px;
@@ -374,18 +355,12 @@
   }
 }
 
-.pantry-item-bulk {
-  margin-top: $spacing-2xs;
-  display: flex;
-  gap: $spacing-xs;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.pantry-bulk-form {
+.pantry-set-form {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: $spacing-2xs;
+  margin-top: $spacing-2xs;
 }
 
 .pantry-bulk-input {

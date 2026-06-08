@@ -1,5 +1,5 @@
 class PantryItemsController < ApplicationController
-  before_action :set_pantry_item, only: [:update, :increment, :decrement, :bulk_increment, :set_servings]
+  before_action :set_pantry_item, only: [:update, :set_servings]
 
   def index
     @pantry_by_type = FoodItem.active
@@ -16,39 +16,9 @@ class PantryItemsController < ApplicationController
     end
   end
 
-  def increment
-    @pantry_item.increment!
-    respond_with_item
-  end
-
-  def decrement
-    @pantry_item.decrement!
-    respond_with_item
-  end
-
-  def bulk_increment
-    amount = [params[:amount].to_i, 1].max
-    @pantry_item.increment!(amount)
-    respond_with_item
-  end
-
   def set_servings
     amount = [params[:amount].to_i, 0].max
     @pantry_item.set_servings!(amount)
-    respond_with_item
-  end
-
-  private
-
-  def set_pantry_item
-    @pantry_item = PantryItem.find(params[:id])
-  end
-
-  def pantry_item_params
-    params.require(:pantry_item).permit(:servings_on_hand, :min_servings)
-  end
-
-  def respond_with_item
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
@@ -59,5 +29,15 @@ class PantryItemsController < ApplicationController
       end
       format.html { redirect_to pantry_items_path }
     end
+  end
+
+  private
+
+  def set_pantry_item
+    @pantry_item = PantryItem.find(params[:id])
+  end
+
+  def pantry_item_params
+    params.require(:pantry_item).permit(:servings_on_hand, :min_servings)
   end
 end

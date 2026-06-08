@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.1] - 2026-06-08
+### Changed
+- Pantry item card simplified to a single Set form — number input pre-filled with current value, submit to update. Removed +/−, Add, and bulk increment entirely.
+- Pantry card now shows derived servings (`servings_on_hand / servings_per_unit`) as the primary number. Raw amount shown in parentheses below when a serving size label is set and servings_per_unit > 1. Steak example: "4 srv (28 oz)".
+
 ## [1.30.0] - 2026-06-08
 ### Added
 - Serving-based pantry tracking. `FoodItem` gains `servings_per_unit` (how many servings in one purchased unit, e.g. 12 for a dozen eggs) and `serving_size` (display label, e.g. "egg", "oz", "slice"). `PantryItem` gains `servings_on_hand` and `min_servings` — ok/low/out status is now based on servings, not raw unit count.
