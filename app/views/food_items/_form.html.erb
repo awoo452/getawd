@@ -39,8 +39,8 @@
 
     <div class="recipe-form-row recipe-form-row-inline">
       <div>
-        <%= f.label :servings_per_unit, "Servings per Unit" %>
-        <%= f.number_field :servings_per_unit, min: 1, step: 1, class: "form-input", placeholder: "e.g. 12 for a dozen eggs" %>
+        <%= f.label :servings_per_unit, "Units per Serving" %>
+        <%= f.number_field :servings_per_unit, min: 1, step: 1, class: "form-input", placeholder: "e.g. 7 for 7 oz per serving" %>
       </div>
       <div>
         <%= f.label :serving_size, "Serving Size Label" %>
