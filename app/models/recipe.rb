@@ -39,13 +39,13 @@ class Recipe < ApplicationRecord
 
   def can_cook?
     recipe_ingredients.includes(food_item: :pantry_item).all? do |ri|
-      ri.food_item.pantry_item&.quantity_on_hand.to_i >= ri.quantity
+      ri.food_item.pantry_item&.derived_servings.to_f >= ri.quantity
     end
   end
 
   def missing_ingredients
     recipe_ingredients.includes(food_item: :pantry_item).select do |ri|
-      ri.food_item.pantry_item&.quantity_on_hand.to_i < ri.quantity
+      ri.food_item.pantry_item&.derived_servings.to_f < ri.quantity
     end
   end
 end

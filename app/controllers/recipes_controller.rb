@@ -66,7 +66,12 @@ class RecipesController < ApplicationController
 
   def cook
     ingredients = @recipe.recipe_ingredients.includes(food_item: :pantry_item)
-    ingredients.each { |ri| ri.food_item.pantry_item&.decrement!(ri.quantity) }
+    ingredients.each do |ri|
+      pantry_item = ri.food_item.pantry_item
+      next unless pantry_item
+      raw_units = ri.quantity * ri.food_item.servings_per_unit
+      pantry_item.decrement!(raw_units)
+    end
     redirect_to @recipe, notice: "#{@recipe.name} cooked! Pantry updated."
   end
 

@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.19] - 2026-06-07
+### Fixed
+- Cooking a recipe now deducts `quantity * servings_per_unit` raw units from `servings_on_hand` instead of just `quantity` — was taking whole packs instead of individual servings.
+- `can_cook?` and `missing_ingredients` now compare `derived_servings` against `ri.quantity` instead of `quantity_on_hand`, so availability checks match the same units as the deduction.
+
 ## [1.30.18] - 2026-06-07
 ### Fixed
 - Meal planner rebuilt with flexbox: outer table `flex-direction: column`, rows `flex-direction: row`, day cells `flex: 1`. Fixed overflow: `box-sizing: border-box` + `max-width: 100%` on `.kitchen-wrapper` and `.meal-planner-table` so padding doesn't push the container past the viewport.
