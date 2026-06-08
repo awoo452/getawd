@@ -8,7 +8,12 @@
   <% if pantry_item.food_item.serving_size.present? && pantry_item.food_item.servings_per_unit > 1 %>
     <div class="pantry-item-raw">(<%= pantry_item.servings_on_hand %> <%= pantry_item.food_item.serving_size %>)</div>
   <% end %>
-  <div class="pantry-item-min">min: <%= pantry_item.min_servings %></div>
+  <div class="pantry-set-form-row">
+    <%= form_with model: pantry_item, url: pantry_item_path(pantry_item), method: :patch, class: "pantry-set-form" do |f| %>
+      <%= f.number_field :min_servings, value: pantry_item.min_servings, min: 0, max: 9999, step: 1, class: "pantry-bulk-input" %>
+      <%= f.submit "Set Min", class: "pantry-bulk-btn" %>
+    <% end %>
+  </div>
   <div class="pantry-set-form-row">
     <%= form_with url: set_servings_pantry_item_path(pantry_item), method: :patch, class: "pantry-set-form" do |f| %>
       <%= f.number_field :amount, value: pantry_item.servings_on_hand, min: 0, max: 9999, step: 0.1, class: "pantry-bulk-input" %>

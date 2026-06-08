@@ -10,7 +10,7 @@ class PantryItemsController < ApplicationController
 
   def update
     if @pantry_item.update(pantry_item_params)
-      redirect_to pantry_items_path, notice: "#{@pantry_item.food_item.name} updated."
+      respond_with_turbo
     else
       redirect_to pantry_items_path, alert: "Could not update."
     end

@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.11] - 2026-06-08
+### Added
+- Pantry card now has an inline "Set Min" form to update min_servings without console or DB access.
+- `update` action now responds with Turbo Stream instead of full-page redirect.
+
 ## [1.30.10] - 2026-06-08
 ### Fixed
 - Stock status now compares derived servings (not raw) against min_servings. Items with servings_per_unit > 1 were incorrectly showing green.
