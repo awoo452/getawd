@@ -73,6 +73,7 @@ Rails.application.routes.draw do
   resources :meal_plans, only: [:create, :update, :destroy] do
     member do
       patch :remove_recipe
+      patch :toggle_cooked
     end
   end
   resources :meal_plan_items, only: [:create, :destroy]

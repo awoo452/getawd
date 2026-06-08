@@ -1,5 +1,5 @@
 class MealPlansController < ApplicationController
-  before_action :set_meal_plan, only: [:update, :destroy, :remove_recipe]
+  before_action :set_meal_plan, only: [:update, :destroy, :remove_recipe, :toggle_cooked]
 
   def create
     @meal_plan = MealPlan.new(meal_plan_params)
@@ -23,6 +23,17 @@ class MealPlansController < ApplicationController
     slot = @meal_plan.meal_slot
     @meal_plan.destroy
     respond_with_empty_cell(date, slot)
+  end
+
+  def toggle_cooked
+    if @meal_plan.cooked?
+      restore_inventory(@meal_plan)
+      @meal_plan.update!(cooked: false)
+    else
+      deduct_inventory(@meal_plan)
+      @meal_plan.update!(cooked: true)
+    end
+    respond_with_cell(@meal_plan.reload)
   end
 
   def remove_recipe
@@ -84,6 +95,28 @@ class MealPlansController < ApplicationController
         )
       end
       format.html { redirect_to kitchen_path }
+    end
+  end
+
+  def deduct_inventory(meal_plan)
+    if meal_plan.recipe
+      meal_plan.recipe.recipe_ingredients.includes(food_item: :pantry_item).each do |ri|
+        ri.food_item.pantry_item&.decrement!(ri.quantity * ri.food_item.servings_per_unit)
+      end
+    end
+    meal_plan.meal_plan_items.includes(food_item: :pantry_item).each do |item|
+      item.food_item.pantry_item&.decrement!(item.quantity * item.food_item.servings_per_unit)
+    end
+  end
+
+  def restore_inventory(meal_plan)
+    if meal_plan.recipe
+      meal_plan.recipe.recipe_ingredients.includes(food_item: :pantry_item).each do |ri|
+        ri.food_item.pantry_item&.increment!(ri.quantity * ri.food_item.servings_per_unit)
+      end
+    end
+    meal_plan.meal_plan_items.includes(food_item: :pantry_item).each do |item|
+      item.food_item.pantry_item&.increment!(item.quantity * item.food_item.servings_per_unit)
     end
   end
 

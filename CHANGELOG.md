@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.22] - 2026-06-08
+### Added
+- Meal planner cells now show a "Cook" / "✓ Cooked" button that deducts (or restores) inventory for all recipe ingredients and added items via `MealPlansController#toggle_cooked`. Each ingredient deducts `quantity * servings_per_unit` raw units.
+- Quantity field added to the add-item form in each meal cell so users can add more than 1 serving at a time.
+- Quantity shown next to each MealPlanItem in the cell (e.g. "Eggs (2)").
+- Migrations: `cooked` boolean on `meal_plans`, `quantity` integer on `meal_plan_items`.
+### Removed
+- "I Cooked This" button from recipe show page — replaced by the meal planner cooked toggle.
+
 ## [1.30.21] - 2026-06-07
 ### Fixed
 - Recipe ingredient remove: added `RecipeIngredientsController#destroy`, wired Remove button as a `button_to` DELETE with Turbo Stream response that removes the row from the DOM. Removed dead `.recipe-ingredient-destroy-check` CSS.

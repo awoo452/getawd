@@ -872,6 +872,45 @@
   &:hover { background: darken($primary-color, 8%); }
 }
 
+.meal-plan-qty-input {
+  flex: 0 0 auto;
+  width: 32px;
+  padding: 2px 2px;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  font-size: $font-xs;
+  text-align: center;
+  background: $surface-color;
+  color: $text-color;
+  min-width: 0;
+}
+
+.meal-cell-cook-btn {
+  display: block;
+  width: 100%;
+  margin-top: 3px;
+  padding: 2px 4px;
+  font-size: $font-xs;
+  background: $surface-muted;
+  color: $text-muted;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: background-color $transition-fast;
+
+  &:hover { background: $legend-green; color: $success-color; border-color: $success-color; }
+
+  &.meal-cell-cook-btn-done {
+    background: $legend-green;
+    color: $success-color;
+    border-color: $success-color;
+    &:hover { background: darken($legend-green, 6%); }
+  }
+}
+
 @media (max-width: $bp-mobile) {
   .recipe-grid   { grid-template-columns: 1fr; }
   .pantry-grid   { grid-template-columns: repeat(2, 1fr); }

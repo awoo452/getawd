@@ -12,7 +12,7 @@
 
     <% meal_plan.meal_plan_items.each do |item| %>
       <div class="meal-plan-item-row">
-        <span class="meal-plan-item-name"><%= item.food_item.name %></span>
+        <span class="meal-plan-item-name"><%= item.food_item.name %> (<%= item.quantity %>)</span>
         <%= button_to "×", meal_plan_item_path(item),
               method: :delete,
               class: "meal-planner-remove" %>
@@ -27,16 +27,17 @@
               grouped_options_for_select(food_items_grouped),
               { prompt: "Add item..." },
               { class: "meal-planner-select meal-planner-select-sm", required: true } %>
+        <%= f.number_field :quantity, value: 1, min: 1, class: "meal-plan-qty-input" %>
         <%= f.submit "+", class: "meal-planner-submit meal-planner-submit-sm" %>
       <% end %>
     </div>
 
-    <% unless meal_plan.recipe %>
-      <%= button_to "Remove All", meal_plan_path(meal_plan),
-            method: :delete,
-            class: "meal-planner-remove-all",
-            form: { data: { turbo_confirm: "Remove all items?" } } %>
-    <% end %>
+    <%= button_to meal_plan.cooked? ? "↩ Uncook" : "Cook",
+          toggle_cooked_meal_plan_path(meal_plan),
+          method: :patch,
+          class: "meal-cell-cook-btn #{'meal-cell-cook-btn-done' if meal_plan.cooked?}",
+          form: { data: { turbo_stream: true } } %>
+
   <% else %>
     <%= form_with model: MealPlan.new, url: meal_plans_path, class: "meal-planner-form" do |f| %>
       <%= f.hidden_field :planned_on, value: date %>
@@ -56,6 +57,7 @@
               grouped_options_for_select(food_items_grouped),
               { prompt: "Add item..." },
               { class: "meal-planner-select meal-planner-select-sm", required: true } %>
+        <%= f.number_field :quantity, value: 1, min: 1, class: "meal-plan-qty-input" %>
         <%= f.submit "+", class: "meal-planner-submit meal-planner-submit-sm" %>
       <% end %>
     </div>

@@ -7,7 +7,7 @@ class MealPlanItemsController < ApplicationController
         planned_on: Date.parse(params[:planned_on].to_s),
         meal_slot:  params[:meal_slot]
       )
-      meal_plan.meal_plan_items.create!(food_item_id: params[:food_item_id])
+      meal_plan.meal_plan_items.create!(food_item_id: params[:food_item_id], quantity: [params[:quantity].to_i, 1].max)
       respond_with_cell(meal_plan.reload)
     end
   rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound
