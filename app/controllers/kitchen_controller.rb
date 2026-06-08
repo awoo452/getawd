@@ -12,12 +12,16 @@ class KitchenController < ApplicationController
     @week_dates  = (0..6).map { |i| @week_start + i.days }
     week_end     = @week_start + 6.days
 
-    meal_plans = MealPlan.includes(:recipe).where(planned_on: @week_start..week_end)
+    meal_plans = MealPlan.includes(:recipe, meal_plan_items: :food_item).where(planned_on: @week_start..week_end)
     @meal_plans_by_date_slot = meal_plans.index_by { |mp| [mp.planned_on, mp.meal_slot] }
 
     @recipes_for_slot = MealPlan::SLOTS.index_with do |slot|
       Recipe.active.by_meal_type(slot).ordered
     end
+
+    @food_items_grouped = FoodItem.active.ordered
+                                  .group_by { |fi| fi.food_type.humanize }
+                                  .transform_values { |items| items.map { |fi| [fi.name, fi.id] } }
   end
 
   private

@@ -29,7 +29,7 @@ class FoodItem < ApplicationRecord
     "cupboard" => "Cupboard"
   }.freeze
 
-  has_one  :pantry_item, dependent: :destroy
+  has_one :pantry_item, dependent: :destroy
   accepts_nested_attributes_for :pantry_item
 
   after_create :create_pantry_item

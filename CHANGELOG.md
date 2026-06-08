@@ -3,6 +3,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.15] - 2026-06-08
+### Added
+- Meal planner cells now support individual food items alongside recipes. Add sides independently via grouped dropdown in every cell.
+- `meal_plan_items` table and model — each item links a meal plan to a food item.
+- `MealPlanItemsController` — create/destroy with Turbo Stream cell replacement.
+- `remove_recipe` action on meal plans — removes recipe from a slot without wiping added sides.
+- All meal planner actions (create, destroy, add item, remove item) now respond with Turbo Streams.
+- rubocop -a
+
+## [1.30.14] - 2026-06-08
+### Added
+- `recipes.sql` — 15 themed recipes (Mon–Fri, breakfast/lunch/dinner). Deactivates all existing recipes. Adds Blue Cheese Crumbles, Craisins, and Parmesan as new food items.
+- `grocery_list.md` — shopping list for the week.
+
 ## [1.30.13] - 2026-06-08
 ### Fixed
 - `derived_servings` now always divides by `servings_per_unit` — the `<= 1` shortcut was skipping division for decimals under 1, breaking display and `+1` unit math.

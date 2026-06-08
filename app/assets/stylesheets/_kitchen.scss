@@ -724,6 +724,65 @@
 
 .meal-planner-day-cell {
   min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.meal-plan-recipe-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2px;
+}
+
+.meal-plan-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+}
+
+.meal-plan-item-name {
+  font-size: $font-xs;
+  color: $text-muted;
+  line-height: 1.3;
+}
+
+.meal-planner-add-row {
+  margin-top: 2px;
+}
+
+.meal-planner-add-form {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+}
+
+.meal-planner-select-sm {
+  flex: 1;
+  font-size: $font-xs;
+}
+
+.meal-planner-submit-sm {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 2px $spacing-2xs;
+  font-size: $font-xs;
+}
+
+.meal-planner-remove-all {
+  margin-top: $spacing-2xs;
+  font-size: $font-xs;
+  background: none;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  color: $text-muted;
+  cursor: pointer;
+  padding: 1px $spacing-2xs;
+  width: 100%;
+
+  &:hover { border-color: $danger-color; color: $danger-color; }
 }
 
 .meal-planner-recipe-name {

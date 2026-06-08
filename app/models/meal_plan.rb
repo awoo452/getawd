@@ -7,8 +7,10 @@ class MealPlan < ApplicationRecord
     "dinner"    => "Dinner"
   }.freeze
 
-  belongs_to :recipe
+  belongs_to :recipe, optional: true
   belongs_to :task, optional: true
+  has_many :meal_plan_items, dependent: :destroy
+  has_many :food_items, through: :meal_plan_items
 
   enum :meal_slot, { breakfast: 0, lunch: 1, dinner: 2 }
 
@@ -46,7 +48,7 @@ class MealPlan < ApplicationRecord
   end
 
   def task_label
-    "#{meal_slot.capitalize} — #{recipe.name}"
+    "#{meal_slot.capitalize} — #{recipe&.name || 'Custom Meal'}"
   end
 
   def meal_goal
