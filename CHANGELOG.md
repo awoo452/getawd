@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.23] - 2026-06-08
+### Fixed
+- Recipe show ingredient list now uses `serving_size` label (e.g. "2 slices") instead of the container `unit` (e.g. "2 pack") — falls back to `unit` when `serving_size` is blank.
+
 ## [1.30.22] - 2026-06-08
 ### Added
 - Meal planner cells now show a "Cook" / "✓ Cooked" button that deducts (or restores) inventory for all recipe ingredients and added items via `MealPlansController#toggle_cooked`. Each ingredient deducts `quantity * servings_per_unit` raw units.
