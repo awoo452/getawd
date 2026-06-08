@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.24] - 2026-06-08
+### Fixed
+- Recipe edit save button broken: `button_to` for Remove inside `form_with` creates nested `<form>` tags, causing the browser to close the outer form early and orphan the Save button. Replaced with `link_to` + `data-turbo-method="delete"` — no nested form, same CSP-safe Turbo DELETE behavior.
+- Recipe show ingredient quantity now multiplies `ri.quantity * servings_per_unit` before displaying the serving_size label (e.g. "0.5 cup" instead of "1 cup" for a 0.5-cup avocado serving). Falls back to `quantity unit` when no serving_size label is set.
+
 ## [1.30.23] - 2026-06-08
 ### Fixed
 - Recipe show ingredient list now uses `serving_size` label (e.g. "2 slices") instead of the container `unit` (e.g. "2 pack") — falls back to `unit` when `serving_size` is blank.

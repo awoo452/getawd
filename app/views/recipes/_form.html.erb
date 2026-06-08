@@ -49,10 +49,9 @@
                 class: "recipe-ingredient-select" %>
           <%= ri_fields.number_field :quantity, min: 1, placeholder: "qty", class: "recipe-ingredient-qty" %>
           <% if ri.persisted? %>
-            <%= button_to "Remove", recipe_ingredient_path(ri),
-                  method: :delete,
+            <%= link_to "Remove", recipe_ingredient_path(ri),
                   class: "recipe-ingredient-remove-label",
-                  form: { data: { turbo_stream: true } } %>
+                  data: { turbo_method: :delete, turbo_stream: true } %>
           <% end %>
         </div>
       <% end %>
