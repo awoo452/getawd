@@ -9,7 +9,7 @@ class KitchenControllerTest < ActionDispatch::IntegrationTest
   test "index renders meal planner grid with day headers" do
     get kitchen_url
     assert_response :success
-    assert_select ".meal-planner-grid"
+    assert_select ".meal-planner-table"
     assert_select ".meal-planner-day-name"
   end
 

@@ -1,0 +1,11 @@
+eggs_in_breakfast:
+  recipe: breakfast_recipe
+  food_item: eggs
+  quantity: 3
+  position: 1
+
+bacon_in_breakfast:
+  recipe: breakfast_recipe
+  food_item: bacon
+  quantity: 2
+  position: 2

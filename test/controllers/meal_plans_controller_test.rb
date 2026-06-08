@@ -61,6 +61,25 @@ class MealPlansControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  # ── toggle_cooked ────────────────────────────────────────
+
+  test "toggle_cooked marks meal plan as cooked and deducts inventory" do
+    mp = meal_plans(:one)
+    patch toggle_cooked_meal_plan_url(mp)
+    assert mp.reload.cooked?
+    assert_equal 3.0,  food_items(:eggs).pantry_item.reload.servings_on_hand   # 6 - 3
+    assert_equal 8.0,  food_items(:bacon).pantry_item.reload.servings_on_hand  # 11 - 2 recipe - 1 item
+  end
+
+  test "toggle_cooked unmarks cooked and restores inventory" do
+    mp = meal_plans(:one)
+    patch toggle_cooked_meal_plan_url(mp)  # cook
+    patch toggle_cooked_meal_plan_url(mp)  # uncook
+    assert_not mp.reload.cooked?
+    assert_equal 6.0,  food_items(:eggs).pantry_item.reload.servings_on_hand
+    assert_equal 11.0, food_items(:bacon).pantry_item.reload.servings_on_hand
+  end
+
   # ── update ───────────────────────────────────────────────
 
   test "update changes the recipe and redirects to kitchen" do

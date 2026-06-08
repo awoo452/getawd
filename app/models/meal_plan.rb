@@ -22,6 +22,28 @@ class MealPlan < ApplicationRecord
   before_update :sync_task_name, if: :recipe_id_changed?
   before_destroy :remove_task
 
+  def deduct_inventory!
+    if recipe
+      recipe.recipe_ingredients.includes(food_item: :pantry_item).each do |ri|
+        ri.food_item.pantry_item&.decrement!(ri.quantity * ri.food_item.servings_per_unit)
+      end
+    end
+    meal_plan_items.includes(food_item: :pantry_item).each do |item|
+      item.food_item.pantry_item&.decrement!(item.quantity * item.food_item.servings_per_unit)
+    end
+  end
+
+  def restore_inventory!
+    if recipe
+      recipe.recipe_ingredients.includes(food_item: :pantry_item).each do |ri|
+        ri.food_item.pantry_item&.increment!(ri.quantity * ri.food_item.servings_per_unit)
+      end
+    end
+    meal_plan_items.includes(food_item: :pantry_item).each do |item|
+      item.food_item.pantry_item&.increment!(item.quantity * item.food_item.servings_per_unit)
+    end
+  end
+
   private
 
   def generate_task

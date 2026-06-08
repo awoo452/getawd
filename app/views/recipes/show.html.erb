@@ -27,11 +27,7 @@
         <% have = pantry&.derived_servings.to_f || 0 %>
         <% enough = have >= ri.quantity %>
         <li class="recipe-ingredient <%= enough ? 'ingredient-ok' : 'ingredient-missing' %>">
-          <% if ri.food_item.serving_size.present?
-               amt = ri.quantity * ri.food_item.servings_per_unit
-               amt_str = amt % 1 == 0 ? amt.to_i.to_s : amt.round(2).to_s.sub(/\.?0+$/, '')
-             end %>
-          <span class="ingredient-qty"><%= ri.food_item.serving_size.present? ? "#{amt_str} #{ri.food_item.serving_size}" : "#{ri.quantity} #{ri.food_item.unit}" %></span>
+          <span class="ingredient-qty"><%= ingredient_quantity_label(ri) %></span>
           <span class="ingredient-name"><%= ri.food_item.name %></span>
           <span class="ingredient-stock">
             (<%= have %> on hand)

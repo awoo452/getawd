@@ -3,6 +3,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.25] - 2026-06-08
+### Changed
+- Moved `deduct_inventory!` / `restore_inventory!` from `MealPlansController` private methods to public methods on `MealPlan` model where they belong.
+- Extracted `ingredient_quantity_label` view logic from inline ERB in recipe show into `RecipesHelper`.
+- Removed dead `cook` action and `POST /recipes/:id/cook` route — "I Cooked This" button was already removed from the show page.
+### Fixed
+- Removed orphaned `.meal-planner-cell` CSS class from meal cell div (no rule exists for it).
+- Removed unused `.meal-planner-remove-all` CSS rule (no template references it).
+- Test: updated `KitchenControllerTest` to assert `.meal-planner-table` instead of `.meal-planner-grid` (renamed when rebuilding from CSS Grid to Flexbox).
+### Tests
+- Added fixtures: `food_items`, `pantry_items`, `recipe_ingredients`, `meal_plan_items`.
+- Added `RecipeIngredientsControllerTest` (destroy HTML + Turbo Stream).
+- Added `MealPlanItemsControllerTest` (create with quantity, blank guard, auto-create plan, destroy cleanup).
+- Added `MealPlansControllerTest` toggle_cooked tests (cook deducts, uncook restores).
+- Added `MealPlanTest` inventory deduction/restoration tests.
+- Added `RecipeTest` (`can_cook?`, `missing_ingredients`).
+
 ## [1.30.24] - 2026-06-08
 ### Fixed
 - Recipe edit save button broken: `button_to` for Remove inside `form_with` creates nested `<form>` tags, causing the browser to close the outer form early and orphan the Save button. Replaced with `link_to` + `data-turbo-method="delete"` — no nested form, same CSP-safe Turbo DELETE behavior.

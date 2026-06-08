@@ -87,11 +87,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :recipes do
-    member do
-      post :cook
-    end
-  end
+  resources :recipes
   resources :recipe_ingredients, only: [:destroy]
 
   resources :shopping_lists, only: [:index, :show, :create, :destroy] do

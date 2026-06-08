@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :cook]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
     @meal_type_filter = params[:meal_type].presence
@@ -62,17 +62,6 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
     redirect_to recipes_path, notice: "Recipe deleted."
-  end
-
-  def cook
-    ingredients = @recipe.recipe_ingredients.includes(food_item: :pantry_item)
-    ingredients.each do |ri|
-      pantry_item = ri.food_item.pantry_item
-      next unless pantry_item
-      raw_units = ri.quantity * ri.food_item.servings_per_unit
-      pantry_item.decrement!(raw_units)
-    end
-    redirect_to @recipe, notice: "#{@recipe.name} cooked! Pantry updated."
   end
 
   private

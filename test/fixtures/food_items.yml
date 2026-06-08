@@ -1,0 +1,19 @@
+eggs:
+  name: Eggs
+  food_type: protein
+  location: fridge
+  unit: each
+  serving_size: egg
+  servings_per_unit: 1.0
+  position: 1
+  active: true
+
+bacon:
+  name: Bacon
+  food_type: protein
+  location: fridge
+  unit: pack
+  serving_size: slice
+  servings_per_unit: 1.0
+  position: 2
+  active: true

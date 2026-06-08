@@ -82,6 +82,31 @@ class MealPlanTest < ActiveSupport::TestCase
     end
   end
 
+  # ── Inventory deduction / restoration ───────────────────
+
+  test "deduct_inventory! reduces servings_on_hand for recipe ingredients and items" do
+    mp = meal_plans(:one)
+    mp.deduct_inventory!
+    assert_equal 3.0, food_items(:eggs).pantry_item.reload.servings_on_hand  # 6 - 3 (recipe)
+    assert_equal 8.0, food_items(:bacon).pantry_item.reload.servings_on_hand # 11 - 2 (recipe) - 1 (item)
+  end
+
+  test "restore_inventory! adds back servings_on_hand" do
+    mp = meal_plans(:one)
+    mp.deduct_inventory!
+    mp.restore_inventory!
+    assert_equal 6.0,  food_items(:eggs).pantry_item.reload.servings_on_hand
+    assert_equal 11.0, food_items(:bacon).pantry_item.reload.servings_on_hand
+  end
+
+  test "deduct_inventory! with no recipe only deducts items" do
+    mp = meal_plans(:one)
+    mp.update_column(:recipe_id, nil)
+    mp.deduct_inventory!
+    assert_equal 6.0,  food_items(:eggs).pantry_item.reload.servings_on_hand  # untouched
+    assert_equal 10.0, food_items(:bacon).pantry_item.reload.servings_on_hand # 11 - 1 (item only)
+  end
+
   # ── Task removal on destroy ──────────────────────────────
 
   test "destroying meal plan destroys its task" do

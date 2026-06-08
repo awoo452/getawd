@@ -801,19 +801,6 @@
   font-size: $font-xs;
 }
 
-.meal-planner-remove-all {
-  margin-top: $spacing-2xs;
-  font-size: $font-xs;
-  background: none;
-  border: 1px solid $border-color;
-  border-radius: $radius-sm;
-  color: $text-muted;
-  cursor: pointer;
-  padding: 1px $spacing-2xs;
-  width: 100%;
-
-  &:hover { border-color: $danger-color; color: $danger-color; }
-}
 
 .meal-planner-recipe-name {
   font-size: 0.85rem;
