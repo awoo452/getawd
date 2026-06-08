@@ -16,8 +16,8 @@ class PantryItem < ApplicationRecord
 
   def derived_servings
     spu = food_item.servings_per_unit
-    return servings_on_hand if spu <= 1
-    (servings_on_hand / spu).floor
+    raw = spu <= 1 ? servings_on_hand : servings_on_hand / spu
+    raw % 1 == 0 ? raw.to_i : raw.round(1)
   end
 
   def stock_status
@@ -40,7 +40,6 @@ class PantryItem < ApplicationRecord
   end
 
   def add_unit!
-    raw_to_add = (food_item.unit_servings * food_item.servings_per_unit).round
-    update!(servings_on_hand: servings_on_hand + raw_to_add, last_restocked_at: Date.current)
+    update!(servings_on_hand: servings_on_hand + food_item.unit_servings, last_restocked_at: Date.current)
   end
 end
