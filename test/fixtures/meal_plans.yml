@@ -1,9 +1,7 @@
 one:
   planned_on: 2026-06-01
   meal_slot: 0
-  recipe: breakfast_recipe
 
 two:
   planned_on: 2026-06-01
   meal_slot: 1
-  recipe: lunch_recipe

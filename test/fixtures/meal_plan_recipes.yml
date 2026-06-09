@@ -1,0 +1,9 @@
+one:
+  meal_plan: one
+  recipe: breakfast_recipe
+  quantity: 1
+
+two:
+  meal_plan: two
+  recipe: lunch_recipe
+  quantity: 1
