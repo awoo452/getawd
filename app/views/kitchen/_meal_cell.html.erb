@@ -3,7 +3,7 @@
     <% meal_plan.recipes.each do |recipe| %>
       <% mpr = meal_plan.meal_plan_recipes.find { |r| r.recipe_id == recipe.id } %>
       <div class="meal-plan-recipe-row">
-        <span class="meal-planner-recipe-name"><%= recipe.name %></span>
+        <span class="meal-planner-recipe-name"><%= recipe.name %><%= " ×#{mpr.quantity}" if mpr.quantity > 1 %></span>
         <%= button_to "×", meal_plan_recipe_path(mpr),
               method: :delete,
               class: "meal-planner-remove",

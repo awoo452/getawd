@@ -2,6 +2,8 @@ class MealPlanRecipe < ApplicationRecord
   belongs_to :meal_plan
   belongs_to :recipe
 
+  validates :quantity, numericality: { only_integer: true, greater_than: 0 }
+
   after_create  :sync_meal_plan_task
   after_destroy :sync_meal_plan_task
 

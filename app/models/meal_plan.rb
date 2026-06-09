@@ -26,9 +26,9 @@ class MealPlan < ApplicationRecord
   before_destroy :remove_task
 
   def deduct_inventory!
-    recipes.includes(recipe_ingredients: :food_item).each do |r|
-      r.recipe_ingredients.each do |ri|
-        ri.food_item.pantry_item&.decrement!(ri.quantity * ri.food_item.servings_per_unit)
+    meal_plan_recipes.includes(recipe: { recipe_ingredients: { food_item: :pantry_item } }).each do |mpr|
+      mpr.recipe.recipe_ingredients.each do |ri|
+        ri.food_item.pantry_item&.decrement!(mpr.quantity * ri.quantity * ri.food_item.servings_per_unit)
       end
     end
     meal_plan_items.includes(food_item: :pantry_item).each do |item|
@@ -37,9 +37,9 @@ class MealPlan < ApplicationRecord
   end
 
   def restore_inventory!
-    recipes.includes(recipe_ingredients: :food_item).each do |r|
-      r.recipe_ingredients.each do |ri|
-        ri.food_item.pantry_item&.increment!(ri.quantity * ri.food_item.servings_per_unit)
+    meal_plan_recipes.includes(recipe: { recipe_ingredients: { food_item: :pantry_item } }).each do |mpr|
+      mpr.recipe.recipe_ingredients.each do |ri|
+        ri.food_item.pantry_item&.increment!(mpr.quantity * ri.quantity * ri.food_item.servings_per_unit)
       end
     end
     meal_plan_items.includes(food_item: :pantry_item).each do |item|
@@ -77,13 +77,13 @@ class MealPlan < ApplicationRecord
 
   def sync_cooked_to_prepared_dish
     if cooked?
-      if recipes.any?
-        recipes.each do |r|
+      if meal_plan_recipes.any?
+        meal_plan_recipes.includes(:recipe).each do |mpr|
           PreparedDish.create!(
-            name:               r.name,
-            servings_remaining: r.servings,
+            name:               mpr.quantity > 1 ? "#{mpr.recipe.name} ×#{mpr.quantity}" : mpr.recipe.name,
+            servings_remaining: mpr.recipe.servings * mpr.quantity,
             cooked_on:          planned_on,
-            recipe_id:          r.id,
+            recipe_id:          mpr.recipe_id,
             meal_plan_id:       id
           )
         end

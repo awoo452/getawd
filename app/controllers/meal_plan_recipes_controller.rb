@@ -7,7 +7,9 @@ class MealPlanRecipesController < ApplicationController
         planned_on: Date.parse(params[:planned_on].to_s),
         meal_slot:  params[:meal_slot]
       )
-      meal_plan.meal_plan_recipes.find_or_create_by!(recipe_id: params[:recipe_id].to_i)
+      mpr = meal_plan.meal_plan_recipes.find_or_initialize_by(recipe_id: params[:recipe_id].to_i)
+      mpr.quantity = mpr.quantity.to_i + 1
+      mpr.save!
       respond_with_cell(meal_plan.reload)
     end
   rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound
