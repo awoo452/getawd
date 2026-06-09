@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.29] - 2026-06-08
+### Added
+- `GET /api/v1/pantry` — JSON API endpoint returning all active food items with pantry stock status and `servings_on_hand`. Protected by Bearer token (`GETAWD_API_TOKEN` env var).
+- `POST /api/v1/pantry/deduct` — accepts `food_item_ids` array, deducts one unit (`servings_per_unit` raw servings) per item from pantry. Silently skips items with no pantry record; floors at zero.
+
 ## [1.30.28] - 2026-06-08
 ### Changed
 - Marking a meal plan as cooked now completes the associated task (`status: completed`, `completion_date: planned_on`); uncooking reverts it to `not_started`.
