@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_08_000011) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_08_000013) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -219,16 +219,24 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_08_000011) do
     t.index ["meal_plan_id"], name: "index_meal_plan_items_on_meal_plan_id"
   end
 
+  create_table "meal_plan_recipes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "meal_plan_id", null: false
+    t.integer "quantity", default: 1, null: false
+    t.bigint "recipe_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meal_plan_id"], name: "index_meal_plan_recipes_on_meal_plan_id"
+    t.index ["recipe_id"], name: "index_meal_plan_recipes_on_recipe_id"
+  end
+
   create_table "meal_plans", force: :cascade do |t|
     t.boolean "cooked", default: false, null: false
     t.datetime "created_at", null: false
     t.integer "meal_slot", null: false
     t.date "planned_on", null: false
-    t.bigint "recipe_id"
     t.bigint "task_id"
     t.datetime "updated_at", null: false
     t.index ["planned_on", "meal_slot"], name: "index_meal_plans_on_planned_on_and_meal_slot", unique: true
-    t.index ["recipe_id"], name: "index_meal_plans_on_recipe_id"
     t.index ["task_id"], name: "index_meal_plans_on_task_id"
   end
 
@@ -473,7 +481,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_08_000011) do
   add_foreign_key "goals", "ideas"
   add_foreign_key "meal_plan_items", "food_items"
   add_foreign_key "meal_plan_items", "meal_plans"
-  add_foreign_key "meal_plans", "recipes"
+  add_foreign_key "meal_plan_recipes", "meal_plans"
+  add_foreign_key "meal_plan_recipes", "recipes"
   add_foreign_key "meal_plans", "tasks", on_delete: :nullify
   add_foreign_key "pantry_items", "food_items"
   add_foreign_key "recipe_ingredients", "food_items"

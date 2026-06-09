@@ -8,8 +8,7 @@ class MealPlanRecipesController < ApplicationController
         meal_slot:  params[:meal_slot]
       )
       mpr = meal_plan.meal_plan_recipes.find_or_initialize_by(recipe_id: params[:recipe_id].to_i)
-      mpr.quantity = mpr.quantity.to_i + 1
-      mpr.save!
+      mpr.new_record? ? mpr.save! : mpr.increment!(:quantity)
       respond_with_cell(meal_plan.reload)
     end
   rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound

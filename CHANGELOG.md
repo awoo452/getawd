@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.37] - 2026-06-09
+### Fixed
+- Adding a recipe for the first time was showing ×2 because the column default (1) was being incremented before save. New records now save at quantity 1; existing records increment.
+
 ## [1.30.36] - 2026-06-08
 ### Added
 - Recipe quantity on meal plan cells: adding the same recipe again increments a quantity counter (shown as ×2, ×3, etc.). Inventory deduction and PreparedDish servings are multiplied accordingly.
