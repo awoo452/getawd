@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.42] - 2026-06-09
+### Changed
+- Pantry item serving badge now shows the food item's `serving_size` label (e.g. "3 oz") instead of the generic "srv". Falls back to "srv" when no label is set.
+
 ## [1.30.41] - 2026-06-09
 ### Changed
 - Workout notes textarea default height increased from 56px to 224px (4×).

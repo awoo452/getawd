@@ -3,7 +3,7 @@
   <div class="pantry-item-name"><%= link_to pantry_item.food_item.name, edit_food_item_path(pantry_item.food_item) %></div>
   <div class="pantry-item-location"><%= pantry_item.food_item.location_label %></div>
   <span class="pantry-badge pantry-<%= pantry_item.stock_status %> pantry-servings-badge">
-    <%= pantry_item.derived_servings %> srv
+    <%= pantry_item.derived_servings %> <%= pantry_item.food_item.serving_size.presence || "srv" %>
   </span>
   <% if pantry_item.food_item.serving_size.present? && pantry_item.food_item.servings_per_unit > 1 %>
     <div class="pantry-item-raw">(<%= pantry_item.servings_on_hand %> <%= pantry_item.food_item.serving_size %>)</div>
