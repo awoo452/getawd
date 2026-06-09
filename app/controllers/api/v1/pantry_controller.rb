@@ -7,22 +7,22 @@ module Api
       end
 
       def deduct
-        ids = Array(params[:food_item_ids]).map(&:to_i).uniq
-        return render json: { error: "food_item_ids is required" }, status: :unprocessable_entity if ids.empty?
+        id_counts = Array(params[:food_item_ids]).map(&:to_i).tally
+        return render json: { error: "food_item_ids is required" }, status: :unprocessable_entity if id_counts.empty?
 
-        FoodItem.includes(:pantry_item).where(id: ids).each do |fi|
-          fi.pantry_item&.decrement!(fi.servings_per_unit)
+        FoodItem.includes(:pantry_item).where(id: id_counts.keys).each do |fi|
+          fi.pantry_item&.decrement!(id_counts[fi.id] * fi.servings_per_unit)
         end
 
         render json: { ok: true }
       end
 
       def restore
-        ids = Array(params[:food_item_ids]).map(&:to_i).uniq
-        return render json: { error: "food_item_ids is required" }, status: :unprocessable_entity if ids.empty?
+        id_counts = Array(params[:food_item_ids]).map(&:to_i).tally
+        return render json: { error: "food_item_ids is required" }, status: :unprocessable_entity if id_counts.empty?
 
-        FoodItem.includes(:pantry_item).where(id: ids).each do |fi|
-          fi.pantry_item&.increment!(fi.servings_per_unit)
+        FoodItem.includes(:pantry_item).where(id: id_counts.keys).each do |fi|
+          fi.pantry_item&.increment!(id_counts[fi.id] * fi.servings_per_unit)
         end
 
         render json: { ok: true }

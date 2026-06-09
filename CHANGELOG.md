@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.33] - 2026-06-08
+### Fixed
+- `POST /api/v1/pantry/deduct` and `/restore` were calling `.uniq` on incoming IDs and using `where(id: ids)` which deduplicated naturally, so adding the same food item twice only counted as one deduction. Now uses `.tally` to count occurrences and multiplies the deduction/restore amount by the count.
+
 ## [1.30.32] - 2026-06-08
 ### Fixed
 - `GET /api/v1/recipes` was raising a 500 because the controller called `r.meal_type` instead of `r.meal_type_suggestion`. Corrected the field name.
