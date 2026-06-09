@@ -31,11 +31,8 @@ class KitchenControllerTest < ActionDispatch::IntegrationTest
 
   test "planned meal recipe name appears in the week view" do
     week_sunday = Date.new(2026, 6, 7)
-    MealPlan.create!(
-      planned_on: week_sunday,
-      meal_slot:  :breakfast,
-      recipe:     recipes(:breakfast_recipe)
-    )
+    mp = MealPlan.create!(planned_on: week_sunday, meal_slot: :breakfast)
+    mp.meal_plan_recipes.create!(recipe: recipes(:breakfast_recipe))
     get kitchen_week_url("2026-06-07")
     assert_match "Scrambled Eggs", response.body
   end

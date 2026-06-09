@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.39] - 2026-06-09
+### Fixed
+- Updated all tests that built `MealPlan` with the old `recipe:` attribute to use `meal_plan_recipes.create!` instead. Fixed `meal_plan_items` test that called `.recipe` directly on the model.
+
 ## [1.30.38] - 2026-06-09
 ### Fixed
 - Updated `meal_plans` fixture to remove the dropped `recipe` column; added `meal_plan_recipes` fixture to wire the join table for tests.

@@ -59,7 +59,7 @@ class MealPlanItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "destroy keeps the meal plan when it still has a recipe" do
     item = meal_plan_items(:one)
-    assert item.meal_plan.recipe.present?
+    assert item.meal_plan.recipes.any?
     assert_no_difference "MealPlan.count" do
       delete meal_plan_item_url(item)
     end
