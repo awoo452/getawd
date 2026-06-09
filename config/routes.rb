@@ -126,8 +126,16 @@ Rails.application.routes.draw do
       resources :pantry, only: [:index] do
         collection do
           post :deduct
+          post :restore
         end
       end
+      resources :dishes, only: [] do
+        collection do
+          post :consume
+          post :restore
+        end
+      end
+      resources :recipes, only: [:index]
     end
   end
 

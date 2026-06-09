@@ -10,9 +10,19 @@ module Api
         ids = Array(params[:food_item_ids]).map(&:to_i).uniq
         return render json: { error: "food_item_ids is required" }, status: :unprocessable_entity if ids.empty?
 
-        items = FoodItem.includes(:pantry_item).where(id: ids)
-        items.each do |fi|
+        FoodItem.includes(:pantry_item).where(id: ids).each do |fi|
           fi.pantry_item&.decrement!(fi.servings_per_unit)
+        end
+
+        render json: { ok: true }
+      end
+
+      def restore
+        ids = Array(params[:food_item_ids]).map(&:to_i).uniq
+        return render json: { error: "food_item_ids is required" }, status: :unprocessable_entity if ids.empty?
+
+        FoodItem.includes(:pantry_item).where(id: ids).each do |fi|
+          fi.pantry_item&.increment!(fi.servings_per_unit)
         end
 
         render json: { ok: true }

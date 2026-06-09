@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.31] - 2026-06-08
+### Added
+- `POST /api/v1/pantry/restore` — re-increments pantry `servings_on_hand` by `servings_per_unit` for each provided `food_item_id`. Mirrors `deduct`; called when rydersworld un-marks a meal as eaten.
+- `GET /api/v1/recipes` — returns active recipes with `id`, `name`, `meal_type`, and `servings` for rydersworld template linking.
+- `POST /api/v1/dishes/consume` — finds the oldest active `PreparedDish` for the given `recipe_id` and decrements it by one serving. No-op if no active dish exists.
+- `POST /api/v1/dishes/restore` — finds the most recent `PreparedDish` for the given `recipe_id` and increments it by one serving. Called when rydersworld un-marks a meal as eaten.
+
 ## [1.30.30] - 2026-06-08
 ### Added
 - `PreparedDish` model — tracks cooked dishes with a `servings_remaining` count. Created automatically when a meal plan is marked cooked; destroyed if uncooked before any servings are consumed.
