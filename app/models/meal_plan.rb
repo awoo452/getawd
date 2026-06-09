@@ -7,11 +7,12 @@ class MealPlan < ApplicationRecord
     "dinner"    => "Dinner"
   }.freeze
 
-  belongs_to :recipe, optional: true
   belongs_to :task, optional: true
+  has_many :meal_plan_recipes, dependent: :destroy
+  has_many :recipes, through: :meal_plan_recipes
   has_many :meal_plan_items, dependent: :destroy
   has_many :food_items, through: :meal_plan_items
-  has_one :prepared_dish, dependent: :destroy
+  has_many :prepared_dishes, dependent: :destroy
 
   enum :meal_slot, { breakfast: 0, lunch: 1, dinner: 2 }
 
@@ -20,14 +21,13 @@ class MealPlan < ApplicationRecord
   validates :planned_on, uniqueness: { scope: :meal_slot }
 
   after_create  :generate_task
-  before_update :sync_task_name, if: :recipe_id_changed?
   after_update  :sync_cooked_to_task,          if: :saved_change_to_cooked?
   after_update  :sync_cooked_to_prepared_dish, if: :saved_change_to_cooked?
   before_destroy :remove_task
 
   def deduct_inventory!
-    if recipe
-      recipe.recipe_ingredients.includes(food_item: :pantry_item).each do |ri|
+    recipes.includes(recipe_ingredients: :food_item).each do |r|
+      r.recipe_ingredients.each do |ri|
         ri.food_item.pantry_item&.decrement!(ri.quantity * ri.food_item.servings_per_unit)
       end
     end
@@ -37,8 +37,8 @@ class MealPlan < ApplicationRecord
   end
 
   def restore_inventory!
-    if recipe
-      recipe.recipe_ingredients.includes(food_item: :pantry_item).each do |ri|
+    recipes.includes(recipe_ingredients: :food_item).each do |r|
+      r.recipe_ingredients.each do |ri|
         ri.food_item.pantry_item&.increment!(ri.quantity * ri.food_item.servings_per_unit)
       end
     end
@@ -77,15 +77,28 @@ class MealPlan < ApplicationRecord
 
   def sync_cooked_to_prepared_dish
     if cooked?
-      PreparedDish.create!(
-        name:               task_label,
-        servings_remaining: recipe&.servings || 1,
-        cooked_on:          planned_on,
-        recipe_id:          recipe_id,
-        meal_plan_id:       id
-      )
+      if recipes.any?
+        recipes.each do |r|
+          PreparedDish.create!(
+            name:               r.name,
+            servings_remaining: r.servings,
+            cooked_on:          planned_on,
+            recipe_id:          r.id,
+            meal_plan_id:       id
+          )
+        end
+      end
+      if meal_plan_items.any?
+        PreparedDish.create!(
+          name:               "#{meal_slot.capitalize} — Custom Items",
+          servings_remaining: 1,
+          cooked_on:          planned_on,
+          recipe_id:          nil,
+          meal_plan_id:       id
+        )
+      end
     else
-      prepared_dish&.destroy
+      prepared_dishes.destroy_all
     end
   end
 
@@ -95,7 +108,8 @@ class MealPlan < ApplicationRecord
   end
 
   def task_label
-    "#{meal_slot.capitalize} — #{recipe&.name || 'Custom Meal'}"
+    recipe_names = recipes.map(&:name).presence
+    "#{meal_slot.capitalize} — #{recipe_names&.join(', ') || 'Custom Meal'}"
   end
 
   def meal_goal

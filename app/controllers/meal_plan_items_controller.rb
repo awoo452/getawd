@@ -18,7 +18,7 @@ class MealPlanItemsController < ApplicationController
     item      = MealPlanItem.find(params[:id])
     meal_plan = item.meal_plan
     item.destroy
-    meal_plan.destroy if meal_plan.meal_plan_items.reload.empty? && meal_plan.recipe_id.nil?
+    meal_plan.destroy if meal_plan.meal_plan_items.reload.empty? && meal_plan.recipes.empty?
     respond_with_cell(meal_plan)
   end
 
@@ -37,7 +37,7 @@ class MealPlanItemsController < ApplicationController
           locals: {
             date:              date,
             slot:              slot,
-            meal_plan:         still_exists ? MealPlan.includes(:recipe, meal_plan_items: :food_item).find(meal_plan.id) : nil,
+            meal_plan:         still_exists ? MealPlan.includes(:meal_plan_recipes, :recipes, meal_plan_items: :food_item).find(meal_plan.id) : nil,
             recipes_for_slot:  Recipe.active.by_meal_type(slot).ordered,
             food_items_grouped: grouped_food_items
           }

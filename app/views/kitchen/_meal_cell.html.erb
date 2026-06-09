@@ -1,12 +1,13 @@
 <div id="meal_cell_<%= date.iso8601 %>_<%= slot %>" class="meal-planner-day-cell">
   <% if meal_plan %>
-    <% if meal_plan.recipe %>
+    <% meal_plan.recipes.each do |recipe| %>
+      <% mpr = meal_plan.meal_plan_recipes.find { |r| r.recipe_id == recipe.id } %>
       <div class="meal-plan-recipe-row">
-        <span class="meal-planner-recipe-name"><%= meal_plan.recipe.name %></span>
-        <%= button_to "×", remove_recipe_meal_plan_path(meal_plan),
-              method: :patch,
+        <span class="meal-planner-recipe-name"><%= recipe.name %></span>
+        <%= button_to "×", meal_plan_recipe_path(mpr),
+              method: :delete,
               class: "meal-planner-remove",
-              form: { data: { turbo_confirm: "Remove recipe?" } } %>
+              form: { data: { turbo_confirm: "Remove #{recipe.name}?" } } %>
       </div>
     <% end %>
 
@@ -18,6 +19,18 @@
               class: "meal-planner-remove" %>
       </div>
     <% end %>
+
+    <div class="meal-planner-add-row">
+      <%= form_with url: meal_plan_recipes_path, class: "meal-planner-add-form" do |f| %>
+        <%= f.hidden_field :planned_on, value: date %>
+        <%= f.hidden_field :meal_slot,  value: slot %>
+        <%= f.select :recipe_id,
+              options_from_collection_for_select(recipes_for_slot, :id, :name),
+              { prompt: "Add recipe..." },
+              { class: "meal-planner-select meal-planner-select-sm" } %>
+        <%= f.submit "+", class: "meal-planner-submit meal-planner-submit-sm" %>
+      <% end %>
+    </div>
 
     <div class="meal-planner-add-row">
       <%= form_with url: meal_plan_items_path, class: "meal-planner-add-form" do |f| %>
@@ -39,15 +52,17 @@
           form: { data: { turbo_stream: true } } %>
 
   <% else %>
-    <%= form_with model: MealPlan.new, url: meal_plans_path, class: "meal-planner-form" do |f| %>
-      <%= f.hidden_field :planned_on, value: date %>
-      <%= f.hidden_field :meal_slot,  value: slot %>
-      <%= f.select :recipe_id,
-            options_from_collection_for_select(recipes_for_slot, :id, :name),
-            { prompt: "Recipe..." },
-            class: "meal-planner-select" %>
-      <%= f.submit "Plan", class: "meal-planner-submit" %>
-    <% end %>
+    <div class="meal-planner-add-row">
+      <%= form_with url: meal_plan_recipes_path, class: "meal-planner-add-form" do |f| %>
+        <%= f.hidden_field :planned_on, value: date %>
+        <%= f.hidden_field :meal_slot,  value: slot %>
+        <%= f.select :recipe_id,
+              options_from_collection_for_select(recipes_for_slot, :id, :name),
+              { prompt: "Add recipe..." },
+              { class: "meal-planner-select meal-planner-select-sm" } %>
+        <%= f.submit "+", class: "meal-planner-submit meal-planner-submit-sm" %>
+      <% end %>
+    </div>
 
     <div class="meal-planner-add-row">
       <%= form_with url: meal_plan_items_path, class: "meal-planner-add-form" do |f| %>

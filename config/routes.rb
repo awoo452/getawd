@@ -74,9 +74,9 @@ Rails.application.routes.draw do
   # Kitchen / Pantry / Inventory
   get '/kitchen',                        to: 'kitchen#index', as: :kitchen
   get '/kitchen/week/:week_start',       to: 'kitchen#index', as: :kitchen_week
+  resources :meal_plan_recipes, only: [:create, :destroy]
   resources :meal_plans, only: [:create, :update, :destroy] do
     member do
-      patch :remove_recipe
       patch :toggle_cooked
     end
   end
@@ -99,6 +99,7 @@ Rails.application.routes.draw do
   end
 
   resources :recipes
+  get "recipes/filter/:meal_type", to: "recipes#index", as: :recipes_filter
   resources :recipe_ingredients, only: [:destroy]
 
   resources :shopping_lists, only: [:index, :show, :create, :destroy] do

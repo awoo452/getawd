@@ -10,7 +10,7 @@
     <%= link_to "All", recipes_path, class: "filter-pill #{'active' if @meal_type_filter.nil?}" %>
     <% Recipe::MEAL_TYPES.each do |type| %>
       <%= link_to "#{Recipe::MEAL_TYPE_EMOJI[type]} #{Recipe::MEAL_TYPE_LABELS[type]}",
-            recipes_path(meal_type: type),
+            recipes_filter_path(meal_type: type),
             class: "filter-pill #{'active' if @meal_type_filter == type}" %>
     <% end %>
   </div>

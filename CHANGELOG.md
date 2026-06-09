@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.35] - 2026-06-08
+### Added
+- Meal planner cells now support multiple recipes per slot. Recipes are stored in a new `meal_plan_recipes` join table; existing single-recipe data is migrated automatically. Each recipe gets its own PreparedDish when cooked. Add/remove recipes inline just like food items.
+
+## [1.30.34] - 2026-06-08
+### Fixed
+- Recipe meal type filters were using query params (`?meal_type=`) which CloudFront strips. Switched to path-based routing (`/recipes/filter/:meal_type`) so filters survive in production.
+
 ## [1.30.33] - 2026-06-08
 ### Fixed
 - `POST /api/v1/pantry/deduct` and `/restore` were calling `.uniq` on incoming IDs and using `where(id: ids)` which deduplicated naturally, so adding the same food item twice only counted as one deduction. Now uses `.tally` to count occurrences and multiplies the deduction/restore amount by the count.
