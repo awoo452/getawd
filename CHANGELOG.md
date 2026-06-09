@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.30] - 2026-06-08
+### Added
+- `PreparedDish` model — tracks cooked dishes with a `servings_remaining` count. Created automatically when a meal plan is marked cooked; destroyed if uncooked before any servings are consumed.
+- `EatLog` model — tracks individual eating entries by date and meal slot, optionally linked to a `PreparedDish`. Marking an entry eaten decrements the dish's serving count via `consume_one!`.
+- `PreparedDishesController#destroy` — removes a dish from the fridge with Turbo Stream response.
+- `EatLogsController` — `create`, `destroy`, and `toggle_eaten` actions; `toggle_eaten` responds with two Turbo Stream updates (eat log cell + fridge section) so serving counts stay live on the page.
+- Kitchen page now shows an "In the Fridge" section (active prepared dishes with serving badges) and an "Eating This Week" calendar directly below the Meal Planner using the same week navigation.
+
 ## [1.30.29] - 2026-06-08
 ### Added
 - `GET /api/v1/pantry` — JSON API endpoint returning all active food items with pantry stock status and `servings_on_hand`. Protected by Bearer token (`GETAWD_API_TOKEN` env var).

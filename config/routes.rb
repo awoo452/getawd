@@ -82,6 +82,13 @@ Rails.application.routes.draw do
   end
   resources :meal_plan_items, only: [:create, :destroy]
 
+  resources :prepared_dishes, only: [:destroy]
+  resources :eat_logs, only: [:create, :destroy] do
+    member do
+      patch :toggle_eaten
+    end
+  end
+
   resources :food_items, only: [:index, :new, :create, :edit, :update, :destroy]
 
   resources :pantry_items, only: [:index, :update] do

@@ -32,6 +32,16 @@
     <%= render "kitchen/meal_planner" %>
   </section>
 
+  <section class="kitchen-section">
+    <h2 class="kitchen-section-title">In the Fridge</h2>
+    <%= render "kitchen/fridge", prepared_dishes: @prepared_dishes %>
+  </section>
+
+  <section class="kitchen-section">
+    <h2 class="kitchen-section-title">Eating This Week</h2>
+    <%= render "kitchen/eat_log" %>
+  </section>
+
   <% Recipe::MEAL_TYPES.each do |meal_type| %>
     <% recipes = @recipes_by_type[meal_type] %>
     <% next if recipes.blank? %>

@@ -1,0 +1,20 @@
+linked:
+  date: 2026-06-07
+  meal_slot: breakfast
+  description:
+  prepared_dish: scrambled_eggs_batch
+  eaten: false
+
+eaten_log:
+  date: 2026-06-07
+  meal_slot: lunch
+  description: "Sandwich"
+  prepared_dish:
+  eaten: true
+
+free_text:
+  date: 2026-06-08
+  meal_slot: dinner
+  description: "Leftover pasta"
+  prepared_dish:
+  eaten: false

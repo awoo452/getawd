@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_08_000009) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_08_000011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -129,6 +129,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_08_000009) do
     t.index ["slug"], name: "index_documents_on_slug", unique: true
   end
 
+  create_table "eat_logs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.date "date", null: false
+    t.string "description"
+    t.boolean "eaten", default: false, null: false
+    t.string "meal_slot", null: false
+    t.bigint "prepared_dish_id"
+    t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_eat_logs_on_date"
+    t.index ["prepared_dish_id"], name: "index_eat_logs_on_prepared_dish_id"
+  end
+
   create_table "food_items", force: :cascade do |t|
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
@@ -245,6 +257,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_08_000009) do
     t.decimal "servings_on_hand", precision: 8, scale: 2, default: "0.0", null: false
     t.datetime "updated_at", null: false
     t.index ["food_item_id"], name: "index_pantry_items_on_food_item_id", unique: true
+  end
+
+  create_table "prepared_dishes", force: :cascade do |t|
+    t.date "cooked_on", null: false
+    t.datetime "created_at", null: false
+    t.bigint "meal_plan_id"
+    t.string "name", null: false
+    t.bigint "recipe_id"
+    t.integer "servings_remaining", default: 1, null: false
+    t.datetime "updated_at", null: false
+    t.index ["cooked_on"], name: "index_prepared_dishes_on_cooked_on"
+    t.index ["meal_plan_id"], name: "index_prepared_dishes_on_meal_plan_id"
+    t.index ["recipe_id"], name: "index_prepared_dishes_on_recipe_id"
   end
 
   create_table "projects", force: :cascade do |t|

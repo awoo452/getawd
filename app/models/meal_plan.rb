@@ -11,6 +11,7 @@ class MealPlan < ApplicationRecord
   belongs_to :task, optional: true
   has_many :meal_plan_items, dependent: :destroy
   has_many :food_items, through: :meal_plan_items
+  has_one :prepared_dish, dependent: :destroy
 
   enum :meal_slot, { breakfast: 0, lunch: 1, dinner: 2 }
 
@@ -20,7 +21,8 @@ class MealPlan < ApplicationRecord
 
   after_create  :generate_task
   before_update :sync_task_name, if: :recipe_id_changed?
-  after_update  :sync_cooked_to_task, if: :saved_change_to_cooked?
+  after_update  :sync_cooked_to_task,          if: :saved_change_to_cooked?
+  after_update  :sync_cooked_to_prepared_dish, if: :saved_change_to_cooked?
   before_destroy :remove_task
 
   def deduct_inventory!
@@ -70,6 +72,20 @@ class MealPlan < ApplicationRecord
       task&.update!(status: :completed, completion_date: planned_on)
     else
       task&.update!(status: :not_started, completion_date: nil)
+    end
+  end
+
+  def sync_cooked_to_prepared_dish
+    if cooked?
+      PreparedDish.create!(
+        name:               task_label,
+        servings_remaining: recipe&.servings || 1,
+        cooked_on:          planned_on,
+        recipe_id:          recipe_id,
+        meal_plan_id:       id
+      )
+    else
+      prepared_dish&.destroy
     end
   end
 

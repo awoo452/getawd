@@ -1,0 +1,21 @@
+<div id="kitchen_fridge">
+  <% if prepared_dishes.any? %>
+    <div class="fridge-grid">
+      <% prepared_dishes.each do |dish| %>
+        <div id="prepared_dish_<%= dish.id %>" class="fridge-card">
+          <div class="fridge-card-name"><%= dish.name %></div>
+          <div class="fridge-card-meta">
+            <span class="fridge-servings-badge"><%= dish.servings_remaining %> serving<%= "s" unless dish.servings_remaining == 1 %></span>
+            <span class="fridge-cooked-on">cooked <%= dish.cooked_on.strftime("%b %-d") %></span>
+          </div>
+          <%= button_to "×", prepared_dish_path(dish),
+                method: :delete,
+                class: "fridge-card-remove",
+                form: { data: { turbo_stream: true, turbo_confirm: "Remove from fridge?" } } %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="kitchen-empty">Nothing in the fridge yet — cook a meal to add dishes here.</p>
+  <% end %>
+</div>

@@ -898,6 +898,178 @@
   }
 }
 
+// ── Fridge section ────────────────────────────────────
+.fridge-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.fridge-card {
+  position: relative;
+  background: $surface-color;
+  border: 1px solid $border-color;
+  border-left: 4px solid $success-color;
+  border-radius: $radius-md;
+  padding: $spacing-sm $spacing-md;
+  min-width: 160px;
+
+  .fridge-card-name {
+    font-weight: 600;
+    font-size: $font-base;
+    margin-bottom: $spacing-2xs;
+    padding-right: $spacing-lg;
+  }
+
+  .fridge-card-meta {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    flex-wrap: wrap;
+  }
+
+  .fridge-servings-badge {
+    background: $legend-green;
+    color: $success-color;
+    border-radius: $radius-pill;
+    padding: 1px $spacing-xs;
+    font-size: $font-xs;
+    font-weight: 600;
+  }
+
+  .fridge-cooked-on {
+    font-size: $font-xs;
+    color: $text-muted;
+  }
+}
+
+.fridge-card-remove {
+  position: absolute;
+  top: $spacing-xs;
+  right: $spacing-xs;
+  background: none;
+  border: none;
+  color: $text-muted;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  line-height: 1;
+
+  &:hover { color: $danger-color; }
+}
+
+// ── Eat log calendar ───────────────────────────────────
+
+.eat-log-day-cell {
+  flex: 1;
+  min-width: 0;
+  min-height: 60px;
+  padding: $spacing-xs;
+  background: $surface-color;
+  border-left: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.eat-log-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+  padding: 1px 0;
+
+  .eat-log-entry-name {
+    font-size: 0.8rem;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .eat-log-entry-actions {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  &.eat-log-entry-eaten .eat-log-entry-name {
+    color: $text-muted;
+    text-decoration: line-through;
+  }
+}
+
+.eat-log-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 0;
+  line-height: 1;
+  color: $text-muted;
+
+  &:hover { color: $success-color; }
+
+  &.eat-log-toggle-done {
+    color: $success-color;
+    &:hover { color: $text-muted; }
+  }
+}
+
+.eat-log-remove {
+  background: none;
+  border: none;
+  color: $text-muted;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+  line-height: 1;
+
+  &:hover { color: $danger-color; }
+}
+
+.eat-log-add-row {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.eat-log-select,
+.eat-log-text-input {
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  font-size: $font-xs;
+  overflow: hidden;
+}
+
+.eat-log-text-input {
+  padding: 2px 4px;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  background: $surface-color;
+  color: $text-color;
+}
+
+.eat-log-submit {
+  flex: 0 0 auto;
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  background: $primary-color;
+  color: $text-on-primary;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color $transition-fast;
+
+  &:hover { background: darken($primary-color, 8%); }
+}
+
 @media (max-width: $bp-mobile) {
   .recipe-grid   { grid-template-columns: 1fr; }
   .pantry-grid   { grid-template-columns: repeat(2, 1fr); }

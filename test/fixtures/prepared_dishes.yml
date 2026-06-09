@@ -1,0 +1,10 @@
+scrambled_eggs_batch:
+  name: "Breakfast — Scrambled Eggs"
+  servings_remaining: 2
+  cooked_on: 2026-06-07
+  recipe: breakfast_recipe
+
+empty_dish:
+  name: "Lunch — Salad"
+  servings_remaining: 0
+  cooked_on: 2026-06-06

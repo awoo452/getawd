@@ -1,0 +1,40 @@
+<div id="eat_log_cell_<%= date.iso8601 %>_<%= slot %>" class="eat-log-day-cell">
+  <% eat_logs.each do |log| %>
+    <div class="eat-log-entry <%= 'eat-log-entry-eaten' if log.eaten? %>">
+      <span class="eat-log-entry-name"><%= log.display_name %></span>
+      <div class="eat-log-entry-actions">
+        <%= button_to log.eaten? ? "✓" : "○",
+              toggle_eaten_eat_log_path(log),
+              method: :patch,
+              class: "eat-log-toggle #{'eat-log-toggle-done' if log.eaten?}",
+              form: { data: { turbo_stream: true } } %>
+        <%= button_to "×", eat_log_path(log),
+              method: :delete,
+              class: "eat-log-remove",
+              form: { data: { turbo_stream: true } } %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if prepared_dishes.any? %>
+    <%= form_with url: eat_logs_path, scope: :eat_log, class: "eat-log-add-row" do |f| %>
+      <%= f.hidden_field :date,      value: date %>
+      <%= f.hidden_field :meal_slot, value: slot %>
+      <%= f.select :prepared_dish_id,
+            options_from_collection_for_select(prepared_dishes, :id, :name),
+            { include_blank: "Fridge..." },
+            { class: "eat-log-select" } %>
+      <%= f.submit "+", class: "eat-log-submit" %>
+    <% end %>
+  <% end %>
+
+  <%= form_with url: eat_logs_path, scope: :eat_log, class: "eat-log-add-row" do |f| %>
+    <%= f.hidden_field :date,      value: date %>
+    <%= f.hidden_field :meal_slot, value: slot %>
+    <%= f.text_field :description,
+          placeholder: "Type...",
+          class: "eat-log-text-input",
+          autocomplete: "off" %>
+    <%= f.submit "+", class: "eat-log-submit" %>
+  <% end %>
+</div>

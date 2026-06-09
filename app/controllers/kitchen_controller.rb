@@ -22,6 +22,11 @@ class KitchenController < ApplicationController
     @food_items_grouped = FoodItem.active.ordered
                                   .group_by { |fi| fi.food_type.humanize }
                                   .transform_values { |items| items.map { |fi| [fi.name, fi.id] } }
+
+    @prepared_dishes = PreparedDish.active.by_date
+
+    eat_logs = EatLog.for_week(@week_start).includes(:prepared_dish)
+    @eat_logs_by_date_slot = eat_logs.group_by { |el| [el.date, el.meal_slot] }
   end
 
   private
