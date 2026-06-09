@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.41] - 2026-06-09
+### Changed
+- Workout notes textarea default height increased from 56px to 224px (4×).
+
 ## [1.30.40] - 2026-06-09
 ### Fixed
 - Workout and chore plans no longer create Tasks immediately when scheduled for a future date. Tasks are now created at `after_create` only when `planned_on` is today, and `RecurringTaskGenerator` picks up any task-less plans each midnight via the existing Heroku Scheduler rake job.
