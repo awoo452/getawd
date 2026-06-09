@@ -3,7 +3,7 @@ module Api
     class RecipesController < Api::V1::ApplicationController
       def index
         recipes = Recipe.active.ordered
-        render json: recipes.map { |r| { id: r.id, name: r.name, meal_type: r.meal_type, servings: r.servings } }
+        render json: recipes.map { |r| { id: r.id, name: r.name, meal_type: r.meal_type_suggestion, servings: r.servings } }
       end
     end
   end

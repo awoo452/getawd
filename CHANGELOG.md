@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.32] - 2026-06-08
+### Fixed
+- `GET /api/v1/recipes` was raising a 500 because the controller called `r.meal_type` instead of `r.meal_type_suggestion`. Corrected the field name.
+
 ## [1.30.31] - 2026-06-08
 ### Added
 - `POST /api/v1/pantry/restore` — re-increments pantry `servings_on_hand` by `servings_per_unit` for each provided `food_item_id`. Mirrors `deduct`; called when rydersworld un-marks a meal as eaten.
