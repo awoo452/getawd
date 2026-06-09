@@ -49,7 +49,7 @@ class WorkoutPlan < ApplicationRecord
   validates :workout_type, presence: true
   validates :planned_on,   uniqueness: true
 
-  after_create  :generate_task
+  after_create  :generate_task, if: -> { planned_on <= Time.zone.today }
   before_update :sync_task_name, if: :workout_type_changed?
   after_update  :sync_completion_to_task, if: :saved_change_to_completed?
   after_update  :sync_notes_to_task, if: :saved_change_to_notes?
@@ -57,6 +57,10 @@ class WorkoutPlan < ApplicationRecord
 
   def label = LABELS[workout_type]
   def emoji = EMOJIS[workout_type]
+
+  def self.generate_todays_tasks(date = Time.zone.today)
+    where(planned_on: date, task_id: nil).find_each { |p| p.send(:generate_task) }
+  end
 
   private
 

@@ -2,6 +2,9 @@ class RecurringTaskGenerator
   def self.run_for(date = Time.zone.today)
     date = date.to_date
 
+    WorkoutPlan.generate_todays_tasks(date)
+    ChorePlan.generate_todays_tasks(date)
+
     Goal.joins(:assignment_pool).merge(AssignmentPool.active).find_each do |goal|
       create_assignment_tasks(goal, goal.assignment_pool, date)
     end

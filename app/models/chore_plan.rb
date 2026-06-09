@@ -42,11 +42,15 @@ class ChorePlan < ApplicationRecord
   validates :chore_type,  presence: true
   validates :planned_on,  uniqueness: { scope: :chore_type }
 
-  after_create :generate_task
+  after_create :generate_task, if: -> { planned_on <= Time.zone.today }
   before_destroy :remove_task
 
   def label = LABELS[chore_type]
   def emoji = EMOJIS[chore_type]
+
+  def self.generate_todays_tasks(date = Time.zone.today)
+    where(planned_on: date, task_id: nil).find_each { |p| p.send(:generate_task) }
+  end
 
   private
 
