@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.45] - 2026-06-09
+### Fixed
+- Recipe ingredient Remove button now works for both saved and newly-added rows. Click hides the row client-side and marks `_destroy=1`; deletion only commits on Save. Cancel discards all pending changes.
+
 ## [1.30.44] - 2026-06-09
 ### Fixed
 - Recipe ingredient remove is now client-side: clicking "Remove" hides the row and sets a hidden `_destroy` field to 1. The deletion only commits when "Save Changes" is clicked. Canceling discards all pending removes. Reverted the controller redirect back to show after save.
