@@ -51,7 +51,7 @@ class RecipesController < ApplicationController
     end
 
     if @recipe.update(recipe_params)
-      redirect_to @recipe, notice: "#{@recipe.name} updated."
+      redirect_to edit_recipe_path(@recipe), notice: "#{@recipe.name} updated."
     else
       build_ingredient_rows
       @food_items_by_type = active_food_items_by_type
