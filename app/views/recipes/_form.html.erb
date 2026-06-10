@@ -39,6 +39,7 @@
       <%= f.fields_for :recipe_ingredients, ri do |ri_fields| %>
         <% next if ri_fields.object.marked_for_destruction? %>
         <div class="recipe-ingredient-row" id="recipe_ingredient_<%= ri.id %>">
+          <%= ri_fields.hidden_field :_destroy, value: "0" %>
           <%= ri_fields.grouped_collection_select :food_item_id,
                 FoodItem::FOOD_TYPES,
                 ->(type) { @food_items_by_type[type] },
@@ -49,12 +50,9 @@
                 class: "recipe-ingredient-select" %>
           <%= ri_fields.number_field :quantity, min: 1, placeholder: "qty", class: "recipe-ingredient-qty" %>
           <% if ri.persisted? %>
-            <%= button_tag "Remove",
-                  type: "submit",
-                  name: ri_fields.field_name(:_destroy),
-                  value: "1",
-                  class: "recipe-ingredient-remove-label",
-                  formnovalidate: true %>
+            <button type="button"
+                    class="recipe-ingredient-remove-label"
+                    data-destroy-field="<%= ri_fields.field_id(:_destroy) %>">Remove</button>
           <% end %>
         </div>
       <% end %>
@@ -75,3 +73,13 @@
     <%= link_to "Cancel", @recipe.persisted? ? @recipe : recipes_path, class: "kitchen-btn" %>
   </div>
 <% end %>
+
+<script>
+  document.querySelectorAll("[data-destroy-field]").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var field = document.getElementById(btn.dataset.destroyField);
+      field.value = "1";
+      btn.closest(".recipe-ingredient-row").style.display = "none";
+    });
+  });
+</script>

@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.44] - 2026-06-09
+### Fixed
+- Recipe ingredient remove is now client-side: clicking "Remove" hides the row and sets a hidden `_destroy` field to 1. The deletion only commits when "Save Changes" is clicked. Canceling discards all pending removes. Reverted the controller redirect back to show after save.
+
 ## [1.30.43] - 2026-06-09
 ### Fixed
 - Recipe ingredient "Remove" button now works. Replaced the `link_to` with `data-turbo-method` (which fails inside a `form_with` because browsers strip nested forms) with a submit button that sends `_destroy: 1` for that ingredient through the existing recipe form. Also redirects back to edit after saving so the user stays in context.
