@@ -50,6 +50,15 @@ class RecipesController < ApplicationController
       return
     end
 
+    if params[:remove_ingredient].present?
+      @recipe.assign_attributes(recipe_params)
+      id_to_remove = params[:remove_ingredient].keys.first.to_i
+      @recipe.recipe_ingredients.find { |ri| ri.id == id_to_remove }&.mark_for_destruction
+      @food_items_by_type = active_food_items_by_type
+      render :edit, status: :unprocessable_entity
+      return
+    end
+
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: "#{@recipe.name} updated."
     else

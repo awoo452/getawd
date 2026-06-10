@@ -10,6 +10,7 @@ class MealPlanRecipe < ApplicationRecord
   private
 
   def sync_meal_plan_task
+    meal_plan.recipes.reset
     meal_plan.task&.update!(task_name: meal_plan.send(:task_label))
   end
 end

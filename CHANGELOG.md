@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.47] - 2026-06-09
+### Fixed
+- All workout/chore plan tests that check task creation now use `Time.zone.today` so the `planned_on <= today` guard passes. Tests checking only validations keep future dates.
+- `MealPlanRecipe#sync_meal_plan_task` now calls `meal_plan.recipes.reset` before computing `task_label`, clearing the stale cache left from `generate_task` running with no recipes. This fixes task names staying as "Custom Meal" after a recipe is added.
+- Recipe ingredient Remove button: pure Rails solution, no JavaScript. Remove is a named submit button (`remove_ingredient[id]`) inside the recipe form — same pattern as `add_ingredient`. Controller catches it, calls `mark_for_destruction` on the target ingredient, re-renders without saving. On re-render, destroyed ingredients emit only hidden `id`+`_destroy=1` fields so they get cleaned up when the user clicks Save. New (unsaved) ingredient rows have no Remove button; blank rows are rejected by `reject_if`.
+- Recipe ingredient Remove button now works. The CSP nonce policy blocks ALL inline `<script>` tags in views — every previous approach was silently killed before it ran. Moved the remove-button logic into `application.js` (loaded from a file, not inline, so CSP allows it), using `turbo:load` with a `data-bound` guard.
+
 ## [1.30.46] - 2026-06-09
 ### Fixed
 - Recipe ingredient Remove button now actually fires: switched inline script to use `turbo:load` event so listeners are attached on every Turbo Drive navigation (not just the initial parse), with a `data-bound` guard to prevent double-binding. Removed the superfluous select reset that could throw if the element was missing.

@@ -29,30 +29,30 @@ class ChorePlanTest < ActiveSupport::TestCase
 
   test "creates a task on save" do
     assert_difference "Task.count", 1 do
-      ChorePlan.create!(planned_on: Date.new(2026, 7, 2), chore_type: :bathroom)
+      ChorePlan.create!(planned_on: Time.zone.today, chore_type: :bathroom)
     end
   end
 
   test "generated task has correct name" do
-    cp = ChorePlan.create!(planned_on: Date.new(2026, 7, 2), chore_type: :sweep_mop)
+    cp = ChorePlan.create!(planned_on: Time.zone.today, chore_type: :sweep_mop)
     assert_equal "Chores — Sweep & Mop", cp.task.task_name
   end
 
   test "generated task has correct due_date" do
-    date = Date.new(2026, 7, 3)
+    date = Time.zone.today
     cp   = ChorePlan.create!(planned_on: date, chore_type: :vacuum)
     assert_equal date, cp.task.due_date
   end
 
   test "generated task links to chores goal" do
-    cp = ChorePlan.create!(planned_on: Date.new(2026, 7, 4), chore_type: :laundry)
+    cp = ChorePlan.create!(planned_on: Time.zone.today, chore_type: :laundry)
     assert_equal goals(:chores_goal), cp.task.goal
   end
 
   # ── Task removal on destroy ──────────────────────────────
 
   test "destroying chore plan destroys its task" do
-    cp = ChorePlan.create!(planned_on: Date.new(2026, 7, 5), chore_type: :rooms)
+    cp = ChorePlan.create!(planned_on: Time.zone.today, chore_type: :rooms)
     assert_difference "Task.count", -1 do
       cp.destroy
     end

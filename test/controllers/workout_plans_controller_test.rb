@@ -15,7 +15,7 @@ class WorkoutPlansControllerTest < ActionDispatch::IntegrationTest
   test "create generates a calendar task" do
     assert_difference "Task.count", 1 do
       post workout_plans_url, params: {
-        workout_plan: { planned_on: "2026-07-20", workout_type: "vr" }
+        workout_plan: { planned_on: Time.zone.today.to_s, workout_type: "vr" }
       }
     end
   end
@@ -42,7 +42,7 @@ class WorkoutPlansControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "destroy removes the generated task" do
-    wp = WorkoutPlan.create!(planned_on: Date.new(2026, 8, 2), workout_type: :board_push)
+    wp = WorkoutPlan.create!(planned_on: Time.zone.today, workout_type: :board_push)
     assert_difference "Task.count", -1 do
       delete workout_plan_url(wp)
     end
@@ -51,7 +51,7 @@ class WorkoutPlansControllerTest < ActionDispatch::IntegrationTest
   # ── update ───────────────────────────────────────────────
 
   test "update changes the workout type and syncs task name" do
-    wp = WorkoutPlan.create!(planned_on: Date.new(2026, 8, 3), workout_type: :walk)
+    wp = WorkoutPlan.create!(planned_on: Time.zone.today, workout_type: :walk)
     patch workout_plan_url(wp), params: {
       workout_plan: { workout_type: "vr" }
     }

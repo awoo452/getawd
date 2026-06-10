@@ -13,7 +13,7 @@ class ChorePlansControllerTest < ActionDispatch::IntegrationTest
   test "create generates a task" do
     assert_difference "Task.count", 1 do
       post chore_plans_url, params: {
-        chore_plan: { planned_on: "2026-07-10", chore_type: "vacuum" }
+        chore_plan: { planned_on: Time.zone.today.to_s, chore_type: "vacuum" }
       }
     end
   end
@@ -38,7 +38,7 @@ class ChorePlansControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "destroy removes the generated task" do
-    cp = ChorePlan.create!(planned_on: Date.new(2026, 8, 2), chore_type: :bathroom)
+    cp = ChorePlan.create!(planned_on: Time.zone.today, chore_type: :bathroom)
     assert_difference "Task.count", -1 do
       delete chore_plan_url(cp)
     end

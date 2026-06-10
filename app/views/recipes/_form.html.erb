@@ -37,20 +37,29 @@
   <div class="recipe-ingredients-form-list">
     <% @recipe.recipe_ingredients.each do |ri| %>
       <%= f.fields_for :recipe_ingredients, ri do |ri_fields| %>
-        <% next if ri_fields.object.marked_for_destruction? %>
-        <div class="recipe-ingredient-row" id="<%= ri.persisted? ? "recipe_ingredient_#{ri.id}" : nil %>">
-          <%= ri_fields.hidden_field :_destroy, value: "0" %>
-          <%= ri_fields.grouped_collection_select :food_item_id,
-                FoodItem::FOOD_TYPES,
-                ->(type) { @food_items_by_type[type] },
-                :itself,
-                :id,
-                :name,
-                { prompt: "— select ingredient —" },
-                class: "recipe-ingredient-select" %>
-          <%= ri_fields.number_field :quantity, min: 1, placeholder: "qty", class: "recipe-ingredient-qty" %>
-          <button type="button" class="recipe-ingredient-remove-label">Remove</button>
-        </div>
+        <% if ri_fields.object.marked_for_destruction? %>
+          <%= ri_fields.hidden_field :_destroy, value: "1" %>
+        <% else %>
+          <div class="recipe-ingredient-row">
+            <%= ri_fields.grouped_collection_select :food_item_id,
+                  FoodItem::FOOD_TYPES,
+                  ->(type) { @food_items_by_type[type] },
+                  :itself,
+                  :id,
+                  :name,
+                  { prompt: "— select ingredient —" },
+                  class: "recipe-ingredient-select" %>
+            <%= ri_fields.number_field :quantity, min: 1, placeholder: "qty", class: "recipe-ingredient-qty" %>
+            <% if ri.persisted? %>
+              <%= button_tag "Remove",
+                    type: "submit",
+                    name: "remove_ingredient[#{ri.id}]",
+                    value: "1",
+                    class: "recipe-ingredient-remove-label",
+                    formnovalidate: true %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
@@ -70,20 +79,3 @@
   </div>
 <% end %>
 
-<script>
-  (function() {
-    function bindRemoveButtons() {
-      document.querySelectorAll(".recipe-ingredient-remove-label:not([data-bound])").forEach(function(btn) {
-        btn.setAttribute("data-bound", "1");
-        btn.addEventListener("click", function() {
-          var row = btn.closest(".recipe-ingredient-row");
-          var destroyField = row.querySelector("input[name*='[_destroy]']");
-          if (destroyField) destroyField.value = "1";
-          row.style.display = "none";
-        });
-      });
-    }
-    document.addEventListener("turbo:load", bindRemoveButtons);
-    bindRemoveButtons();
-  })();
-</script>
