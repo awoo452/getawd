@@ -71,12 +71,19 @@
 <% end %>
 
 <script>
-  document.querySelectorAll(".recipe-ingredient-remove-label").forEach(function(btn) {
-    btn.addEventListener("click", function() {
-      var row = btn.closest(".recipe-ingredient-row");
-      row.querySelector("input[name*='[_destroy]']").value = "1";
-      row.querySelector("select[name*='[food_item_id]']").value = "";
-      row.style.display = "none";
-    });
-  });
+  (function() {
+    function bindRemoveButtons() {
+      document.querySelectorAll(".recipe-ingredient-remove-label:not([data-bound])").forEach(function(btn) {
+        btn.setAttribute("data-bound", "1");
+        btn.addEventListener("click", function() {
+          var row = btn.closest(".recipe-ingredient-row");
+          var destroyField = row.querySelector("input[name*='[_destroy]']");
+          if (destroyField) destroyField.value = "1";
+          row.style.display = "none";
+        });
+      });
+    }
+    document.addEventListener("turbo:load", bindRemoveButtons);
+    bindRemoveButtons();
+  })();
 </script>

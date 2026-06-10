@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.46] - 2026-06-09
+### Fixed
+- Recipe ingredient Remove button now actually fires: switched inline script to use `turbo:load` event so listeners are attached on every Turbo Drive navigation (not just the initial parse), with a `data-bound` guard to prevent double-binding. Removed the superfluous select reset that could throw if the element was missing.
+
 ## [1.30.45] - 2026-06-09
 ### Fixed
 - Recipe ingredient Remove button now works for both saved and newly-added rows. Click hides the row client-side and marks `_destroy=1`; deletion only commits on Save. Cancel discards all pending changes.
