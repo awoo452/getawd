@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.48] - 2026-06-10
+### Changed
+- `Api::V1::DishesController#consume` now returns `dish_id` in the response body so callers can track exactly which dish was consumed.
+- `Api::V1::DishesController#restore` now accepts an optional `dish_id` param to restore the exact consumed dish. Falls back to oldest-first by `recipe_id` when no `dish_id` is given.
+
 ## [1.30.47] - 2026-06-09
 ### Fixed
 - All workout/chore plan tests that check task creation now use `Time.zone.today` so the `planned_on <= today` guard passes. Tests checking only validations keep future dates.
