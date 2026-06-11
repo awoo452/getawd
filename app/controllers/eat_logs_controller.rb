@@ -14,8 +14,10 @@ class EatLogsController < ApplicationController
   def destroy
     date = @eat_log.date
     slot = @eat_log.meal_slot
+    dish = @eat_log.eaten? ? @eat_log.prepared_dish : nil
     @eat_log.destroy
-    respond_with_cell(date, slot)
+    dish&.increment!(:servings_remaining)
+    respond_with_cell_and_fridge(date, slot)
   end
 
   def toggle_eaten

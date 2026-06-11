@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.49] - 2026-06-11
+### Fixed
+- `EatLogsController#destroy` now restores the serving back to the `PreparedDish` when deleting an eaten log (the × button), and refreshes the fridge display. Previously only the `toggle_eaten` path (✓/○ button) restored servings — deleting a log permanently lost the serving.
+
 ## [1.30.48] - 2026-06-10
 ### Changed
 - `Api::V1::DishesController#consume` now returns `dish_id` in the response body so callers can track exactly which dish was consumed.
