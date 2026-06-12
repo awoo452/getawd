@@ -19,6 +19,11 @@ class PantryItem < ApplicationRecord
     raw % 1 == 0 ? raw.to_i : raw.round(1)
   end
 
+  def display_on_hand
+    raw = servings_on_hand
+    raw % 1 == 0 ? raw.to_i : raw.round(1)
+  end
+
   def stock_status
     return "out" if out?
     return "low" if low?

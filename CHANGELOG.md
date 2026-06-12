@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.50] - 2026-06-11
+### Fixed
+- Pantry item badge now shows `servings_on_hand` (actual quantity, e.g. "7 oz") instead of `derived_servings` (e.g. "1 oz"). The secondary raw line now shows the derived serving count "(1 srv)" when `servings_per_unit > 1`. Previously "1 oz" was shown for an item with 7 oz stored and 7-oz serving size, which looked like only 1 oz was available.
+
 ## [1.30.49] - 2026-06-11
 ### Fixed
 - `EatLogsController#destroy` now restores the serving back to the `PreparedDish` when deleting an eaten log (the × button), and refreshes the fridge display. Previously only the `toggle_eaten` path (✓/○ button) restored servings — deleting a log permanently lost the serving.
