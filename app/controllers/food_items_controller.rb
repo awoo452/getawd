@@ -45,6 +45,6 @@ class FoodItemsController < ApplicationController
   end
 
   def food_item_params
-    params.require(:food_item).permit(:name, :food_type, :location, :unit, :active, :position, :serving_size, :servings_per_unit, :unit_servings, pantry_item_attributes: [:id, :min_servings])
+    params.require(:food_item).permit(:name, :food_type, :location, :unit, :active, :position, :serving_size, :servings_per_unit, :unit_servings, :shelf_life_days, pantry_item_attributes: [:id, :min_servings])
   end
 end

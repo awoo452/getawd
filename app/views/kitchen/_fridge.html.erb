@@ -7,6 +7,13 @@
           <div class="fridge-card-meta">
             <span class="fridge-servings-badge"><%= dish.servings_remaining %> serving<%= "s" unless dish.servings_remaining == 1 %></span>
             <span class="fridge-cooked-on">cooked <%= dish.cooked_on.strftime("%b %-d") %></span>
+            <% if dish.shelf_life_days.present? %>
+              <% expires_on = dish.cooked_on + dish.shelf_life_days.days %>
+              <% days_left = (expires_on - Time.zone.today).to_i %>
+              <span class="fridge-expiry <%= days_left <= 1 ? 'fridge-expiry-warn' : '' %>">
+                exp <%= expires_on.strftime("%b %-d") %><%= " (today!)" if days_left == 0 %><%= " (expired)" if days_left < 0 %>
+              </span>
+            <% end %>
           </div>
           <%= button_to "×", prepared_dish_path(dish),
                 method: :delete,

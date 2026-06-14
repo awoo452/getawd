@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_08_000013) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_12_000003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -150,6 +150,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_08_000013) do
     t.integer "position", default: 0, null: false
     t.string "serving_size"
     t.decimal "servings_per_unit", precision: 8, scale: 2, default: "1.0", null: false
+    t.integer "shelf_life_days"
     t.string "unit", default: "each", null: false
     t.decimal "unit_servings", precision: 6, scale: 2
     t.datetime "updated_at", null: false
@@ -274,6 +275,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_08_000013) do
     t.string "name", null: false
     t.bigint "recipe_id"
     t.integer "servings_remaining", default: 1, null: false
+    t.integer "shelf_life_days"
     t.datetime "updated_at", null: false
     t.index ["cooked_on"], name: "index_prepared_dishes_on_cooked_on"
     t.index ["meal_plan_id"], name: "index_prepared_dishes_on_meal_plan_id"
@@ -312,6 +314,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_08_000013) do
     t.string "name", null: false
     t.integer "position", default: 0, null: false
     t.integer "servings", default: 2, null: false
+    t.integer "shelf_life_days"
     t.datetime "updated_at", null: false
     t.index ["active"], name: "index_recipes_on_active"
     t.index ["meal_type_suggestion"], name: "index_recipes_on_meal_type_suggestion"

@@ -25,6 +25,10 @@
         <%= f.label :servings, "Servings" %>
         <%= f.number_field :servings, min: 1, class: "form-input" %>
       </div>
+      <div>
+        <%= f.label :shelf_life_days, "Shelf Life (days)" %>
+        <%= f.number_field :shelf_life_days, min: 1, step: 1, class: "form-input", placeholder: "e.g. 4" %>
+      </div>
       <div class="recipe-form-active">
         <%= f.check_box :active %>
         <%= f.label :active, "Active" %>

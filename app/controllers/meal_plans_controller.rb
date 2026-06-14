@@ -32,6 +32,7 @@ class MealPlansController < ApplicationController
       @meal_plan.restore_inventory!
       @meal_plan.update!(cooked: false)
     else
+      @meal_plan.custom_dish_name = params[:custom_name].presence
       @meal_plan.deduct_inventory!
       @meal_plan.update!(cooked: true)
     end

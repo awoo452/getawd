@@ -45,11 +45,17 @@
       <% end %>
     </div>
 
-    <%= button_to meal_plan.cooked? ? "↩ Uncook" : "Cook",
-          toggle_cooked_meal_plan_path(meal_plan),
-          method: :patch,
-          class: "meal-cell-cook-btn #{'meal-cell-cook-btn-done' if meal_plan.cooked?}",
-          form: { data: { turbo_stream: true } } %>
+    <%= form_with url: toggle_cooked_meal_plan_path(meal_plan), method: :patch,
+          data: { turbo_stream: true },
+          class: "meal-cell-cook-form" do |f| %>
+      <% if meal_plan.meal_plan_items.any? && !meal_plan.cooked? %>
+        <%= f.text_field :custom_name,
+              placeholder: "#{meal_plan.meal_slot.capitalize} — Custom Items",
+              class: "form-input meal-cell-cook-name-input" %>
+      <% end %>
+      <%= f.submit meal_plan.cooked? ? "↩ Uncook" : "Cook",
+            class: "meal-cell-cook-btn #{'meal-cell-cook-btn-done' if meal_plan.cooked?}" %>
+    <% end %>
 
   <% else %>
     <div class="meal-planner-add-row">

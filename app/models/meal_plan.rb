@@ -7,6 +7,8 @@ class MealPlan < ApplicationRecord
     "dinner"    => "Dinner"
   }.freeze
 
+  attr_accessor :custom_dish_name
+
   belongs_to :task, optional: true
   has_many :meal_plan_recipes, dependent: :destroy
   has_many :recipes, through: :meal_plan_recipes
@@ -84,13 +86,14 @@ class MealPlan < ApplicationRecord
             servings_remaining: mpr.recipe.servings * mpr.quantity,
             cooked_on:          planned_on,
             recipe_id:          mpr.recipe_id,
-            meal_plan_id:       id
+            meal_plan_id:       id,
+            shelf_life_days:    mpr.recipe.shelf_life_days
           )
         end
       end
       if meal_plan_items.any?
         PreparedDish.create!(
-          name:               "#{meal_slot.capitalize} — Custom Items",
+          name:               custom_dish_name.presence || "#{meal_slot.capitalize} — Custom Items",
           servings_remaining: 1,
           cooked_on:          planned_on,
           recipe_id:          nil,

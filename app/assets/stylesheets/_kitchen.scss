@@ -324,6 +324,12 @@
     margin-top: $spacing-2xs;
   }
 
+  .pantry-item-shelf-life {
+    font-size: $font-xs;
+    color: $text-muted;
+    margin-top: 1px;
+  }
+
   .pantry-item-raw {
     font-size: $font-xs;
     color: $text-muted;
@@ -872,10 +878,28 @@
   min-width: 0;
 }
 
+.meal-cell-cook-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 3px;
+}
+
+.meal-cell-cook-name-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2px 4px;
+  font-size: $font-xs;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  background: $surface-color;
+  color: $text-color;
+}
+
 .meal-cell-cook-btn {
   display: block;
   width: 100%;
-  margin-top: 3px;
+  margin-top: 0;
   padding: 2px 4px;
   font-size: $font-xs;
   background: $surface-muted;
@@ -940,6 +964,16 @@
   .fridge-cooked-on {
     font-size: $font-xs;
     color: $text-muted;
+  }
+
+  .fridge-expiry {
+    font-size: $font-xs;
+    color: $text-muted;
+
+    &.fridge-expiry-warn {
+      color: $danger-color;
+      font-weight: 600;
+    }
   }
 }
 

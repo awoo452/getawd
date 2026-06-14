@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.51] - 2026-06-13
+### Added
+- **Shelf life** field (`shelf_life_days`, integer, optional) added to food items and recipes. Set it on the food item edit form ("Shelf Life (days)") or the recipe form. The pantry card shows `Xd shelf life` when set. When a meal is cooked, the shelf life from the recipe is copied to the prepared dish and the fridge card shows an expiry date ("exp Jun 17"), highlighted in red when 1 day or fewer remain or when expired.
+- **Custom dish name** field in the meal planner. When a meal slot has custom food items (non-recipe items) and has not yet been cooked, a name input field now appears directly above the Cook button. Type a name before clicking Cook and the prepared dish in the fridge will use that name instead of the default "Slot — Custom Items" label.
+
 ## [1.30.50] - 2026-06-11
 ### Fixed
 - Pantry item badge now shows `servings_on_hand` (actual quantity, e.g. "7 oz") instead of `derived_servings` (e.g. "1 oz"). The secondary raw line now shows the derived serving count "(1 srv)" when `servings_per_unit > 1`. Previously "1 oz" was shown for an item with 7 oz stored and 7-oz serving size, which looked like only 1 oz was available.

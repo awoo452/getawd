@@ -54,6 +54,10 @@
 
     <div class="recipe-form-row recipe-form-row-inline">
       <div>
+        <%= f.label :shelf_life_days, "Shelf Life (days)" %>
+        <%= f.number_field :shelf_life_days, min: 1, step: 1, class: "form-input", placeholder: "e.g. 5" %>
+      </div>
+      <div>
         <%= f.label :position, "Sort Order" %>
         <%= f.number_field :position, min: 0, step: 1, class: "form-input", placeholder: "0 = first" %>
       </div>
