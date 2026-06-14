@@ -173,6 +173,8 @@
 
 @media (max-width: 750px) {
   .navbar {
+    position: relative;
+
     ul {
       flex-direction: row;
       justify-content: center;
@@ -180,7 +182,8 @@
       padding-bottom: $spacing-md;
     }
 
-    li:first-child {
+    // Logo row: full-width, centered
+    .nav-public li:first-child {
       flex-basis: 100%;
       display: flex;
       justify-content: center;
@@ -196,19 +199,30 @@
       height: 75px;
     }
 
-    .nav-signed-in-wrapper {
-      box-sizing: border-box;
-      padding: 0 $spacing-md $spacing-xs;
+    // Hide all public links except logo by default
+    .nav-public li:not(:first-child) {
+      display: none;
     }
 
+    .nav-signed-in-wrapper {
+      display: none;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    // Hamburger: small button, absolute top-right
     .nav-hamburger {
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 5px;
-      width: 100%;
-      box-sizing: border-box;
-      padding: $spacing-xs;
+      position: absolute;
+      top: 50%;
+      right: $spacing-md;
+      transform: translateY(-50%);
+      padding: $spacing-xs $spacing-sm;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: $radius-pill;
@@ -248,14 +262,15 @@
         z-index: auto;
       }
     }
-
-    .nav-signed-in {
-      display: none;
-    }
   }
 
-  .navbar:has(.nav-toggle-checkbox:checked) .nav-signed-in {
+  // When open: show all public links and signed-in section
+  .navbar:has(.nav-toggle-checkbox:checked) .nav-public li:not(:first-child) {
     display: flex;
+  }
+
+  .navbar:has(.nav-toggle-checkbox:checked) .nav-signed-in-wrapper {
+    display: block;
   }
 
   .navbar:has(.nav-toggle-checkbox:checked) .nav-hamburger {

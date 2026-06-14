@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.67] - 2026-06-14
+### Changed
+- Mobile nav now collapses ALL links (public + signed-in) into a single hamburger menu. Logo always stays visible. Hamburger is a small button positioned top-right next to the logo instead of a full-width bar.
+
 ## [1.30.66] - 2026-06-14
 ### Fixed
 - Restored day navigation on mobile kitchen view. The previous mobile layout hid the week nav without a replacement. Now shows a Prev/Next day nav on mobile (hidden on desktop) via `/kitchen/day/:selected_date`. The meal planner and eat log both track the selected date's column rather than hardcoding today.
