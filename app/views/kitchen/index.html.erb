@@ -1,6 +1,6 @@
 <%= render "shared/logged_in_heading", title: "Kitchen" %>
 
-<div class="kitchen-wrapper">
+<div class="kitchen-wrapper today-col-<%= @today_col %>">
 
   <div class="kitchen-stats">
     <div class="kitchen-stat <%= @out_of_stock_count > 0 ? 'stat-danger' : 'stat-ok' %>">
@@ -25,96 +25,37 @@
     <% else %>
       <%= button_to "Generate Shopping List", shopping_lists_path, method: :post, class: "kitchen-btn kitchen-btn-primary" %>
     <% end %>
-    <% if @daily_mode %>
-      <%= link_to "Weekly View", kitchen_path(week_start: @week_start.strftime("%Y-%m-%d")), class: "kitchen-btn" %>
-    <% end %>
   </div>
 
-  <% if @daily_mode %>
-    <%# ── Daily (mobile) view ──────────────────────────────── %>
+  <section class="kitchen-section">
+    <h2 class="kitchen-section-title">Meal Planner</h2>
+    <%= render "kitchen/meal_planner" %>
+  </section>
 
-    <nav class="day-nav-bar">
-      <%= link_to "←", kitchen_path(date: (@mobile_date - 1.day).strftime("%Y-%m-%d")), class: "day-nav-btn" %>
-      <span class="day-nav-label"><%= @mobile_date.strftime("%A, %b %-d") %></span>
-      <%= link_to "→", kitchen_path(date: (@mobile_date + 1.day).strftime("%Y-%m-%d")), class: "day-nav-btn" %>
-    </nav>
+  <section class="kitchen-section">
+    <h2 class="kitchen-section-title">In the Fridge</h2>
+    <%= render "kitchen/fridge", prepared_dishes: @prepared_dishes %>
+  </section>
 
-    <section class="kitchen-section">
-      <h2 class="kitchen-section-title">In the Fridge</h2>
-      <%= render "kitchen/fridge", prepared_dishes: @prepared_dishes %>
-    </section>
+  <section class="kitchen-section">
+    <h2 class="kitchen-section-title">Eating This Week</h2>
+    <%= render "kitchen/eat_log" %>
+  </section>
 
-    <section class="kitchen-section">
-      <h2 class="kitchen-section-title">Meal Planner</h2>
-      <%= render "kitchen/meal_planner_day",
-            date:               @mobile_date,
-            meal_plans_by_slot: MealPlan::SLOTS.index_with { |s| @meal_plans_by_date_slot[[@mobile_date, s]] },
-            recipes_for_slot:   @recipes_for_slot,
-            food_items_grouped: @food_items_grouped %>
-    </section>
+  <% Recipe::MEAL_TYPES.each do |meal_type| %>
+    <% recipes = @recipes_by_type[meal_type] %>
+    <% next if recipes.blank? %>
 
     <section class="kitchen-section">
-      <h2 class="kitchen-section-title">Eating Today</h2>
-      <%= render "kitchen/eat_log_day",
-            date:            @mobile_date,
-            eat_logs_by_slot: EatLog::SLOTS.index_with { |s| @eat_logs_by_date_slot[[@mobile_date, s]] || [] },
-            prepared_dishes:  @prepared_dishes %>
+      <h2 class="kitchen-section-title">
+        <%= Recipe::MEAL_TYPE_EMOJI[meal_type] %> <%= Recipe::MEAL_TYPE_LABELS[meal_type] %>
+      </h2>
+      <div class="recipe-grid">
+        <% recipes.each do |recipe| %>
+          <%= render "recipes/recipe_card", recipe: recipe %>
+        <% end %>
+      </div>
     </section>
-
-    <% Recipe::MEAL_TYPES.each do |meal_type| %>
-      <% recipes = @recipes_by_type[meal_type] %>
-      <% next if recipes.blank? %>
-
-      <section class="kitchen-section">
-        <h2 class="kitchen-section-title">
-          <%= Recipe::MEAL_TYPE_EMOJI[meal_type] %> <%= Recipe::MEAL_TYPE_LABELS[meal_type] %>
-        </h2>
-        <div class="recipe-grid">
-          <% recipes.each do |recipe| %>
-            <%= render "recipes/recipe_card", recipe: recipe %>
-          <% end %>
-        </div>
-      </section>
-    <% end %>
-
-  <% else %>
-    <%# ── Weekly view ──────────────────────────────────────── %>
-
-    <div class="weekly-view-prompt">
-      <%= link_to "View Today →", kitchen_path(date: Time.zone.today.strftime("%Y-%m-%d")), class: "kitchen-btn kitchen-btn-primary" %>
-    </div>
-
-    <section class="kitchen-section weekly-section">
-      <h2 class="kitchen-section-title">Meal Planner</h2>
-      <%= render "kitchen/meal_planner" %>
-    </section>
-
-    <section class="kitchen-section">
-      <h2 class="kitchen-section-title">In the Fridge</h2>
-      <%= render "kitchen/fridge", prepared_dishes: @prepared_dishes %>
-    </section>
-
-    <section class="kitchen-section weekly-section">
-      <h2 class="kitchen-section-title">Eating This Week</h2>
-      <%= render "kitchen/eat_log" %>
-    </section>
-
-    <% Recipe::MEAL_TYPES.each do |meal_type| %>
-      <% recipes = @recipes_by_type[meal_type] %>
-      <% next if recipes.blank? %>
-
-      <section class="kitchen-section">
-        <h2 class="kitchen-section-title">
-          <%= Recipe::MEAL_TYPE_EMOJI[meal_type] %> <%= Recipe::MEAL_TYPE_LABELS[meal_type] %>
-        </h2>
-        <div class="recipe-grid">
-          <% recipes.each do |recipe| %>
-            <%= render "recipes/recipe_card", recipe: recipe %>
-          <% end %>
-        </div>
-      </section>
-    <% end %>
-
   <% end %>
 
 </div>

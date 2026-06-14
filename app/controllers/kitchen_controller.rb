@@ -8,17 +8,9 @@ class KitchenController < ApplicationController
                                    .ordered
                                    .group_by(&:meal_type_suggestion)
 
-    if params[:date].present?
-      @daily_mode  = true
-      @mobile_date = parse_date(params[:date])
-      @week_start  = @mobile_date.beginning_of_week(:sunday)
-    else
-      @daily_mode  = false
-      @mobile_date = Time.zone.today
-      @week_start  = parse_week_start(params[:week_start])
-    end
-
-    @week_dates  = (0..6).map { |i| @week_start + i.days }
+    @today_col  = Time.zone.today.wday
+    @week_start = parse_week_start(params[:week_start])
+    @week_dates = (0..6).map { |i| @week_start + i.days }
     week_end     = @week_start + 6.days
 
     meal_plans = MealPlan.includes(:meal_plan_recipes, :recipes, meal_plan_items: :food_item).where(planned_on: @week_start..week_end)
@@ -46,9 +38,4 @@ class KitchenController < ApplicationController
     Time.zone.today.beginning_of_week(:sunday)
   end
 
-  def parse_date(date_str)
-    Date.parse(date_str.to_s)
-  rescue ArgumentError, TypeError
-    Time.zone.today
-  end
 end

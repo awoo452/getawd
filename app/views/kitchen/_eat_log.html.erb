@@ -4,7 +4,7 @@
   <div class="meal-planner-row">
     <div class="meal-planner-label"></div>
     <% @week_dates.each do |date| %>
-      <div class="meal-planner-header-cell <%= 'meal-planner-today' if date == Time.zone.today %>">
+      <div class="meal-planner-header-cell day-col-<%= date.wday %> <%= 'meal-planner-today' if date == Time.zone.today %>">
         <span class="meal-planner-day-name"><%= date.strftime("%a") %></span>
         <span class="meal-planner-day-num"><%= date.strftime("%-d") %></span>
       </div>

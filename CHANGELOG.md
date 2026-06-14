@@ -4,8 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.30.52] - 2026-06-14
+### Security
+- Updated `net-imap` from 0.6.4 to 0.6.4.1 to address CVE-2026-47240 (command injection via non-synchronizing literal), CVE-2026-47241 (DoS via incomplete raw argument validation), and CVE-2026-47242 (command injection via ID command argument).
+
 ### Added
-- URL-based daily view for mobile. Visiting `/kitchen?date=YYYY-MM-DD` renders a single-day layout: a ← date → nav bar (plain links) plus stacked Meal Planner and Eating Today slot sections. No JavaScript involved — prev/next are anchor tags, week boundary crossings just change the date param. On the weekly view, mobile screens see a "View Today →" prompt and the weekly calendar grids are hidden via CSS media query. The "Weekly View" link in the daily view returns to the full grid. Turbo Stream cell updates continue to work in daily mode because only that day's cells are in the DOM.
+- Mobile single-day calendar view. At ≤ 750 px the Meal Planner and Eating This Week tables collapse to show only today's column. The week nav is hidden. Implemented with pure CSS: the server stamps `today-col-N` (where N is `Date.wday`, 0 = Sunday) on the wrapper div; each day cell carries a matching `day-col-N` class; a `@for` loop in SCSS generates rules that hide all non-matching columns. No JavaScript involved.
 
 ## [1.30.51] - 2026-06-13
 ### Added

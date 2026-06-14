@@ -1,4 +1,4 @@
-<div id="meal_cell_<%= date.iso8601 %>_<%= slot %>" class="meal-planner-day-cell">
+<div id="meal_cell_<%= date.iso8601 %>_<%= slot %>" class="meal-planner-day-cell day-col-<%= date.wday %>">
   <% if meal_plan %>
     <% meal_plan.recipes.each do |recipe| %>
       <% mpr = meal_plan.meal_plan_recipes.find { |r| r.recipe_id == recipe.id } %>

@@ -1,4 +1,4 @@
-<div id="eat_log_cell_<%= date.iso8601 %>_<%= slot %>" class="eat-log-day-cell">
+<div id="eat_log_cell_<%= date.iso8601 %>_<%= slot %>" class="eat-log-day-cell day-col-<%= date.wday %>">
   <% eat_logs.each do |log| %>
     <div class="eat-log-entry <%= 'eat-log-entry-eaten' if log.eaten? %>">
       <span class="eat-log-entry-name"><%= log.display_name %></span>
