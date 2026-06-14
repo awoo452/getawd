@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.69] - 2026-06-14
+### Fixed
+- Hamburger menu had no horizontal margin after being moved outside its wrapper. Added margin and corrected width to match original inset appearance.
+- Non-signed-in users on mobile had no visible nav links — the public link collapsing was not scoped to signed-in state. Added `.navbar-signed-in` class and scoped all hamburger collapse/expand CSS to it.
+- Hamburger now sits below all links when expanded (moved label to end of DOM) so all content is consistently above it rather than split on both sides.
+
 ## [1.30.68] - 2026-06-14
 ### Fixed
 - Restored hamburger to original full-width style below the logo. Moved the label after nav_public in the DOM so the single hamburger now controls all links (public + signed-in), without changing its appearance.

@@ -197,12 +197,12 @@
       height: 75px;
     }
 
-    // Hide all public links except logo by default
-    .nav-public li:not(:first-child) {
+    // Signed-in only: collapse public links and signed-in section behind hamburger
+    &.navbar-signed-in .nav-public li:not(:first-child) {
       display: none;
     }
 
-    .nav-signed-in-wrapper {
+    &.navbar-signed-in .nav-signed-in-wrapper {
       display: none;
       width: 100%;
       position: relative;
@@ -214,7 +214,8 @@
       flex-direction: column;
       align-items: center;
       gap: 5px;
-      width: 100%;
+      width: calc(100% - #{$spacing-md * 2});
+      margin: 0 $spacing-md $spacing-xs;
       box-sizing: border-box;
       padding: $spacing-xs;
       background: rgba(255, 255, 255, 0.08);
@@ -259,15 +260,15 @@
   }
 
   // When open: show all public links and signed-in section
-  .navbar:has(.nav-toggle-checkbox:checked) .nav-public li:not(:first-child) {
+  .navbar.navbar-signed-in:has(.nav-toggle-checkbox:checked) .nav-public li:not(:first-child) {
     display: flex;
   }
 
-  .navbar:has(.nav-toggle-checkbox:checked) .nav-signed-in-wrapper {
+  .navbar.navbar-signed-in:has(.nav-toggle-checkbox:checked) .nav-signed-in-wrapper {
     display: block;
   }
 
-  .navbar:has(.nav-toggle-checkbox:checked) .nav-hamburger {
+  .navbar.navbar-signed-in:has(.nav-toggle-checkbox:checked) .nav-hamburger {
     background: rgba(255, 255, 255, 0.15);
 
     span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
