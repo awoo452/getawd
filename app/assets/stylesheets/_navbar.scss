@@ -109,10 +109,11 @@
   }
 
   .nav-signed-in button {
-    background: rgba(255, 255, 255, 0.12);
+    background: none;
     color: $navbar-link;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: $radius-pill;
+    border: none;
+    border-radius: 0;
+    appearance: none;
   }
 
   a[data-tooltip],
