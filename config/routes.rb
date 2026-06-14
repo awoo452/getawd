@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   # Kitchen / Pantry / Inventory
   get '/kitchen',                        to: 'kitchen#index', as: :kitchen
   get '/kitchen/week/:week_start',       to: 'kitchen#index', as: :kitchen_week
+  get '/kitchen/day/:selected_date',     to: 'kitchen#index', as: :kitchen_day
   resources :meal_plan_recipes, only: [:create, :destroy]
   resources :meal_plans, only: [:create, :update, :destroy] do
     member do

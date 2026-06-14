@@ -1,6 +1,6 @@
 <%= render "shared/logged_in_heading", title: "Kitchen" %>
 
-<div class="kitchen-wrapper today-col-<%= @today_col %>">
+<div class="kitchen-wrapper selected-col-<%= @selected_col %>">
 
   <div class="kitchen-stats">
     <div class="kitchen-stat <%= @out_of_stock_count > 0 ? 'stat-danger' : 'stat-ok' %>">

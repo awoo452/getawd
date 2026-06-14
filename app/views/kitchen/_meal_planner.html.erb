@@ -1,3 +1,8 @@
+<nav class="meal-planner-mobile-nav">
+  <%= link_to "← Prev", kitchen_day_path((@selected_date - 1.day).strftime("%Y-%m-%d")), class: "kitchen-btn" %>
+  <span class="meal-planner-range"><%= @selected_date.strftime("%a, %b %-d") %></span>
+  <%= link_to "Next →", kitchen_day_path((@selected_date + 1.day).strftime("%Y-%m-%d")), class: "kitchen-btn" %>
+</nav>
 <div class="meal-planner-nav">
   <%= link_to "← Prev", kitchen_week_path((@week_start - 7.days).strftime("%Y-%m-%d")), class: "kitchen-btn" %>
   <span class="meal-planner-range">

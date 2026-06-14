@@ -1104,6 +1104,8 @@
   &:hover { background: darken($primary-color, 8%); }
 }
 
+.meal-planner-mobile-nav { display: none; }
+
 @media (max-width: 750px) {
   .recipe-grid   { grid-template-columns: 1fr; }
   .pantry-grid   { grid-template-columns: repeat(2, 1fr); }
@@ -1111,7 +1113,15 @@
 
   .meal-planner-nav { display: none; }
 
-  // Hide every day column, then show only today's via the wrapper class
+  .meal-planner-mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+  }
+
+  // Hide every day column, then show only the selected day's via the wrapper class
   .meal-planner-header-cell,
   .meal-planner-day-cell,
   .eat-log-day-cell {
@@ -1119,7 +1129,7 @@
   }
 
   @for $i from 0 through 6 {
-    .today-col-#{$i} .day-col-#{$i} {
+    .selected-col-#{$i} .day-col-#{$i} {
       display: flex !important;
     }
   }
