@@ -1,17 +1,123 @@
 <ul class="nav-signed-in">
-  <li><%= link_to "Calendar (Daily)", calendar_daily_path %></li>
-  <li><%= link_to "Calendar (Monthly)", calendar_monthly_path %></li>
-  <li><%= link_to "Dashboard", dashboard_path %></li>
-  <li><%= link_to "Documentation", documents_path %></li>
-  <li><%= link_to "Gaming", games_path %></li>
-  <li><%= link_to "Goals", goals_path %></li>
-  <li><%= link_to "Chores", chores_path %></li>
-  <li><%= link_to "Kitchen", kitchen_path %></li>
-  <li><%= link_to "Workouts", workouts_path %></li>
-  <li><%= link_to "Reports", reports_path %></li>
-  <li><%= link_to "Rewards", rewards_path %></li>
-  <li><%= link_to "Tasks", tasks_path %></li>
-  <li><%= link_to "Change Requests", new_change_request_path, class: "nav-link" %></li>
-  <li><%= link_to "Bugs", new_bug_path, class: "nav-link" %></li>
-  <li><%= button_to "Logout", destroy_user_session_path, method: :delete %></li>
+  <li>
+    <%= link_to calendar_daily_path, title: "Calendar (Daily)", aria: { label: "Calendar — Daily" }, data: { tooltip: "Daily" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="19" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="7" y1="1" x2="7" y2="5"/><line x1="17" y1="1" x2="17" y2="5"/>
+        <text x="12" y="19" text-anchor="middle" font-size="9" font-weight="bold" fill="currentColor" stroke="none">1</text>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to calendar_monthly_path, title: "Calendar (Monthly)", aria: { label: "Calendar — Monthly" }, data: { tooltip: "Monthly" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="19" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="7" y1="1" x2="7" y2="5"/><line x1="17" y1="1" x2="17" y2="5"/>
+        <text x="12" y="19" text-anchor="middle" font-size="7" font-weight="bold" fill="currentColor" stroke="none">31</text>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to dashboard_path, title: "Dashboard", aria: { label: "Dashboard" }, data: { tooltip: "Dashboard" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to documents_path, title: "Documentation", aria: { label: "Documentation" }, data: { tooltip: "Docs" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to games_path, title: "Gaming", aria: { label: "Gaming" }, data: { tooltip: "Gaming" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="7" width="20" height="11" rx="5"/><line x1="7" y1="12" x2="11" y2="12"/><line x1="9" y1="10" x2="9" y2="14"/>
+        <circle cx="15" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="17" cy="13" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to goals_path, title: "Goals", aria: { label: "Goals" }, data: { tooltip: "Goals" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to chores_path, title: "Chores", aria: { label: "Chores" }, data: { tooltip: "Chores" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="4 5 5.5 6.5 8 4"/><line x1="11" y1="5" x2="20" y2="5"/>
+        <polyline points="4 12 5.5 13.5 8 11"/><line x1="11" y1="12" x2="20" y2="12"/>
+        <polyline points="4 19 5.5 20.5 8 18"/><line x1="11" y1="19" x2="20" y2="19"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to kitchen_path, title: "Kitchen", aria: { label: "Kitchen" }, data: { tooltip: "Kitchen" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="8" y1="9" x2="8" y2="22"/><path d="M5 2v5a3 3 0 0 0 6 0V2"/>
+        <path d="M18 2l-2 13h4L18 2z"/><line x1="18" y1="15" x2="18" y2="22"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to workouts_path, title: "Workouts", aria: { label: "Workouts" }, data: { tooltip: "Workouts" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="6" y1="12" x2="18" y2="12"/>
+        <rect x="1" y="9" width="5" height="6" rx="1"/><rect x="18" y="9" width="5" height="6" rx="1"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to reports_path, title: "Reports", aria: { label: "Reports" }, data: { tooltip: "Reports" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="14" width="4" height="7"/><rect x="9" y="9" width="4" height="12"/><rect x="16" y="4" width="4" height="17"/>
+        <line x1="2" y1="21" x2="22" y2="21"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to rewards_path, title: "Rewards", aria: { label: "Rewards" }, data: { tooltip: "Rewards" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to tasks_path, title: "Tasks", aria: { label: "Tasks" }, data: { tooltip: "Tasks" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 11 12 14 22 4"/>
+        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to new_change_request_path, title: "Change Requests", aria: { label: "Change Requests" }, data: { tooltip: "Changes" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/>
+        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10"/><path d="M3.51 15a9 9 0 0 0 14.85 3.36L23 14"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to new_bug_path, title: "Bugs", aria: { label: "Bugs" }, data: { tooltip: "Bugs" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <ellipse cx="12" cy="13" rx="4" ry="5"/>
+        <circle cx="12" cy="7" r="3"/>
+        <line x1="10" y1="5" x2="8" y2="3"/><line x1="14" y1="5" x2="16" y2="3"/>
+        <line x1="8" y1="11" x2="4" y2="10"/><line x1="16" y1="11" x2="20" y2="10"/>
+        <line x1="8" y1="14" x2="4" y2="14"/><line x1="16" y1="14" x2="20" y2="14"/>
+        <line x1="8" y1="17" x2="5" y2="19"/><line x1="16" y1="17" x2="19" y2="19"/>
+      </svg>
+    <% end %>
+  </li>
+  <li>
+    <%= button_to destroy_user_session_path, method: :delete, title: "Logout", aria: { label: "Logout" }, data: { tooltip: "Logout" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+        <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+      </svg>
+    <% end %>
+  </li>
 </ul>

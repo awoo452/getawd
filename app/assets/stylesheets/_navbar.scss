@@ -1,7 +1,7 @@
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: 1000;
   background: linear-gradient(90deg, #1f2532 0%, #263252 55%, #2f4f8a 100%);
   padding: $spacing-xs 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -101,8 +101,10 @@
 
   .nav-signed-in a,
   .nav-signed-in button {
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-xs;
     opacity: 0.85;
   }
 
@@ -110,11 +112,39 @@
     background: rgba(255, 255, 255, 0.12);
     color: $navbar-link;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 6px 14px;
     border-radius: $radius-pill;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.65rem;
+  }
+
+  a[data-tooltip],
+  button[data-tooltip] {
+    &::before {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 15, 25, 0.92);
+      color: #fff;
+      padding: 3px 10px;
+      border-radius: $radius-pill;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease 0.15s;
+      z-index: 100;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
+  button[data-tooltip] {
+    position: relative;
   }
 
   .nav-toggle-checkbox {
@@ -127,6 +157,8 @@
 
   .nav-signed-in-wrapper {
     width: 100%;
+    position: relative;
+    z-index: 1;
   }
 }
 

@@ -14,7 +14,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to about_path, title: "About", aria: { label: "About" } do %>
+    <%= link_to about_path, title: "About", aria: { label: "About" }, data: { tooltip: "About" } do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="8" r="4"/>
         <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
@@ -22,14 +22,14 @@
     <% end %>
   </li>
   <li>
-    <%= link_to blog_posts_path, title: "Blog", aria: { label: "Blog" } do %>
+    <%= link_to blog_posts_path, title: "Blog", aria: { label: "Blog" }, data: { tooltip: "Blog" } do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
       </svg>
     <% end %>
   </li>
   <li>
-    <%= link_to contact_path, title: "Contact", aria: { label: "Contact" } do %>
+    <%= link_to contact_path, title: "Contact", aria: { label: "Contact" }, data: { tooltip: "Contact" } do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="2" y="4" width="20" height="16" rx="2"/>
         <path d="m2 7 10 7 10-7"/>
@@ -37,7 +37,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to public_docs_path, title: "Docs", aria: { label: "Docs" } do %>
+    <%= link_to public_docs_path, title: "Docs", aria: { label: "Docs" }, data: { tooltip: "Docs" } do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
         <polyline points="14 2 14 8 20 8"/>
@@ -47,21 +47,21 @@
     <% end %>
   </li>
   <li>
-    <%= link_to projects_path, title: "Projects", aria: { label: "Projects" } do %>
+    <%= link_to projects_path, title: "Projects", aria: { label: "Projects" }, data: { tooltip: "Projects" } do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
       </svg>
     <% end %>
   </li>
   <li>
-    <%= link_to services_path, title: "Services", aria: { label: "Services" } do %>
+    <%= link_to services_path, title: "Services", aria: { label: "Services" }, data: { tooltip: "Services" } do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
       </svg>
     <% end %>
   </li>
   <li>
-    <%= link_to videos_path, title: "Videos", aria: { label: "Videos" } do %>
+    <%= link_to videos_path, title: "Videos", aria: { label: "Videos" }, data: { tooltip: "Videos" } do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10"/>
         <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/>

@@ -3,6 +3,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.60] - 2026-06-14
+### Fixed
+- Restored `border-top` on `.nav-signed-in` and added `position: relative; z-index: 1` to `.nav-signed-in-wrapper` so the icon row renders above the line instead of behind it
+- Increased navbar `z-index` from 30 to 1000 so CSS tooltips appear above page content
+
+## [1.30.59] - 2026-06-14
+### Changed
+- Replaced slow native browser title tooltips with CSS-only tooltips via `data-tooltip` + `::before` pseudo-element. Appear in ~150ms on hover instead of the browser's ~1s delay. No JavaScript.
+
+## [1.30.58] - 2026-06-14
+### Changed
+- Replaced signed-in nav text links with hand-drawn inline SVG icons. Calendars use a calendar base with "1" and "31" to distinguish daily vs monthly. All other icons: dashboard=grid, docs=book, gaming=controller, goals=bullseye, chores=checklist, kitchen=fork+knife, workouts=dumbbell, reports=bar chart, rewards=star, tasks=checkbox, change requests=circular arrows, bugs=bug, logout=door+arrow. No external library.
+
 ## [1.30.57] - 2026-06-14
 ### Changed
 - Replaced public nav text links with hand-drawn inline SVG icons (About=person, Blog=pencil, Contact=envelope, Docs=file, Projects=folder, Services=wrench, Videos=play). No external icon library. Each link has `aria-label` and `title` for accessibility/tooltips.
