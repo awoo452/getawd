@@ -173,8 +173,6 @@
 
 @media (max-width: 750px) {
   .navbar {
-    position: relative;
-
     ul {
       flex-direction: row;
       justify-content: center;
@@ -211,18 +209,14 @@
       z-index: 1;
     }
 
-    // Hamburger: small button, absolute top-right
     .nav-hamburger {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       gap: 5px;
-      position: absolute;
-      top: 50%;
-      right: $spacing-md;
-      transform: translateY(-50%);
-      padding: $spacing-xs $spacing-sm;
+      width: 100%;
+      box-sizing: border-box;
+      padding: $spacing-xs;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: $radius-pill;
