@@ -1104,17 +1104,87 @@
   &:hover { background: darken($primary-color, 8%); }
 }
 
+// ── Day nav bar (daily mode) ───────────────────────────
+
+.day-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  padding: $spacing-xs $spacing-sm;
+  background: $surface-muted;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-md;
+}
+
+.day-nav-label {
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  font-size: $font-base;
+}
+
+.day-nav-btn {
+  display: inline-block;
+  background: $surface-color;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  padding: $spacing-2xs $spacing-sm;
+  font-size: 1.2rem;
+  color: $text-color;
+  text-decoration: none;
+  line-height: 1;
+
+  &:hover { background: $surface-muted-strong; }
+}
+
+// ── Day slots (daily view) ─────────────────────────────
+
+.day-slots {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.day-slot {
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.day-slot-label {
+  background: $surface-muted;
+  padding: $spacing-xs $spacing-sm;
+  font-weight: 600;
+  font-size: $font-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $text-muted;
+}
+
+.day-slot .meal-planner-day-cell,
+.day-slot .eat-log-day-cell {
+  min-height: unset;
+  border-left: none;
+  padding: $spacing-sm;
+}
+
+// ── Weekly-view-only prompt (mobile CTA) ───────────────
+
+.weekly-view-prompt {
+  display: none;
+  justify-content: center;
+  margin-bottom: $spacing-md;
+}
+
+// ── Weekly sections (hidden on mobile) ────────────────
+
 @media (max-width: $bp-mobile) {
   .recipe-grid   { grid-template-columns: 1fr; }
   .pantry-grid   { grid-template-columns: repeat(2, 1fr); }
   .kitchen-stats { gap: $spacing-sm; }
 
-  .meal-planner-label    { width: 44px; }
-  .meal-planner-day-cell { padding: 2px; }
-  .meal-planner-day-num  { font-size: $font-base; }
-  .meal-planner-day-name { font-size: 0.6rem; }
-  .meal-planner-select   { font-size: 0.6rem; }
-  .meal-planner-submit   { font-size: 0.6rem; }
-  .meal-planner-recipe-name { font-size: 0.6rem; }
-  .meal-planner-slot-label  { font-size: 0.6rem; }
+  .weekly-section        { display: none; }
+  .weekly-view-prompt    { display: flex; }
 }

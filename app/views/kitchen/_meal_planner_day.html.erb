@@ -1,0 +1,13 @@
+<div class="day-slots">
+  <% MealPlan::SLOTS.each do |slot| %>
+    <div class="day-slot">
+      <div class="day-slot-label"><%= slot.capitalize %></div>
+      <%= render "kitchen/meal_cell",
+            date:               date,
+            slot:               slot,
+            meal_plan:          meal_plans_by_slot[slot],
+            recipes_for_slot:   recipes_for_slot[slot],
+            food_items_grouped: food_items_grouped %>
+    </div>
+  <% end %>
+</div>

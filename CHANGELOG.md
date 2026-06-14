@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.52] - 2026-06-14
+### Added
+- URL-based daily view for mobile. Visiting `/kitchen?date=YYYY-MM-DD` renders a single-day layout: a ← date → nav bar (plain links) plus stacked Meal Planner and Eating Today slot sections. No JavaScript involved — prev/next are anchor tags, week boundary crossings just change the date param. On the weekly view, mobile screens see a "View Today →" prompt and the weekly calendar grids are hidden via CSS media query. The "Weekly View" link in the daily view returns to the full grid. Turbo Stream cell updates continue to work in daily mode because only that day's cells are in the DOM.
+
 ## [1.30.51] - 2026-06-13
 ### Added
 - **Shelf life** field (`shelf_life_days`, integer, optional) added to food items and recipes. Set it on the food item edit form ("Shelf Life (days)") or the recipe form. The pantry card shows `Xd shelf life` when set. When a meal is cooked, the shelf life from the recipe is copied to the prepared dish and the fridge card shows an expiry date ("exp Jun 17"), highlighted in red when 1 day or fewer remain or when expired.

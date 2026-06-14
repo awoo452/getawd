@@ -8,7 +8,16 @@ class KitchenController < ApplicationController
                                    .ordered
                                    .group_by(&:meal_type_suggestion)
 
-    @week_start  = parse_week_start(params[:week_start])
+    if params[:date].present?
+      @daily_mode  = true
+      @mobile_date = parse_date(params[:date])
+      @week_start  = @mobile_date.beginning_of_week(:sunday)
+    else
+      @daily_mode  = false
+      @mobile_date = Time.zone.today
+      @week_start  = parse_week_start(params[:week_start])
+    end
+
     @week_dates  = (0..6).map { |i| @week_start + i.days }
     week_end     = @week_start + 6.days
 
@@ -35,5 +44,11 @@ class KitchenController < ApplicationController
     Date.parse(date_str.to_s).beginning_of_week(:sunday)
   rescue ArgumentError, TypeError
     Time.zone.today.beginning_of_week(:sunday)
+  end
+
+  def parse_date(date_str)
+    Date.parse(date_str.to_s)
+  rescue ArgumentError, TypeError
+    Time.zone.today
   end
 end
