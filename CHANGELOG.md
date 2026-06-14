@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.64] - 2026-06-14
+### Changed
+- On mobile (≤750px), nav icon tooltips are replaced with permanent labels rendered below each icon. CSS hover-based tooltips don't work on touch screens, so labels are always visible instead.
+### Fixed
+- Mobile nav icon labels now visible: added `order: 1` so the `::before` label renders below (not above) the SVG icon in the flex column layout, `!important` on `opacity: 1` and `animation: none` to win the cascade, and explicit `color` so the text is always white regardless of inherited styles.
+
 ## [1.30.63] - 2026-06-14
 ### Fixed
 - Nav tooltips now also trigger on `:active` so they fire on touchstart in iOS Safari, which doesn't reliably apply `:focus` to anchor elements on tap.

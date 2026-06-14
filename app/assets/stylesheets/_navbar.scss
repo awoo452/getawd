@@ -223,6 +223,31 @@
       }
     }
 
+    a[data-tooltip],
+    button[data-tooltip] {
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+
+      &::before,
+      &:hover::before,
+      &:focus::before,
+      &:active::before {
+        position: static;
+        transform: none;
+        opacity: 1 !important;
+        animation: none !important;
+        background: none;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 0;
+        border-radius: 0;
+        font-size: 0.5rem;
+        letter-spacing: 0.06em;
+        order: 1;
+        z-index: auto;
+      }
+    }
+
     .nav-signed-in {
       display: none;
     }
