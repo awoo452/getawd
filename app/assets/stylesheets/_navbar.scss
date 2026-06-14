@@ -110,16 +110,19 @@
     font-size: 0.65rem;
   }
 
-  .nav-signed-in-details {
-    width: 100%;
+  .nav-toggle-checkbox {
+    display: none;
   }
 
   .nav-hamburger {
     display: none;
   }
+
+  .nav-signed-in-wrapper {
+    width: 100%;
+  }
 }
 
-// Responsive Styles
 @media (max-width: 750px) {
   .navbar {
     ul {
@@ -141,16 +144,13 @@
       letter-spacing: 0.12em;
     }
 
-    .nav-signed-in-details {
-      width: 100%;
+    .navbar-logo {
+      height: 75px;
+    }
 
-      &[open] .nav-hamburger {
-        background: rgba(255, 255, 255, 0.15);
-
-        span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        span:nth-child(2) { opacity: 0; }
-        span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-      }
+    .nav-signed-in-wrapper {
+      box-sizing: border-box;
+      padding: 0 $spacing-md $spacing-xs;
     }
 
     .nav-hamburger {
@@ -158,19 +158,13 @@
       flex-direction: column;
       align-items: center;
       gap: 5px;
-      list-style: none;
-      padding: $spacing-xs $spacing-md;
+      width: 100%;
+      box-sizing: border-box;
+      padding: $spacing-xs;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: $radius-pill;
       cursor: pointer;
-      margin: $spacing-xs $spacing-md;
-      width: calc(100% - #{$spacing-md * 2});
-
-      &::marker,
-      &::-webkit-details-marker {
-        display: none;
-      }
 
       span {
         display: block;
@@ -180,6 +174,22 @@
         border-radius: 2px;
         transition: transform $transition-base, opacity $transition-base;
       }
+    }
+
+    .nav-signed-in {
+      display: none;
+    }
+
+    .nav-toggle-checkbox:checked ~ .nav-signed-in {
+      display: flex;
+    }
+
+    .nav-toggle-checkbox:checked ~ .nav-hamburger {
+      background: rgba(255, 255, 255, 0.15);
+
+      span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      span:nth-child(2) { opacity: 0; }
+      span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     }
   }
 }

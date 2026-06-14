@@ -1,13 +1,14 @@
 <nav class="navbar">
   <%= render "layouts/nav_public" %>
   <% if user_signed_in? %>
-    <details class="nav-signed-in-details">
-      <summary class="nav-hamburger">
+    <div class="nav-signed-in-wrapper">
+      <input type="checkbox" id="nav-signed-in-toggle" class="nav-toggle-checkbox">
+      <label for="nav-signed-in-toggle" class="nav-hamburger" aria-label="Toggle navigation">
         <span></span>
         <span></span>
         <span></span>
-      </summary>
+      </label>
       <%= render "layouts/nav_signed_in" %>
-    </details>
+    </div>
   <% end %>
 </nav>

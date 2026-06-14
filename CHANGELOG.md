@@ -3,9 +3,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.55] - 2026-06-14
+### Security
+- Updated `bootsnap` from 1.23.0 to 1.24.6
+- Updated `aws-sdk-s3` from 1.219.0 to 1.225.1 (includes `aws-sdk-core` 3.252.0, `aws-sdk-kms` 1.129.0, `aws-partitions` 1.1260.0)
+- Updated `jbuilder` from 2.14.1 to 2.15.1
+- Updated `selenium-webdriver` from 4.43.0 to 4.44.0
+
 ## [1.30.54] - 2026-06-14
 ### Fixed
-- Collapsible hamburger menu for logged-in nav on mobile (≤ 750 px). The signed-in navigation links are now hidden behind a native HTML `<details>`/`<summary>` toggle — no JavaScript. The hamburger icon (three bars) animates to an X when open via CSS `details[open]`. Desktop layout is unchanged.
+- Collapsible hamburger menu for logged-in nav on mobile (≤ 750 px). Uses a hidden checkbox + label toggle — no JavaScript. On desktop the signed-in links render normally. On mobile they collapse behind a three-bar button (animates to an X when open) that stays within the navbar width via `box-sizing: border-box` and wrapper padding. Logo scales from 150 px to 75 px on mobile.
 
 ## [1.30.53] - 2026-06-14
 ### Fixed
