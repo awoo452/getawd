@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.61] - 2026-06-14
+### Fixed
+- CSS tooltip now auto-hides after ~2s via `@keyframes` animation instead of a plain `transition`. Prevents the tooltip from sticking after Turbo Drive navigation (navbar persists across page changes so hover state doesn't clear). Moving the cursor off and back resets it.
+
 ## [1.30.60] - 2026-06-14
 ### Fixed
 - Restored `border-top` on `.nav-signed-in` and added `position: relative; z-index: 1` to `.nav-signed-in-wrapper` so the icon row renders above the line instead of behind it

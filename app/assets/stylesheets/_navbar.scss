@@ -134,12 +134,11 @@
       white-space: nowrap;
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.15s ease 0.15s;
       z-index: 100;
     }
 
     &:hover::before {
-      opacity: 1;
+      animation: nav-tooltip 2s ease forwards;
     }
   }
 
@@ -160,6 +159,13 @@
     position: relative;
     z-index: 1;
   }
+}
+
+@keyframes nav-tooltip {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  75%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @media (max-width: 750px) {
