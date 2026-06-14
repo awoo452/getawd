@@ -19,6 +19,7 @@ class Recipe < ApplicationRecord
     "dessert"         => "🍨"
   }.freeze
 
+  has_many :meal_plan_recipes, dependent: :restrict_with_error
   has_many :recipe_ingredients, -> { order(:slot_type, :position) }, dependent: :destroy
   has_many :food_items, through: :recipe_ingredients
 

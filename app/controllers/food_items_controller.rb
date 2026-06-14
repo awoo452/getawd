@@ -34,8 +34,11 @@ class FoodItemsController < ApplicationController
 
   def destroy
     name = @food_item.name
-    @food_item.destroy
-    redirect_to food_items_path, notice: "#{name} removed."
+    if @food_item.destroy
+      redirect_to food_items_path, notice: "#{name} removed."
+    else
+      redirect_to food_items_path, alert: "#{name} can't be deleted — it's still referenced in a meal plan."
+    end
   end
 
   private

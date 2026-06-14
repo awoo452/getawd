@@ -33,6 +33,7 @@ class FoodItem < ApplicationRecord
   accepts_nested_attributes_for :pantry_item
 
   after_create :create_pantry_item
+  has_many :meal_plan_items, dependent: :restrict_with_error
   has_many :recipe_ingredients, dependent: :destroy
   has_many :recipes, through: :recipe_ingredients
   has_many :shopping_list_items, dependent: :destroy

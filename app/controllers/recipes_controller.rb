@@ -69,8 +69,11 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe.destroy
-    redirect_to recipes_path, notice: "Recipe deleted."
+    if @recipe.destroy
+      redirect_to recipes_path, notice: "Recipe deleted."
+    else
+      redirect_to recipes_path, alert: "#{@recipe.name} can't be deleted — it's still on a meal plan."
+    end
   end
 
   private
