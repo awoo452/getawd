@@ -50,7 +50,7 @@
           class: "meal-cell-cook-form" do |f| %>
       <% if meal_plan.meal_plan_items.any? && !meal_plan.cooked? %>
         <%= f.text_field :custom_name,
-              placeholder: "#{meal_plan.meal_slot.capitalize} — Custom Items",
+              placeholder: "#{MealPlan::SLOT_LABELS[meal_plan.meal_slot]} — Custom Items",
               class: "form-input meal-cell-cook-name-input" %>
       <% end %>
       <%= f.submit meal_plan.cooked? ? "↩ Uncook" : "Cook",

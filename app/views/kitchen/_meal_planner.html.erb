@@ -28,7 +28,7 @@
   <% MealPlan::SLOTS.each do |slot| %>
     <div class="meal-planner-row">
       <div class="meal-planner-label meal-planner-slot-label">
-        <%= slot.capitalize %>
+        <%= MealPlan::SLOT_LABELS[slot] %>
       </div>
       <% @week_dates.each do |date| %>
         <%= render "kitchen/meal_cell",

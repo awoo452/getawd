@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.71] - 2026-06-14
+### Added
+- Meal planner now shows 7 slot rows: Breakfast, Morning Snack, Lunch, Afternoon Snack, Dinner, Dessert, Bedtime Snack. Snack/dessert slots do not generate tasks or goals.
+
 ## [1.30.70] - 2026-06-14
 ### Fixed
 - Deleting a food item or recipe that's still referenced in a meal plan now returns a flash alert instead of a 500. Added `dependent: :restrict_with_error` on `FoodItem#meal_plan_items` and `Recipe#meal_plan_recipes`.

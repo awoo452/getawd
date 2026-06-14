@@ -1,5 +1,15 @@
 class MealPlan < ApplicationRecord
-  SLOTS = %w[breakfast lunch dinner].freeze
+  SLOTS = %w[breakfast morning_snack lunch afternoon_snack dinner dessert bedtime_snack].freeze
+
+  SLOT_LABELS = {
+    "breakfast"       => "Breakfast",
+    "morning_snack"   => "Morning Snack",
+    "lunch"           => "Lunch",
+    "afternoon_snack" => "Afternoon Snack",
+    "dinner"          => "Dinner",
+    "dessert"         => "Dessert",
+    "bedtime_snack"   => "Bedtime Snack"
+  }.freeze
 
   MEAL_GOAL_TITLES = {
     "breakfast" => "Breakfast",
@@ -16,7 +26,7 @@ class MealPlan < ApplicationRecord
   has_many :food_items, through: :meal_plan_items
   has_many :prepared_dishes, dependent: :destroy
 
-  enum :meal_slot, { breakfast: 0, lunch: 1, dinner: 2 }
+  enum :meal_slot, { breakfast: 0, lunch: 1, dinner: 2, morning_snack: 3, afternoon_snack: 4, bedtime_snack: 5, dessert: 6 }
 
   validates :planned_on, presence: true
   validates :meal_slot,  presence: true
@@ -52,6 +62,8 @@ class MealPlan < ApplicationRecord
   private
 
   def generate_task
+    return unless %w[breakfast lunch dinner].include?(meal_slot)
+
     t = Task.create!(
       task_name:      task_label,
       goal:           meal_goal,
@@ -93,7 +105,7 @@ class MealPlan < ApplicationRecord
       end
       if meal_plan_items.any?
         PreparedDish.create!(
-          name:               custom_dish_name.presence || "#{meal_slot.capitalize} — Custom Items",
+          name:               custom_dish_name.presence || "#{SLOT_LABELS[meal_slot]} — Custom Items",
           servings_remaining: 1,
           cooked_on:          planned_on,
           recipe_id:          nil,
@@ -112,7 +124,7 @@ class MealPlan < ApplicationRecord
 
   def task_label
     recipe_names = recipes.map(&:name).presence
-    "#{meal_slot.capitalize} — #{recipe_names&.join(', ') || 'Custom Meal'}"
+    "#{SLOT_LABELS[meal_slot]} — #{recipe_names&.join(', ') || 'Custom Meal'}"
   end
 
   def meal_goal
