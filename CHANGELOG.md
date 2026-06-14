@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.53] - 2026-06-14
+### Fixed
+- rubocop -a
+
 ## [1.30.52] - 2026-06-14
 ### Security
 - Updated `net-imap` from 0.6.4 to 0.6.4.1 to address CVE-2026-47240 (command injection via non-synchronizing literal), CVE-2026-47241 (DoS via incomplete raw argument validation), and CVE-2026-47242 (command injection via ID command argument).

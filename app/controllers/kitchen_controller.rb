@@ -37,5 +37,4 @@ class KitchenController < ApplicationController
   rescue ArgumentError, TypeError
     Time.zone.today.beginning_of_week(:sunday)
   end
-
 end
