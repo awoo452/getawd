@@ -32,6 +32,13 @@
 
   .nav-public {
     padding-bottom: $spacing-sm;
+
+    a:not(:has(img)) {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: $spacing-xs;
+    }
   }
 
   .nav-signed-in {
@@ -144,7 +151,7 @@
       letter-spacing: 0.12em;
     }
 
-    .navbar-logo {
+    li .navbar-logo {
       height: 75px;
     }
 
@@ -179,17 +186,17 @@
     .nav-signed-in {
       display: none;
     }
+  }
 
-    .nav-signed-in-wrapper:has(.nav-toggle-checkbox:checked) .nav-signed-in {
-      display: flex;
-    }
+  .navbar:has(.nav-toggle-checkbox:checked) .nav-signed-in {
+    display: flex;
+  }
 
-    .nav-signed-in-wrapper:has(.nav-toggle-checkbox:checked) .nav-hamburger {
-      background: rgba(255, 255, 255, 0.15);
+  .navbar:has(.nav-toggle-checkbox:checked) .nav-hamburger {
+    background: rgba(255, 255, 255, 0.15);
 
-      span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-      span:nth-child(2) { opacity: 0; }
-      span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    }
+    span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   }
 }

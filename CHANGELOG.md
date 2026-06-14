@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.57] - 2026-06-14
+### Changed
+- Replaced public nav text links with hand-drawn inline SVG icons (About=person, Blog=pencil, Contact=envelope, Docs=file, Projects=folder, Services=wrench, Videos=play). No external icon library. Each link has `aria-label` and `title` for accessibility/tooltips.
+
 ## [1.30.56] - 2026-06-14
 ### Fixed
 - Mobile nav toggle: replaced cross-ancestor `~` sibling selector (unreliable when compiled by SCSS) with `:has(.nav-toggle-checkbox:checked)` on the wrapper. Hamburger and signed-in links now correctly show/hide on tap.
