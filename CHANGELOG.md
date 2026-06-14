@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.54] - 2026-06-14
+### Fixed
+- Collapsible hamburger menu for logged-in nav on mobile (≤ 750 px). The signed-in navigation links are now hidden behind a native HTML `<details>`/`<summary>` toggle — no JavaScript. The hamburger icon (three bars) animates to an X when open via CSS `details[open]`. Desktop layout is unchanged.
+
 ## [1.30.53] - 2026-06-14
 ### Fixed
 - rubocop -a
