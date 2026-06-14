@@ -137,7 +137,8 @@
       z-index: 100;
     }
 
-    &:hover::before {
+    &:hover::before,
+    &:focus::before {
       animation: nav-tooltip 2s ease forwards;
     }
   }
