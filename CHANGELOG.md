@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.56] - 2026-06-14
+### Fixed
+- Mobile nav toggle: replaced cross-ancestor `~` sibling selector (unreliable when compiled by SCSS) with `:has(.nav-toggle-checkbox:checked)` on the wrapper. Hamburger and signed-in links now correctly show/hide on tap.
+
 ## [1.30.55] - 2026-06-14
 ### Security
 - Updated `bootsnap` from 1.23.0 to 1.24.6

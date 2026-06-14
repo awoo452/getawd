@@ -180,11 +180,11 @@
       display: none;
     }
 
-    .nav-toggle-checkbox:checked ~ .nav-signed-in {
+    .nav-signed-in-wrapper:has(.nav-toggle-checkbox:checked) .nav-signed-in {
       display: flex;
     }
 
-    .nav-toggle-checkbox:checked ~ .nav-hamburger {
+    .nav-signed-in-wrapper:has(.nav-toggle-checkbox:checked) .nav-hamburger {
       background: rgba(255, 255, 255, 0.15);
 
       span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
