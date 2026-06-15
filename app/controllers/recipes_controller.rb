@@ -90,9 +90,8 @@ class RecipesController < ApplicationController
   end
 
   def active_food_items_by_type
-    FoodItem::FOOD_TYPES.index_with do |type|
-      FoodItem.active.by_type(type).order(:name).to_a
-    end
+    grouped = FoodItem.active.order(:name).group_by(&:food_type)
+    FoodItem::FOOD_TYPES.index_with { |type| grouped[type] || [] }
   end
 
   def build_ingredient_rows
