@@ -501,8 +501,7 @@
 
 .shopping-item {
   display: flex;
-  align-items: center;
-  gap: $spacing-sm;
+  flex-direction: column;
   padding: $spacing-xs $spacing-sm;
   border-bottom: 1px solid $border-color-light;
 
@@ -510,6 +509,73 @@
 
   &.shopping-item-checked {
     .shopping-item-name { text-decoration: line-through; color: $text-muted; }
+  }
+
+  .shopping-item-main {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    width: 100%;
+  }
+
+  .shopping-item-sub {
+    margin-top: $spacing-2xs;
+    margin-left: 2rem;
+  }
+
+  .shopping-item-sub-toggle {
+    font-size: $font-xs;
+    color: $text-muted;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .shopping-item-qty-form {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2xs;
+  }
+
+  .shopping-item-qty-input {
+    width: 48px;
+    font-size: $font-xs;
+    text-align: center;
+    padding: 2px 4px;
+  }
+
+  .shopping-item-unit {
+    font-size: $font-xs;
+    color: $text-muted;
+  }
+
+  .shopping-item-qty-submit {
+    background: none;
+    border: none;
+    color: $text-muted;
+    cursor: pointer;
+    font-size: $font-xs;
+    padding: 0 2px;
+
+    &:hover { color: $primary-color; }
+  }
+
+  .shopping-item-sub-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    margin-top: $spacing-2xs;
+    align-items: center;
+  }
+
+  .shopping-sub-select {
+    flex: 1;
+    min-width: 160px;
+    font-size: $font-xs;
+  }
+
+  .shopping-sub-qty {
+    width: 52px;
+    font-size: $font-xs;
   }
 
   .shopping-item-check {

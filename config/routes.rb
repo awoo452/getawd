@@ -109,7 +109,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :shopping_list_items, only: [:update]
+  resources :shopping_list_items, only: [:update] do
+    member { patch :replace }
+  end
 
   ## If you're still reading you deserve to know about this
   get  "/blackjack",        to: "blackjack#show",  as: :blackjack

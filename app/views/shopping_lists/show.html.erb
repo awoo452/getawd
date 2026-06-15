@@ -4,7 +4,7 @@
   <div class="kitchen-actions">
     <%= link_to "← Lists", shopping_lists_path, class: "kitchen-btn" %>
     <% if @shopping_list.active? %>
-      <%= button_to "Archive (Done Shopping)", archive_shopping_list_path(@shopping_list),
+      <%= button_to "Done Shopping", archive_shopping_list_path(@shopping_list),
             method: :patch, class: "kitchen-btn kitchen-btn-primary" %>
     <% end %>
   </div>

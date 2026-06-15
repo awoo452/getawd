@@ -1,13 +1,32 @@
 <li id="shopping_list_item_<%= item.id %>" class="shopping-item <%= item.checked_off ? 'shopping-item-checked' : '' %>">
-  <%= button_to item.checked_off ? "☑" : "☐",
-        shopping_list_item_path(item),
-        method: :patch,
-        class: "shopping-item-check" %>
-  <span class="shopping-item-name"><%= item.food_item.name %></span>
-  <span class="shopping-item-qty"><%= item.quantity_needed %> <%= item.food_item.unit %></span>
-  <% pi = item.food_item.pantry_item %>
-  <% unit_sv = item.food_item.unit_servings&.to_f&.nonzero? || 1.0 %>
-  <% on_hand = pi ? (pi.servings_on_hand.to_f / unit_sv).floor : 0 %>
-  <span class="shopping-item-on-hand">(<%= on_hand %> <%= item.food_item.unit %> on hand)</span>
-  <span class="shopping-item-location"><%= item.food_item.location_label %></span>
+  <div class="shopping-item-main">
+    <%= button_to item.checked_off ? "☑" : "☐",
+          shopping_list_item_path(item),
+          method: :patch,
+          class: "shopping-item-check" %>
+    <span class="shopping-item-name"><%= item.food_item.name %></span>
+    <%= form_with url: replace_shopping_list_item_path(item), method: :patch, class: "shopping-item-qty-form" do |f| %>
+      <%= f.hidden_field :food_item_id, value: item.food_item_id %>
+      <%= f.number_field :quantity_needed, value: item.quantity_needed, min: 1, class: "shopping-item-qty-input" %>
+      <span class="shopping-item-unit"><%= item.food_item.unit %></span>
+      <%= f.submit "✓", class: "shopping-item-qty-submit" %>
+    <% end %>
+    <% pi = item.food_item.pantry_item %>
+    <% unit_sv = item.food_item.unit_servings&.to_f&.nonzero? || 1.0 %>
+    <% on_hand = pi ? (pi.servings_on_hand.to_f / unit_sv).floor : 0 %>
+    <span class="shopping-item-on-hand">(<%= on_hand %> on hand)</span>
+    <span class="shopping-item-location"><%= item.food_item.location_label %></span>
+  </div>
+
+  <details class="shopping-item-sub">
+    <summary class="shopping-item-sub-toggle">Sub</summary>
+    <%= form_with url: replace_shopping_list_item_path(item), method: :patch, class: "shopping-item-sub-form" do |f| %>
+      <%= f.grouped_select :food_item_id,
+            grouped_options_for_select(@food_items_grouped, item.food_item_id),
+            { prompt: "Select substitute..." },
+            { class: "shopping-sub-select" } %>
+      <%= f.number_field :quantity_needed, value: item.quantity_needed, min: 1, class: "shopping-sub-qty" %>
+      <%= f.submit "Replace", class: "kitchen-btn" %>
+    <% end %>
+  </details>
 </li>
