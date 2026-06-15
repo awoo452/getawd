@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.87] - 2026-06-14
+### Fixed
+- `DropMealsTable` migration now guards with `table_exists?(:meals)` to avoid failing on environments where the table was never present
+
 ## [1.30.86] - 2026-06-14
 ### Refactored
 - Added `PantryItem.needs_restock` scope combining out-of-stock and low-stock conditions; `ShoppingListsController#create` now uses it instead of duplicating the SQL inline

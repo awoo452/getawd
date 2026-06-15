@@ -1,6 +1,6 @@
 class DropMealsTable < ActiveRecord::Migration[8.1]
   def up
-    drop_table :meals
+    drop_table :meals if table_exists?(:meals)
   end
 
   def down
