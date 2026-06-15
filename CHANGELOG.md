@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.91] - 2026-06-14
+### Added
+- Real logic tests for `Dashboard::IndexData` covering idea color coding (gray/green/yellow/red/black), time calculations, and due-today task counts
+- Real logic tests for `Reports::IndexData` covering letter grade formula, completion rate, on-time vs late counts, missed task minutes, completion chain accuracy, and last completion date
+
 ## [1.30.90] - 2026-06-14
 ### Added
 - Unit tests for all `IndexData` service objects: `Tasks`, `Goals`, `Reports`, `Dashboard`, `About`, `BlogPosts`, `Bugs`, `ChangeRequests`, `Contact`, `Documents`, `Games`, `Home`, `Landscaping`, `Projects`, `Rewards`, `Services`, `Videos` — previously had zero coverage
