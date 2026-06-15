@@ -74,5 +74,4 @@ class MealPlanRecipesController < ApplicationController
       format.html { redirect_to kitchen_path }
     end
   end
-
 end

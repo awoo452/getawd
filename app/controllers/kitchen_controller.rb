@@ -22,9 +22,7 @@ class KitchenController < ApplicationController
       Recipe.active.by_meal_type(slot).ordered
     end
 
-    @food_items_grouped = FoodItem.active.ordered
-                                  .group_by { |fi| fi.food_type.humanize }
-                                  .transform_values { |items| items.map { |fi| [fi.name, fi.id] } }
+    @food_items_grouped = grouped_food_items
 
     @prepared_dishes = PreparedDish.active.by_date
 
