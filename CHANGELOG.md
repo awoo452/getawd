@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.77] - 2026-06-14
+### Fixed
+- Shopping list show page was throwing 500 due to `f.grouped_select` not being a real Rails helper. Changed to `f.select` with `grouped_options_for_select`.
+
 ## [1.30.76] - 2026-06-14
 ### Added
 - Checking off a shopping list item now increments its pantry stock; unchecking decrements it. Added substitute form on each item (tap "Sub" to swap for a different food item and quantity). Renamed "Archive" button to "Done Shopping."

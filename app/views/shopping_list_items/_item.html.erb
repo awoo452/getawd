@@ -21,7 +21,7 @@
   <details class="shopping-item-sub">
     <summary class="shopping-item-sub-toggle">Sub</summary>
     <%= form_with url: replace_shopping_list_item_path(item), method: :patch, class: "shopping-item-sub-form" do |f| %>
-      <%= f.grouped_select :food_item_id,
+      <%= f.select :food_item_id,
             grouped_options_for_select(@food_items_grouped, item.food_item_id),
             { prompt: "Select substitute..." },
             { class: "shopping-sub-select" } %>
