@@ -131,6 +131,21 @@ class PantryItemTest < ActiveSupport::TestCase
     assert_equal Date.current, pi.reload.last_restocked_at
   end
 
+  # ── needs_restock scope ──────────────────────────────────
+  test "needs_restock includes out of stock items" do
+    pantry_items(:bread_pantry).update!(servings_on_hand: 0)
+    assert_includes PantryItem.needs_restock, pantry_items(:bread_pantry)
+  end
+
+  test "needs_restock includes low stock items" do
+    pantry_items(:eggs_pantry).update!(servings_on_hand: 1.0)  # below min_servings of 2
+    assert_includes PantryItem.needs_restock, pantry_items(:eggs_pantry)
+  end
+
+  test "needs_restock excludes in stock items" do
+    assert_not_includes PantryItem.needs_restock, pantry_items(:eggs_pantry)  # 6 > min 2
+  end
+
   # ── set_servings! ────────────────────────────────────────────
   test "set_servings! sets servings_on_hand to given amount" do
     pi = pantry_items(:eggs_pantry)

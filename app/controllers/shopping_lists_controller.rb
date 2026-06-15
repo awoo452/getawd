@@ -1,4 +1,5 @@
 class ShoppingListsController < ApplicationController
+  include KitchenHelpers
   before_action :set_shopping_list, only: [:show, :destroy, :archive]
 
   def index
@@ -11,9 +12,7 @@ class ShoppingListsController < ApplicationController
                                     .includes(food_item: :pantry_item)
                                     .ordered_by_food
                                     .group_by { |i| i.food_item.food_type }
-    @food_items_grouped = FoodItem.active.ordered
-                                  .group_by { |fi| fi.food_type.humanize }
-                                  .transform_values { |items| items.map { |fi| [fi.name, fi.id] } }
+    @food_items_grouped = grouped_food_items
   end
 
   def create

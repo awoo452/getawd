@@ -1,4 +1,5 @@
 class ShoppingListItemsController < ApplicationController
+  include KitchenHelpers
   before_action :set_item
   before_action :set_food_items, only: [:update, :replace]
 
@@ -44,9 +45,7 @@ class ShoppingListItemsController < ApplicationController
   end
 
   def set_food_items
-    @food_items_grouped = FoodItem.active.ordered
-                                  .group_by { |fi| fi.food_type.humanize }
-                                  .transform_values { |items| items.map { |fi| [fi.name, fi.id] } }
+    @food_items_grouped = grouped_food_items
   end
 
   def replace_params

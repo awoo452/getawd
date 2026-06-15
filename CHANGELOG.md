@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.88] - 2026-06-14
+### Refactored
+- `ShoppingListsController` and `ShoppingListItemsController` now include `KitchenHelpers` and call `grouped_food_items` instead of duplicating the query inline
+- `MealPlanRecipe` now validates uniqueness of `recipe_id` scoped to `meal_plan_id`, matching the DB constraint added in 1.30.86
+### Added
+- Tests for `PantryItem.needs_restock` scope (out-of-stock, low-stock, and in-stock cases)
+- Tests for `Kitchen::IndexData` covering date parsing, week boundary logic, slot grouping, and pantry counts
+- Tests for `MealCellResponder` concern via `MealPlansController` turbo stream and HTML responses
+- Tests for `KitchenHelpers` concern verifying grouped food item structure and active filtering
+
 ## [1.30.87] - 2026-06-14
 ### Fixed
 - `DropMealsTable` migration now guards with `table_exists?(:meals)` to avoid failing on environments where the table was never present
