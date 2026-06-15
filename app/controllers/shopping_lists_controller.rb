@@ -8,7 +8,7 @@ class ShoppingListsController < ApplicationController
 
   def show
     @items_by_type = @shopping_list.shopping_list_items
-                                    .includes(:food_item)
+                                    .includes(food_item: :pantry_item)
                                     .ordered_by_food
                                     .group_by { |i| i.food_item.food_type }
   end
