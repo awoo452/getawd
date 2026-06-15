@@ -20,7 +20,7 @@ bacon:
 
 bread:
   name: Bread
-  food_type: grain
+  food_type: side
   location: cupboard
   unit: loaf
   serving_size: slice

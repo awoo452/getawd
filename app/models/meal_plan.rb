@@ -123,7 +123,7 @@ class MealPlan < ApplicationRecord
   end
 
   def task_label
-    recipe_names = recipes.map(&:name).presence
+    recipe_names = (recipes.loaded? ? recipes : recipes.select(:name)).map(&:name).presence
     "#{SLOT_LABELS[meal_slot]} — #{recipe_names&.join(', ') || 'Custom Meal'}"
   end
 

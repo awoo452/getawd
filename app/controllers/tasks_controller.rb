@@ -44,15 +44,9 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: 'Task was successfully deleted.'
   end
 
-  # app/controllers/tasks_controller.rb
   def complete_on_time
     @task = Tasks::CompleteOnTime.call(task_id: params[:id])
-    return_to = params[:return_to].to_s
-    if return_to.start_with?("/") && !return_to.start_with?("//")
-      redirect_to return_to, notice: "Task completed on time."
-    else
-      redirect_back fallback_location: tasks_path, notice: "Task completed on time."
-    end
+    redirect_back fallback_location: tasks_path, notice: "Task completed on time."
   end
 
   private

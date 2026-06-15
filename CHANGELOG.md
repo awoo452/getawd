@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.86] - 2026-06-14
+### Refactored
+- Added `PantryItem.needs_restock` scope combining out-of-stock and low-stock conditions; `ShoppingListsController#create` now uses it instead of duplicating the SQL inline
+### Added
+- Unique index on `meal_plan_recipes(meal_plan_id, recipe_id)` to enforce at the DB level what `find_or_initialize_by` was only guarding at the app level
+- DB check constraint on `food_items.food_type` enforcing the same values as `FoodItem::FOOD_TYPES`; fixed `bread` fixture which had an invalid `grain` type — changed to `side`
+### Fixed
+- `MealPlan#task_label` now uses `recipes.select(:name)` when the association isn't loaded, avoiding a full association load inside `sync_task_name` callbacks
+### Security
+- Removed open redirect in `TasksController#complete_on_time`; dropped `return_to` param entirely and replaced with `redirect_back fallback_location: tasks_path` — all callers were passing `request.fullpath` anyway
+
 ## [1.30.85] - 2026-06-14
 ### Refactored
 - `Kitchen::IndexData` loads all active recipes in a single query and groups by `meal_type_suggestion` in Ruby, replacing 7 per-slot queries for `recipes_for_slot`

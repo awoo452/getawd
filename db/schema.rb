@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_14_000002) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_15_030829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -157,6 +157,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_14_000002) do
     t.index ["active", "position"], name: "index_food_items_on_active_and_position"
     t.index ["food_type"], name: "index_food_items_on_food_type"
     t.index ["location"], name: "index_food_items_on_location"
+    t.check_constraint "food_type::text = ANY (ARRAY['protein'::character varying, 'vegetable'::character varying, 'fruit'::character varying, 'side'::character varying, 'sauce'::character varying, 'snack'::character varying, 'dessert'::character varying]::text[])", name: "food_type_valid_values"
   end
 
   create_table "games", force: :cascade do |t|
@@ -226,6 +227,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_14_000002) do
     t.integer "quantity", default: 1, null: false
     t.bigint "recipe_id", null: false
     t.datetime "updated_at", null: false
+    t.index ["meal_plan_id", "recipe_id"], name: "index_meal_plan_recipes_on_meal_plan_id_and_recipe_id", unique: true
     t.index ["meal_plan_id"], name: "index_meal_plan_recipes_on_meal_plan_id"
     t.index ["recipe_id"], name: "index_meal_plan_recipes_on_recipe_id"
   end

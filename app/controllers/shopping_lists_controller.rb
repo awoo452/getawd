@@ -23,14 +23,7 @@ class ShoppingListsController < ApplicationController
       return
     end
 
-    low_items = PantryItem
-      .joins(:food_item)
-      .where(food_items: { active: true })
-      .where(
-        "pantry_items.servings_on_hand = 0 OR " \
-        "pantry_items.servings_on_hand / NULLIF(food_items.servings_per_unit, 0) <= pantry_items.min_servings"
-      )
-      .includes(:food_item)
+    low_items = PantryItem.needs_restock.where(food_items: { active: true }).includes(:food_item)
 
     upcoming_plans = MealPlan
       .where(planned_on: Date.current.., cooked: false)
