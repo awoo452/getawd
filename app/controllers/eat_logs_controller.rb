@@ -59,19 +59,6 @@ class EatLogsController < ApplicationController
     params.require(:eat_log).permit(:date, :meal_slot, :description, :prepared_dish_id)
   end
 
-  def respond_with_cell(date, slot)
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(
-          "eat_log_cell_#{date.iso8601}_#{slot}",
-          partial: "kitchen/eat_log_cell",
-          locals:  eat_log_cell_locals(date, slot)
-        )
-      end
-      format.html { redirect_to kitchen_path }
-    end
-  end
-
   def respond_with_cell_and_fridge(date, slot)
     respond_to do |format|
       format.turbo_stream do

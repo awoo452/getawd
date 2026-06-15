@@ -1,20 +1,14 @@
 eggs_pantry:
   food_item: eggs
   servings_on_hand: 6.0
-  quantity_on_hand: 0
   min_servings: 2
-  min_quantity: 1
 
 bacon_pantry:
   food_item: bacon
   servings_on_hand: 11.0
-  quantity_on_hand: 0
   min_servings: 2
-  min_quantity: 1
 
 bread_pantry:
   food_item: bread
   servings_on_hand: 0.0
-  quantity_on_hand: 0
   min_servings: 1
-  min_quantity: 1

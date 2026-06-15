@@ -57,6 +57,6 @@ class FoodItem < ApplicationRecord
   private
 
   def create_pantry_item
-    PantryItem.create!(food_item: self, quantity_on_hand: 0, min_quantity: 1, servings_on_hand: 0, min_servings: 1)
+    PantryItem.create!(food_item: self, servings_on_hand: 0, min_servings: 1)
   end
 end

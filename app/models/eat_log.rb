@@ -1,5 +1,5 @@
 class EatLog < ApplicationRecord
-  SLOTS = %w[breakfast lunch dinner].freeze
+  SLOTS = MealPlan::SLOTS
 
   belongs_to :prepared_dish, optional: true
 

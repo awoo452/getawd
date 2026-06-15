@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_12_000003) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_14_000002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -241,28 +241,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_12_000003) do
     t.index ["task_id"], name: "index_meal_plans_on_task_id"
   end
 
-  create_table "meals", force: :cascade do |t|
-    t.integer "calories_per_serving"
-    t.datetime "created_at", null: false
-    t.text "description"
-    t.string "image"
-    t.text "ingredients"
-    t.text "instructions"
-    t.string "secondary_image"
-    t.integer "servings"
-    t.string "source_url"
-    t.string "title", null: false
-    t.integer "total_time_minutes"
-    t.datetime "updated_at", null: false
-  end
-
   create_table "pantry_items", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.bigint "food_item_id", null: false
     t.date "last_restocked_at"
-    t.integer "min_quantity", default: 1, null: false
     t.integer "min_servings", default: 1, null: false
-    t.integer "quantity_on_hand", default: 0, null: false
     t.decimal "servings_on_hand", precision: 8, scale: 2, default: "0.0", null: false
     t.datetime "updated_at", null: false
     t.index ["food_item_id"], name: "index_pantry_items_on_food_item_id", unique: true

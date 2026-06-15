@@ -44,6 +44,7 @@ class PantryItem < ApplicationRecord
   end
 
   def add_unit!
-    update!(servings_on_hand: servings_on_hand + (food_item.unit_servings * food_item.servings_per_unit), last_restocked_at: Date.current)
+    amount = (food_item.unit_servings&.to_f&.nonzero? || 1.0) * food_item.servings_per_unit
+    update!(servings_on_hand: servings_on_hand + amount, last_restocked_at: Date.current)
   end
 end

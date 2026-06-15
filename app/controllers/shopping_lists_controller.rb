@@ -75,7 +75,7 @@ class ShoppingListsController < ApplicationController
     added_ids  = []
 
     low_items.each do |pi|
-      units_needed = [pi.min_quantity - pi.quantity_on_hand + 1, 1].max
+      units_needed = 1
       list.shopping_list_items.create!(food_item: pi.food_item, quantity_needed: units_needed)
       added_ids << pi.food_item_id
     end

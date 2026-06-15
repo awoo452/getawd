@@ -11,7 +11,7 @@ class MealPlanRecipesController < ApplicationController
       mpr.new_record? ? mpr.save! : mpr.increment!(:quantity)
       respond_with_cell(meal_plan.reload)
     end
-  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound, ArgumentError
     head :unprocessable_entity
   end
 

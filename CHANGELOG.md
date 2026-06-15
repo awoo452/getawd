@@ -3,6 +3,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.80] - 2026-06-14
+### Fixed
+- `Api::V1::PantryController` now inherits from `Api::V1::ApplicationController` instead of `ApplicationController` — it was accidentally using Devise session auth instead of the API token.
+- `PantryItem#add_unit!` no longer crashes when `unit_servings` is nil — added the same nil guard used everywhere else in the codebase.
+- Shopping list low-stock quantity defaulted to 1 unit per item instead of using the stale `quantity_on_hand` field (which was always 0).
+- `Date.parse` in `MealPlanItemsController` and `MealPlanRecipesController` now rescues `ArgumentError` so a bad date string returns 422 instead of 500.
+- `EatLog::SLOTS` now references `MealPlan::SLOTS` directly — the old hardcoded `%w[breakfast lunch dinner]` blocked logging snack and dessert meal slots.
+- Contact form now requires authentication to stop spam submissions.
+- `MealPlanItemsController#destroy` wraps item and meal plan deletion in a transaction so a failed meal plan destroy can't leave orphaned items.
+### Removed
+- Deleted `SmartFields` concern — was never included anywhere; `store_accessor` already provides the same methods.
+- Removed dead `EatLogsController#respond_with_cell` method (never called; all actions use `respond_with_cell_and_fridge`).
+- Dropped orphaned `meals` table (no model, no controller, no references).
+- Dropped `quantity_on_hand` and `min_quantity` columns from `pantry_items` — app migrated to `servings_on_hand`/`min_servings`; these were initialized to 0/1 on create and never touched again.
+
 ## [1.30.79] - 2026-06-14
 ### Fixed
 - `test_create_alerts_when_nothing_is_needed` was failing after adding the `bread_pantry` fixture (servings_on_hand: 0) which triggered the low-stock check. Test now explicitly stocks all pantry items above their minimums before asserting no list is generated.

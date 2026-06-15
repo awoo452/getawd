@@ -1,6 +1,6 @@
 module Api
   module V1
-    class PantryController < ApplicationController
+    class PantryController < Api::V1::ApplicationController
       def index
         items = FoodItem.includes(:pantry_item).active.order(:food_type, :position, :name)
         render json: items.map { |fi| serialize_food_item(fi) }

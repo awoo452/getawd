@@ -10,15 +10,17 @@ class MealPlanItemsController < ApplicationController
       meal_plan.meal_plan_items.create!(food_item_id: params[:food_item_id], quantity: [params[:quantity].to_i, 1].max)
       respond_with_cell(meal_plan.reload)
     end
-  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound, ArgumentError
     head :unprocessable_entity
   end
 
   def destroy
     item      = MealPlanItem.find(params[:id])
     meal_plan = item.meal_plan
-    item.destroy
-    meal_plan.destroy if meal_plan.meal_plan_items.reload.empty? && meal_plan.recipes.empty?
+    ActiveRecord::Base.transaction do
+      item.destroy
+      meal_plan.destroy if meal_plan.meal_plan_items.reload.empty? && meal_plan.recipes.empty?
+    end
     respond_with_cell(meal_plan)
   end
 
