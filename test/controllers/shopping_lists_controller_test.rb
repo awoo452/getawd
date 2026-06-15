@@ -35,6 +35,9 @@ class ShoppingListsControllerTest < ActionDispatch::IntegrationTest
 
   test "create alerts when nothing is needed" do
     shopping_lists(:active_list).archive!
+    pantry_items(:eggs_pantry).update!(servings_on_hand: 10.0)
+    pantry_items(:bacon_pantry).update!(servings_on_hand: 10.0)
+    pantry_items(:bread_pantry).update!(servings_on_hand: 20.0)
 
     assert_no_difference "ShoppingList.count" do
       post shopping_lists_path

@@ -137,6 +137,46 @@ class MealPlanTest < ActiveSupport::TestCase
     assert_nothing_raised { mp.update!(cooked: true) }
   end
 
+  # ── Snack / dessert slot behavior ───────────────────────────
+
+  test "morning_snack slot does not generate a task" do
+    assert_no_difference "Task.count" do
+      MealPlan.create!(planned_on: Date.new(2026, 7, 5), meal_slot: :morning_snack)
+    end
+  end
+
+  test "afternoon_snack slot does not generate a task" do
+    assert_no_difference "Task.count" do
+      MealPlan.create!(planned_on: Date.new(2026, 7, 5), meal_slot: :afternoon_snack)
+    end
+  end
+
+  test "bedtime_snack slot does not generate a task" do
+    assert_no_difference "Task.count" do
+      MealPlan.create!(planned_on: Date.new(2026, 7, 5), meal_slot: :bedtime_snack)
+    end
+  end
+
+  test "dessert slot does not generate a task" do
+    assert_no_difference "Task.count" do
+      MealPlan.create!(planned_on: Date.new(2026, 7, 5), meal_slot: :dessert)
+    end
+  end
+
+  test "SLOT_LABELS covers every slot in SLOTS" do
+    MealPlan::SLOTS.each do |slot|
+      assert MealPlan::SLOT_LABELS.key?(slot), "SLOT_LABELS missing '#{slot}'"
+    end
+  end
+
+  test "cooked snack slot with custom items uses SLOT_LABELS in prepared dish name" do
+    mp = MealPlan.create!(planned_on: Date.new(2026, 7, 5), meal_slot: :morning_snack)
+    mp.meal_plan_items.create!(food_item: food_items(:eggs), quantity: 1)
+    mp.update!(cooked: true)
+    dish = PreparedDish.find_by(meal_plan_id: mp.id)
+    assert_equal "Morning Snack — Custom Items", dish.name
+  end
+
   # ── Task removal on destroy ──────────────────────────────
 
   test "destroying meal plan destroys its task" do

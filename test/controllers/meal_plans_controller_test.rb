@@ -44,6 +44,14 @@ class MealPlansControllerTest < ActionDispatch::IntegrationTest
     assert flash[:alert].present?
   end
 
+  test "create with snack slot does not generate a task" do
+    assert_no_difference "Task.count" do
+      post meal_plans_url, params: {
+        meal_plan: { planned_on: "2026-07-10", meal_slot: "morning_snack", recipe_id: @recipe.id }
+      }
+    end
+  end
+
   # ── destroy ──────────────────────────────────────────────
 
   test "destroy removes the meal plan and redirects to kitchen" do

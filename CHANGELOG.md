@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.79] - 2026-06-14
+### Fixed
+- `test_create_alerts_when_nothing_is_needed` was failing after adding the `bread_pantry` fixture (servings_on_hand: 0) which triggered the low-stock check. Test now explicitly stocks all pantry items above their minimums before asserting no list is generated.
+### Added
+- Model tests for `ShoppingList`, `ShoppingListItem`, `FoodItem`, `RecipeIngredient`, and `MealPlanItem`.
+- Controller tests for `FoodItemsController`, `PantryItemsController`, `RecipesController`, and `Api::V1::RecipesController`.
+
 ## [1.30.78] - 2026-06-14
 ### Added
 - Full test coverage for shopping lists and shopping list items: index, show, create, archive, destroy, toggle pantry increment/decrement, replace, and minimum quantity enforcement.
