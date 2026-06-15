@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.82] - 2026-06-14
+### Refactored
+- Extracted `grouped_food_items` into a `KitchenHelpers` controller concern included by `KitchenController`, `MealPlansController`, `MealPlanItemsController`, and `MealPlanRecipesController` — it was copy-pasted identically in three of them.
+
 ## [1.30.81] - 2026-06-14
 ### Changed
 - Contact link moved from public nav to signed-in nav to match the new auth requirement on the contact form.

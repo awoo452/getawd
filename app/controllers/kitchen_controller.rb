@@ -1,4 +1,5 @@
 class KitchenController < ApplicationController
+  include KitchenHelpers
   def index
     @low_stock_count      = PantryItem.low_stock.count
     @out_of_stock_count   = PantryItem.out_of_stock.count
