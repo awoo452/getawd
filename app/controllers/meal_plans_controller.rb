@@ -1,5 +1,6 @@
 class MealPlansController < ApplicationController
   include KitchenHelpers
+  include MealCellResponder
   before_action :set_meal_plan, only: [:update, :destroy, :toggle_cooked]
 
   def create
@@ -48,45 +49,5 @@ class MealPlansController < ApplicationController
 
   def meal_plan_params
     params.require(:meal_plan).permit(:planned_on, :meal_slot)
-  end
-
-  def respond_with_cell(meal_plan)
-    date = meal_plan.planned_on
-    slot = meal_plan.meal_slot
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(
-          "meal_cell_#{date.iso8601}_#{slot}",
-          partial: "kitchen/meal_cell",
-          locals: {
-            date:               date,
-            slot:               slot,
-            meal_plan:          MealPlan.includes(:meal_plan_recipes, :recipes, meal_plan_items: :food_item).find(meal_plan.id),
-            recipes_for_slot:   Recipe.active.by_meal_type(slot).ordered,
-            food_items_grouped: grouped_food_items
-          }
-        )
-      end
-      format.html { redirect_to kitchen_path }
-    end
-  end
-
-  def respond_with_empty_cell(date, slot)
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(
-          "meal_cell_#{date.iso8601}_#{slot}",
-          partial: "kitchen/meal_cell",
-          locals: {
-            date:               date,
-            slot:               slot,
-            meal_plan:          nil,
-            recipes_for_slot:   Recipe.active.by_meal_type(slot).ordered,
-            food_items_grouped: grouped_food_items
-          }
-        )
-      end
-      format.html { redirect_to kitchen_path }
-    end
   end
 end
