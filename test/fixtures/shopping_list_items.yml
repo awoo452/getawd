@@ -1,0 +1,11 @@
+unchecked_item:
+  shopping_list: active_list
+  food_item: eggs
+  quantity_needed: 2
+  checked_off: false
+
+checked_item:
+  shopping_list: active_list
+  food_item: bacon
+  quantity_needed: 1
+  checked_off: true

@@ -17,3 +17,14 @@ bacon:
   servings_per_unit: 1.0
   position: 2
   active: true
+
+bread:
+  name: Bread
+  food_type: grain
+  location: cupboard
+  unit: loaf
+  serving_size: slice
+  servings_per_unit: 1.0
+  unit_servings: 20.0
+  position: 3
+  active: true
