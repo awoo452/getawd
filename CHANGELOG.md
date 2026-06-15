@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.81] - 2026-06-14
+### Changed
+- Contact link moved from public nav to signed-in nav to match the new auth requirement on the contact form.
+
 ## [1.30.80] - 2026-06-14
 ### Fixed
 - `Api::V1::PantryController` now inherits from `Api::V1::ApplicationController` instead of `ApplicationController` — it was accidentally using Devise session auth instead of the API token.
