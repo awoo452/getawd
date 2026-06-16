@@ -55,7 +55,13 @@ class ShoppingListsController < ApplicationController
       return
     end
 
-    list = ShoppingList.create!(generated_on: Date.current, status: "active", label: "From Meal Plans")
+    list = ShoppingList.active.find_or_create_by!(label: "From Meal Plans") do |l|
+      l.generated_on = Date.current
+      l.status       = "active"
+    end
+    list.update!(generated_on: Date.current)
+    list.shopping_list_items.destroy_all
+
     shortfalls.each do |s|
       list.shopping_list_items.create!(food_item: s[:food_item], quantity_needed: s[:quantity_needed])
     end

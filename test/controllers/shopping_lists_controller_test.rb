@@ -15,27 +15,40 @@ class ShoppingListsControllerTest < ActionDispatch::IntegrationTest
 
   # ── Create ────────────────────────────────────────────────
 
-  test "create generates a new list even when an active list already exists" do
+  def plan_with_bread
     plan = MealPlan.create!(planned_on: Date.current, meal_slot: 0, cooked: false)
     plan.meal_plan_items.create!(food_item: food_items(:bread), quantity: 1, position: 1)
+    plan
+  end
 
+  test "create generates a From Meal Plans list on first run" do
+    plan_with_bread
     assert_difference "ShoppingList.count", 1 do
+      post shopping_lists_path
+    end
+    assert_equal "From Meal Plans", ShoppingList.order(:id).last.label
+  end
+
+  test "create reuses existing From Meal Plans list instead of creating a duplicate" do
+    plan_with_bread
+    post shopping_lists_path
+    assert_no_difference "ShoppingList.count" do
       post shopping_lists_path
     end
   end
 
-  test "create labels new list as From Meal Plans" do
-    plan = MealPlan.create!(planned_on: Date.current, meal_slot: 0, cooked: false)
-    plan.meal_plan_items.create!(food_item: food_items(:bread), quantity: 1, position: 1)
+  test "regenerating replaces items on the existing From Meal Plans list" do
+    plan_with_bread
+    post shopping_lists_path
+    list = ShoppingList.find_by!(label: "From Meal Plans")
+    original_id = list.id
 
     post shopping_lists_path
-    assert_equal "From Meal Plans", ShoppingList.order(:id).last.label
+    assert_equal original_id, ShoppingList.find_by!(label: "From Meal Plans").id
   end
 
   test "create generates list from planned meals with shortfalls" do
-    plan = MealPlan.create!(planned_on: Date.current, meal_slot: 0, cooked: false)
-    plan.meal_plan_items.create!(food_item: food_items(:bread), quantity: 1, position: 1)
-
+    plan_with_bread
     assert_difference "ShoppingList.count", 1 do
       post shopping_lists_path
     end
