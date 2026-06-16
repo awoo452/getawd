@@ -9,3 +9,15 @@ checked_item:
   food_item: bacon
   quantity_needed: 1
   checked_off: true
+
+list_two_eggs:
+  shopping_list: active_list_two
+  food_item: eggs
+  quantity_needed: 5
+  checked_off: false
+
+list_two_bread:
+  shopping_list: active_list_two
+  food_item: bread
+  quantity_needed: 2
+  checked_off: false

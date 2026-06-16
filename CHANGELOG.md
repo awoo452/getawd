@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.98] - 2026-06-16
+### Added
+- Merge Active Lists button on shopping lists index combines all active lists into one, taking the higher quantity for any overlapping items and archiving the source lists
+
 ## [1.30.97] - 2026-06-15
 ### Fixed
 - Generating a meal plan list when one already exists now refreshes the existing "From Meal Plans" list instead of creating a duplicate alongside it

@@ -85,6 +85,56 @@ class ShoppingListsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  # ── Merge ─────────────────────────────────────────────────
+
+  test "merge creates a new combined list" do
+    assert_difference "ShoppingList.count", 1 do
+      post merge_shopping_lists_path
+    end
+    assert_redirected_to ShoppingList.order(:id).last
+  end
+
+  test "merge takes MAX quantity for overlapping items" do
+    post merge_shopping_lists_path
+    merged = ShoppingList.order(:id).last
+    eggs_item = merged.shopping_list_items.find_by!(food_item: food_items(:eggs))
+    assert_equal 5, eggs_item.quantity_needed
+  end
+
+  test "merge includes non-overlapping items from both lists" do
+    post merge_shopping_lists_path
+    merged = ShoppingList.order(:id).last
+    assert_equal 3, merged.shopping_list_items.count
+    food_ids = merged.shopping_list_items.pluck(:food_item_id).to_set
+    assert food_ids.include?(food_items(:eggs).id)
+    assert food_ids.include?(food_items(:bacon).id)
+    assert food_ids.include?(food_items(:bread).id)
+  end
+
+  test "merge archives all source lists" do
+    post merge_shopping_lists_path
+    assert_equal "archived", shopping_lists(:active_list).reload.status
+    assert_equal "archived", shopping_lists(:active_list_two).reload.status
+  end
+
+  test "merge labels the new list with both source list names" do
+    shopping_lists(:active_list).update!(label: "Ryder's Picks")
+    shopping_lists(:active_list_two).update!(label: "From Meal Plans")
+    post merge_shopping_lists_path
+    merged = ShoppingList.order(:id).last
+    assert_includes merged.label, "Ryder's Picks"
+    assert_includes merged.label, "From Meal Plans"
+  end
+
+  test "merge redirects with alert when fewer than 2 active lists" do
+    shopping_lists(:active_list_two).update!(status: "archived")
+    assert_no_difference "ShoppingList.count" do
+      post merge_shopping_lists_path
+    end
+    assert_redirected_to shopping_lists_path
+    assert_match /at least 2/, flash[:alert]
+  end
+
   # ── Destroy / Archive ─────────────────────────────────────
 
   test "destroy deletes the list" do

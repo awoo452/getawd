@@ -4,6 +4,9 @@
   <div class="kitchen-actions">
     <%= link_to "← Kitchen", kitchen_path, class: "kitchen-btn" %>
     <%= button_to "Generate New List", shopping_lists_path, method: :post, class: "kitchen-btn kitchen-btn-primary" %>
+    <% if @active_lists.size >= 2 %>
+      <%= button_to "Merge Active Lists", merge_shopping_lists_path, method: :post, class: "kitchen-btn kitchen-btn-secondary" %>
+    <% end %>
   </div>
 
   <% if @active_lists.any? %>

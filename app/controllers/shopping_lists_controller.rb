@@ -69,6 +69,30 @@ class ShoppingListsController < ApplicationController
     redirect_to list, notice: "Shopping list generated with #{list.total_count} items."
   end
 
+  def merge
+    active_lists = ShoppingList.active.to_a
+    if active_lists.size < 2
+      redirect_to shopping_lists_path, alert: "Need at least 2 active lists to merge."
+      return
+    end
+
+    merged = Hash.new(0)
+    active_lists.each do |list|
+      list.shopping_list_items.each do |item|
+        merged[item.food_item_id] = [merged[item.food_item_id], item.quantity_needed].max
+      end
+    end
+
+    labels = active_lists.map(&:display_label).join(" + ")
+    new_list = ShoppingList.create!(label: labels, generated_on: Date.current, status: "active")
+    merged.each do |food_item_id, quantity|
+      new_list.shopping_list_items.create!(food_item_id: food_item_id, quantity_needed: quantity)
+    end
+
+    active_lists.each(&:archive!)
+    redirect_to new_list, notice: "Merged #{active_lists.size} lists into one (#{new_list.total_count} items)."
+  end
+
   def destroy
     @shopping_list.destroy
     redirect_to shopping_lists_path, notice: "List deleted."
