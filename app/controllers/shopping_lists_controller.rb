@@ -102,7 +102,7 @@ class ShoppingListsController < ApplicationController
     @shopping_list.shopping_list_items.includes(food_item: :pantry_item).each do |item|
       pi = item.food_item.pantry_item
       next unless pi
-      pi.increment!(:servings_on_hand, item.quantity_needed * item.food_item.servings_per_unit)
+      pi.increment!(item.quantity_needed * item.food_item.servings_per_unit)
     end
     @shopping_list.archive!
     redirect_to shopping_lists_path, notice: "Done shopping! Pantry updated."
@@ -112,7 +112,8 @@ class ShoppingListsController < ApplicationController
     @shopping_list.shopping_list_items.includes(food_item: :pantry_item).each do |item|
       pi = item.food_item.pantry_item
       next unless pi
-      pi.decrement!(:servings_on_hand, item.quantity_needed * item.food_item.servings_per_unit)
+      amount = item.quantity_needed * item.food_item.servings_per_unit
+      pi.update!(servings_on_hand: [pi.servings_on_hand - amount, 0].max)
     end
     @shopping_list.update!(status: "active")
     redirect_to shopping_lists_path, notice: "List reactivated and pantry reversed."

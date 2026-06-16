@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.103] - 2026-06-16
+### Fixed
+- ERB syntax error on kitchen index caused by nested <%= %> in class attribute
+- archive/unarchive pantry update used wrong increment!/decrement! signature; now calls correct PantryItem methods
+
 ## [1.30.102] - 2026-06-16
 ### Added
 - "Done Shopping" now restocks pantry with all purchased quantities
