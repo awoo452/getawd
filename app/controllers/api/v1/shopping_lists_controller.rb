@@ -5,7 +5,13 @@ module Api
         items = Array(params[:items])
         return render json: { error: "items is required" }, status: :unprocessable_entity if items.empty?
 
-        list = ShoppingList.create!(generated_on: Date.current, status: "active", label: "Ryder's Picks")
+        list = ShoppingList.active.find_or_create_by!(label: "Ryder's Picks") do |l|
+          l.generated_on = Date.current
+          l.status       = "active"
+        end
+        list.update!(generated_on: Date.current)
+        list.shopping_list_items.destroy_all
+
         items.each do |item|
           food_item_id = item[:food_item_id].to_i
           quantity     = [item[:quantity].to_i, 1].max

@@ -75,21 +75,42 @@ class Api::V1::ShoppingListsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 1, bacon_item.quantity_needed
   end
 
-  test "leaves existing active lists intact when creating a new one" do
+  test "leaves non-Ryder's-Picks active lists intact" do
     existing = shopping_lists(:active_list)
     assert existing.active?
 
     api_submit({ items: [{ food_item_id: @eggs.id, quantity: 1 }] })
     assert_response :ok
 
-    assert existing.reload.active?, "existing list should remain active"
-    assert_equal 2, ShoppingList.active.count
+    assert existing.reload.active?, "unrelated active list should remain active"
   end
 
   test "labels the new list as Ryder's Picks" do
     api_submit({ items: [{ food_item_id: @eggs.id, quantity: 1 }] })
     list = ShoppingList.find(response.parsed_body["shopping_list_id"])
     assert_equal "Ryder's Picks", list.label
+  end
+
+  test "resubmitting reuses the existing Ryder's Picks list instead of creating a new one" do
+    api_submit({ items: [{ food_item_id: @eggs.id, quantity: 1 }] })
+    first_id = response.parsed_body["shopping_list_id"]
+
+    api_submit({ items: [{ food_item_id: @bacon.id, quantity: 2 }] })
+    second_id = response.parsed_body["shopping_list_id"]
+
+    assert_equal first_id, second_id
+  end
+
+  test "resubmitting replaces items on the existing list" do
+    api_submit({ items: [{ food_item_id: @eggs.id, quantity: 1 }] })
+    list_id = response.parsed_body["shopping_list_id"]
+
+    api_submit({ items: [{ food_item_id: @bacon.id, quantity: 3 }] })
+    list = ShoppingList.find(list_id)
+
+    assert_equal 1, list.shopping_list_items.count
+    assert_equal @bacon.id, list.shopping_list_items.first.food_item_id
+    assert_equal 3, list.shopping_list_items.first.quantity_needed
   end
 
   test "clamps quantity to 1 when zero is sent" do

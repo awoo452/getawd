@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.96] - 2026-06-15
+### Fixed
+- Resubmitting Ryder's grocery picks no longer creates a duplicate "Ryder's Picks" shopping list — the existing active one is found and its items are replaced with the latest submission
+
 ## [1.30.95] - 2026-06-15
 ### Changed
 - Shopping list generator now uses planned meals exclusively — only adds items needed to cook upcoming uncooked meal plans that aren't already sufficiently stocked; pantry-minimum logic removed entirely
