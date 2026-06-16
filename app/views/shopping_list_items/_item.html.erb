@@ -18,6 +18,10 @@
     <span class="shopping-item-location"><%= item.food_item.location_label %></span>
   </div>
 
+  <%= button_to "✕", shopping_list_item_path(item),
+        method: :delete,
+        class: "shopping-item-remove" %>
+
   <details class="shopping-item-sub">
     <summary class="shopping-item-sub-toggle">Sub</summary>
     <%= form_with url: replace_shopping_list_item_path(item), method: :patch, class: "shopping-item-sub-form" do |f| %>

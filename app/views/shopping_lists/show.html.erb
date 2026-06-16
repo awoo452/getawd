@@ -19,6 +19,20 @@
     </p>
   </div>
 
+  <% if @shopping_list.active? %>
+    <div class="shopping-add-item">
+      <%= form_with url: shopping_list_items_path, method: :post, class: "shopping-add-form" do |f| %>
+        <%= f.hidden_field :shopping_list_id, value: @shopping_list.id %>
+        <%= f.select :food_item_id,
+              grouped_options_for_select(@food_items_grouped),
+              { prompt: "Add item…" },
+              { class: "shopping-add-select" } %>
+        <%= f.number_field :quantity_needed, value: 1, min: 1, class: "shopping-add-qty" %>
+        <%= f.submit "Add", class: "kitchen-btn kitchen-btn-primary" %>
+      <% end %>
+    </div>
+  <% end %>
+
   <% if @items_by_type.empty? %>
     <p class="kitchen-empty">No items on this list.</p>
   <% else %>

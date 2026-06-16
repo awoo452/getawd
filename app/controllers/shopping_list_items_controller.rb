@@ -1,7 +1,26 @@
 class ShoppingListItemsController < ApplicationController
   include KitchenHelpers
-  before_action :set_item
+  before_action :set_item, except: [:create]
   before_action :set_food_items, only: [:update, :replace]
+
+  def create
+    list = ShoppingList.find(params[:shopping_list_id])
+    item = list.shopping_list_items.find_or_initialize_by(food_item_id: create_params[:food_item_id])
+    item.quantity_needed = [create_params[:quantity_needed].to_i, 1].max
+    item.save!
+    redirect_to list, notice: "Item added."
+  rescue ActiveRecord::RecordInvalid => e
+    redirect_to ShoppingList.find(params[:shopping_list_id]), alert: e.message
+  end
+
+  def destroy
+    list = @item.shopping_list
+    @item.destroy
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("shopping_list_item_#{@item.id}") }
+      format.html         { redirect_to list, notice: "Item removed." }
+    end
+  end
 
   def update
     was_checked = @item.checked_off
@@ -49,6 +68,10 @@ class ShoppingListItemsController < ApplicationController
   end
 
   def replace_params
+    params.permit(:food_item_id, :quantity_needed)
+  end
+
+  def create_params
     params.permit(:food_item_id, :quantity_needed)
   end
 

@@ -109,7 +109,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :shopping_list_items, only: [:update] do
+  resources :shopping_list_items, only: [:create, :update, :destroy] do
     member { patch :replace }
   end
 

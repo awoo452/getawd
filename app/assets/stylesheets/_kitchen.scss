@@ -587,6 +587,19 @@
     line-height: 1;
   }
 
+  .shopping-item-remove {
+    background: none;
+    border: none;
+    font-size: 0.75rem;
+    color: $text-muted;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    opacity: 0.5;
+
+    &:hover { color: $danger-color; opacity: 1; }
+  }
+
   .shopping-item-name {
     flex: 1;
     font-weight: 500;
@@ -605,6 +618,31 @@
     min-width: 70px;
     text-align: right;
   }
+}
+
+// ── Add item form ──────────────────────────────────────
+
+.shopping-add-item {
+  margin: $spacing-md 0;
+}
+
+.shopping-add-form {
+  display: flex;
+  gap: $spacing-xs;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.shopping-add-select {
+  flex: 1;
+  min-width: 180px;
+  font-size: $font-xs;
+}
+
+.shopping-add-qty {
+  width: 60px;
+  font-size: $font-xs;
+  text-align: center;
 }
 
 // ── Recipe form ────────────────────────────────────────

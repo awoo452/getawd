@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.93] - 2026-06-15
+### Added
+- Shopping list show page now has an "Add Item" form (grouped food item select + quantity) for adding items to an active list
+- Remove button (✕) on each shopping list item — Turbo Stream removes it instantly without a page reload
+
 ## [1.30.92] - 2026-06-15
 ### Added
 - `POST /api/v1/shopping_lists/submit` API endpoint — receives an array of `{food_item_id, quantity}` items from rydersworld, archives any current active shopping list, and creates a new active list with the submitted picks
