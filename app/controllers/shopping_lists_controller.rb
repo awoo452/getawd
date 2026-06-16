@@ -16,8 +16,6 @@ class ShoppingListsController < ApplicationController
   end
 
   def create
-    low_items = PantryItem.needs_restock.where(food_items: { active: true }).includes(:food_item)
-
     upcoming_plans = MealPlan
       .where(planned_on: Date.current.., cooked: false)
       .includes(
@@ -43,32 +41,23 @@ class ShoppingListsController < ApplicationController
       end
     end
 
-    meal_plan_shortfalls = needed_servings.filter_map do |food_item_id, servings_needed|
-      fi      = food_items_cache[food_item_id]
-      on_hand = fi.pantry_item&.servings_on_hand.to_f
+    shortfalls = needed_servings.filter_map do |food_item_id, servings_needed|
+      fi        = food_items_cache[food_item_id]
+      on_hand   = fi.pantry_item&.servings_on_hand.to_f
       shortfall = servings_needed - on_hand
       next unless shortfall > 0
       units = [(shortfall / fi.servings_per_unit).ceil, 1].max
       { food_item: fi, quantity_needed: units }
     end
 
-    if low_items.none? && meal_plan_shortfalls.none?
-      redirect_to shopping_lists_path, alert: "Nothing needed — pantry and meal plans look good!"
+    if shortfalls.none?
+      redirect_to shopping_lists_path, alert: "Nothing needed — you have everything for your planned meals."
       return
     end
 
-    list       = ShoppingList.create!(generated_on: Date.current, status: "active", label: "Auto-Generated")
-    added_ids  = []
-
-    low_items.each do |pi|
-      units_needed = 1
-      list.shopping_list_items.create!(food_item: pi.food_item, quantity_needed: units_needed)
-      added_ids << pi.food_item_id
-    end
-
-    meal_plan_shortfalls.each do |shortfall|
-      next if added_ids.include?(shortfall[:food_item].id)
-      list.shopping_list_items.create!(food_item: shortfall[:food_item], quantity_needed: shortfall[:quantity_needed])
+    list = ShoppingList.create!(generated_on: Date.current, status: "active", label: "From Meal Plans")
+    shortfalls.each do |s|
+      list.shopping_list_items.create!(food_item: s[:food_item], quantity_needed: s[:quantity_needed])
     end
 
     redirect_to list, notice: "Shopping list generated with #{list.total_count} items."
