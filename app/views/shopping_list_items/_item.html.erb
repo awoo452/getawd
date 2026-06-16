@@ -8,7 +8,7 @@
     <%= form_with url: replace_shopping_list_item_path(item), method: :patch, class: "shopping-item-qty-form" do |f| %>
       <%= f.hidden_field :food_item_id, value: item.food_item_id %>
       <%= f.number_field :quantity_needed, value: item.quantity_needed, min: 1, class: "shopping-item-qty-input" %>
-      <span class="shopping-item-unit"><%= item.food_item.unit %></span>
+      <span class="shopping-item-unit"><%= item.food_item.serving_size.presence || item.food_item.unit %></span>
       <%= f.submit "✓", class: "shopping-item-qty-submit" %>
     <% end %>
     <% pi = item.food_item.pantry_item %>

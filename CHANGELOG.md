@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.99] - 2026-06-16
+### Fixed
+- Shopping list now shows Serving Size Label instead of unit for each item (falls back to unit if no label set)
+
 ## [1.30.98] - 2026-06-16
 ### Added
 - Merge Active Lists button on shopping lists index combines all active lists into one, taking the higher quantity for any overlapping items and archiving the source lists
