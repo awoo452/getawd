@@ -3,26 +3,27 @@
 <div class="kitchen-wrapper">
   <div class="kitchen-actions">
     <%= link_to "← Kitchen", kitchen_path, class: "kitchen-btn" %>
-    <% unless @active_list %>
-      <%= button_to "Generate New List", shopping_lists_path, method: :post, class: "kitchen-btn kitchen-btn-primary" %>
-    <% end %>
+    <%= button_to "Generate New List", shopping_lists_path, method: :post, class: "kitchen-btn kitchen-btn-primary" %>
   </div>
 
-  <% if @active_list %>
+  <% if @active_lists.any? %>
     <section class="kitchen-section">
-      <h2 class="kitchen-section-title">🛒 Active List</h2>
-      <div class="shopping-list-card shopping-list-active">
-        <div class="shopping-list-meta">
-          Generated <%= @active_list.generated_on.strftime("%B %-d, %Y") %> &mdash;
-          <%= @active_list.checked_count %> / <%= @active_list.total_count %> checked
+      <h2 class="kitchen-section-title">🛒 Active Lists</h2>
+      <% @active_lists.each do |list| %>
+        <div class="shopping-list-card shopping-list-active">
+          <div class="shopping-list-meta">
+            <span class="shopping-list-label-badge"><%= list.display_label %></span>
+            Generated <%= list.generated_on.strftime("%B %-d, %Y") %> &mdash;
+            <%= list.checked_count %> / <%= list.total_count %> checked
+          </div>
+          <div class="shopping-list-actions">
+            <%= link_to "Open List", list, class: "kitchen-btn kitchen-btn-primary" %>
+            <%= button_to "Archive", archive_shopping_list_path(list), method: :patch, class: "kitchen-btn" %>
+            <%= button_to "Delete", list, method: :delete, class: "kitchen-btn kitchen-btn-danger",
+                  data: { confirm: "Delete this shopping list?" } %>
+          </div>
         </div>
-        <div class="shopping-list-actions">
-          <%= link_to "Open List", @active_list, class: "kitchen-btn kitchen-btn-primary" %>
-          <%= button_to "Archive", archive_shopping_list_path(@active_list), method: :patch, class: "kitchen-btn" %>
-          <%= button_to "Delete", @active_list, method: :delete, class: "kitchen-btn kitchen-btn-danger",
-                data: { confirm: "Delete this shopping list?" } %>
-        </div>
-      </div>
+      <% end %>
     </section>
   <% end %>
 
@@ -31,6 +32,7 @@
       <h2 class="kitchen-section-title">📦 Past Lists</h2>
       <% @archived_lists.each do |list| %>
         <div class="shopping-list-card shopping-list-archived">
+          <span class="shopping-list-label-badge shopping-list-label-badge--muted"><%= list.display_label %></span>
           <span><%= list.generated_on.strftime("%B %-d, %Y") %></span>
           <span><%= list.total_count %> items</span>
           <%= link_to "View", list, class: "kitchen-btn" %>
@@ -41,7 +43,7 @@
     </section>
   <% end %>
 
-  <% if @active_list.nil? && @archived_lists.empty? %>
+  <% if @active_lists.empty? && @archived_lists.empty? %>
     <p class="kitchen-empty">No shopping lists yet. Generate one when items run low.</p>
   <% end %>
 </div>

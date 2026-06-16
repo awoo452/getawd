@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.94] - 2026-06-15
+### Added
+- `label` column on `shopping_lists` — displays where each list came from ("Ryder's Picks", "Auto-Generated", or custom)
+- Shopping list index now shows all active lists (plural), each with its label badge; no longer limited to one active list at a time
+- Label badge also visible on the shopping list show page header
+### Changed
+- Ryder's picks submission no longer archives existing active lists — lists now coexist
+- Auto-generate no longer blocks creation when an active list exists — always creates a new one
+
 ## [1.30.93] - 2026-06-15
 ### Added
 - Shopping list show page now has an "Add Item" form (grouped food item select + quantity) for adding items to an active list

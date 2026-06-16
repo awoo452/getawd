@@ -13,16 +13,20 @@ class ShoppingListsControllerTest < ActionDispatch::IntegrationTest
     assert_select "li#shopping_list_item_#{shopping_list_items(:checked_item).id}"
   end
 
-  test "create redirects to existing active list" do
-    assert_no_difference "ShoppingList.count" do
+  test "create generates a new list even when an active list already exists" do
+    assert_difference "ShoppingList.count", 1 do
+      pantry_items(:eggs_pantry).update!(servings_on_hand: 0)
       post shopping_lists_path
     end
-    assert_redirected_to shopping_lists(:active_list)
-    assert_match /already have an active/, flash[:notice]
+  end
+
+  test "create labels new list as Auto-Generated" do
+    pantry_items(:eggs_pantry).update!(servings_on_hand: 0)
+    post shopping_lists_path
+    assert_equal "Auto-Generated", ShoppingList.order(:id).last.label
   end
 
   test "create generates list when pantry items are low" do
-    shopping_lists(:active_list).archive!
     pantry_items(:eggs_pantry).update!(servings_on_hand: 0)
 
     assert_difference "ShoppingList.count", 1 do

@@ -75,15 +75,21 @@ class Api::V1::ShoppingListsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 1, bacon_item.quantity_needed
   end
 
-  test "archives the existing active list before creating a new one" do
+  test "leaves existing active lists intact when creating a new one" do
     existing = shopping_lists(:active_list)
     assert existing.active?
 
     api_submit({ items: [{ food_item_id: @eggs.id, quantity: 1 }] })
     assert_response :ok
 
-    assert_equal "archived", existing.reload.status
-    assert_equal 1, ShoppingList.active.count
+    assert existing.reload.active?, "existing list should remain active"
+    assert_equal 2, ShoppingList.active.count
+  end
+
+  test "labels the new list as Ryder's Picks" do
+    api_submit({ items: [{ food_item_id: @eggs.id, quantity: 1 }] })
+    list = ShoppingList.find(response.parsed_body["shopping_list_id"])
+    assert_equal "Ryder's Picks", list.label
   end
 
   test "clamps quantity to 1 when zero is sent" do

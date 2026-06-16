@@ -11,8 +11,9 @@ class ShoppingList < ApplicationRecord
   validates :status,       inclusion: { in: STATUSES }
   validates :generated_on, presence: true
 
-  def active?   = status == "active"
-  def archive!  = update!(status: "archived")
+  def active?        = status == "active"
+  def archive!       = update!(status: "archived")
+  def display_label  = label.presence || "Shopping List"
 
   def checked_count = shopping_list_items.where(checked_off: true).count
   def total_count   = shopping_list_items.count

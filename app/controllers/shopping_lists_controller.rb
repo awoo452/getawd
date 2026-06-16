@@ -3,7 +3,7 @@ class ShoppingListsController < ApplicationController
   before_action :set_shopping_list, only: [:show, :destroy, :archive]
 
   def index
-    @active_list    = ShoppingList.active.order(generated_on: :desc).first
+    @active_lists   = ShoppingList.active.order(generated_on: :desc)
     @archived_lists = ShoppingList.archived.recent.limit(10)
   end
 
@@ -16,12 +16,6 @@ class ShoppingListsController < ApplicationController
   end
 
   def create
-    existing = ShoppingList.active.first
-    if existing
-      redirect_to existing, notice: "You already have an active shopping list."
-      return
-    end
-
     low_items = PantryItem.needs_restock.where(food_items: { active: true }).includes(:food_item)
 
     upcoming_plans = MealPlan
@@ -63,7 +57,7 @@ class ShoppingListsController < ApplicationController
       return
     end
 
-    list       = ShoppingList.create!(generated_on: Date.current, status: "active")
+    list       = ShoppingList.create!(generated_on: Date.current, status: "active", label: "Auto-Generated")
     added_ids  = []
 
     low_items.each do |pi|

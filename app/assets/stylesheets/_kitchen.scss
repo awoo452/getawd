@@ -493,6 +493,26 @@
   }
 }
 
+.shopping-list-label-badge {
+  display: inline-block;
+  font-size: $font-xs;
+  font-weight: 700;
+  background: rgba($primary-color, 0.15);
+  color: $primary-color;
+  border: 1px solid rgba($primary-color, 0.35);
+  border-radius: 999px;
+  padding: 2px 10px;
+  white-space: nowrap;
+  vertical-align: middle;
+  margin-right: $spacing-2xs;
+
+  &--muted {
+    background: rgba($text-muted, 0.1);
+    color: $text-muted;
+    border-color: rgba($text-muted, 0.25);
+  }
+}
+
 .shopping-items-list {
   list-style: none;
   padding: 0;

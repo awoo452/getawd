@@ -11,6 +11,7 @@
 
   <div class="shopping-list-header">
     <p>
+      <span class="shopping-list-label-badge"><%= @shopping_list.display_label %></span>
       Generated <%= @shopping_list.generated_on.strftime("%B %-d, %Y") %> &mdash;
       <strong><%= @shopping_list.checked_count %> / <%= @shopping_list.total_count %></strong> checked
       <% if @shopping_list.complete? %>
