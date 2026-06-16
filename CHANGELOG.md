@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.101] - 2026-06-16
+### Fixed
+- Kitchen index shopping list button now says "Shopping Lists" and links to the lists index
+- Prev/Next navigation buttons now have centered text
+
 ## [1.30.100] - 2026-06-16
 ### Fixed
 - Active Shopping List button on kitchen index now links to the lists index instead of the specific list

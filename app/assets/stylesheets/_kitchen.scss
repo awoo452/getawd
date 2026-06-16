@@ -76,6 +76,7 @@
   text-decoration: none;
   font-size: $font-base;
   cursor: pointer;
+  text-align: center;
   transition: background-color $transition-fast;
 
   &:hover { background: $surface-muted-strong; }
