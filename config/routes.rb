@@ -140,6 +140,11 @@ Rails.application.routes.draw do
         end
       end
       resources :recipes, only: [:index]
+      resources :shopping_lists, only: [] do
+        collection do
+          post :submit
+        end
+      end
     end
   end
 
