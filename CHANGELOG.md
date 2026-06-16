@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.102] - 2026-06-16
+### Added
+- "Done Shopping" now restocks pantry with all purchased quantities
+- Archived shopping lists can be reactivated via "Reactivate" button on the lists index; reactivating reverses the pantry restock
+### Fixed
+- Kitchen index always shows "Shopping Lists" link regardless of active list status; "Generate Shopping List" only appears when no active list exists
+
 ## [1.30.101] - 2026-06-16
 ### Fixed
 - Kitchen index shopping list button now says "Shopping Lists" and links to the lists index

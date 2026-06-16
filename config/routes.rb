@@ -106,6 +106,7 @@ Rails.application.routes.draw do
   resources :shopping_lists, only: [:index, :show, :create, :destroy] do
     member do
       patch :archive
+      patch :unarchive
     end
     collection do
       post :merge

@@ -1,6 +1,6 @@
 class ShoppingListsController < ApplicationController
   include KitchenHelpers
-  before_action :set_shopping_list, only: [:show, :destroy, :archive]
+  before_action :set_shopping_list, only: [:show, :destroy, :archive, :unarchive]
 
   def index
     @active_lists   = ShoppingList.active.order(generated_on: :desc)
@@ -99,8 +99,23 @@ class ShoppingListsController < ApplicationController
   end
 
   def archive
+    @shopping_list.shopping_list_items.includes(food_item: :pantry_item).each do |item|
+      pi = item.food_item.pantry_item
+      next unless pi
+      pi.increment!(:servings_on_hand, item.quantity_needed * item.food_item.servings_per_unit)
+    end
     @shopping_list.archive!
-    redirect_to shopping_lists_path, notice: "List archived."
+    redirect_to shopping_lists_path, notice: "Done shopping! Pantry updated."
+  end
+
+  def unarchive
+    @shopping_list.shopping_list_items.includes(food_item: :pantry_item).each do |item|
+      pi = item.food_item.pantry_item
+      next unless pi
+      pi.decrement!(:servings_on_hand, item.quantity_needed * item.food_item.servings_per_unit)
+    end
+    @shopping_list.update!(status: "active")
+    redirect_to shopping_lists_path, notice: "List reactivated and pantry reversed."
   end
 
   private

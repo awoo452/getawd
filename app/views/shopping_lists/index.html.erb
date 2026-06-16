@@ -39,6 +39,7 @@
           <span><%= list.generated_on.strftime("%B %-d, %Y") %></span>
           <span><%= list.total_count %> items</span>
           <%= link_to "View", list, class: "kitchen-btn" %>
+          <%= button_to "Reactivate", unarchive_shopping_list_path(list), method: :patch, class: "kitchen-btn" %>
           <%= button_to "Delete", list, method: :delete, class: "kitchen-btn kitchen-btn-danger",
                 data: { confirm: "Delete this list?" } %>
         </div>
