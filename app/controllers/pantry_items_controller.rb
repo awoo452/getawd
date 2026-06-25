@@ -2,10 +2,10 @@ class PantryItemsController < ApplicationController
   before_action :set_pantry_item, only: [:update, :set_servings, :add_unit]
 
   def index
-    @pantry_by_type = FoodItem.active
-                               .includes(:pantry_item)
-                               .ordered
-                               .group_by(&:food_type)
+    items = FoodItem.active.includes(:pantry_item).ordered
+    @pantry_by_location = FoodItem::LOCATIONS.index_with { |loc|
+      items.select { |fi| fi.location == loc }
+    }
   end
 
   def update

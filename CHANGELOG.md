@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.104] - 2026-06-25
+### Changed
+- Renamed "Pantry" to "Food Inventory" throughout the kitchen section; the index now groups items by location (Fridge / Freezer / Pantry) instead of food type.
+- Renamed location value `cupboard` → `pantry` across `food_items` (data migration + model constants).
+- `/api/v1/pantry` response now includes a `location` field for each food item.
+
 ## [1.30.103] - 2026-06-16
 ### Fixed
 - ERB syntax error on kitchen index caused by nested <%= %> in class attribute

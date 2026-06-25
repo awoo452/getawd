@@ -2,7 +2,7 @@ require "test_helper"
 
 class FoodItemsControllerTest < ActionDispatch::IntegrationTest
   def valid_params(name: "Oats")
-    { food_item: { name: name, food_type: "side", location: "cupboard",
+    { food_item: { name: name, food_type: "side", location: "pantry",
                    unit: "bag", position: 0, servings_per_unit: 1.0, active: true } }
   end
 

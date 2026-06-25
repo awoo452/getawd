@@ -21,7 +21,7 @@ bacon:
 bread:
   name: Bread
   food_type: side
-  location: cupboard
+  location: pantry
   unit: loaf
   serving_size: slice
   servings_per_unit: 1.0

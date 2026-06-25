@@ -1,4 +1,4 @@
-<%= render "shared/logged_in_heading", title: "Pantry" %>
+<%= render "shared/logged_in_heading", title: "Food Inventory" %>
 
 <div class="kitchen-wrapper">
   <div class="kitchen-actions">
@@ -18,13 +18,12 @@
     <span class="pantry-badge pantry-out">Out</span>
   </div>
 
-  <% FoodItem::FOOD_TYPES.each do |food_type| %>
-    <% items = @pantry_by_type[food_type] %>
+  <% @pantry_by_location.each do |location, items| %>
     <% next if items.blank? %>
 
     <section class="kitchen-section">
       <h2 class="kitchen-section-title">
-        <%= FoodItem::FOOD_TYPE_EMOJI[food_type] %> <%= FoodItem::FOOD_TYPE_LABELS[food_type] %>
+        <%= FoodItem::LOCATION_EMOJI[location] %> <%= FoodItem::LOCATION_LABELS[location] %>
       </h2>
       <div class="pantry-grid">
         <% items.each do |food_item| %>

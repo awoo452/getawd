@@ -18,7 +18,7 @@
   </div>
 
   <div class="kitchen-actions">
-    <%= link_to "View Pantry", pantry_items_path, class: "kitchen-btn" %>
+    <%= link_to "Food Inventory", pantry_items_path, class: "kitchen-btn" %>
     <%= link_to "All Recipes", recipes_path, class: "kitchen-btn" %>
     <%= link_to "Shopping Lists", shopping_lists_path, class: "kitchen-btn#{' kitchen-btn-primary' if @active_shopping_list}" %>
     <%= button_to "Generate Shopping List", shopping_lists_path, method: :post, class: "kitchen-btn" unless @active_shopping_list %>
