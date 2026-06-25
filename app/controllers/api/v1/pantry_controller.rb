@@ -36,6 +36,7 @@ module Api
           id:               fi.id,
           name:             fi.name,
           food_type:        fi.food_type,
+          location:         fi.location,
           servings_on_hand: pi&.servings_on_hand,
           stock_status:     pi&.stock_status || "unknown"
         }

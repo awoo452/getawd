@@ -2,7 +2,7 @@ require "test_helper"
 
 class FoodItemTest < ActiveSupport::TestCase
   def valid_attrs
-    { name: "Oats", food_type: "side", location: "cupboard", unit: "bag",
+    { name: "Oats", food_type: "side", location: "pantry", unit: "bag",
       position: 0, servings_per_unit: 1.0, active: true }
   end
 
@@ -23,7 +23,7 @@ class FoodItemTest < ActiveSupport::TestCase
   end
 
   test "invalid with unrecognized location" do
-    fi = FoodItem.new(valid_attrs.merge(location: "pantry"))
+    fi = FoodItem.new(valid_attrs.merge(location: "garage"))
     assert fi.invalid?
   end
 

@@ -16,7 +16,7 @@ UPDATE recipes SET active = false;
 INSERT INTO food_items (name, food_type, location, unit, active, position, serving_size, servings_per_unit, unit_servings, created_at, updated_at)
 VALUES
   ('Blue Cheese Crumbles', 'protein', 'fridge',   'bag', true, 0, 'oz',  1.0, 1.0, NOW(), NOW()),
-  ('Craisins',             'snack',   'cupboard',  'bag', true, 0, 'tbsp', 1.0, 1.0, NOW(), NOW()),
+  ('Craisins',             'snack',   'pantry',  'bag', true, 0, 'tbsp', 1.0, 1.0, NOW(), NOW()),
   ('Parmesan',             'protein', 'fridge',    'bag', true, 0, 'oz',  1.0, 1.0, NOW(), NOW());
 
 INSERT INTO pantry_items (food_item_id, quantity_on_hand, min_quantity, servings_on_hand, min_servings, created_at, updated_at)

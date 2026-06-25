@@ -1,6 +1,6 @@
 class FoodItem < ApplicationRecord
   FOOD_TYPES = %w[protein vegetable fruit side sauce snack dessert].freeze
-  LOCATIONS  = %w[fridge freezer cupboard].freeze
+  LOCATIONS  = %w[fridge freezer pantry].freeze
   UNITS      = %w[each can bag box pack jar bottle loaf container jug kit].freeze
 
   FOOD_TYPE_LABELS = {
@@ -26,7 +26,13 @@ class FoodItem < ApplicationRecord
   LOCATION_LABELS = {
     "fridge"   => "Fridge",
     "freezer"  => "Freezer",
-    "cupboard" => "Cupboard"
+    "pantry"   => "Pantry"
+  }.freeze
+
+  LOCATION_EMOJI = {
+    "fridge"   => "🧊",
+    "freezer"  => "❄️",
+    "pantry"   => "🫙"
   }.freeze
 
   has_one :pantry_item, dependent: :destroy

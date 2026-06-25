@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_16_052905) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_25_000001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -157,7 +157,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_052905) do
     t.index ["active", "position"], name: "index_food_items_on_active_and_position"
     t.index ["food_type"], name: "index_food_items_on_food_type"
     t.index ["location"], name: "index_food_items_on_location"
-    t.check_constraint "food_type::text = ANY (ARRAY['protein'::character varying, 'vegetable'::character varying, 'fruit'::character varying, 'side'::character varying, 'sauce'::character varying, 'snack'::character varying, 'dessert'::character varying]::text[])", name: "food_type_valid_values"
+    t.check_constraint "food_type::text = ANY (ARRAY['protein'::character varying::text, 'vegetable'::character varying::text, 'fruit'::character varying::text, 'side'::character varying::text, 'sauce'::character varying::text, 'snack'::character varying::text, 'dessert'::character varying::text])", name: "food_type_valid_values"
   end
 
   create_table "games", force: :cascade do |t|
