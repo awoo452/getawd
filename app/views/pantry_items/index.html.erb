@@ -18,18 +18,27 @@
     <span class="pantry-badge pantry-out">Out</span>
   </div>
 
-  <% @pantry_by_location.each do |location, items| %>
-    <% next if items.blank? %>
+  <% @pantry_by_location.each do |location, items_by_type| %>
+    <% next if items_by_type.values.all?(&:blank?) %>
 
-    <section class="kitchen-section">
-      <h2 class="kitchen-section-title">
+    <section class="kitchen-section kitchen-section--location">
+      <h2 class="kitchen-section-title kitchen-section-title--location">
         <%= FoodItem::LOCATION_EMOJI[location] %> <%= FoodItem::LOCATION_LABELS[location] %>
       </h2>
-      <div class="pantry-grid">
-        <% items.each do |food_item| %>
-          <%= render "pantry_items/pantry_item", pantry_item: food_item.pantry_item %>
-        <% end %>
-      </div>
+
+      <% FoodItem::FOOD_TYPES.each do |food_type| %>
+        <% items = items_by_type[food_type] %>
+        <% next if items.blank? %>
+
+        <h3 class="kitchen-section-subtitle">
+          <%= FoodItem::FOOD_TYPE_EMOJI[food_type] %> <%= FoodItem::FOOD_TYPE_LABELS[food_type] %>
+        </h3>
+        <div class="pantry-grid">
+          <% items.each do |food_item| %>
+            <%= render "pantry_items/pantry_item", pantry_item: food_item.pantry_item %>
+          <% end %>
+        </div>
+      <% end %>
     </section>
   <% end %>
 </div>

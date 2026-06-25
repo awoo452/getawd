@@ -4,7 +4,8 @@ class PantryItemsController < ApplicationController
   def index
     items = FoodItem.active.includes(:pantry_item).ordered
     @pantry_by_location = FoodItem::LOCATIONS.index_with { |loc|
-      items.select { |fi| fi.location == loc }
+      loc_items = items.select { |fi| fi.location == loc }
+      FoodItem::FOOD_TYPES.index_with { |type| loc_items.select { |fi| fi.food_type == type } }
     }
   end
 
