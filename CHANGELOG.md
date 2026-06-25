@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.30.105] - 2026-06-25
+### Fixed
+- "← Pantry" back-link on the food items index now reads "← Food Inventory".
+
 ## [1.30.104] - 2026-06-25
 ### Changed
 - Renamed "Pantry" to "Food Inventory" throughout the kitchen section; the index now groups items by location (Fridge / Freezer / Pantry) instead of food type.
